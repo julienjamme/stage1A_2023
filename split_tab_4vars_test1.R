@@ -81,7 +81,128 @@ tab_c$A_B <- paste(tab_c$A, tab_c$B, sep = "_")
 split(tab_c, tab_c_corr1$corr_A)
 
 
-# case table non triée selon table de correspondance ------------------------------------------------------------------
+# case table non triée selon leur table de correspondance ------------------------------------------------------------------
 
 
+# Exemple de table de correspondance pour les variables "A" et "B"
+# Enlève les niveaux non nécessaires par rapport au cas précédent
+corr_tab_A <- tibble(
+  niv1 = c(rep("A1",3),rep("A2",2),"A3"),
+  niv2 = c(rep("A11",2),"A12","A21","A22","A3"),
+  niv3 = c("A111","A112","A12","A21","A22","A3")
+)
 
+corr_tab_B <- tibble(
+  niv1 = c(rep("B1",3),rep("B2",2),"B3"),
+  niv2 = c(rep("B11",2),"B12","B21","B22","B3"),
+  niv3 = c("B111","B112","B12","B21","B22","B3")
+)
+
+
+# Création du croisement cartésien entre A et B, sans oublier le total
+tab_c <- expand.grid(
+  A = c(c("A111","A112","A12","A21","A22","A3"),"AT"),
+  B = c(c("B111","B112","B12","B21","B22","B3"),"BT"),
+  stringsAsFactors = FALSE
+)
+tab_c <- as.data.frame(tab_c)
+
+# tab_c <- tab_c[order(tab_c$A,decreasing = TRUE),]
+# sensible à l'ordre !
+
+# Création du croisement cartésien table de corrélation A et B avec ajout du total
+tab_c_corr1 <- expand.grid(
+  corr_A = c(corr_tab_A$niv1,"AT"),
+  corr_B = c(corr_tab_B$niv1,"BT"),
+  stringsAsFactors = FALSE
+)
+tab_c_corr1 <- as.data.frame(tab_c_corr1)
+
+# str(tab_c)
+
+tab_c$A_B <- paste(tab_c$A, tab_c$B, sep = "_")
+
+split(tab_c, tab_c_corr1$corr_A)
+
+
+tab_c_shuffle = tab_c[sample(1:nrow(tab_c)), ]
+
+tmp <- tab_c_shuffle[order(tab_c_shuffle$B, tab_c_shuffle$A),]
+
+split(tmp, tab_c_corr1$corr_A)
+# -> ça marche
+
+
+################################################
+################################################
+# Deuxième teste avec des hierarchies différentes
+################################################
+################################################
+
+
+# Exemple de table de correspondance pour les variables "A" et "B"
+# Enlève les niveaux non nécessaires par rapport au cas précédent
+corr_tab_A <- tibble(
+  niv1 = c(rep("A1",3),rep("A2",2),"A3"),
+  niv2 = c(rep("A11",2),"A12","A21","A22","A3"),
+  niv3 = c("A111","A112","A12","A21","A22","A3")
+)
+
+corr_tab_B <- tibble(
+  niv1 = c(rep("B1",2),rep("B2",2),"B3",rep("B4",2)),
+  niv2 = c("B11","B12","B21","B22","B3","B41","B42"),
+)
+
+
+# Création du croisement cartésien entre A et B, sans oublier le total
+# Ajout de tous les sous totaux :)
+
+sous_totA <- setdiff(union(corr_tab_A$niv1,corr_tab_A$niv2), 
+                     corr_tab_A$niv3)
+
+sous_totB <- setdiff(corr_tab_B$niv1, 
+                     corr_tab_B$niv2)
+
+
+tab_c <- expand.grid(
+  A = c(corr_tab_A$niv3,sous_totA,"AT"),
+  B = c(corr_tab_B$niv2,sous_totB,"BT"),
+  stringsAsFactors = FALSE
+)
+
+tab_c <- as.data.frame(tab_c)
+
+# Création du croisement cartésien table de corrélation A et B avec ajout du total
+tab_c_corr1 <- expand.grid(
+  corr_A = c(corr_tab_A$niv1,sous_totA,"AT"),
+  corr_B = c(corr_tab_B$niv1,sous_totB,"BT"),
+  stringsAsFactors = FALSE
+)
+tab_c_corr1 <- as.data.frame(tab_c_corr1)
+
+# str(tab_c)
+
+tab_c$A_B <- paste(tab_c$A, tab_c$B, sep = "_")
+
+split(tab_c, tab_c_corr1$corr_A)
+
+
+tmp <- tab_c[order(tab_c$B, tab_c$A),]
+
+split(tmp, tab_c_corr1$corr_A)
+
+## gestion du non mélange
+tab_c_shuffle = tab_c[sample(1:nrow(tab_c)), ]
+
+tmp <- tab_c_shuffle[order(tab_c_shuffle$B, tab_c_shuffle$A),]
+
+split(tmp, tab_c_corr1$corr_A)
+
+
+tab_c_corr2 <- expand.grid(
+  corr_A = c(corr_tab_A$niv2,"AT"),
+  corr_B = c(corr_tab_B$niv2,"BT"),
+  stringsAsFactors = FALSE
+)
+tab_c_corr2 <- as.data.frame(tab_c_corr2)
+split(tmp, tab_c_corr2$corr_A)
