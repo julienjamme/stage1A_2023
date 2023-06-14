@@ -180,6 +180,13 @@ tab_c_corr1 <- expand.grid(
 )
 tab_c_corr1 <- as.data.frame(tab_c_corr1)
 
+tab_c_corr2 <- expand.grid(
+  corr_A = c(corr_tab_A$niv1,sous_totA,"AT"),
+  corr_B = c(corr_tab_B$niv1,sous_totB,"BT"),
+  stringsAsFactors = FALSE
+)
+tab_c_corr2 <- as.data.frame(tab_c_corr2)
+
 # str(tab_c)
 
 tab_c$A_B <- paste(tab_c$A, tab_c$B, sep = "_")
@@ -187,9 +194,12 @@ tab_c$A_B <- paste(tab_c$A, tab_c$B, sep = "_")
 split(tab_c, tab_c_corr1$corr_A)
 
 
-tmp <- tab_c[order(tab_c$B, tab_c$A),]
+# to do :
+# il faudrait ne pas spiter par rapport à tous les sous totaux
+# mais uniquement les sous totaux grossier (niveau 1 + total)
+# -> trouver comment ne pas trop split
+# ou bien -> trouver comment merge les sous totaux
 
-split(tmp, tab_c_corr1$corr_A)
 
 ## gestion du non mélange
 tab_c_shuffle = tab_c[sample(1:nrow(tab_c)), ]
@@ -206,3 +216,4 @@ tab_c_corr2 <- expand.grid(
 )
 tab_c_corr2 <- as.data.frame(tab_c_corr2)
 split(tmp, tab_c_corr2$corr_A)
+
