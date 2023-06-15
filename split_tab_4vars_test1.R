@@ -191,8 +191,10 @@ tab_c_corr2 <- as.data.frame(tab_c_corr2)
 
 tab_c$A_B <- paste(tab_c$A, tab_c$B, sep = "_")
 
-split(tab_c, tab_c_corr1$corr_A)
+split_table<- split(tab_c, tab_c_corr1$corr_A)
 
+
+# rbind ???
 
 # to do :
 # il faudrait ne pas spiter par rapport à tous les sous totaux
@@ -201,19 +203,97 @@ split(tab_c, tab_c_corr1$corr_A)
 # ou bien -> trouver comment merge les sous totaux
 
 
-## gestion du non mélange
-tab_c_shuffle = tab_c[sample(1:nrow(tab_c)), ]
 
-tmp <- tab_c_shuffle[order(tab_c_shuffle$B, tab_c_shuffle$A),]
+# Autre approche : utilisation de colonne supplémentaire représentant
+# les niveaux de correspondances
 
-split(tmp, tab_c_corr1$corr_A)
+library(dplyr)
 
-
-tab_c_corr2 <- expand.grid(
-  corr_A = c(corr_tab_A$niv2,"AT"),
-  corr_B = c(corr_tab_B$niv2,"BT"),
-  stringsAsFactors = FALSE
+# table de correspondance de la table A
+corr_tab_A <- tibble(
+  niv1 = c(rep("A1",3),rep("A2",2),"A3"),
+  niv2 = c(rep("A11",2),"A12","A21","A22","A3"),
+  niv3 = c("A111","A112","A12","A21","A22","A3")
 )
-tab_c_corr2 <- as.data.frame(tab_c_corr2)
-split(tmp, tab_c_corr2$corr_A)
+
+# table de correspondance de la table Ab
+# afin d'avoir un autre exemple empirique
+corr_tab_Ab <- tibble(
+  niv1 = c(rep("A1",5),rep("A2",2),"A3"),
+  niv2 = c(rep("A11",4),"A12","A21","A22","A3"),
+  niv3 = c(rep("A111",3),"A112","A12","A21","A22","A3"),
+  niv4 = c(rep("A1111",2),"A1112","A112","A12","A21","A22","A3"),
+  niv5 = c("A11111","A11112","A1112","A112","A12","A21","A22","A3")
+)
+
+
+# Création de la table A à partir de la table de correpondance
+tabA <- Reduce(union, corr_tab_A)
+
+# Création de colonne correspondant aux niveaux de correspondances
+# comme dans une table de correspondance
+# sans redondance des niveaux -> utilisation de ""
+
+#fait à la main (laborieux)
+# ne marche que si tabA n'est pas un dataframe de base
+
+tabA <- as.data.frame(tabA) %>%
+  mutate(level1 = case_when(
+    tabA %in% corr_tab_A$niv1 ~ tabA,
+    tabA %in% corr_tab_A$niv2 ~ corr_tab_A$niv1[match(tabA, corr_tab_A$niv2)],
+    tabA %in% corr_tab_A$niv3 ~ corr_tab_A$niv1[match(tabA, corr_tab_A$niv3)]
+  )) %>%
+  mutate(level2 = case_when(
+    tabA %in% corr_tab_A$niv1 ~ "",
+    tabA %in% corr_tab_A$niv2 ~ tabA,
+    tabA %in% corr_tab_A$niv3 ~ corr_tab_A$niv2[match(tabA, corr_tab_A$niv3)]
+  )) %>%
+  mutate(level3 = case_when(
+    tabA %in% corr_tab_A$niv1 ~ "",
+    tabA %in% corr_tab_A$niv2 ~ "",
+    tabA %in% corr_tab_A$niv3 ~ tabA
+  ))
+
+tabA
+
+
+# to do : trouver comment le faire dynamiquement
+
+# it fails for now :(
+tabAdf <- as.data.frame(Reduce(union, corr_tab_A))
+# Create a new column "level1" in tabA
+tabAdf <- tabAdf %>%
+  mutate(level1 = case_when(
+    tabAdf %in% corr_tab_A$niv1 ~ tabAdf,
+    tabAdf %in% corr_tab_A$niv2 ~ corr_tab_A$niv1[match(tabAdf, corr_tab_A$niv2)],
+    tabAdf %in% corr_tab_A$niv3 ~ corr_tab_A$niv1[match(tabAdf, corr_tab_A$niv3)]
+  ))
+
+tabAdf
+
+
+# filtration pour split ensuite en sous tableaux hierarchique
+# a l'air de bien marcher, à vérifier pour généraliser la formule pour n niveau
+# hierarchique
+
+# groupes de niveau 0
+tabA %>% 
+  filter(level2 == "") %>% 
+  select(tabA)
+
+# groupes de niveau 1
+tabA1b <- tabA %>%
+  filter(level3 == "") %>%
+  split(.$level1)
+
+tabA1b
+
+# groupes de niveau 2
+tabA2b <- tabA %>% 
+  filter(level3 != "" | (level3 == "" & level2 != "")) %>% 
+  split(.$level2)
+
+tabA2b
+
+
 
