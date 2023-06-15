@@ -767,3 +767,100 @@ res_total3 <- res_total2
 res_total4 <- lapply(res_total3, function(x) enlever_colonne(x, 5))
 
 # -> it works !
+
+
+# Fusion de toutes les étapes intermédiaires en une seule fonction !
+
+#' Title
+#'
+#' @param table Un dataframe contenant les niveaux hierarchique level1 ... leveln
+#' nommé de la sorte et des "" pour les sous-niveaux "trop fin"
+#'
+#'# Exemple de dataframe dans le format requis :
+# > tabAb
+#> tabAb_avec_total
+#      tabAb level1 level2 level3 level4 level5
+# 1       A1     A1                            
+# 2       A2     A2                            
+# 3       A3     A3                            
+# 4      A11     A1    A11                     
+# 5      A12     A1    A12                     
+# 6      A21     A2    A21                     
+# 7      A22     A2    A22                     
+# 8     A111     A1    A11   A111              
+# 10   A1111     A1    A11   A111  A1111       
+# 11   A1112     A1    A11   A111  A1112       
+# 12  A11111     A1    A11   A111  A1111 A11111
+# 13  A11112     A1    A11   A111  A1111 A11112
+# 14 A_Total 
+#' 
+#' @param n Le nombre de niveau hierarchique
+#'
+#' @return une liste de data.frame emboité sans colonnes supeflus
+#' 
+#> res_final <- creation_sous_liste_emboite(tabAb_avec_total,5)
+#> res_final
+# [[1]]
+#     tabAb
+# 1      A1
+# 2      A2
+# 3      A3
+# 4 A_Total
+#
+# $A1
+#   tabAb
+# 1    A1
+# 4   A11
+# 5   A12
+#
+# $A2
+#   tabAb
+# 2    A2
+# 6   A21
+# 7   A22
+#
+#$A11
+#   tabAb
+# 1   A11
+# 5  A111
+# 6  A112
+#
+# $A111
+#   tabAb
+# 1  A111
+# 3 A1111
+# 4 A1112 
+
+# $A1111
+# t   abAb
+# 1  A1111
+# 3 A11111
+# 4 A11112
+#'
+#' @examples
+creation_sous_liste_emboite <- function(table,n){
+  # création dataframe emboité sous forme de liste de liste de dataframe
+  res <- decouper_en_sous_tableaux(table, n)
+  
+  # transformation sous forme d'une simple liste de data frame
+  res <- forme_liste_dataf(res)
+  
+  # on enlève les colonnes superflus
+  res <- lapply(res, function(x) enlever_colonne(x, 5))
+  
+  return(res)
+}
+
+tabAb_avec_total
+
+res_final <- creation_sous_liste_emboite(tabAb_avec_total,5)
+
+# to do : faire une fonctionn prenant un dataframe et une hierarchie
+# et construisant le tableau avec les colonnes level1...leveln
+
+# fonction package stringr pour manipuler les str -> cheatsheet stringr ?
+# str_match, str_detect, str_replace
+
+
+# readlines pour lire ligne à ligne un fichier .txt (.hrc)
+
