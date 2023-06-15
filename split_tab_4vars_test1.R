@@ -43,7 +43,7 @@ library(dplyr)
 
 
 # Exemple de table de correspondance pour les variables "A" et "B"
-corr_tab_A <- tibble(
+corr_tab_Ab <- tibble(
   niv1 = c(rep("A1",5),rep("A2",2),"A3"),
   niv2 = c(rep("A11",3),"A12","A2","A21","A3"),
   niv3 = c("A1","A11","A111","A112","A12","A2","A21","A3")
@@ -68,7 +68,7 @@ tab_c <- as.data.frame(tab_c)
 
 # Création du croisement cartésien table de corrélation A et B avec ajout du total
 tab_c_corr1 <- expand.grid(
-  corr_A = c(corr_tab_A$niv1,"AT"),
+  corr_A = c(corr_tab_Ab$niv1,"AT"),
   corr_B = c(corr_tab_B$niv1,"BT"),
   stringsAsFactors = FALSE
 )
@@ -86,7 +86,7 @@ split(tab_c, tab_c_corr1$corr_A)
 
 # Exemple de table de correspondance pour les variables "A" et "B"
 # Enlève les niveaux non nécessaires par rapport au cas précédent
-corr_tab_A <- tibble(
+corr_tab_Ab <- tibble(
   niv1 = c(rep("A1",3),rep("A2",2),"A3"),
   niv2 = c(rep("A11",2),"A12","A21","A22","A3"),
   niv3 = c("A111","A112","A12","A21","A22","A3")
@@ -112,7 +112,7 @@ tab_c <- as.data.frame(tab_c)
 
 # Création du croisement cartésien table de corrélation A et B avec ajout du total
 tab_c_corr1 <- expand.grid(
-  corr_A = c(corr_tab_A$niv1,"AT"),
+  corr_A = c(corr_tab_Ab$niv1,"AT"),
   corr_B = c(corr_tab_B$niv1,"BT"),
   stringsAsFactors = FALSE
 )
@@ -142,7 +142,7 @@ split(tmp, tab_c_corr1$corr_A)
 
 # Exemple de table de correspondance pour les variables "A" et "B"
 # Enlève les niveaux non nécessaires par rapport au cas précédent
-corr_tab_A <- tibble(
+corr_tab_Ab <- tibble(
   niv1 = c(rep("A1",3),rep("A2",2),"A3"),
   niv2 = c(rep("A11",2),"A12","A21","A22","A3"),
   niv3 = c("A111","A112","A12","A21","A22","A3")
@@ -157,15 +157,15 @@ corr_tab_B <- tibble(
 # Création du croisement cartésien entre A et B, sans oublier le total
 # Ajout de tous les sous totaux :)
 
-sous_totA <- setdiff(union(corr_tab_A$niv1,corr_tab_A$niv2), 
-                     corr_tab_A$niv3)
+sous_totA <- setdiff(union(corr_tab_Ab$niv1,corr_tab_Ab$niv2), 
+                     corr_tab_Ab$niv3)
 
 sous_totB <- setdiff(corr_tab_B$niv1, 
                      corr_tab_B$niv2)
 
 
 tab_c <- expand.grid(
-  A = c(corr_tab_A$niv3,sous_totA,"AT"),
+  A = c(corr_tab_Ab$niv3,sous_totA,"AT"),
   B = c(corr_tab_B$niv2,sous_totB,"BT"),
   stringsAsFactors = FALSE
 )
@@ -174,14 +174,14 @@ tab_c <- as.data.frame(tab_c)
 
 # Création du croisement cartésien table de corrélation A et B avec ajout du total
 tab_c_corr1 <- expand.grid(
-  corr_A = c(corr_tab_A$niv1,sous_totA,"AT"),
+  corr_A = c(corr_tab_Ab$niv1,sous_totA,"AT"),
   corr_B = c(corr_tab_B$niv1,sous_totB,"BT"),
   stringsAsFactors = FALSE
 )
 tab_c_corr1 <- as.data.frame(tab_c_corr1)
 
 tab_c_corr2 <- expand.grid(
-  corr_A = c(corr_tab_A$niv1,sous_totA,"AT"),
+  corr_A = c(corr_tab_Ab$niv1,sous_totA,"AT"),
   corr_B = c(corr_tab_B$niv1,sous_totB,"BT"),
   stringsAsFactors = FALSE
 )
@@ -204,26 +204,29 @@ split_table<- split(tab_c, tab_c_corr1$corr_A)
 
 
 
+# -> idée non bonne (poubelle)
+# on passe à l'idée d'après (cf ci-dessous)
+
+
+
+#############################################################################
+#############################################################################
+#############################################################################
+#############################################################################
 # Autre approche : utilisation de colonne supplémentaire représentant
 # les niveaux de correspondances
+#############################################################################
+#############################################################################
+#############################################################################
+#############################################################################
 
 library(dplyr)
 
 # table de correspondance de la table A
-corr_tab_A <- tibble(
+corr_tab_Ab <- tibble(
   niv1 = c(rep("A1",3),rep("A2",2),"A3"),
   niv2 = c(rep("A11",2),"A12","A21","A22","A3"),
   niv3 = c("A111","A112","A12","A21","A22","A3")
-)
-
-# table de correspondance de la table Ab
-# afin d'avoir un autre exemple empirique
-corr_tab_Ab <- tibble(
-  niv1 = c(rep("A1",5),rep("A2",2),"A3"),
-  niv2 = c(rep("A11",4),"A12","A21","A22","A3"),
-  niv3 = c(rep("A111",3),"A112","A12","A21","A22","A3"),
-  niv4 = c(rep("A1111",2),"A1112","A112","A12","A21","A22","A3"),
-  niv5 = c("A11111","A11112","A1112","A112","A12","A21","A22","A3")
 )
 
 
@@ -239,61 +242,443 @@ tabA <- Reduce(union, corr_tab_A)
 
 tabA <- as.data.frame(tabA) %>%
   mutate(level1 = case_when(
-    tabA %in% corr_tab_A$niv1 ~ tabA,
-    tabA %in% corr_tab_A$niv2 ~ corr_tab_A$niv1[match(tabA, corr_tab_A$niv2)],
-    tabA %in% corr_tab_A$niv3 ~ corr_tab_A$niv1[match(tabA, corr_tab_A$niv3)]
+    tabA %in% corr_tab_Ab$niv1 ~ tabA,
+    tabA %in% corr_tab_Ab$niv2 ~ corr_tab_Ab$niv1[match(tabA, corr_tab_Ab$niv2)],
+    tabA %in% corr_tab_Ab$niv3 ~ corr_tab_Ab$niv1[match(tabA, corr_tab_Ab$niv3)]
   )) %>%
   mutate(level2 = case_when(
-    tabA %in% corr_tab_A$niv1 ~ "",
-    tabA %in% corr_tab_A$niv2 ~ tabA,
-    tabA %in% corr_tab_A$niv3 ~ corr_tab_A$niv2[match(tabA, corr_tab_A$niv3)]
+    tabA %in% corr_tab_Ab$niv1 ~ "",
+    tabA %in% corr_tab_Ab$niv2 ~ tabA,
+    tabA %in% corr_tab_Ab$niv3 ~ corr_tab_Ab$niv2[match(tabA, corr_tab_Ab$niv3)]
   )) %>%
   mutate(level3 = case_when(
-    tabA %in% corr_tab_A$niv1 ~ "",
-    tabA %in% corr_tab_A$niv2 ~ "",
-    tabA %in% corr_tab_A$niv3 ~ tabA
+    tabA %in% corr_tab_Ab$niv1 ~ "",
+    tabA %in% corr_tab_Ab$niv2 ~ "",
+    tabA %in% corr_tab_Ab$niv3 ~ tabA
   ))
 
 tabA
 
+###############################################################################
 
-# to do : trouver comment le faire dynamiquement
+# table de correspondance de la table Ab
+# afin d'avoir un autre exemple empirique
+corr_tab_Ab <- tibble(
+  niv1 = c(rep("A1",5),rep("A2",2),"A3"),
+  niv2 = c(rep("A11",4),"A12","A21","A22","A3"),
+  niv3 = c(rep("A111",3),"A112","A12","A21","A22","A3"),
+  niv4 = c(rep("A1111",2),"A1112","A112","A12","A21","A22","A3"),
+  niv5 = c("A11111","A11112","A1112","A112","A12","A21","A22","A3")
+)
 
-# it fails for now :(
-tabAdf <- as.data.frame(Reduce(union, corr_tab_A))
-# Create a new column "level1" in tabA
-tabAdf <- tabAdf %>%
+# Création de la table Ab à partir de la table de correpondance
+tabAb <- Reduce(union, corr_tab_Ab)
+
+tabAb <- as.data.frame(tabAb) %>%
   mutate(level1 = case_when(
-    tabAdf %in% corr_tab_A$niv1 ~ tabAdf,
-    tabAdf %in% corr_tab_A$niv2 ~ corr_tab_A$niv1[match(tabAdf, corr_tab_A$niv2)],
-    tabAdf %in% corr_tab_A$niv3 ~ corr_tab_A$niv1[match(tabAdf, corr_tab_A$niv3)]
+    tabAb %in% corr_tab_Ab$niv1 ~ tabAb,
+    tabAb %in% corr_tab_Ab$niv2 ~ corr_tab_Ab$niv1[match(tabAb, corr_tab_Ab$niv2)],
+    tabAb %in% corr_tab_Ab$niv3 ~ corr_tab_Ab$niv1[match(tabAb, corr_tab_Ab$niv3)],
+    tabAb %in% corr_tab_Ab$niv4 ~ corr_tab_Ab$niv1[match(tabAb, corr_tab_Ab$niv4)],
+    tabAb %in% corr_tab_Ab$niv5 ~ corr_tab_Ab$niv1[match(tabAb, corr_tab_Ab$niv5)]
+  )) %>%
+  mutate(level2 = case_when(
+    tabAb %in% corr_tab_Ab$niv1 ~ "",
+    tabAb %in% corr_tab_Ab$niv2 ~ tabAb,
+    tabAb %in% corr_tab_Ab$niv3 ~ corr_tab_Ab$niv2[match(tabAb, corr_tab_Ab$niv3)],
+    tabAb %in% corr_tab_Ab$niv4 ~ corr_tab_Ab$niv2[match(tabAb, corr_tab_Ab$niv4)],
+    tabAb %in% corr_tab_Ab$niv5 ~ corr_tab_Ab$niv2[match(tabAb, corr_tab_Ab$niv5)]
+  )) %>%
+  mutate(level3 = case_when(
+    tabAb %in% corr_tab_Ab$niv1 ~ "",
+    tabAb %in% corr_tab_Ab$niv2 ~ "",
+    tabAb %in% corr_tab_Ab$niv3 ~ tabAb,
+    tabAb %in% corr_tab_Ab$niv4 ~ corr_tab_Ab$niv3[match(tabAb, corr_tab_Ab$niv4)],
+    tabAb %in% corr_tab_Ab$niv5 ~ corr_tab_Ab$niv3[match(tabAb, corr_tab_Ab$niv5)]
+  )) %>%
+  mutate(level4 = case_when(
+    tabAb %in% corr_tab_Ab$niv1 ~ "",
+    tabAb %in% corr_tab_Ab$niv2 ~ "",
+    tabAb %in% corr_tab_Ab$niv3 ~ "",
+    tabAb %in% corr_tab_Ab$niv4 ~ tabAb,
+    tabAb %in% corr_tab_Ab$niv5 ~ corr_tab_Ab$niv4[match(tabAb, corr_tab_Ab$niv5)]
+  )) %>%
+  mutate(level5 = case_when(
+    tabAb %in% corr_tab_Ab$niv1 ~ "",
+    tabAb %in% corr_tab_Ab$niv2 ~ "",
+    tabAb %in% corr_tab_Ab$niv3 ~ "",
+    tabAb %in% corr_tab_Ab$niv4 ~ "",
+    tabAb %in% corr_tab_Ab$niv5 ~ tabAb
   ))
 
-tabAdf
+tabAb
 
 
-# filtration pour split ensuite en sous tableaux hierarchique
-# a l'air de bien marcher, à vérifier pour généraliser la formule pour n niveau
-# hierarchique
+# to do : trouver comment le faire dynamiquement
+# + trouver comment le faire à partir d'un .hrc
+# et non pas d'une table de correspondance !
 
-# groupes de niveau 0
-tabA %>% 
-  filter(level2 == "") %>% 
-  select(tabA)
+
+
+# Recherche empirique d'une formule générale de split :
 
 # groupes de niveau 1
-tabA1b <- tabA %>%
+tabA %>% 
+  filter(level2 == "")
+
+tabAb %>% 
+  filter(level2 == "")
+
+tabAb %>% 
+  filter(level2 == "") %>% 
+  split(.$level3)
+
+# groupes de niveau 2
+tabA %>%
   filter(level3 == "") %>%
   split(.$level1)
 
-tabA1b
 
-# groupes de niveau 2
-tabA2b <- tabA %>% 
+tabAb %>%
+  filter(level3 == "") %>%
+  split(.$level1)
+
+tabAb %>%
+  filter(level3 == "" & level2 != "") %>%
+  split(.$level1)
+
+# groupes de niveau 3
+tabA %>% 
   filter(level3 != "" | (level3 == "" & level2 != "")) %>% 
   split(.$level2)
 
-tabA2b
+tabAb %>% 
+  filter(  level2 != "" & level4 == "" & level3 != "") %>% 
+  split(.$level2)
+
+# groupes de niveau 4
+tabAb %>% 
+  filter( level5 == "" & level3 != "" ) %>% 
+  split(.$level3)
+
+
+# même chose mais en accédant aux colonnes avec des variables
+levelip1 <- paste0("level", as.character(4+1))
+levelim1 <- paste0("level", as.character(4-1))
+
+tabAb %>% 
+  filter(pull(., {{ levelip1 }}) == "" & pull(., {{ levelim1 }}) != "") %>% 
+  split(., pull(., {{ levelim1 }}))
+
+# groupes de niveau 5
+tabAb %>% 
+  filter( level4 != "" & level5 != "") %>% 
+  split(.$level4)
+
+
+
+# formule générale :
+
+# group 1 : 
+#tabA %>% 
+#  filter(level1 == "") %>% 
+#  select(tabA)
+
+# group i from 2 to n-1 :
+#tabAb %>% 
+#  filter( leveli+1 == "" & leveli-1 != "" ) %>% 
+#  split(.$leveli-1)
+
+# group n (si n != 1) :
+#tabAb %>% 
+#  filter( leveln-1 != "" ) %>% 
+#  split(.$leveln-1)
+
+
+# Reminder :
+# ctrl shift c pour commenter plusieurs lignes
+# ctrl shft r pour section de code
+# ctrl + alt + shift + r faire le skelette d'une fonction
+
+
+#' Fonction de découpage en sous tableaux hierarchique
+#'
+#' @param table Un dataframe contenant les niveaux hierarchique level1 ... leveln
+#' nommé de la sorte et des "" pour les sous-niveaux "trop fin"
+#'
+#'# Exemple de dataframe dans le format requis :
+# > tabAb
+# tabAb level1 level2 level3 level4 level5
+# 1      A1     A1                            
+# 2      A2     A2                            
+# 3      A3     A3                            
+# 4     A11     A1    A11                     
+# 5     A12     A1    A12                     
+# 6     A21     A2    A21                     
+# 7     A22     A2    A22                     
+# 8    A111     A1    A11   A111              
+# 9    A112     A1    A11   A112              
+# 10  A1111     A1    A11   A111  A1111       
+# 11  A1112     A1    A11   A111  A1112       
+# 12 A11111     A1    A11   A111  A1111 A11111
+# 13 A11112     A1    A11   A111  A1111 A11112
+#'
+#' @param n Le nombre de niveau hierarchique
+#'
+#' @return une liste de liste de dataframe
+#'        ces différents dataframe conservent la hierarchie de la table de départ
+#'        et minimise le nombre de doublon (uniquement les sous totaux 2 à 2 emboités)
+#'
+#' @examples
+# > res <- decouper_en_sous_tableaux(tabAb, 5)
+# > res
+# [[1]]
+# [[1]][[1]]
+# tabAb level1 level2 level3 level4 level5
+# 1    A1     A1                            
+# 2    A2     A2                            
+# 3    A3     A3                            
+# 
+# 
+# [[2]]
+# [[2]]$A1
+# tabAb level1 level2 level3 level4 level5
+# 1    A1     A1                            
+# 4   A11     A1    A11                     
+# 5   A12     A1    A12                     
+# 
+# [[2]]$A2
+# tabAb level1 level2 level3 level4 level5
+# 2    A2     A2                            
+# 6   A21     A2    A21                     
+# 7   A22     A2    A22                     
+# 
+# 
+# [[3]]
+# [[3]]$A11
+# tabAb level1 level2 level3 level4 level5
+# 1   A11     A1    A11                     
+# 5  A111     A1    A11   A111              
+# 6  A112     A1    A11   A112              
+# 
+# 
+# [[4]]
+# [[4]]$A111
+# tabAb level1 level2 level3 level4 level5
+# 1  A111     A1    A11   A111              
+# 3 A1111     A1    A11   A111  A1111       
+# 4 A1112     A1    A11   A111  A1112       
+# 
+# 
+# [[5]]
+# [[5]]$A1111
+# tabAb level1 level2 level3 level4 level5
+# 1  A1111     A1    A11   A111  A1111       
+# 3 A11111     A1    A11   A111  A1111 A11111
+# 4 A11112     A1    A11   A111  A1111 A11112
+#'
+#'
+decouper_en_sous_tableaux <- function(table, n) {
+  sous_tableaux <- list()  # Create an empty list to store the sub-tables
+  
+  for (i in 1:n) {
+      
+    # création des différentes sous-tables
+    if (i == 1) {
+      levelip1 <- paste0("level", as.character(i+1))
+      
+      sous_table <- table %>%
+        filter(pull(., {{ levelip1 }}) == "")
+      
+      # on met la sous_table sous le même format que
+      # dans les cas else if/else pour harmoniser
+      sous_table <- list(sous_table)
+      
+    } else if (i < n) {
+      levelim1 <- paste0("level", as.character(i-1))
+      levelip1 <- paste0("level", as.character(i+1))
+      
+      sous_table <- table %>% 
+        filter(pull(., {{ levelip1 }}) == "" &
+               pull(., {{ levelim1 }}) != "") %>% 
+        split(., pull(., {{ levelim1 }}))
+      
+    } else {
+      levelim1 <- paste0("level", as.character(i-1))
+      
+      sous_table <- table %>%
+        filter(pull(., {{ levelim1 }}) != "") %>%
+        split(., pull(., {{ levelim1 }}))
+    }
+    
+    
+    # le code au dessus génère des tables à une seule ligne
+    # pour les extrémités de l'arbre
+    # nous les enlevons -> elle ne donne aucune information
+    
+    # cas : liste de dataframe
+    
+    # les data.frame sont reconnus comme des listes
+    # donc on n'utilise que les listes ne sont pas des dataframes...
+    if (!is.data.frame(sous_table)){
+      j <- 1
+      while (j <= length(sous_table)) {
+        nl <- nrow(sous_table[[j]]) # nombre de ligne du dataframe
+        if (nl == 1) {
+          sous_table[[j]] <- NULL
+          # on enlève les dataframe d'une seule ligne
+        } else {
+          j <- j + 1
+          # on n'incrémente que si on ne supprime rien
+          # car supprimer décale les élements de la liste
+        }
+      }
+    }
+    #print(sous_table)
+    sous_tableaux[[i]] <- sous_table  # Add the sub-table to the list
+  }
+  return(sous_tableaux)
+}
+# to do :
+# ajouter le total au premier tableau créé
+# A1,A2,A3 -> A1,A2,A3,AT
+# L'utilisateur devra d'une manière ou une autre spécifier comment s'apelle le total
+# puisque cette information n'apparaît pas dans la table de corresondance
+
+# vérification que tout marche bien :)
+res <- decouper_en_sous_tableaux(tabAb, 5)
+
+res[1]
+res[3]
+
+class(res[1])
+class(res[3])
+
+class(res[[1]])
+class(res[[3]])
+
+
+#' Création d'une liste de dataframe
+#'
+#' @param res liste de liste de dataframe
+#'            même format que l'output de la fonction decouper_en_sous_tableaux
+#'
+#' @return une liste de dataframe
+#'
+#' @examples
+#' 
+#' Exemple de tableau en entrée : (issue de decouper_en_sous_tableaux)
+# > res2
+# [[1]]
+# [[1]][[1]]
+# tabAb level1 level2 level3 level4 level5
+# 1    A1     A1                            
+# 2    A2     A2                            
+# 3    A3     A3                            
+# 
+# 
+# [[2]]
+# [[2]]$A1
+# tabAb level1 level2 level3 level4 level5
+# 1    A1     A1                            
+# 4   A11     A1    A11                     
+# 5   A12     A1    A12                     
+# 
+# [[2]]$A2
+# tabAb level1 level2 level3 level4 level5
+# 2    A2     A2                            
+# 6   A21     A2    A21                     
+# 7   A22     A2    A22                     
+# 
+# 
+# [[3]]
+# [[3]]$A11
+# tabAb level1 level2 level3 level4 level5
+# 1   A11     A1    A11                     
+# 5  A111     A1    A11   A111              
+# 6  A112     A1    A11   A112              
+# 
+# 
+# [[4]]
+# [[4]]$A111
+# tabAb level1 level2 level3 level4 level5
+# 1  A111     A1    A11   A111              
+# 3 A1111     A1    A11   A111  A1111       
+# 4 A1112     A1    A11   A111  A1112       
+# 
+# 
+# [[5]]
+# [[5]]$A1111
+# tabAb level1 level2 level3 level4 level5
+# 1  A1111     A1    A11   A111  A1111       
+# 3 A11111     A1    A11   A111  A1111 A11111
+# 4 A11112     A1    A11   A111  A1111 A11112
+#
+#
+#
+# Sortie associée :
+# > res3 <- forme_liste_dataf(res2)
+# > res3
+# [[1]]
+# tabAb level1 level2 level3 level4 level5
+# 1    A1     A1                            
+# 2    A2     A2                            
+# 3    A3     A3                            
+# 
+# $A1
+# tabAb level1 level2 level3 level4 level5
+# 1    A1     A1                            
+# 4   A11     A1    A11                     
+# 5   A12     A1    A12                     
+# 
+# $A2
+# tabAb level1 level2 level3 level4 level5
+# 2    A2     A2                            
+# 6   A21     A2    A21                     
+# 7   A22     A2    A22                     
+# 
+# $A11
+# tabAb level1 level2 level3 level4 level5
+# 1   A11     A1    A11                     
+# 5  A111     A1    A11   A111              
+# 6  A112     A1    A11   A112              
+# 
+# $A111
+# tabAb level1 level2 level3 level4 level5
+# 1  A111     A1    A11   A111              
+# 3 A1111     A1    A11   A111  A1111       
+# 4 A1112     A1    A11   A111  A1112       
+# 
+# $A1111
+# tabAb level1 level2 level3 level4 level5
+# 1  A1111     A1    A11   A111  A1111       
+# 3 A11111     A1    A11   A111  A1111 A11111
+# 4 A11112     A1    A11   A111  A1111 A11112
+forme_liste_dataf <- function(res){
+  liste_dataframe <- list()
+  for (i in 1:length(res)){
+    liste_i <- res[[i]]
+    for (j in 1:length(liste_i)){
+        # print(c("type = ",class(liste_i[[j]])))
+        liste_dataframe <- append(liste_dataframe, liste_i[j])
+      }
+    }
+  return(liste_dataframe)
+}
+# to do : passer en lapply pour gagner en rapidité
+
+
+res2 <- res
+
+# res3[[i]] est bien un dataframe !
+# et res3 une liste
+res3 <- forme_liste_dataf(res2)
+class(res3)
+class(res3[[1]])
+
+
+
+
 
 
 
