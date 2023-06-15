@@ -408,20 +408,21 @@ tabAb %>%
 #'
 #'# Exemple de dataframe dans le format requis :
 # > tabAb
-# tabAb level1 level2 level3 level4 level5
-# 1      A1     A1                            
-# 2      A2     A2                            
-# 3      A3     A3                            
-# 4     A11     A1    A11                     
-# 5     A12     A1    A12                     
-# 6     A21     A2    A21                     
-# 7     A22     A2    A22                     
-# 8    A111     A1    A11   A111              
-# 9    A112     A1    A11   A112              
-# 10  A1111     A1    A11   A111  A1111       
-# 11  A1112     A1    A11   A111  A1112       
-# 12 A11111     A1    A11   A111  A1111 A11111
-# 13 A11112     A1    A11   A111  A1111 A11112
+#      tabAb level1 level2 level3 level4 level5
+# 1       A1     A1                            
+# 2       A2     A2                            
+# 3       A3     A3                            
+# 4      A11     A1    A11                     
+# 5      A12     A1    A12                     
+# 6      A21     A2    A21                     
+# 7      A22     A2    A22                     
+# 8     A111     A1    A11   A111              
+# 9     A112     A1    A11   A112              
+# 10   A1111     A1    A11   A111  A1111       
+# 11   A1112     A1    A11   A111  A1112       
+# 12  A11111     A1    A11   A111  A1111 A11111
+# 13  A11112     A1    A11   A111  A1111 A11112
+# 14 A_Total
 #'
 #' @param n Le nombre de niveau hierarchique
 #'
@@ -434,21 +435,22 @@ tabAb %>%
 # > res
 # [[1]]
 # [[1]][[1]]
-# tabAb level1 level2 level3 level4 level5
-# 1    A1     A1                            
-# 2    A2     A2                            
-# 3    A3     A3                            
+#       tabAb level1 level2 level3 level4 level5
+# 1      A1     A1                            
+# 2      A2     A2                            
+# 3      A3     A3     
+# 4 A_Total
 # 
 # 
 # [[2]]
 # [[2]]$A1
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1    A1     A1                            
 # 4   A11     A1    A11                     
 # 5   A12     A1    A12                     
 # 
 # [[2]]$A2
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 2    A2     A2                            
 # 6   A21     A2    A21                     
 # 7   A22     A2    A22                     
@@ -456,7 +458,7 @@ tabAb %>%
 # 
 # [[3]]
 # [[3]]$A11
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1   A11     A1    A11                     
 # 5  A111     A1    A11   A111              
 # 6  A112     A1    A11   A112              
@@ -464,7 +466,7 @@ tabAb %>%
 # 
 # [[4]]
 # [[4]]$A111
-# tabAb level1 level2 level3 level4 level5
+#   tabAb level1 level2 level3 level4 level5
 # 1  A111     A1    A11   A111              
 # 3 A1111     A1    A11   A111  A1111       
 # 4 A1112     A1    A11   A111  A1112       
@@ -472,7 +474,7 @@ tabAb %>%
 # 
 # [[5]]
 # [[5]]$A1111
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1  A1111     A1    A11   A111  A1111       
 # 3 A11111     A1    A11   A111  A1111 A11111
 # 4 A11112     A1    A11   A111  A1111 A11112
@@ -539,11 +541,6 @@ decouper_en_sous_tableaux <- function(table, n) {
   }
   return(sous_tableaux)
 }
-# to do :
-# ajouter le total au premier tableau créé
-# A1,A2,A3 -> A1,A2,A3,AT
-# L'utilisateur devra d'une manière ou une autre spécifier comment s'apelle le total
-# puisque cette information n'apparaît pas dans la table de corresondance
 
 # vérification que tout marche bien :)
 res <- decouper_en_sous_tableaux(tabAb, 5)
@@ -571,21 +568,22 @@ class(res[[3]])
 # > res2
 # [[1]]
 # [[1]][[1]]
-# tabAb level1 level2 level3 level4 level5
-# 1    A1     A1                            
-# 2    A2     A2                            
-# 3    A3     A3                            
+#     tabAb level1 level2 level3 level4 level5
+# 1     A1     A1                            
+# 2     A2     A2                            
+# 3     A3     A3 
+# 4 A_Total 
 # 
 # 
 # [[2]]
 # [[2]]$A1
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1    A1     A1                            
 # 4   A11     A1    A11                     
 # 5   A12     A1    A12                     
 # 
 # [[2]]$A2
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 2    A2     A2                            
 # 6   A21     A2    A21                     
 # 7   A22     A2    A22                     
@@ -593,7 +591,7 @@ class(res[[3]])
 # 
 # [[3]]
 # [[3]]$A11
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1   A11     A1    A11                     
 # 5  A111     A1    A11   A111              
 # 6  A112     A1    A11   A112              
@@ -601,7 +599,7 @@ class(res[[3]])
 # 
 # [[4]]
 # [[4]]$A111
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1  A111     A1    A11   A111              
 # 3 A1111     A1    A11   A111  A1111       
 # 4 A1112     A1    A11   A111  A1112       
@@ -609,7 +607,7 @@ class(res[[3]])
 # 
 # [[5]]
 # [[5]]$A1111
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1  A1111     A1    A11   A111  A1111       
 # 3 A11111     A1    A11   A111  A1111 A11111
 # 4 A11112     A1    A11   A111  A1111 A11112
@@ -620,37 +618,38 @@ class(res[[3]])
 # > res3 <- forme_liste_dataf(res2)
 # > res3
 # [[1]]
-# tabAb level1 level2 level3 level4 level5
-# 1    A1     A1                            
-# 2    A2     A2                            
-# 3    A3     A3                            
+#     tabAb level1 level2 level3 level4 level5
+# 1     A1     A1                            
+# 2     A2     A2                            
+# 3     A3     A3  
+# 4 A_Total
 # 
 # $A1
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1    A1     A1                            
 # 4   A11     A1    A11                     
 # 5   A12     A1    A12                     
 # 
 # $A2
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 2    A2     A2                            
 # 6   A21     A2    A21                     
 # 7   A22     A2    A22                     
 # 
 # $A11
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1   A11     A1    A11                     
 # 5  A111     A1    A11   A111              
 # 6  A112     A1    A11   A112              
 # 
 # $A111
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1  A111     A1    A11   A111              
 # 3 A1111     A1    A11   A111  A1111       
 # 4 A1112     A1    A11   A111  A1112       
 # 
 # $A1111
-# tabAb level1 level2 level3 level4 level5
+#    tabAb level1 level2 level3 level4 level5
 # 1  A1111     A1    A11   A111  A1111       
 # 3 A11111     A1    A11   A111  A1111 A11111
 # 4 A11112     A1    A11   A111  A1111 A11112
@@ -676,9 +675,95 @@ res3 <- forme_liste_dataf(res2)
 class(res3)
 class(res3[[1]])
 
+#####
+# test emprique avec total global
 
 
+tabAb
+
+# Ajout du total global !
+total_ligne <- c("A_Total", "","","","","")
+tabAb_avec_total <- rbind(tabAb,total_ligne)
+
+res_total <- decouper_en_sous_tableaux(tabAb_avec_total, 5)
+res_total2 <- forme_liste_dataf(res_total)
+
+# -> fonctionne bien avec les totaux globaux !
+# il faut juste que level1=...=leveln = "" pour la ligne du total !
+
+#' Enlever les colonnes superflus (leveli)
+#'
+#' @param table dataframecontenant les colonnes niveau1...niveaun
+#' @param n nombre de niveau total
+#'
+#' @return dataframe privé des colonnes level1...leveln
+#'
+#' @examples
+#' > tabAb_avec_total
+#     tabAb level1 level2 level3 level4 level5
+# 1       A1     A1                            
+# 2       A2     A2                            
+# 3       A3     A3                            
+# 4      A11     A1    A11                     
+# 5      A12     A1    A12                     
+# 6      A21     A2    A21                     
+# 7      A22     A2    A22                     
+# 8     A111     A1    A11   A111              
+# 9     A112     A1    A11   A112              
+# 10   A1111     A1    A11   A111  A1111       
+# 11   A1112     A1    A11   A111  A1112       
+# 12  A11111     A1    A11   A111  A1111 A11111
+# 13  A11112     A1    A11   A111  A1111 A11112
+# 14 A_Total                                   
+#
+#
+#> tabAb_avec_total_sans_col <- enlever_colonne(tabAb_avec_total,5)
+#> tabAb_avec_total_sans_col
+#     tabAb
+# 1       A1
+# 2       A2
+# 3       A3
+# 4      A11
+# 5      A12
+# 6      A21
+# 7      A22
+# 8     A111
+# 9     A112
+# 10   A1111
+# 11   A1112
+# 12  A11111
+# 13  A11112
+# 14 A_Total
+#
+enlever_colonne <- function(table,n){
+  for (i in 1:n){
+    level_i = paste0("level", as.character(i))
+    table <- table %>% 
+      select(-{{level_i}})
+  }
+  return(table)
+}
 
 
+tabAb_avec_total <- rbind(tabAb,total_ligne)
 
 
+ma_col <- "level1"
+tabAb_avec_total %>% 
+  select(- {{ma_col}} )
+
+
+tabAb_avec_total_sans_col <- enlever_colonne(tabAb_avec_total,5)
+
+
+res_total2[1]
+data_t <- enlever_colonne(res_total2[[1]],n)
+
+###
+res_total2
+res_total3 <- res_total2
+
+# enlever toutes les colonnes superflus dans tous les dataframes !
+res_total4 <- lapply(res_total3, function(x) enlever_colonne(x, 5))
+
+# -> it works !
