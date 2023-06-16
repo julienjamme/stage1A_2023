@@ -492,7 +492,8 @@ decouper_en_sous_tableaux <- function(table, n) {
       sous_table <- table %>%
         filter(pull(., {{ levelip1 }}) == "")
       
-      # on met la sous_table sous le même format que
+      # on met la sous_table sous  forme de liste
+      # pour avoir le même format que
       # dans les cas else if/else pour harmoniser
       sous_table <- list(sous_table)
       
@@ -863,4 +864,367 @@ res_final <- creation_sous_liste_emboite(tabAb_avec_total,5)
 
 
 # readlines pour lire ligne à ligne un fichier .txt (.hrc)
+
+
+##################################
+# Création tableau au bon format
+###################################
+
+# library("rtauargus")
+library("stringr")
+
+# Chargement de quelques hrc test
+exemple_1 <- read.table("Z:/stage1A_2023/hrc/exemple_1.hrc")
+pays <- read.table("Z:/stage1A_2023/hrc/pays.hrc")
+
+for (i in 1:5){
+  print(pays[[1]][i])
+}
+
+length(pays[[1]])
+
+class(pays[[1]])
+
+hrc <- pays[[1]]
+pays[[1]][1]
+
+str_count(pays[[1]][3],"@")
+
+class(pays[[1]][2])
+
+
+liste_inter <- list()
+liste_finale <- list()
+
+liste_inter[1] <- hrc[1]
+liste_finale[[1]] <- liste_inter
+
+liste_inter[2] <- hrc[2]
+liste_finale[[2]] <- liste_inter
+
+liste_inter[1] <- hrc[3]
+
+liste_inter[1:3]
+liste_inter[1:1]
+
+liste_inter <- list()
+liste_finale <- list()
+hrc <- pays[[1]]
+for (i in 1:length(hrc)){
+  line <- hrc[i]
+  j <- str_count(line,"@") + 1
+  element <- substring(line,j,nchar(line))
+  liste_inter[j] <- element
+  liste_finale[[i]] <- liste_inter[1:j]
+}
+print(liste_finale)
+
+
+line <- hrc[2]
+
+nchar(line)
+substring(line,2)
+
+
+#' Création hierarchie directe
+#'
+#' @param hrc un dataframe issu d'un fichier hrc
+#' 
+#> pays2
+#      REG
+# 1   Pays
+# 2  @Nord
+# 3   @@N1
+# 4   @@N2
+# 5   @@N3
+# 6 @Ouest
+# 7   @@O1
+#'
+#' @return vecteur contenant :
+#'          une liste contenant la hierarchie directe pour chaque élément
+#'              sous forme de liste
+#'          la profondeur maximale de l'arbre
+#'
+#' @examples
+# > creation_hierarchie(pays2)
+# [[1]]
+# [[1]][[1]]
+# [1] "Pays"
+# 
+# 
+# [[2]]
+# [[2]][[1]]
+# [1] "Pays"
+# 
+# [[2]][[2]]
+# [1] "Nord"
+# 
+# 
+# [[3]]
+# [[3]][[1]]
+# [1] "Pays"
+# 
+# [[3]][[2]]
+# [1] "Nord"
+# 
+# [[3]][[3]]
+# [1] "N1"
+# 
+# 
+# [[4]]
+# [[4]][[1]]
+# [1] "Pays"
+# 
+# [[4]][[2]]
+# [1] "Nord"
+# 
+# [[4]][[3]]
+# [1] "N2"
+# 
+# 
+# [[5]]
+# [[5]][[1]]
+# [1] "Pays"
+# 
+# [[5]][[2]]
+# [1] "Nord"
+# 
+# [[5]][[3]]
+# [1] "N3"
+# 
+# 
+# [[6]]
+# [[6]][[1]]
+# [1] "Pays"
+# 
+# [[6]][[2]]
+# [1] "Ouest"
+# 
+# 
+# [[7]]
+# [[7]][[1]]
+# [1] "Pays"
+# 
+# [[7]][[2]]
+# [1] "Ouest"
+# 
+# [[7]][[3]]
+# [1] "O1"
+# 
+# 
+# [[8]]
+# [1] 3
+creation_hierarchie <- function(data){
+  
+  # Initialisation des variables
+  n <- 0
+  liste_inter <- list()
+  liste_finale <- list()
+  data <- data[[1]] # on selectionne la premiere colonne contenant toute l'info
+  
+  # Lecture du fichier hrc ligne par ligne
+  for (i in 1:length(data)){
+    line <- data[i]
+    
+    # Compte du nombre de @ et maj de la profondeur maximale
+    j <- str_count(line,"@") + 1
+    n <- max(n,j)
+    
+    # on enlève les @ pour retrouver l'élement d'origine
+    element <- substring(line,j,nchar(line))
+    
+    # on met à jour la hierarchique à l'étape i
+    liste_inter[j] <- element
+    
+    # les hierarchie j+1...n etc ne concerne pas cet élément
+    # mais uniquement des lignes précédentes (cas de @ après un @@ par exemple)
+    liste_finale[[i]] <- liste_inter[1:j] 
+  }
+  return(c(list(liste_finale),n))
+}
+
+l_final <- creation_hierarchie(pays)
+
+liste_hrc <- l_final[1]
+
+liste_hrc <- liste_hrc[[1]]
+
+length(liste_hrc[[2]])
+
+# 
+# n <- 3
+# liste_hierar <- liste_hrc
+# for (i in 1:length(liste_hierar)){
+#   sous_liste <- liste_hierar[[i]]
+#   print("--------------")
+#   print(sous_liste)
+#   liste_inter <- sous_liste
+#   #liste_inter <- list(sous_liste,"")
+#   if (n-length(liste_inter) != 0){
+#     print(c(length(sous_liste),n-length(sous_liste)))
+#     for (j in 1:n-length(sous_liste)){
+#       liste_inter <- c(liste_inter,"")
+#     }
+#   }
+#   print(liste_inter)
+# }
+
+
+for (j in 1:1){
+  print(j)
+}
+
+
+# fonction 2
+# I : liste de hierarchique directe, profondeur maximale de hierarchie
+#
+# O : liste de liste reliant un élément de l'arbre à la liste décrivant les
+#     niveaux de sa table de correspondance
+
+
+creation_tuple_hierarchie_complete <- function(liste_hierar,n){
+  
+  # initialisation
+  liste_finale <- list()
+  
+  for (i in : 1:length(liste_hierar)){
+    elem <- liste_hierar[[i]]
+    
+    list_inter <- liste_hierar
+    
+  }
+  
+  
+  
+}
+
+# fonction 3 :
+# I : dataframe
+#     n
+#     liste de liste reliant un élément de l'arbre à la liste décrivant les
+#     niveaux de sa table de correspondance
+#
+# O : ajout des colonnes level1,...,leveln au dataframe décrivant la hierarchie
+
+
+
+##############################################################################
+##############################################################################
+##############################################################################
+# abandon de l'utilisation des .hrc par Wistan, andré se charge de les étudier
+##############################################################################
+##############################################################################
+##############################################################################
+
+
+# task : André doit créer une table de correspondance à partir d'un fichier .hrc
+
+# to do : faire une fonction prennant une table de correlation de la sorte
+# et rajouant les lignes correspondants aux (sous) totaux
+corr_tab_Ab <- tibble(
+  niv0 = c(rep("ALL",8)),
+  niv1 = c(rep("A1",5),rep("A2",2),"A3"),
+  niv2 = c(rep("A11",4),"A12","A21","A22","A3"),
+  niv3 = c(rep("A111",3),"A112","A12","A21","A22","A3"),
+  niv4 = c(rep("A1111",2),"A1112","A112","A12","A21","A22","A3"),
+  niv5 = c("A11111","A11112","A1112","A112","A12","A21","A22","A3")
+)
+
+
+
+#' Ajout des sous totaux à la table de correspondance
+#'
+#' @param corr_tab une table de corresondance
+# > corr_tab_Ab
+# # A tibble: 8 × 6
+#   niv0  niv1  niv2  niv3  niv4  niv5  
+#  <chr> <chr> <chr> <chr> <chr> <chr> 
+# 1 ALL   A1    A11   A111  A1111 A11111
+# 2 ALL   A1    A11   A111  A1111 A11112
+# 3 ALL   A1    A11   A111  A1112 A1112 
+# 4 ALL   A1    A11   A112  A112  A112  
+# 5 ALL   A1    A12   A12   A12   A12   
+# 6 ALL   A2    A21   A21   A21   A21   
+# 7 ALL   A2    A22   A22   A22   A22   
+# 8 ALL   A3    A3    A3    A3    A3
+#' @return la table de corresondance avec les lignes de (sous) totaux
+#'
+#' @examples
+# > corr_tab_Ab_sous_totaux <- creation_tab_corr_sous_totaux(corr_tab_Ab)
+# > corr_tab_Ab_sous_totaux
+# A tibble: 14 × 6
+#  niv0  niv1  niv2  niv3  niv4  niv5  
+#   <chr> <chr> <chr> <chr> <chr> <chr> 
+# 1  ALL  A1    A11   A111  A1111 A11111
+# 2  ALL  A1    A11   A111  A1111 A11112
+# 3  ALL  A1    A11   A111  A1112 A1112 
+# 4  ALL  A1    A11   A112  A112  A112  
+# 5  ALL  A1    A12   A12   A12   A12   
+# 6  ALL  A2    A21   A21   A21   A21   
+# 7  ALL  A2    A22   A22   A22   A22   
+# 8  ALL  A3    A3    A3    A3    A3    
+# 9  ALL  ALL   ALL   ALL   ALL   ALL   
+# 10 ALL  A1    A1    A1    A1    A1    
+# 11 ALL  A2    A2    A2    A2    A2    
+# 12 ALL  A1    A11   A11   A11   A11   
+# 13 ALL  A1    A11   A111  A111  A111  
+# 14 ALL  A1    A11   A111  A1111 A1111 
+creation_tab_corr_sous_totaux <- function(corr_tab){
+  # Récuperation de toutes les modalités
+  tab_modalité <- Reduce(union, corr_tab)
+  
+  # profondeur de l'arbre
+  n <- length(corr_tab)
+  
+  # Récupération de tous les (sous) totaux
+  tab_sous_totaux <- setdiff(tab_modalité, corr_tab[[leveln]])
+  
+  # on veut maintenant ajouter les lignes de sous totaux 
+  # à la table de correspondance
+  corr_tab_sous_totaux <- corr_tab
+  
+  for (i in 1:length(tab_sous_totaux)){
+    # pour chaque sous total
+    sous_total <- tab_sous_totaux[[i]]
+    
+    # on recherche la première ligne où il apparait
+    # dans la table de correspondance
+    for (j in 1:length(corr_tab)){
+      
+      ligne <- corr_tab[j,]
+      
+      # ligne trouvée !
+      if (sous_total %in% ligne){
+        
+        # Trouver la position du sous_total
+        index <- min(which(ligne == sous_total))
+        
+        # Générer les noms de colonnes
+        noms_colonnes <- paste0("niv", (index+1):n-1)
+        
+        # Ajouter les colonnes avec des valeurs "sous_total"
+        new_ligne <- ligne %>%
+          mutate(across(all_of(noms_colonnes), ~ sous_total))
+        
+        corr_tab_sous_totaux <- bind_rows(corr_tab_sous_totaux,new_ligne)
+        
+        break # on n'ajoute qu'une seule fois l'information !
+      }
+    }
+  }
+  return(corr_tab_sous_totaux)
+}
+
+corr_tab_Ab_sous_totaux <- creation_tab_corr_sous_totaux(corr_tab_Ab)
+
+View(corr_tab_Ab_sous_totaux)
+
+
+# to do:
+# I : une table de corresondance avec sous totaux, une modalité
+# O : la ligne correpondante
+
+# to do :
+# une fonction ajoutant les colonnes, tada !
+
 
