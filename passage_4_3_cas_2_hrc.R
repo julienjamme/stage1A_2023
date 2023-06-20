@@ -1,5 +1,4 @@
 
-
 #' Title
 #'
 #' @param dfs data.frame à quatre variables catégorielles
@@ -40,13 +39,39 @@
 #' 
 #' tot_code<-c(SEX="Total",AGE="Total")
 #' res <- passage_4_3_cas_2hr(data,tot_code, hrc_files)
-passage_4_3_cas_2hr <- function(dfs, nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_alt") {
+passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_alt") {
+  
+  # Nom du dossier où se trouvent les variables hiérarchiques
+  if(length(hrcfiles) != 0){
+    dir_name <- dirname(hrcfiles[[1]])
+  } else {
+    dir_name <- hrc_dir
+  }
+ 
+
+  #  l'indixes des deux variables avec le moins de modalités
+  
+  get_2_smallest <- function(data){
+      list_mod_n <- lapply(data, function(col) length(unique(col)))
+      smallest_index <- which.min(list_mod_n)
+      list_mod_n[smallest_index] <- NA
+      sec_smallest_index <- which.min(list_mod_n)
+      return(c(smallest_index,sec_smallest_index))
+  }
+
   
   # les variables sans hiérarchie
   var_sans_hier <- setdiff(names(dfs), names(hrcfiles))
   #si superieur à 3 je dis que je regarde celui avec les plus petites moda
-  v1 <- var_sans_hier[1]
-  v2 <- var_sans_hier[2]
+  n_vars_sans_hier<-length(var_sans_hier)
+  
+  if (n_vars_sans_hier>=2){
+    res<-get_2_smallest(dfs)
+    
+  }
+  
+  v1 <- var_sans_hier[names(res)[[1]]]
+  v2 <- var_sans_hier[names(res)[[2]]]
   # les différents totaux
   var1_total <- totcode[v1]
   var2_total <- totcode[v2]
@@ -86,7 +111,12 @@ passage_4_3_cas_2hr <- function(dfs, nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_a
   #Construction du tableau 
   
   tab1 <- dfs[(dfs[[v1]] != var1_total) | (dfs[[v1]] == var1_total & dfs[[v2]] == var2_total), ]
-  # Construction des niveaux pour la table de correspondance
+  tab1[[paste(v1, v2, sep = "_")]]<- paste(tab1[[v1]],tab1[[v2]],sep="_")
+  
+  tab1[[v1]]<-NULL
+  tab1[[v2]]<-NULL
+
+    # Construction des niveaux pour la table de correspondance
   
   tab2_niv1 <- expand.grid(
     v1 = sort(rep(var2_mods_hors_tot, var1_mods_n)),
@@ -114,6 +144,10 @@ passage_4_3_cas_2hr <- function(dfs, nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_a
   #Construction de tab2
   
   tab2 <- dfs[(dfs[[v2]] != var2_total) | (dfs[[v2]] == var2_total & dfs[[v1]] == var1_total), ]
+  tab2[[paste(v1, v2, sep = "_")]]<- paste(tab2[[v1]],tab2[[v2]],sep="_")
+  
+  tab2[[v1]]<-NULL
+  tab2[[v2]]<-NULL
   
   #Construction des hiérarchies (cela ne marche pas quand je le mets dans la fonction )
   
@@ -125,7 +159,7 @@ passage_4_3_cas_2hr <- function(dfs, nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_a
                                     paste("hrc",nom_dfs,v1,sep = "_"),".hrc",sep="")
                                     )
   #names(hrc_tab1) <- paste(nom_dfs,v1, sep="_")
-  hrc_tab2 <- rtauargus::write_hrc2(tab1_corresp2, 
+  hrc_tab2 <- rtauargus::write_hrc2(tab2_corresp, 
                                     file_name = paste(dir_name,"/",
                                     paste("hrc",nom_dfs,v2,sep = "_"),".hrc",sep="")
                                     )
