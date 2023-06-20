@@ -279,3 +279,4 @@ resultat <- construire_listes(arbre)
 """
 
 
+>>>>>>> d0ee274a5d80e633ebae8a62156263ba8623a836
