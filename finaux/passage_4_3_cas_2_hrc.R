@@ -39,17 +39,9 @@
 #' 
 #' tot_code<-c(SEX="Total",AGE="Total")
 #' res <- passage_4_3_cas_2hr(data,tot_code, hrc_files)
-passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,totcode, hrcfiles) {
+passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   
-  # Nom du dossier où se trouvent les variables hiérarchiques
-  if(length(hrcfiles) != 0){
-    dir_name <- dirname(hrcfiles[[1]])
-  } else {
-    dir_name <- hrc_dir
-  }
-  
-  
-  
+ 
   #  l'indixes des deux variables avec le moins de modalités
   
   get_2_smallest <- function(data){
@@ -60,18 +52,6 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,totcode, hrcfiles) {
     return(c(smallest_index,sec_smallest_index))
   }
   
-  
-  # les variables sans hiérarchie
-  var_sans_hier <- setdiff(names(dfs), names(hrcfiles))
-  #si superieur à 3 je dis que je regarde celui avec les plus petites moda
-  n_vars_sans_hier<-length(var_sans_hier)
-  
-  res<-get_2_smallest(dfs)
-    
-  
-  
-  v1 <- names(res)[[1]]
-  v2 <- names(res)[[2]]
   # les différents totaux
   var1_total <- totcode[v1]
   var2_total <- totcode[v2]
