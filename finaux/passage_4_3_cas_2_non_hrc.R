@@ -15,15 +15,7 @@
 #' - vecteur des variables traitées
 #' @export
 #' TODO: 
-#' - trouver des noms de tableaux robustes
-#' - faire une fonction pour la construction des tables de correspondance
-#' - modifier l'objet retourné
-#' - pour les fichiers hrc créés, trouver un nom robuste et les sauvegarder dans 
-#' le même répertoire que les hrs des var hierarchiques (si pas de var hier, 
-#' les déposer dans un répertoire "hrc")
-#' - les tables renvoyées ont 3 colonnes
-#' - généraliser le choix des 2 variables à fusionner en comparant le nb de 
-#' modalités des variables non hierarchiques.
+#' - S'intéresser au cas où la profondeur de la hierarchie est 'n'
 #' @examples
 #' library(dplyr)
 #' data <- expand.grid(
@@ -63,71 +55,71 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   # généraliser construction tab1 et tab2 avec une fonction 
   
   
-  # Construction des niveaux pour la table de correspondance
-  tab1_niv1 <- expand.grid(
-    v1 = sort(rep(var1_mods_hors_tot, var2_mods_n)),
-    v2 = var2_total,
-    stringsAsFactors = FALSE
-  ) %>% as.data.frame()
   
-  tab1_niv1$v3 <- paste(tab1_niv1$v1, tab1_niv1$v2, sep = "_")
+  creation_table_3_var <- function(i){
+    
+    # Introduction des notations :
+    # soit i = 1, j = 2
+    # soit i = 2, j = 1
+
+    # Construction des niveaux pour la table de correspondance
+    
+    
+    # Création du niveau 1 hier
+    var_j_total <- get(
+      paste("var",3-i,"_total",sep=""))
+    
+    var_i_mods_hors_tot <- get(
+      paste("var",i,"_mods_hors_tot",sep=""))
+    
+    var_j_mods_n <- get(
+      paste("var",3-i,"_mods_n",sep=""))
+    
+    tabi_nv1 <- expand.grid(
+               v1 = sort(rep(var_i_mods_hors_tot, var_j_mods_n)),
+               v2 = var_j_total,
+               stringsAsFactors = FALSE
+               ) %>% as.data.frame()
+    
+    tabi_nv1$v3 <- paste(tabi_nv1$v1, tabi_nv1$v2, sep = "_")
+    
+    # Création du niveau 2 hier
+    tabi_nv2 <- expand.grid(
+      v1 = var1_mods_hors_tot,
+      v2 = var2_mods_hors_tot,
+      stringsAsFactors = FALSE
+    ) %>% as.data.frame()
+    
+    tabi_nv2 <- tabi_niv2[order(tabi_nv2$v1, tabi_nv2$v2), ]
+    tabi_nv2$v3 <- paste(tabi_nv2$v1, tabi_nv2$v2, sep = "_")
+    
+    # Création table de correspondance
+    tabi_corresp <- data.frame(
+      Niv1 = tabi_nv1$v3,
+      Niv2 = tabi_nv2$v3,
+      stringsAsFactors = FALSE
+    )
+
+    # Construction de tabi
+    vi <- get(
+      paste("v",i,sep=""))
+    vj <- get(
+      paste("v",3-i,sep=""))
+    var_i_total <- get(
+      paste("var",i,"_total",sep=""))
+
+    tabi <- dfs[(dfs[[vi]] != var_i_total) | 
+                  (dfs[[vi]] == var_i_total & dfs[[vj]] == var_j_total), ]
+    tabi[[paste(v1, v2, sep = "_")]]<- paste(tabi[[vi]],tabi[[vj]],sep="_")
+    
+    tabi[[v1]]<-NULL
+    tabi[[v2]]<-NULL
+    
+    return(tabi)
+  }
   
-  tab1_niv2 <- expand.grid(
-    v1 = var1_mods_hors_tot,
-    v2 = var2_mods_hors_tot,
-    stringsAsFactors = FALSE
-  ) %>% as.data.frame()
-  
-  tab1_niv2 <- tab1_niv2[order(tab1_niv2$v1, tab1_niv2$v2), ]
-  tab1_niv2$v3 <- paste(tab1_niv2$v1, tab1_niv2$v2, sep = "_")
-  
-  tab1_corresp <- data.frame(
-    Niv1 = tab1_niv1$v3,
-    Niv2 = tab1_niv2$v3,
-    stringsAsFactors = FALSE
-  )
-  #Construction du tableau 
-  
-  tab1 <- dfs[(dfs[[v1]] != var1_total) | (dfs[[v1]] == var1_total & dfs[[v2]] == var2_total), ]
-  tab1[[paste(v1, v2, sep = "_")]]<- paste(tab1[[v1]],tab1[[v2]],sep="_")
-  
-  tab1[[v1]]<-NULL
-  tab1[[v2]]<-NULL
-  
-  # Construction des niveaux pour la table de correspondance
-  
-  tab2_niv1 <- expand.grid(
-    v1 = sort(rep(var2_mods_hors_tot, var1_mods_n)),
-    v2 = var1_total,
-    stringsAsFactors = FALSE
-  ) %>% as.data.frame()
-  
-  tab2_niv1$v3 <- paste(tab2_niv1$v1, tab2_niv1$v2, sep = "_")
-  
-  tab2_niv2 <- expand.grid(
-    v1 = var2_mods_hors_tot,
-    v2 = var1_mods_hors_tot,
-    stringsAsFactors = FALSE
-  ) %>% as.data.frame()
-  
-  tab2_niv2 <- tab2_niv2[order(tab2_niv2$v1, tab2_niv2$v2), ]
-  tab2_niv2$v3 <- paste(tab2_niv2$v1, tab2_niv2$v2, sep = "_")
-  
-  tab2_corresp <- data.frame(
-    Niv1 = tab2_niv1$v3,
-    Niv2 = tab2_niv2$v3,
-    stringsAsFactors = FALSE
-  )
-  
-  #Construction de tab2
-  
-  tab2 <- dfs[(dfs[[v2]] != var2_total) | (dfs[[v2]] == var2_total & dfs[[v1]] == var1_total), ]
-  tab2[[paste(v1, v2, sep = "_")]]<- paste(tab2[[v1]],tab2[[v2]],sep="_")
-  
-  tab2[[v1]]<-NULL
-  tab2[[v2]]<-NULL
-  
-  
+  tab1 <- creation_table_3_var(1)
+  tab2 <- creation_table_3_var(2)
   
   
   #Construction des hiérarchies (cela ne marche pas quand je le mets dans la fonction )
