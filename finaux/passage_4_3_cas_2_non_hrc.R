@@ -41,20 +41,10 @@
 #' res <- passage_4_3_cas_2hr(data,tot_code, hrc_files)
 passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   
- 
-  #  l'indixes des deux variables avec le moins de modalités
-  
-  get_2_smallest <- function(data){
-    list_mod_n <- lapply(data, function(col) length(unique(col)))
-    smallest_index <- which.min(list_mod_n)
-    list_mod_n[smallest_index] <- NA
-    sec_smallest_index <- which.min(list_mod_n)
-    return(c(smallest_index,sec_smallest_index))
-  }
-  
   # les différents totaux
   var1_total <- totcode[v1]
   var2_total <- totcode[v2]
+  
   #les différentes modalités des 2 variables
   mods1 <- unique(dfs[[v1]])
   mods2 <- unique(dfs[[v2]])
@@ -62,8 +52,16 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   var1_mods_hors_tot <- mods1[mods1 != var1_total]
   var2_mods_hors_tot <- mods2[mods2 != var2_total]
   
+  # nombre de modalité pour chaque var
   var1_mods_n <- length(var1_mods_hors_tot)
   var2_mods_n <- length(var2_mods_hors_tot)
+  
+  
+
+  
+  # to do :
+  # généraliser construction tab1 et tab2 avec une fonction 
+  
   
   # Construction des niveaux pour la table de correspondance
   tab1_niv1 <- expand.grid(
@@ -129,10 +127,12 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   tab2[[v1]]<-NULL
   tab2[[v2]]<-NULL
   
+  
+  
+  
   #Construction des hiérarchies (cela ne marche pas quand je le mets dans la fonction )
   
-  
-  
+  # utiliser file.path() ?
   
   hrc_tab1 <- rtauargus::write_hrc2(tab1_corresp, 
                                     file_name = paste(dir_name,"/",
