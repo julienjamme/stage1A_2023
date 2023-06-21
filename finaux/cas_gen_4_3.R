@@ -16,6 +16,18 @@ get_2_smallest <- function(data){
 }
 source(file = "finaux/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 
+#' Title
+#'
+#' @param dfs 
+#' @param nom_dfs 
+#' @param totcode 
+#' @param hrcfiles 
+#' @param hrc_dir 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_alt"){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
@@ -37,42 +49,43 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_al
   n_vars_sans_hier<-length(var_sans_hier)
   
   #si superieur à 3 je dis que je regarde celui avec les plus petites moda
-  if (n_vars_sans_hier>=2){
-    res<-get_2_smallest(dfs)
+  if (n_vars_sans_hier > 2){
+    dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
+    res<-get_2_smallest(dfs_var_sans_hier)
     v1 <- names(res)[[1]]
     v2 <- names(res)[[2]]
     return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
   }
   
-  # # 1 - Sélectionner les colonnes à fusionner
-  # #Principe: choisir en priorité les variables non hiérarchiques
-  # 
-  # if(n_var_sans_hier < 2){
-  #   v1 <- var_sans_hier[1]
-  #   v2 <- var_sans_hier[2]
-  # }
-  # 
-  # # Test le nb de variables non hier récupérées
-  # if(n_var_sans_hier == 2){
-  #   return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
-  # 
-  # }else if(n_var_sans_hier == 1){
-  #   v2<-plus_petit_hrc(hrc_files)
-  # 
-  #   # Aller chercher une des 3 variables hierarchiques
-  #   # de préférence celle avec le moins de modalités
-  #   # puis faire un split sur la var qui n'est pas hierarchique
-  #   # puis coller les deux variables dans chaque sous-table créée par le split
-  #   return(list())
-  # }else{
-  #   #cas ou que des var hier
-  #   # Aller chercher deux des 4 var hier
-  #   # de préférence celles avec le moins de modalités
-  #   # creer la liste des codes split
-  #   # puis faire un split sur la var qui n'est pas hierarchique
-  #   # puis coller les deux variables dans chaque sous-table créée par le split
-  #   return(list())
-  # }
-  
+  # 1 - Sélectionner les colonnes à fusionner
+  #Principe: choisir en priorité les variables non hiérarchiques
+
+  if(n_vars_sans_hier <= 2){
+    v1 <- var_sans_hier[1]
+    v2 <- var_sans_hier[2]
+  }
+
+  # Test le nb de variables non hier récupérées
+  if(n_vars_sans_hier == 2){
+    return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
+    
+  }else if(n_vars_sans_hier == 1){
+    v2<-plus_petit_hrc(hrc_files)
+
+    # Aller chercher une des 3 variables hierarchiques
+    # de préférence celle avec le moins de modalités
+    # puis faire un split sur la var qui n'est pas hierarchique
+    # puis coller les deux variables dans chaque sous-table créée par le split
+    return(list())
+  }else{
+    #cas ou que des var hier
+    # Aller chercher deux des 4 var hier
+    # de préférence celles avec le moins de modalités
+    # creer la liste des codes split
+    # puis faire un split sur la var qui n'est pas hierarchique
+    # puis coller les deux variables dans chaque sous-table créée par le split
+    return(list())
+  }
+
 }
 

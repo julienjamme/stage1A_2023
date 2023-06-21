@@ -1,3 +1,8 @@
+# Vider l'environnement global
+rm(list = ls())
+
+
+
 library(dplyr)
 source("finaux/cas_gen_4_3.R",encoding = "UTF-8")
 
@@ -14,7 +19,6 @@ data <- expand.grid(
 
 data <- data %>% mutate(VALUE = runif(nrow(data)))
 hrc_files = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
-names(hrc_files[1])
 
 tot_code<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
@@ -27,6 +31,8 @@ totcode <- tot_code
 hrcfiles <- hrc_files
 
 # Test pour 2 variables non hier
-res <- passer_de_4_a_3_var(data,"nom_data_frame",tot_code, hrc_files)
+res <- passer_de_4_a_3_var(data,"mon_data_frame",tot_code, hrc_files)
 
-
+res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", tot_code,"hrc")
+# > identical(res,res2)
+# [1] TRUE

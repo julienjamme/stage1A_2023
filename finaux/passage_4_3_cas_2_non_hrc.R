@@ -18,18 +18,22 @@
 #' - S'intéresser au cas où la profondeur de la hierarchie est 'n'
 #' @examples
 #' library(dplyr)
-#' data <- expand.grid(
-#'   ACT = c("Total",read.table("hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-#'   GEO = c("Total",read.table("hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-#'   SEX = c("Total",LETTERS[7:12]),
-#'   AGE = c("Total",LETTERS[15:25]),
-#'   stringsAsFactors = FALSE
-#' ) %>% 
-#'   as.data.frame()
-#' hrc_files = c(ACT = "hrc1.hrc", GEO = "hrc2.hrc")
-#' names(hrc_files[1])
-#' 
-#' tot_code<-c(SEX="Total",AGE="Total")
+# data <- expand.grid(
+#   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+#   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+#   SEX = c("Total",LETTERS[7:12]),
+#   AGE = c("Total",LETTERS[15:25]),
+#   stringsAsFactors = FALSE
+# ) %>% 
+#   as.data.frame()
+# 
+# data <- data %>% mutate(VALUE = runif(nrow(data)))
+# hrc_files = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
+# names(hrc_files[1])
+# 
+# tot_code<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
+# 
+# res <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", tot_code,"hrc")
 #' res <- passage_4_3_cas_2hr(data,tot_code, hrc_files)
 passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   
@@ -48,22 +52,12 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   var1_mods_n <- length(var1_mods_hors_tot)
   var2_mods_n <- length(var2_mods_hors_tot)
   
-  
-
-  
-  # to do :
-  # généraliser construction tab1 et tab2 avec une fonction 
-  
-  
-  
   creation_table_3_var <- function(i){
-    
     # Introduction des notations :
     # soit i = 1, j = 2
     # soit i = 2, j = 1
 
     # Construction des niveaux pour la table de correspondance
-    
     
     # Création du niveau 1 hier
     var_j_total <- get(
@@ -90,7 +84,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
       stringsAsFactors = FALSE
     ) %>% as.data.frame()
     
-    tabi_nv2 <- tabi_niv2[order(tabi_nv2$v1, tabi_nv2$v2), ]
+    tabi_nv2 <- tabi_nv2[order(tabi_nv2$v1, tabi_nv2$v2), ]
     tabi_nv2$v3 <- paste(tabi_nv2$v1, tabi_nv2$v2, sep = "_")
     
     # Création table de correspondance
@@ -115,12 +109,16 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     tabi[[v1]]<-NULL
     tabi[[v2]]<-NULL
     
-    return(tabi)
+    return(list(tabi,tabi_corresp))
   }
   
-  tab1 <- creation_table_3_var(1)
-  tab2 <- creation_table_3_var(2)
+  res1 <- creation_table_3_var(1)
+  tab1 <- res1[[1]]
+  tab1_corresp <- res1[[2]]
   
+  res2 <- creation_table_3_var(2)
+  tab2 <- res2[[1]]
+  tab2_corresp <- res2[[2]]
   
   #Construction des hiérarchies (cela ne marche pas quand je le mets dans la fonction )
   

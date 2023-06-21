@@ -1,23 +1,36 @@
+# Vider l'environnement global
+rm(list = ls())
+
+
 library(dplyr)
-source("passage_4_3_cas_2_hrc.R",encoding = "UTF-8")
-
-
+source("finaux/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 
 data <- expand.grid(
-  ACT = c("Total",read.table("hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-  GEO = c("Total",read.table("hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",LETTERS[7:12]),
   AGE = c("Total",LETTERS[15:25]),
   stringsAsFactors = FALSE
 ) %>% 
   as.data.frame()
+
 data <- data %>% mutate(VALUE = runif(nrow(data)))
-hrc_files = c(ACT = "hrc1.hrc", GEO = "hrc2.hrc")
-names(hrc_files[1])
+hrc_files = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
 
-tot_code<-c(SEX="Total",AGE="Total")
+tot_code<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
-res <- passage_4_3_cas_2hr(data,tot_code, hrc_files)
+var_sans_hier <- names(tot_code)[1:2]
+v1 <- var_sans_hier[1]
+v2 <- var_sans_hier[2]
 
-plus_petit_hrc(hrc_files)
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
 
+totcode <- tot_code
+hrcfiles <- hrc_files
+
+dir_name <- dirname(hrcfiles[1])
+
+
+res2 <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
