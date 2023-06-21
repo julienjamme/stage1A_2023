@@ -70,17 +70,26 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_al
     return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
     
   }else if(n_vars_sans_hier == 1){
-    v2<-plus_petit_hrc(hrc_files)
-
     # Aller chercher une des 3 variables hierarchiques
     # de préférence celle avec le moins de modalités
+    v2<-plus_petit_hrc(hrc_files)
+
     # puis faire un split sur la var qui n'est pas hierarchique
     # puis coller les deux variables dans chaque sous-table créée par le split
+    
+    
+    # appeller passage_4_3_cas_1_non_hr
     return(list())
   }else{
     #cas ou que des var hier
     # Aller chercher deux des 4 var hier
     # de préférence celles avec le moins de modalités
+    v1<-plus_petit_hrc(hrc_files)
+    
+    # on enlève la var trouvé pour v1 pour trouver v2
+    hrc_files_2 <- hrc_files[setdiff(names(hrc_files), v1)]
+    v2<-plus_petit_hrc(hrc_files_2)
+    
     # creer la liste des codes split
     # puis faire un split sur la var qui n'est pas hierarchique
     # puis coller les deux variables dans chaque sous-table créée par le split

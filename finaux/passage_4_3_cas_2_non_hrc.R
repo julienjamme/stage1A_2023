@@ -1,5 +1,6 @@
 
-#' Title
+#' Passage d'un tableau de 4 variables à 3 variables
+#' dans lme cas où il y a 2 variables non hierarchique
 #'
 #' @param dfs data.frame à quatre variables catégorielles
 #' @param nom_dfs nom du data.frame dans la liste fournie par l'utilisateur
@@ -18,23 +19,26 @@
 #' - S'intéresser au cas où la profondeur de la hierarchie est 'n'
 #' @examples
 #' library(dplyr)
-# data <- expand.grid(
-#   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-#   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-#   SEX = c("Total",LETTERS[7:12]),
-#   AGE = c("Total",LETTERS[15:25]),
-#   stringsAsFactors = FALSE
-# ) %>% 
-#   as.data.frame()
-# 
-# data <- data %>% mutate(VALUE = runif(nrow(data)))
-# hrc_files = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
-# names(hrc_files[1])
-# 
-# tot_code<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
-# 
-# res <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", tot_code,"hrc")
-#' res <- passage_4_3_cas_2hr(data,tot_code, hrc_files)
+#' 
+#' data <- expand.grid(
+#'   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+#'   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+#'   SEX = c("Total",LETTERS[7:12]),
+#'   AGE = c("Total",LETTERS[15:25]),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = runif(nrow(data)))
+#' hrc_files = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
+#' 
+#' tot_code<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
+#' 
+#' var_sans_hier <- names(tot_code)[1:2]
+#' v1 <- var_sans_hier[1]
+#' v2 <- var_sans_hier[2]
+#' 
+#' res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
 passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   
   # les différents totaux
