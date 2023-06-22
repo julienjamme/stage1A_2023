@@ -33,4 +33,25 @@ hrcfiles <- hrc_files
 dir_name <- dirname(hrcfiles[1])
 
 
-res2 <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
+res <- list(passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name))
+
+
+#########################################
+#### Utilisation future de l'output #####
+#########################################
+
+# un élement de la liste retourné
+# il contient entre autre 2 tableaux
+elem <- res[[1]]
+
+# pour le premier tableau contenu :
+new_hrc_files_1 <- hrcfiles
+
+new_var <- paste(elem[[3]][1], elem[[3]][2], sep="_")
+
+hrc_created_1 <- elem[[2]][1]
+new_hrc_files_1[new_var] <- hrc_created
+
+tab_1 <- elem[[1]][1]
+
+# puis travailler sur tab_1 avec l'ensemble des hierarchies new_hrc_files_1
