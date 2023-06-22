@@ -17,7 +17,7 @@ data <- expand.grid(
 data <- data %>% mutate(VALUE = runif(nrow(data)))
 hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
 
-tot_code<-c(SEX="Total",AGE="Total", GEO="Pays", ACT="Total")
+tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total")
 
 
 # pour execution ligne à ligne

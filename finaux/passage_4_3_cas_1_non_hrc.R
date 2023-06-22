@@ -46,10 +46,10 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
   # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
   appel_4_3_non_hier <- function(dfs){
     # Mise à jour des arguments de la fonction
-    totcode[v2] <- unique(dfs[[v2]])[1]
-    nom_dfs <- paste(nom_dfs,totcode[v2],sep="_")
+    tot_code[v2] <- unique(dfs[[v2]])[1]
+    nom_dfs <- paste(nom_dfs,tot_code[v2],sep="_")
     
-    passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
+    passage_4_3_cas_2_non_hr(dfs,nom_dfs,v1,v2, tot_code,dir_name)
   }
 
   # On transforme tous nos tableaux de 4 var en 3 var

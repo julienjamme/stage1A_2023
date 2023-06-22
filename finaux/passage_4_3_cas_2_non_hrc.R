@@ -44,13 +44,16 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   # les différents totaux
   var1_total <- totcode[v1]
   var2_total <- totcode[v2]
+  #print(var2_total)
   
   #les différentes modalités des 2 variables
   mods1 <- unique(dfs[[v1]])
   mods2 <- unique(dfs[[v2]])
+  #print(mods2)
   
   var1_mods_hors_tot <- mods1[mods1 != var1_total]
   var2_mods_hors_tot <- mods2[mods2 != var2_total]
+  #print(var2_mods_hors_tot)
   
   # nombre de modalité pour chaque var
   var1_mods_n <- length(var1_mods_hors_tot)
@@ -122,14 +125,18 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   res1 <- creation_table_3_var(1)
   tab1 <- res1[[1]]
   tab1_corresp <- res1[[2]]
+  #print(tab1_corresp)
   
   res2 <- creation_table_3_var(2)
   tab2 <- res2[[1]]
   tab2_corresp <- res2[[2]]
+  #print(tab2_corresp)
   
   #Construction des hiérarchies (cela ne marche pas quand je le mets dans la fonction )
   
+  # to do :
   # utiliser file.path() ?
+  # ne pas écrire si le fichier existe déjà ?
   
   hrc_tab1 <- rtauargus::write_hrc2(tab1_corresp, 
                                     file_name = paste(dir_name,"/",
