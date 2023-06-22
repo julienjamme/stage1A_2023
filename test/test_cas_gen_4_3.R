@@ -37,7 +37,7 @@ hrcfiles <- hrc_files
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(data,"mon_data_frame",tot_code, hrc_files)
+res <- passer_de_4_a_3_var(data,"mon_data_frame",tot_code, hrc_files,sep_dir = TRUE)
 res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", tot_code,"hrc")
 
 identical(res,res2)
@@ -94,4 +94,4 @@ res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 identical(res[1],res2[1])
 identical(res[2],res2[2])
 identical(res[4],res2[4])
-# Rq : le nom des hrc est différent pas construction (ie res[3] != res2[3])
+# Rq : le nom des hrc est différent par construction (ie res[3] != res2[3])
