@@ -15,6 +15,7 @@ get_2_smallest <- function(data){
   return(c(smallest_index,sec_smallest_index))
 }
 source(file = "finaux/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+source(file = "finaux/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 
 #' Title
 #'
@@ -79,7 +80,7 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, hrc_dir = "hrc_al
     
     
     # appeller passage_4_3_cas_1_non_hr
-    return(list())
+    return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }else{
     #cas ou que des var hier
     # Aller chercher deux des 4 var hier
