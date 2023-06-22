@@ -95,3 +95,21 @@ identical(res[1],res2[1])
 identical(res[2],res2[2])
 identical(res[4],res2[4])
 # Rq : le nom des hrc est différent par construction (ie res[3] != res2[3])
+
+
+#################################################
+
+#################################################
+
+#################################################
+
+# Rq vis à vis des outputs :
+# passage_4_3_cas_2_non_hr : liste
+# passage_4_3_cas_1_non_hr : liste de liste
+# passage_4_3_cas_0_non_hr : liste de liste de liste
+
+# A voir comment gérer ça :
+# Tout mettre sous forme de liste ?
+# Tout mette sous forme de liste de liste de liste ?
+# laisser comme cela est et laissé à l'utilisateur le soin de gérer l'output ?
+

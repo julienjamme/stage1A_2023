@@ -86,7 +86,7 @@ passage_4_3_cas_0_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     tot_code[v1] <- unique(dfs[[v1]])[1]
     nom_dfs <- paste(nom_dfs,tot_code[v1],sep="_")
     
-    passage_4_3_cas_1_non_hr(dfs,nom_dfs,v1,v2, tot_code, hrcfiles,dir_name)
+    passage_4_3_cas_1_non_hr(dfs,nom_dfs,v1,v2, tot_code, hrcfiles, dir_name)
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var

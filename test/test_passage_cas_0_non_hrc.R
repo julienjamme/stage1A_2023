@@ -9,15 +9,16 @@ data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-  AGE = c("Ensemble","adulte","enfant"),
+  AGE = c("LETTRE",read.table("hrc/exemple_1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   stringsAsFactors = FALSE
 ) %>% 
   as.data.frame()
 
 data <- data %>% mutate(VALUE = runif(nrow(data)))
-hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
+hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", 
+              SEX = "hrc/hrc3.hrc", AGE = "hrc/exemple_1.hrc")
 
-tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total")
+tot_code<-c(SEX="Total",AGE="LETTRE", GEO="Pays", ACT="Total")
 
 
 # pour execution ligne à ligne
@@ -32,10 +33,11 @@ hrcfiles <- hrc_files
 # pour supprimer les .hrc facilement
 dir_name <- "output"
 
-GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1))
+res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 
-
-res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
+# Résultat à vérifier
+# (trop fatigué pour faire cette tâche atm)
+# output -> liste de liste de liste... AH !
 
 ##################################################
 
