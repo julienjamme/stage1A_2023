@@ -70,6 +70,9 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     var_i_mods_hors_tot <- get(
       paste("var",i,"_mods_hors_tot",sep=""))
     
+    var_j_mods_hors_tot <- get(
+      paste("var",3-i,"_mods_hors_tot",sep=""))
+    
     var_j_mods_n <- get(
       paste("var",3-i,"_mods_n",sep=""))
     
@@ -83,8 +86,8 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     
     # Création du niveau 2 hier
     tabi_nv2 <- expand.grid(
-      v1 = var1_mods_hors_tot,
-      v2 = var2_mods_hors_tot,
+      v1 = var_i_mods_hors_tot,
+      v2 = var_j_mods_hors_tot,
       stringsAsFactors = FALSE
     ) %>% as.data.frame()
     
