@@ -1,8 +1,6 @@
 Reg
-@dep
-@@reg
-@@@com
-@@@com_
-@@reg_
-@dep_
+@Dep
+@@Com
+@@Com_
+@Dep_
 Reg_
