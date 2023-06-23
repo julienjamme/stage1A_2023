@@ -114,7 +114,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
 
     tabi <- dfs[(dfs[[vi]] != var_i_total) | 
                   (dfs[[vi]] == var_i_total & dfs[[vj]] == var_j_total), ]
-    tabi[[paste(v1, v2, sep = "_")]]<- paste(tabi[[vi]],tabi[[vj]],sep="_")
+    tabi[[paste(v1, v2, sep = "_")]]<- paste(tabi[[v1]],tabi[[v2]],sep="_")
     
     tabi[[v1]]<-NULL
     tabi[[v2]]<-NULL

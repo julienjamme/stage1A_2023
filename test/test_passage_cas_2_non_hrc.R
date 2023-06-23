@@ -50,7 +50,7 @@ new_hrc_files_1 <- hrcfiles
 new_var <- paste(elem[[3]][1], elem[[3]][2], sep="_")
 
 hrc_created_1 <- elem[[2]][1]
-new_hrc_files_1[new_var] <- hrc_created
+new_hrc_files_1[new_var] <- hrc_created_1
 
 tab_1 <- elem[[1]][1]
 
