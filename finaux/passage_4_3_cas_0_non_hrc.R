@@ -95,7 +95,7 @@ passage_4_3_cas_0_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     appel_4_3_1_non_hier
   )
   
-  #res <- list(unlist(res, recursive = FALSE))
+  res <- unlist(res, recursive = FALSE)
   
   return(res)
 }
