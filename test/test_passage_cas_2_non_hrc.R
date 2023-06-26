@@ -33,12 +33,12 @@ hrcfiles <- hrc_files
 dir_name <- "output"
 
 
-res <- list(passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name))
-list_tab <- res[[1]][[1]]
+res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
+list_tab <- res$tabs
 str(list_tab)
-list_hrc <- res[[1]][[2]]
-str(liste_hrc)
-var_fuse <- res[[1]][[3]]
+list_hrc <- res$hrcs
+str(list_hrc)
+var_fuse <- res$vars
 
 n_mod_v1 <- length(unique(data[[v1]]))
 n_mod_hors_tot_v1 <- n_mod_v1 - 1
