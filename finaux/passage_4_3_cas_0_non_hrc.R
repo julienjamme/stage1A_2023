@@ -94,8 +94,9 @@ passage_4_3_cas_0_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     liste_df_4_var_1_non_hr,
     appel_4_3_1_non_hier
   )
-  
-  res <- unlist(res, recursive = FALSE)
+  tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
+  hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)
+  res <-list(tabs=tabs,hrcs=hrcs,vars=res[[1]]$vars)
   
   return(res)
 }

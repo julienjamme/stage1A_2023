@@ -34,6 +34,11 @@ hrcfiles <- hrc_files
 dir_name <- "output"
 
 res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
+str(res)
+str(res[[1]])
+tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
+hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)
+res2 <-list(tabs=tabs,hrcs=hrcs,vars=res[[1]]$vars)
 
 # Résultat à vérifier
 # (trop fatigué pour faire cette tâche atm)
