@@ -37,7 +37,10 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     res_sdc$dims,
     names
   )
+  #data <-unique(dfs[[v2]])
   
+  #intersections <- lapply(codes_split, function(x) intersect(x, unique(data[[v2]])))
+  #codes_split
   ###########################
   # Réduction de hierarchie #
   ###########################
@@ -67,7 +70,15 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     liste_df_4_var_2_non_hr,
     appel_4_3_non_hier
   )
-  
-  return(res)
+  # On change l'objet pour qu'il soit le même que dans les autres cas
+  tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
+  hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)
+  return(
+    list(
+      tabs = tabs,
+      hrcs = hrcs,
+      vars = c(v1, v2)
+      )
+  )
 }
 
