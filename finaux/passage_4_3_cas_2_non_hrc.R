@@ -44,16 +44,13 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   # les différents totaux
   var1_total <- totcode[v1]
   var2_total <- totcode[v2]
-  #print(var2_total)
   
   #les différentes modalités des 2 variables
   mods1 <- unique(dfs[[v1]])
   mods2 <- unique(dfs[[v2]])
-  #print(mods2)
   
   var1_mods_hors_tot <- mods1[mods1 != var1_total]
   var2_mods_hors_tot <- mods2[mods2 != var2_total]
-  #print(var2_mods_hors_tot)
   
   # nombre de modalité pour chaque var
   var1_mods_n <- length(var1_mods_hors_tot)
@@ -85,7 +82,10 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
                stringsAsFactors = FALSE
                ) %>% as.data.frame()
     
-    tabi_nv1$v3 <- paste(tabi_nv1$v1, tabi_nv1$v2, sep = "_")
+    vi <- paste("v",i,sep="")
+    vj <- paste("v",3-i,sep="")
+    
+    tabi_nv1$v3 <- paste(tabi_nv1[[vi]], tabi_nv1[[vj]], sep = "_")
     
     # Création du niveau 2 hier
     tabi_nv2 <- expand.grid(
@@ -95,7 +95,8 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     ) %>% as.data.frame()
     
     tabi_nv2 <- tabi_nv2[order(tabi_nv2$v1, tabi_nv2$v2), ]
-    tabi_nv2$v3 <- paste(tabi_nv2$v1, tabi_nv2$v2, sep = "_")
+    
+    tabi_nv2$v3 <- paste(tabi_nv2[[vi]], tabi_nv2[[vj]], sep = "_")
     
     # Création table de correspondance
     tabi_corresp <- data.frame(
@@ -125,12 +126,10 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   res1 <- creation_table_3_var(1)
   tab1 <- res1[[1]]
   tab1_corresp <- res1[[2]]
-  #print(tab1_corresp)
   
   res2 <- creation_table_3_var(2)
   tab2 <- res2[[1]]
   tab2_corresp <- res2[[2]]
-  #print(tab2_corresp)
   
   #Construction des hiérarchies (cela ne marche pas quand je le mets dans la fonction )
   
@@ -142,13 +141,11 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
                                     file_name = paste(dir_name,"/",
                                                       paste("hrc",nom_dfs,v1,sep = "_"),".hrc",sep="")
   )
-  #names(hrc_tab1) <- paste(nom_dfs,v1, sep="_")
+
   hrc_tab2 <- rtauargus::write_hrc2(tab2_corresp, 
                                     file_name = paste(dir_name,"/",
                                                       paste("hrc",nom_dfs,v2,sep = "_"),".hrc",sep="")
   )
-  
-  #names(hrc_tab2) <- paste(nom_dfs,v2, sep="_")
   
   tabs <- list(tab1, tab2)
   names(tabs) <- c(paste(nom_dfs,v1, sep="_"),paste(nom_dfs,v2, sep="_"))
@@ -157,9 +154,9 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   
   return(
     list(
-      tabs = tabs,
-      hrcs = hrcs,
-      vars = c(v1, v2)
+        tabs = tabs,
+        hrcs = hrcs,
+        vars = c(v1, v2)
     )
   )
 }
