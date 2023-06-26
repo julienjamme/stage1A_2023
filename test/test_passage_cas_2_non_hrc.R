@@ -146,3 +146,34 @@ list_test$"test_4" <- is_OK == TRUE
 
 list_test_2 <- list_test
 all(list_test_2)
+
+
+
+
+###
+library(tidyverse)
+
+data_split <- unique(rbind(res$tabs$nom_data_frame_SEX,res$tabs$nom_data_frame_AGE))
+
+# Recréation des variables SEX et AGE.
+# Ceci ne marche uniquement parce qu'il n'y a pas de "_" 
+# dans les modalités de SEX et AGE
+data_fuse <- data_split %>%
+  separate(SEX_AGE, into = c("SEX", "AGE"), sep = "_")
+
+
+data_sort <- data[order(data$ACT, data$GEO, data$SEX, data$AGE),]
+data_sort <- data_sort %>% select(order(colnames(data_sort)))
+
+data_fuse_sort <- data_fuse[order(data_fuse$ACT, data_fuse$GEO, data_fuse$SEX, data_fuse$AGE),]
+data_fuse_sort <- data_fuse_sort %>% select(order(colnames(data_fuse_sort)))
+
+identical(data_sort,data_fuse_sort)
+
+# On vérifie que les colonnes sont bien identiques
+# identical(data_sort, data_fuse_sort) ne fonctionne pas... A demander pourquoi
+identical(data_sort$ACT, data_fuse_sort$ACT)
+identical(data_sort$AGE, data_fuse_sort$AGE)
+identical(data_sort$GEO, data_fuse_sort$GEO)
+identical(data_sort$SEX, data_fuse_sort$SEX)
+identical(data_sort$VALUE, data_fuse_sort$VALUE)
