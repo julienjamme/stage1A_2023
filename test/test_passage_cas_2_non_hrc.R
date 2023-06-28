@@ -15,6 +15,7 @@ data <- expand.grid(
   as.data.frame()
 
 data <- data %>% mutate(VALUE = runif(nrow(data)))
+
 hrc_files = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
 
 tot_code<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
@@ -40,25 +41,44 @@ str(res)
 #     hrcs=list(nom_data_frame_v1="dirname/hrc_nom_data_frame_v1.hrc ,
 #               nom_data_frame_v2="dirname/hrc_nom_data_frame_v2.hrc )
 #     var(c(v1,v2))
+###############################################
+##############################################
+#DEUXIEME DATA ###############################
+load("data/ca_pizzas_4vars.RData")
+hrc_activity <- rtauargus::write_hrc2(
+  corr_act, 
+  "hrc/activity_2_niv.hrc", 
+  adjust_unique_roots = TRUE
+)
+hrc_nuts <- rtauargus::write_hrc2(
+  corr_nuts,
+  "hrc/nuts23.hrc", 
+  adjust_unique_roots = TRUE
+)
+hrcfiles1<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+totcode1<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
+nom_dfs1<-"pizza"
+res2<-passage_4_3_cas_2_non_hr(ca_pizzas_4vars,nom_dfs1,v1 = "treff",v2="cj",totcode1,dir_name)
 
-
-list_tab <- res$tabs
-str(list_tab)
-list_hrc <- res$hrcs
-str(list_hrc)
-var_fuse <- res$vars
-test_var<- identical(var_fuse,c(v1,v2)) #var est bon 
- 
-n_mod_v1 <- length(unique(data[[v1]]))
-n_mod_hors_tot_v1 <- n_mod_v1 - 1
-n_mod_v2 <- length(unique(data[[v2]]))
-n_mod_hors_tot_v2 <- n_mod_v2 - 1
 
 
 ##############################################################################
 # Vérification fichiers hrc
 ##############################################################################
 # Vérification premier fichier hrc
+
+list_tab <- res$tabs
+str(list_tab)
+list_hrc <- res$hrcs
+str(list_hrc)
+var_fuse <- res$vars
+
+
+n_mod_v1 <- length(unique(data[[v1]]))
+n_mod_hors_tot_v1 <- n_mod_v1 - 1
+n_mod_v2 <- length(unique(data[[v2]]))
+n_mod_hors_tot_v2 <- n_mod_v2 - 1
+
 hrc <- list_hrc[[1]]
 
 total <- "Total_Total"
@@ -74,47 +94,6 @@ read.table(list_hrc$nom_data_frame_SEX)
 
 res_dt <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
   sdcHierarchies::hier_convert(as = "dt")
-table_V1<-as.data.frame(res_dt$name[res_dt$name!=total])
-identical()
-
-var1_total <- totcode[v1]
-var2_total <- totcode[v2]
-
-#les différentes modalités des 2 variables
-mods1 <- unique(data[[v1]])
-mods2 <- unique(data[[v2]])
-
-var1_mods_hors_tot <- mods1[mods1 != var1_total]
-var2_mods_hors_tot <- mods2[mods2 != var2_total]
-
-# nombre de modalité pour chaque var
-var1_mods_n <- length(var1_mods_hors_tot)
-var2_mods_n <- length(var2_mods_hors_tot)
-
-#  que l'on veut 
-tab1_niv1 <- expand.grid(
-  v1 = sort(rep(var1_mods_hors_tot, var2_mods_n)),
-  v2 = var2_total,
-  stringsAsFactors = FALSE
-) %>% as.data.frame()
-
-tab1_niv1$v3 <- paste(tab1_niv1$v1, tab1_niv1$v2, sep = "_")
-
-tab1_niv2 <- expand.grid(
-  v1 = var1_mods_hors_tot,
-  v2 = var2_mods_hors_tot,
-  stringsAsFactors = FALSE
-) %>% as.data.frame()
-
-tab1_niv2 <- tab1_niv2[order(tab1_niv2$v1, tab1_niv2$v2), ]
-tab1_niv2$v3 <- paste(tab1_niv2$v1, tab1_niv2$v2, sep = "_")
-
-#La table de correspondance
-tab1_corresp <- data.frame(
-  Niv1 = tab1_niv1$v3,
-  Niv2 = tab1_niv2$v3,
-  stringsAsFactors = FALSE
-)
 
 # Un seul grand total
 list_test$"test_1" <-nrow(res_dt %>% filter(level == "@")) == 1
@@ -202,11 +181,17 @@ all(list_test_2)
 
 ##########################################################
 ##########################################################
+# TEST TABLEAU DE LA BONNE FORME
+##########################################################
 ##########################################################
 
-
 library(tidyverse)
-
+str(res)
+#On s'attend à une réponse du type 
+#list(tabs=list(nom_data_frame_v1,nom_data_frame_v2),
+#     hrcs=list(nom_data_frame_v1="dirname/hrc_nom_data_frame_v1.hrc ,
+#               nom_data_frame_v2="dirname/hrc_nom_data_frame_v2.hrc )
+#     var(c(v1,v2))
 #On veut montrer paint 
 
 #On créer un tableau contenant toutes les données de data et la variable V1_V2
@@ -215,26 +200,65 @@ tab<- data %>%
 tab$v3 <- paste(data[[v1]], data[[v2]], sep = "_")
 
 # On filtre 
-data_voulu<-tab %>% 
+data_voulu1<-tab %>% 
   filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
-
+data_voulu2<-tab %>% 
+  filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
 #On range les deux tableaux pour pouvoir voir avec arrange si ce sont les mêmes
 
-data_voulu<-data_voulu %>% arrange(across(where(is.character)))
-res$tabs$nom_data_frame_SEX<-res$tabs$nom_data_frame_SEX %>% arrange(across(where(is.character)))
+data_voulu1<-data_voulu1 %>% arrange(across(where(is.character)))
+data_voulu2<-data_voulu2 %>% arrange(across(where(is.character)))
 
+res$tabs$nom_data_frame_SEX<-res$tabs$nom_data_frame_SEX %>% arrange(across(where(is.character)))
+res$tabs$nom_data_frame_AGE<-res$tabs$nom_data_frame_AGE %>% arrange(across(where(is.character)))
 #Les mêmes modalités
 
-identical(unique(data_voulu$v3),
+identical(unique(data_voulu1$v3),
 unique(res$tabs$nom_data_frame_SEX$SEX_AGE))
 
+identical(unique(data_voulu2$v3),
+          unique(res$tabs$nom_data_frame_AGE$SEX_AGE))
 #On a le on tableau 
 
-identical(res$tabs$nom_data_frame_SEX$SEX_AGE,data_voulu$v3)
+identical(res$tabs$nom_data_frame_SEX$SEX_AGE,data_voulu1$v3)
+identical(res$tabs$nom_data_frame_AGE$SEX_AGE,data_voulu2$v3)
+
+test_var<- identical(var_fuse,c(v1,v2)) #var est bon 
+res$tabs[["nom_data_frame_SEX"]][["SEX_AGE"]]
+#########################################################
 
 
+test_tableau<-function(data,v1,v2,res,totcode){
+  tab<- select(data, v1, v2)
+  tab$v3 <- paste(data[[v1]], data[[v2]], sep = "_")
+  
+  var1_total <- totcode[v1]
+  var2_total <- totcode[v2]
+  
+  
+  var<-paste( v1,v2, sep = "_")
+
+  # On filtre 
+  data_voulu2<-tab %>% 
+    filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
+  data_voulu1<-tab %>% 
+    filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
+ 
 
 
+  nom1<-names(res$tabs)[1]
+  nom2<-names(res$tabs)[2]
+ 
+  #Les mêmes modalités
+  t<-identical(sort(unique(res$tabs[[nom1]][[var]])),sort(unique(data_voulu2$v3)))
+  t1<-identical(sort(res$tabs[[nom1]][[var]]),sort(data_voulu2$v3))
+  t2<-identical(sort(res$tabs[[nom2]][[var]]),sort(data_voulu1$v3))
+  return (list(tab1=t1,tab2=t2))
+}
+t<-test_tableau(ca_pizzas_4vars,v1,v2,res2,totcode1)
+t2<-test_tableau(data,v1,v2,res,totcode )
+#########################################################
+#########################################################
 #########################################################
 data_split <- unique(rbind(res$tabs$nom_data_frame_SEX$SEX_AGE,res$tabs$nom_data_frame_AGE))
 

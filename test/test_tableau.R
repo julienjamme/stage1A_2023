@@ -11,9 +11,9 @@ test_tableau<-function(data,v1,v2,res,totcode){
   var<-paste( v1,v2, sep = "_")
   
   # On filtre 
-  data_voulu2<-tab %>% 
-    filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
   data_voulu1<-tab %>% 
+    filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
+  data_voulu2<-tab %>% 
     filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
   
   
@@ -22,8 +22,11 @@ test_tableau<-function(data,v1,v2,res,totcode){
   nom2<-names(res$tabs)[2]
   
   #Les mêmes modalités
-  t<-identical(sort(unique(res$tabs[[nom1]][[var]])),sort(unique(data_voulu2$v3)))
-  t1<-identical(sort(res$tabs[[nom1]][[var]]),sort(data_voulu2$v3))
-  t2<-identical(sort(res$tabs[[nom2]][[var]]),sort(data_voulu1$v3))
+  t<-identical(sort(unique(res$tabs[[nom1]][[var]])),sort(unique(data_voulu1$v3)))
+  t1<-identical(sort(res$tabs[[nom1]][[var]]),sort(data_voulu1$v3))
+  t2<-identical(sort(res$tabs[[nom2]][[var]]),sort(data_voulu2$v3))
   return (list(tab1=t1,tab2=t2))
 }
+
+
+

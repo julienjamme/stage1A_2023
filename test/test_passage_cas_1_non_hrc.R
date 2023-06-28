@@ -4,6 +4,7 @@ rm(list = ls())
 
 library(dplyr)
 source("finaux/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source("test/test_tableau.R",encoding = "UTF-8")
 
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -35,6 +36,12 @@ GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?",""
 
 
 res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
+
+t<-test_tableau(data,v1,v2,res,totcode)
+
+
+
+
 
 
 ##

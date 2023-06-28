@@ -87,7 +87,9 @@ for (chaine in (res$tabs$pizza_treff$treff_cj)){
 res$tabs$pizza_treff$treff<-unlist(lapply(var,function(x) return (x[[1]])),recursive=FALSE)
 res$tabs$pizza_treff$cj<-unlist(lapply(var,function(x) return (x[[2]])),recursive=FALSE)
 
+res$tabs$pizza_treff$treff_cj<-NULL
 
+res$tabs$pizza_treff
 # elem = un élément de possibilité
 # fonction qui regarde si elem[1] est une possibilité de la var 1
 # et elem[2] une possibilité de var 2
