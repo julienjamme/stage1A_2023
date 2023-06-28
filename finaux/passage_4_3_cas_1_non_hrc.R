@@ -33,10 +33,16 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     sdcHierarchies::hier_convert(as = "sdc")
   #res_sdc$dims
   
+  #Code split nous donne les hiérarchies ainsi que les niveaux de la hiérarchie 
   codes_split <- lapply(
     res_sdc$dims,
     names
   )
+  
+  
+  
+  
+  
   #data <-unique(dfs[[v2]])
   
   #intersections <- lapply(codes_split, function(x) intersect(x, unique(data[[v2]])))

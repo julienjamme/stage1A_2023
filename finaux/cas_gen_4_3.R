@@ -80,14 +80,14 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
   }else if(n_vars_sans_hier == 1){
     # Aller chercher une des 3 variables hierarchiques
     # de préférence celle avec le moins de modalités
-    v2 <- plus_petit_hrc(hrc_files)
+    v2 <- plus_petit_hrc(hrcfiles)
 
     return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }else{
     #cas ou que des var hier
     # Aller chercher deux des 4 var hier
     # de préférence celles avec le moins de modalités
-    v1 <- plus_petit_hrc(hrc_files)
+    v1 <- plus_petit_hrc(hrcfiles)
     
     # on enlève la var trouvé pour v1 pour trouver v2
     hrc_files_2 <- hrc_files[setdiff(names(hrc_files), v1)]

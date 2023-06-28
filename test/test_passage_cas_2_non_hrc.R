@@ -4,7 +4,7 @@ rm(list = ls())
 
 library(dplyr)
 source("finaux/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-
+source("test/test_tableau.R",encoding="UTF-8")
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -35,12 +35,56 @@ dir_name <- "output"
 
 
 res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
-str(res)
+unique(res$tabs$nom_data_frame_SEX)
 #On s'attend à une réponse du type 
 #list(tabs=list(nom_data_frame_v1,nom_data_frame_v2),
 #     hrcs=list(nom_data_frame_v1="dirname/hrc_nom_data_frame_v1.hrc ,
 #               nom_data_frame_v2="dirname/hrc_nom_data_frame_v2.hrc )
 #     var(c(v1,v2))
+
+library(tidyverse)
+
+#On veut montrer paint 
+res$tabs$
+#On créer un tableau contenant toutes les données de data et la variable V1_V2
+tab<- data %>% 
+  select(1:2)
+tab$v3 <- paste(data[[v1]], data[[v2]], sep = "_")
+
+# On filtre 
+data_voulu1<-tab %>% 
+  filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
+data_voulu2<-tab %>% 
+  filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
+#On range les deux tableaux pour pouvoir voir avec arrange si ce sont les mêmes
+
+data_voulu1<-data_voulu1 %>% arrange(across(where(is.character)))
+data_voulu2<-data_voulu2 %>% arrange(across(where(is.character)))
+
+res$tabs$nom_data_frame_SEX<-res$tabs$nom_data_frame_SEX %>% arrange(across(where(is.character)))
+res$tabs$nom_data_frame_AGE<-res$tabs$nom_data_frame_AGE %>% arrange(across(where(is.character)))
+#Les mêmes modalités
+
+identical(unique(data_voulu1$v3),
+          unique(res$tabs$nom_data_frame_SEX$SEX_AGE))
+
+identical(unique(data_voulu2$v3),
+          unique(res$tabs$nom_data_frame_AGE$SEX_AGE))
+#On a le on tableau 
+
+identical(res$tabs$nom_data_frame_SEX$SEX_AGE,data_voulu1$v3)
+identical(res$tabs$nom_data_frame_AGE$SEX_AGE,data_voulu2$v3)
+
+test_var<- identical(var_fuse,c(v1,v2)) #var est bon 
+res$tabs[["nom_data_frame_SEX"]][["SEX_AGE"]]
+#########################################################
+
+t<-test_tableau(ca_pizzas_4vars,v1,v2,res2,totcode1)
+t2<-test_tableau(data,v1,v2,res,totcode )
+
+#########################################################
+#########################################################
+#########################################################
 ###############################################
 ##############################################
 #DEUXIEME DATA ###############################
@@ -73,12 +117,13 @@ list_hrc <- res$hrcs
 str(list_hrc)
 var_fuse <- res$vars
 
-
+# Test sur les chemins des fichiers hrc 
+chemin <- getwd()
 n_mod_v1 <- length(unique(data[[v1]]))
 n_mod_hors_tot_v1 <- n_mod_v1 - 1
 n_mod_v2 <- length(unique(data[[v2]]))
 n_mod_hors_tot_v2 <- n_mod_v2 - 1
-
+res2$tabs$
 hrc <- list_hrc[[1]]
 
 total <- "Total_Total"
@@ -185,102 +230,6 @@ all(list_test_2)
 ##########################################################
 ##########################################################
 
-library(tidyverse)
-str(res)
-#On s'attend à une réponse du type 
-#list(tabs=list(nom_data_frame_v1,nom_data_frame_v2),
-#     hrcs=list(nom_data_frame_v1="dirname/hrc_nom_data_frame_v1.hrc ,
-#               nom_data_frame_v2="dirname/hrc_nom_data_frame_v2.hrc )
-#     var(c(v1,v2))
-#On veut montrer paint 
-
-#On créer un tableau contenant toutes les données de data et la variable V1_V2
-tab<- data %>% 
-  select(1:2)
-tab$v3 <- paste(data[[v1]], data[[v2]], sep = "_")
-
-# On filtre 
-data_voulu1<-tab %>% 
-  filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
-data_voulu2<-tab %>% 
-  filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
-#On range les deux tableaux pour pouvoir voir avec arrange si ce sont les mêmes
-
-data_voulu1<-data_voulu1 %>% arrange(across(where(is.character)))
-data_voulu2<-data_voulu2 %>% arrange(across(where(is.character)))
-
-res$tabs$nom_data_frame_SEX<-res$tabs$nom_data_frame_SEX %>% arrange(across(where(is.character)))
-res$tabs$nom_data_frame_AGE<-res$tabs$nom_data_frame_AGE %>% arrange(across(where(is.character)))
-#Les mêmes modalités
-
-identical(unique(data_voulu1$v3),
-unique(res$tabs$nom_data_frame_SEX$SEX_AGE))
-
-identical(unique(data_voulu2$v3),
-          unique(res$tabs$nom_data_frame_AGE$SEX_AGE))
-#On a le on tableau 
-
-identical(res$tabs$nom_data_frame_SEX$SEX_AGE,data_voulu1$v3)
-identical(res$tabs$nom_data_frame_AGE$SEX_AGE,data_voulu2$v3)
-
-test_var<- identical(var_fuse,c(v1,v2)) #var est bon 
-res$tabs[["nom_data_frame_SEX"]][["SEX_AGE"]]
-#########################################################
 
 
-test_tableau<-function(data,v1,v2,res,totcode){
-  tab<- select(data, v1, v2)
-  tab$v3 <- paste(data[[v1]], data[[v2]], sep = "_")
-  
-  var1_total <- totcode[v1]
-  var2_total <- totcode[v2]
-  
-  
-  var<-paste( v1,v2, sep = "_")
 
-  # On filtre 
-  data_voulu2<-tab %>% 
-    filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
-  data_voulu1<-tab %>% 
-    filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
- 
-
-
-  nom1<-names(res$tabs)[1]
-  nom2<-names(res$tabs)[2]
- 
-  #Les mêmes modalités
-  t<-identical(sort(unique(res$tabs[[nom1]][[var]])),sort(unique(data_voulu2$v3)))
-  t1<-identical(sort(res$tabs[[nom1]][[var]]),sort(data_voulu2$v3))
-  t2<-identical(sort(res$tabs[[nom2]][[var]]),sort(data_voulu1$v3))
-  return (list(tab1=t1,tab2=t2))
-}
-t<-test_tableau(ca_pizzas_4vars,v1,v2,res2,totcode1)
-t2<-test_tableau(data,v1,v2,res,totcode )
-#########################################################
-#########################################################
-#########################################################
-data_split <- unique(rbind(res$tabs$nom_data_frame_SEX$SEX_AGE,res$tabs$nom_data_frame_AGE))
-
-# Recréation des variables SEX et AGE.
-# Ceci ne marche uniquement parce qu'il n'y a pas de "_" 
-# dans les modalités de SEX et AGE
-data_fuse <- data_split %>%
-  separate(SEX_AGE, into = c("SEX", "AGE"), sep = "_")
-
-
-data_sort <- data[order(data$ACT, data$GEO, data$SEX, data$AGE),]
-data_sort <- data_sort %>% select(order(colnames(data_sort)))
-
-data_fuse_sort <- data_fuse[order(data_fuse$ACT, data_fuse$GEO, data_fuse$SEX, data_fuse$AGE),]
-data_fuse_sort <- data_fuse_sort %>% select(order(colnames(data_fuse_sort)))
-
-identical(data_sort,data_fuse_sort)
-
-# On vérifie que les colonnes sont bien identiques
-# identical(data_sort, data_fuse_sort) ne fonctionne pas... A demander pourquoi
-identical(data_sort$ACT, data_fuse_sort$ACT)
-identical(data_sort$AGE, data_fuse_sort$AGE)
-identical(data_sort$GEO, data_fuse_sort$GEO)
-identical(data_sort$SEX, data_fuse_sort$SEX)
-identical(data_sort$VALUE, data_fuse_sort$VALUE)

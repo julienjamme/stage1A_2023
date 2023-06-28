@@ -31,6 +31,8 @@ passage_4_3_cas_0_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
   hrc1 <- hrcfiles[[v1]]
   total1 <- totcode[[v1]]
   
+  #On crée le tableau donnant les niveaux de la hiérarchie
+  
   res_sdc <- sdcHierarchies::hier_import(inp = hrc1, from = "hrc", root = total1) %>% 
     sdcHierarchies::hier_convert(as = "sdc")
   

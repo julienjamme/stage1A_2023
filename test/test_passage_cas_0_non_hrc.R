@@ -4,7 +4,7 @@ rm(list = ls())
 
 library(dplyr)
 source("finaux/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
-
+source("test/test_tableau.R", encoding = "UTF-8")
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -35,15 +35,26 @@ dir_name <- "output"
 
 res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 str(res)
-str(res[[1]])
-tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
-hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)
-res2 <-list(tabs=tabs,hrcs=hrcs,vars=res[[1]]$vars)
+#on a le bon format
+length(res$tabs)
+str(res2$vars)
+#hrc2 =4 + hrc3=8 =12
 
-# Résultat à vérifier
-# (trop fatigué pour faire cette tâche atm)
-# output -> liste de liste de liste... AH !
+data2 <- expand.grid(
+  ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Pays",read.table("hrc/exemple_1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  AGE = c("LETTRE",read.table("hrc/age.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
 
-##################################################
+v2<-"AGE"
+hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/exemple_1.hrc", 
+              SEX = "hrc/hrc3.hrc", AGE = "hrc/age.hrc")
+res2 <- passage_4_3_cas_0_non_hr(data2, nom_dfs,v1,v2,totcode,hrc_files,dir_name)
 
-sortie_1_non_hrc <- res[[1]][[1]][1]
+str(res2$vars)
+
+length(res2$tabs)
+# hrc2 =4 et age =12 vu avant 

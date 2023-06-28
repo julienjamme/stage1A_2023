@@ -1,101 +1,105 @@
 
 
+################################################################################
+#Donnees
 
-
-passer_3_4(list_df,list_var,dir_name){
-  
-  
-  
-  
-  
-  
-  
-  
-  
-}
-
-
-###
-###
-# Découpage des différentes possibilités
-###
-###
-
-
-# Trouver toutes les positions de _ dans la chaîne
-#library(stringr)
-
-#chaine <- "ma_variable_nom_tres_complexe"
-#sous_chaine <- "_"
-
-# Trouver toutes les positions de _ dans la chaîne
-#positions <- str_locate_all(chaine, sous_chaine)[[1]][, "start"]
-
-# Générer toutes les possibilités de division
-#possibilites <- lapply(positions, function(pos) {
- # partie1 <- str_sub(chaine, end = pos - 1)
- # partie2 <- str_sub(chaine, start = pos + str_length(sous_chaine))
- # list(partie1, partie2)
-#})
-
-#possibilites <- Filter(function(x) !is.null(x), possibilites)
-
-#######################################
-
+library(stringr)
+source("function_passer_3_4.R")
 
 load("data/ca_pizzas_4vars.RData")
 source("finaux/cas_gen_4_3.R")
-str(ca_pizzas_4vars)
-str(corr_act)
-str(corr_nuts)
+
 library("dplyr")
-source("finaux/cas_gen_4_3.R")
+
 hrc_activity <- rtauargus::write_hrc2(
   corr_act, 
   "hrc/activity_2_niv.hrc", 
   adjust_unique_roots = TRUE
 )
+
 hrc_nuts <- rtauargus::write_hrc2(
   corr_nuts,
   "hrc/nuts23.hrc", 
   adjust_unique_roots = TRUE
 )
+
 hrcfiles<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+
 totcode<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
+
 nom_dfs<-"pizza"
+
 res<-passer_de_4_a_3_var(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE)
-library(stringr)
 
-mod1<-unique(ca_pizzas_4vars$treff)
-mod2<-unique(ca_pizzas_4vars$cj)
-sous_chaine <- "_"
-var<-list()
-for (chaine in (res$tabs$pizza_treff$treff_cj)){
-  # Trouver toutes les positions de _ dans la chaîne
-  positions <- str_locate_all(chaine, sous_chaine)[[1]][, "start"]
-  var_poss<-lapply(positions, function(pos) {
-   partie1 <- str_sub(chaine, end = pos - 1)
-    partie2 <- str_sub(chaine, start = pos + str_length(sous_chaine))
-    list(partie1, partie2)
-  })
-
- 
-  var<-append(var,lapply(var_poss, function(x) if (x[[1]] %in% mod1 & x[[2]] %in% mod2){
-    return(c(x[[1]],x[[2]]))
-  }))
-}
-res$tabs$pizza_treff$treff<-unlist(lapply(var,function(x) return (x[[1]])),recursive=FALSE)
-res$tabs$pizza_treff$cj<-unlist(lapply(var,function(x) return (x[[2]])),recursive=FALSE)
-
-res$tabs$pizza_treff$treff_cj<-NULL
-
-res$tabs$pizza_treff
-# elem = un élément de possibilité
-# fonction qui regarde si elem[1] est une possibilité de la var 1
-# et elem[2] une possibilité de var 2
-
-# Requirement : la fonction au dessus ne renvoie TRU que pour un seul élément
-# ie : les variables n'ont pas des noms bizarres
+################################################################################
 
 
-# to do : dans le code_split, faire un intersect avec les modalités présentes
+l<-list()
+
+
+
+l<-passer_3_41(res,ca_pizzas_4vars)
+str(l)
+
+ca<-unique(rbind(l[[1]]$pizza_treff,l[[1]]$pizza_cj))
+str(ca_pizzas_4vars)
+str(ca)
+
+#On a bien toutes les collonnes 
+
+identical(sort(ca$treff),sort(ca_pizzas_4vars$treff))
+
+identical(sort(ca$cj),sort(ca_pizzas_4vars$cj))
+
+
+library(dplyr)
+source("finaux/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source("finaux/cas_gen_4_3.R",encoding = "UTF-8")
+
+data <- expand.grid(
+  ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  AGE = c("Ensemble","adulte","enfant"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = runif(nrow(data)))
+hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
+
+tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total")
+
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
+
+v1 <- "AGE"
+v2 <- "ACT"#donné grâce à plus petit hrc
+identical("ACT",plus_petit_hrc(hrc_files))
+totcode <- tot_code
+hrcfiles <- hrc_files
+
+dir_name <- dirname(hrcfiles[1])
+
+GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1))
+#ACT possède 2 niveau
+#Donc il y aura 4 tableaux (2 (cas sans hiérarchie)+ 1(n_niveau1) )
+
+res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
+
+
+l2<-list()
+
+
+
+l2<-passer_3_41(res2,dfs)
+str(l2)
+
+  ca2<-unique(rbind(l2[[1]]$nom_data_frame_Total_AGE,l2[[1]]$nom_data_frame_Total_ACT,
+                   l2[[1]]$nom_data_frame_B_AGE,l2[[1]]$nom_data_frame_B_ACT))
+  
+identical(sort(ca2$AGE),sort(ca2$AGE))
+  
+identical(sort(ca2$ACT),sort(ca2$ACT))
