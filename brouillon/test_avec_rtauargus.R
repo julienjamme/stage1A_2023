@@ -41,10 +41,10 @@ traiter_un_cluster <- function(cluster,nom){
   res <- tab_multi_manager(
     list_tables = cluster$param_argus$liste_tab,
     list_explanatory_vars = cluster$param_argus$liste_expl_var,
-    #hrc = c(ceff = hrc_ceff),
+    hrc = c(ceff = hrc_ceff),#variable non touchés hiérarchie
     alt_hrc = cluster$param_argus$liste_alt_hrc,
     alt_totcode = cluster$param_argus$liste_alt_tot,
-    #totcode = "30",
+    totcode = "30",
     value = "value",
     freq = "nb_obs",
     dir_name = file.path(rep_argus_files,nom),
