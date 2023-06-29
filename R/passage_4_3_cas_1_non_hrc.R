@@ -55,7 +55,7 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     codes_split,
     function(codes){
       res <- dfs %>% 
-        filter(pull(., {{ v2 }}) %in% codes)
+        filter(dfs[[v2]] %in% codes)
     }
   )
   # Nous avons maintenant des data.frames avec 2 variables non hierarchiques

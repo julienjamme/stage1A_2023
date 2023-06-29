@@ -1,11 +1,17 @@
 
 #aider par internet pour trouver nrow et which.min
-plus_petit_hrc <- function(hrc_files) {
-  dfs <- lapply(hrc_files, read.table)
-  indice_petit_hrc <- which.min(sapply(dfs, nrow))
-  nom_plus_petit_hrc <- names(hrc_files[indice_petit_hrc])
-  return(nom_plus_petit_hrc)
+source("test/test_nbs_tabs.R")
+
+plus_petit_hrc <- function(hrcfiles, totcode) {
+  v <- list()
+  for (i in 1:length(hrcfiles)) {
+    v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
+  }
+  indice_petit_hrc <- which.min(v)
+  nom_plus_petit_hrc <- names(hrcfiles)[indice_petit_hrc]
+  return(nom_plus_petit_hrc) 
 }
+
 
 get_2_smallest <- function(data){
   list_mod_n <- lapply(data, function(col) length(unique(col)))
@@ -80,18 +86,18 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
   }else if(n_vars_sans_hier == 1){
     # Aller chercher une des 3 variables hierarchiques
     # de préférence celle avec le moins de modalités
-    v2 <- plus_petit_hrc(hrcfiles)
+    v2 <- plus_petit_hrc(hrcfiles,totcode)
 
     return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }else{
     #cas ou que des var hier
     # Aller chercher deux des 4 var hier
     # de préférence celles avec le moins de modalités
-    v1 <- plus_petit_hrc(hrcfiles)
+    v1 <- plus_petit_hrc(hrcfiles,totcode)
     
     # on enlève la var trouvé pour v1 pour trouver v2
     hrc_files_2 <- hrc_files[setdiff(names(hrc_files), v1)]
-    v2 <- plus_petit_hrc(hrc_files_2)
+    v2 <- plus_petit_hrc(hrc_files_2,totcode)
     
     return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }
