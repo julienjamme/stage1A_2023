@@ -1,8 +1,8 @@
 
 
-################################################################################
-#Donnees
-
+##############
+# Donnees####
+##############
 library(stringr)
 source("R/function_passer_3_4.R")
 
@@ -29,32 +29,33 @@ totcode<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
 
 nom_dfs<-"pizza"
 
+
 res<-passer_de_4_a_3_var(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE)
 
-################################################################################
-
+#######################################
+############TEST#######################
+#######################################
 
 l<-list()
-
-
+source("R/function_passer_3_4.R")
 
 l<-passer_3_41(res,ca_pizzas_4vars)
+#On a le bon format
 str(l)
-
-ca<-unique(rbind(l[[1]]$pizza_treff,l[[1]]$pizza_cj))
-str(ca_pizzas_4vars)
-str(ca)
 
 #On a bien toutes les collonnes 
 
-identical(sort(ca$treff),sort(ca_pizzas_4vars$treff))
+identical(sort(l$treff),sort(ca_pizzas_4vars$treff))
 
-identical(sort(ca$cj),sort(ca_pizzas_4vars$cj))
+identical(sort(l$cj),sort(ca_pizzas_4vars$cj))
 
 
-library(dplyr)
+#####################
+######DONNEES2#######
+#####################
+
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-source("R/cas_gen_4_3.R",encoding = "UTF-8")
+
 
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -77,29 +78,28 @@ nom_dfs <- "nom_data_frame"
 
 v1 <- "AGE"
 v2 <- "ACT"#donné grâce à plus petit hrc
-identical("ACT",plus_petit_hrc(hrc_files))
+
 totcode <- tot_code
 hrcfiles <- hrc_files
 
 dir_name <- dirname(hrcfiles[1])
 
 GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1))
-#ACT possède 2 niveau
-#Donc il y aura 4 tableaux (2 (cas sans hiérarchie)+ 1(n_niveau1) )
 
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 
+########################
+########TEST###########
+########################
 
 l2<-list()
 
-
-
 l2<-passer_3_41(res2,dfs)
+#On a le bon format
 str(l2)
 
-  ca2<-unique(rbind(l2[[1]]$nom_data_frame_Total_AGE,l2[[1]]$nom_data_frame_Total_ACT,
-                   l2[[1]]$nom_data_frame_B_AGE,l2[[1]]$nom_data_frame_B_ACT))
-  
-identical(sort(ca2$AGE),sort(ca2$AGE))
-  
-identical(sort(ca2$ACT),sort(ca2$ACT))
+#On a bien toutes les collonnes
+
+identical(sort(l2$AGE),sort(data$AGE))
+
+identical(sort(l2$ACT),sort(data$ACT))

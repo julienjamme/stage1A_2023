@@ -13,13 +13,14 @@ plus_petit_hrc <- function(hrcfiles, totcode) {
 }
 
 
-get_2_smallest <- function(data){
-  list_mod_n <- lapply(data, function(col) length(unique(col)))
-  smallest_index <- which.min(list_mod_n)
-  list_mod_n[smallest_index] <- NA
-  sec_smallest_index <- which.min(list_mod_n)
-  return(c(smallest_index,sec_smallest_index))
+get_2_smallest <- function(hrcfiles,totcode){
+  smallest_hrc<- plus_petit_hrc(hrcfiles, totcode)
+  index_smallest <- which(names(hrcfiles) == smallest_hrc)
+  sec_smallest_hrc <- plus_petit_hrc(hrcfiles[-index_smallest], totcode)
+  
+  return(c(smallest_hrc,sec_smallest_hrc))
 }
+
 source(file = "R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source(file = "R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source(file = "R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
@@ -63,7 +64,7 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
   #si superieur à 3 je dis que je regarde celui avec les plus petites moda
   if (n_vars_sans_hier > 2){
     dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
-    res<-get_2_smallest(dfs_var_sans_hier)
+    res<-get_2_smallest(hrcfiles,totcode)
     v1 <- names(res)[[1]]
     v2 <- names(res)[[2]]
     # to do : le transformer en une liste d'un seul élément

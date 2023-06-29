@@ -9,8 +9,8 @@
 #' et vars un vecteur contenant les Deux variables fusionnées que l'on va vouloir 
 #' défuisonnées 
 #' @param data le dataframe donné par l'utilisatuer à l'entrée#'
-#' @return Liste de 3 éléments:
-#' - liste de liste contenant les différents dataframes à 4 variables
+#' @return un dataframe a 4 variables catégorielles contenant toutes les 
+#' données 
 
 
 library(stringr)
@@ -27,13 +27,13 @@ passer_3_41 <- function(res, data) {
   #On récupère les noms des différents tableaux et
  
   
-  nom_dfs<-names(res$tabs)
+  nom_des_dfs<-names(res$tabs)
   #On initialise la boucle avec list_tabs pour stocker les tableaux changés 
   separateur <- "_"
   list_tabs <- list()
   
   #On regarde tous les tableaux possibles
-  for (nom in nom_dfs) {
+  for (nom in nom_des_dfs) {
     var <- list()  # liste qui conserve les variables du tableaux demandés
     #On observe les termes séparées par _ 
     
@@ -57,9 +57,19 @@ passer_3_41 <- function(res, data) {
     res$tabs[[nom]][[var_cross]] <- NULL
     res$tabs[[nom]][[var1]] <- unname(res$tabs[[nom]][[var1]])
     res$tabs[[nom]][[var2]] <- unname(res$tabs[[nom]][[var2]])
+    
+    
   }
+  # On récupère 
+  l <- unlist(list(res$tabs),recursive = FALSE)
   
-  return(list(res$tabs))
+  
+  ca2<-do.call(rbind,l)
+  
+  
+  
+    
+  return (unique(ca2))
 }
 
 

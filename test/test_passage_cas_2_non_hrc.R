@@ -5,6 +5,11 @@ rm(list = ls())
 library(dplyr)
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("test/test_tableau.R",encoding="UTF-8")
+
+###############################
+##########DONNEES##############
+###############################
+
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -33,61 +38,47 @@ hrcfiles <- hrc_files
 
 dir_name <- "output"
 
+###################
+######TEST#########
+###################
 
 res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
-unique(res$tabs$nom_data_frame_SEX)
+
 #On s'attend à une réponse du type 
 #list(tabs=list(nom_data_frame_v1,nom_data_frame_v2),
 #     hrcs=list(nom_data_frame_v1="dirname/hrc_nom_data_frame_v1.hrc ,
 #               nom_data_frame_v2="dirname/hrc_nom_data_frame_v2.hrc )
 #     var(c(v1,v2))
 
-library(tidyverse)
+str(res)
 
-#On veut montrer paint 
-res$tabs$
-#On créer un tableau contenant toutes les données de data et la variable V1_V2
-tab<- data %>% 
-  select(1:2)
-tab$v3 <- paste(data[[v1]], data[[v2]], sep = "_")
+#On a le bon nombre de tableau
+length(res$tabs)
 
-# On filtre 
-data_voulu1<-tab %>% 
-  filter(data[[v2]] == var2_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
-data_voulu2<-tab %>% 
-  filter(data[[v1]] == var1_total | (data[[v1]] !=var1_total & data[[v2]] != var2_total))
-#On range les deux tableaux pour pouvoir voir avec arrange si ce sont les mêmes
+#Les fichiers hrcs sont stockés dans le bon endroit et nommé
+dirname(res$hrcs$nom_data_frame_SEX)
 
-data_voulu1<-data_voulu1 %>% arrange(across(where(is.character)))
-data_voulu2<-data_voulu2 %>% arrange(across(where(is.character)))
+#Les tables ont bien les bonnes modalités et les noms liant tableaux et hrcs sont les bons
+vecteur <- c("Total_Total", "A_Total", "B_Total", "C_Total", "D_Total", "E_Total",
+             "A_U", "B_U", "C_U", "D_U", "E_U",
+             "A_V", "B_V", "C_V", "D_V", "E_V",
+             "A_W", "B_W", "C_W", "D_W", "E_W",
+             "A_X", "B_X", "C_X", "D_X", "E_X",
+             "A_Y", "B_Y", "C_Y", "D_Y", "E_Y",
+             "A_Z", "B_Z", "C_Z", "D_Z", "E_Z")
 
-res$tabs$nom_data_frame_SEX<-res$tabs$nom_data_frame_SEX %>% arrange(across(where(is.character)))
-res$tabs$nom_data_frame_AGE<-res$tabs$nom_data_frame_AGE %>% arrange(across(where(is.character)))
-#Les mêmes modalités
-
-identical(unique(data_voulu1$v3),
-          unique(res$tabs$nom_data_frame_SEX$SEX_AGE))
-
-identical(unique(data_voulu2$v3),
-          unique(res$tabs$nom_data_frame_AGE$SEX_AGE))
-#On a le on tableau 
-
-identical(res$tabs$nom_data_frame_SEX$SEX_AGE,data_voulu1$v3)
-identical(res$tabs$nom_data_frame_AGE$SEX_AGE,data_voulu2$v3)
-
-test_var<- identical(var_fuse,c(v1,v2)) #var est bon 
-res$tabs[["nom_data_frame_SEX"]][["SEX_AGE"]]
-#########################################################
-
-t<-test_tableau(ca_pizzas_4vars,v1,v2,res2,totcode1)
-t2<-test_tableau(data,v1,v2,res,totcode )
+identical(sort(unique(res$tabs$nom_data_frame_SEX$SEX_AGE)),sort(vecteur))
+read.table(res$hrcs$nom_data_frame_SEX)
 
 #########################################################
-#########################################################
-#########################################################
-###############################################
-##############################################
-#DEUXIEME DATA ###############################
+t2<-test_tableau(data,v1,v2,res,totcode)
+
+
+
+#####################################
+#DEUXIEME DATA ######################
+#####################################
+
 load("data/ca_pizzas_4vars.RData")
 hrc_activity <- rtauargus::write_hrc2(
   corr_act, 
@@ -102,127 +93,27 @@ hrc_nuts <- rtauargus::write_hrc2(
 hrcfiles1<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
 totcode1<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
 nom_dfs1<-"pizza"
+
+####################
+#####TEST###########
+####################
+
 res2<-passage_4_3_cas_2_non_hr(ca_pizzas_4vars,nom_dfs1,v1 = "treff",v2="cj",totcode1,dir_name)
 
+str(res2)
+
+#On a le bon nombre de tableau
+length(res2$tabs)
+
+#Les fichiers hrcs sont stockés dans le bon endroit et nommé
+dirname(res2$hrcs$pizza_treff)
+
+vecteur2 <- c("Total_Total", "tr1_Total", "tr2_Total", "tr3_Total", "tr1_PA", 
+              "tr1_LL", "tr2_LL", "tr1_SP", "tr2_PA", "tr2_SP", "tr3_LL", "tr3_SP")
 
 
-##############################################################################
-# Vérification fichiers hrc
-##############################################################################
-# Vérification premier fichier hrc
-
-list_tab <- res$tabs
-str(list_tab)
-list_hrc <- res$hrcs
-str(list_hrc)
-var_fuse <- res$vars
-
-# Test sur les chemins des fichiers hrc 
-chemin <- getwd()
-n_mod_v1 <- length(unique(data[[v1]]))
-n_mod_hors_tot_v1 <- n_mod_v1 - 1
-n_mod_v2 <- length(unique(data[[v2]]))
-n_mod_hors_tot_v2 <- n_mod_v2 - 1
-res2$tabs$
-hrc <- list_hrc[[1]]
-
-total <- "Total_Total"
-
-list_test <- list()
-read.table(hrc)
-res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
-sdcHierarchies::hier_convert(as = "sdc")
-
-
-res_split <- lapply(res_sdc$dims,names)
-read.table(list_hrc$nom_data_frame_SEX)
-
-res_dt <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
-  sdcHierarchies::hier_convert(as = "dt")
-
-# Un seul grand total
-list_test$"test_1" <-nrow(res_dt %>% filter(level == "@")) == 1
-
-# Bon nombre de sous totaux
-list_test$"test_2" <- nrow(res_dt %>% filter(level == "@@")) == n_mod_hors_tot_v1
-
-# Bon nombre de élémentaire (non sous totaux)
-list_test$"test_3" <- nrow(res_dt %>% filter(level == "@@@")) == n_mod_hors_tot_v1 * n_mod_hors_tot_v2
-
-# Vérification du nombre de branche attaché à chaque noeux
-# ie nombre de sous totaux pour chaque total
-is_OK = TRUE
-for (i in seq_along(res_split)){
-  sous_tot <- res_split[[i]][[1]]
-  
-  # profondeur qui par construction (var non hier) est entre 1 et 3
-  # dans l'ensemble des modalités, 
-  # donc pour le "sous total" est entre 1 et 3-1 = 2
-  deep = str_count(res_dt[name == sous_tot] %>% select(level),"@")
-  #print(deep)
-  if (deep == 1 & length(res_split[[i]]) != n_mod_v1){
-    is_OK == FALSE
-  } else if(deep == 2 & length(res_split[[i]]) != n_mod_v2){
-    is_OK = FALSE
-  }
-}
-list_test$"test_4" <- is_OK == TRUE
-
-list_test_1 <- list_test
-all(list_test_1)
-
-###################################################################
-
-# Vérification second fichier hrc
-hrc <- list_hrc[[2]]
-
-total <- "Total_Total"
-
-list_test <- list()
-
-res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
-  sdcHierarchies::hier_convert(as = "sdc")
-
-
-res_split <- lapply(res_sdc$dims,names)
-
-
-res_dt <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
-  sdcHierarchies::hier_convert(as = "dt")
-
-# Un seul grand total
-list_test$"test_1" <- nrow(res_dt %>% filter(level == "@")) == 1
-
-# Bon nombre de sous totaux
-list_test$"test_2" <- nrow(res_dt %>% filter(level == "@@")) == n_mod_hors_tot_v2
-
-# Bon nombre de élémentaire (non sous totaux)
-list_test$"test_3" <- nrow(res_dt %>% filter(level == "@@@")) == n_mod_hors_tot_v1 * n_mod_hors_tot_v2
-
-# Vérification du nombre de branche attaché à chaque noeux
-# ie nombre de sous totaux pour chaque total
-is_OK = TRUE
-for (i in seq_along(res_split)){
-  sous_tot <- res_split[[i]][[1]]
-  
-  # profondeur qui par construction (var non hier) est entre 1 et 3
-  # dans l'ensemble des modalités, 
-  # donc le "sous total" est entre 1 et 3-1 = 2
-  deep = str_count(res_dt[name == sous_tot] %>% select(level),"@")
-  
-  if (deep == 1 & length(res_split[[i]]) != n_mod_v2){
-    is_OK == FALSE
-  } else if(deep == 2 & length(res_split[[i]]) != n_mod_v1){
-    is_OK = FALSE
-  }
-}
-list_test$"test_4" <- is_OK == TRUE
-
-list_test_2 <- list_test
-all(list_test_2)
-
-
-
+identical(sort(unique(res2$tabs$pizza_treff$treff_cj)),sort(vecteur2))
+read.table(res2$hrcs$pizza_treff)
 
 ##########################################################
 ##########################################################
@@ -230,6 +121,6 @@ all(list_test_2)
 ##########################################################
 ##########################################################
 
-
+t<-test_tableau(ca_pizzas_4vars,v1,v2,res2,totcode1)
 
 
