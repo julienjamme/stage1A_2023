@@ -3,7 +3,7 @@ rm(list = ls())
 
 
 library(dplyr)
-source("finaux/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("test/test_tableau.R",encoding="UTF-8")
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),

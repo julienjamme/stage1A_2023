@@ -4,10 +4,10 @@
 #Donnees
 
 library(stringr)
-source("function_passer_3_4.R")
+source("R/function_passer_3_4.R")
 
 load("data/ca_pizzas_4vars.RData")
-source("finaux/cas_gen_4_3.R")
+source("R/cas_gen_4_3.R")
 
 library("dplyr")
 
@@ -53,8 +53,8 @@ identical(sort(ca$cj),sort(ca_pizzas_4vars$cj))
 
 
 library(dplyr)
-source("finaux/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-source("finaux/cas_gen_4_3.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source("R/cas_gen_4_3.R",encoding = "UTF-8")
 
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),

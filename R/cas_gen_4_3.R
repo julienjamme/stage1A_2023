@@ -14,9 +14,9 @@ get_2_smallest <- function(data){
   sec_smallest_index <- which.min(list_mod_n)
   return(c(smallest_index,sec_smallest_index))
 }
-source(file = "finaux/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-source(file = "finaux/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-source(file = "finaux/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+source(file = "R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+source(file = "R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source(file = "R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 
 #' Passage d'un data.frame à 4 variables catégorielles
 #' à une liste de data.frame à 3 variables catégorielles

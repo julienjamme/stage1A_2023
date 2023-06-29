@@ -1,10 +1,10 @@
 load("data/ca_pizzas_4vars.RData")
-source("finaux/cas_gen_4_3.R")
+source("R/cas_gen_4_3.R")
 str(ca_pizzas_4vars)
 str(corr_act)
 str(corr_nuts)
 library("dplyr")
-source("finaux/cas_gen_4_3.R")
+source("R/cas_gen_4_3.R")
 hrc_activity <- rtauargus::write_hrc2(
   corr_act, 
   "hrc/activity_2_niv.hrc", 

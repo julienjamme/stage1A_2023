@@ -1,5 +1,5 @@
 library(dplyr)
-source(file = "finaux/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source(file = "R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 
 #' Passage d'un data.frame à 4 variables catégorielles
 #' dont deux non hierarchique
