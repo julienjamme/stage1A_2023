@@ -64,7 +64,7 @@ passer_3_41 <- function(res, data) {
   l <- unlist(list(res$tabs),recursive = FALSE)
   
   
-  ca2<-do.call(rbind,l)
+  ca2<-do.call("rbind",l)
   
   
   
