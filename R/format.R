@@ -1,3 +1,11 @@
+#' Title
+#'
+#' @param res 
+#'
+#' @return
+#' @export
+#'
+#' @examples
 format<-function(res){
   if (class(res$vars)=="character"){
   v1<-res$vars[1]

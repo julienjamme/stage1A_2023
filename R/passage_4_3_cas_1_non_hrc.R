@@ -1,23 +1,22 @@
 library(dplyr)
 source(file = "R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 
-#' Passage d'un data.frame à 4 variables catégorielles
-#' dont une non hierarchique
-#' à une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie non emboitées
+
+#' Passage de 4 à 3 variables via la fusion d'une variable hiérarchique
+#' et une non hiérarchique
 #'
-#' @param dfs data.frame à quatre variables catégorielles
+#' @param dfs data.frame à 4 variables catégorielles (n >= 2 dans le cas général)
 #' @param nom_dfs nom du data.frame dans la liste fournie par l'utilisateur
 #' @param v1 variable catégorielle non hierarchique
 #' @param v2 variable catégorielle hierarchique
 #' @param totcode vecteur nommé indiquant la modalité du total
-#' pour chacune des 4 variables catégorielles de dfs
+#' pour chacune des variables catégorielles de dfs
 #' @param hrcfiles vecteur nommé indiquant les fichiers hrc des variables 
-#' hiérarchiques parmi les 4 variables catégorielles de dfs
+#' hiérarchiques parmi les variables catégorielles de dfs
 #' @param dir_name répertoire des fichiers hrc dans le cas où hrcfiles est vide
 #'
 #' @return une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie non emboitées
+#' doté de hierarchie emboitées (n-1 dans le cas général)
 #' @export
 #'
 #' @examples
@@ -31,22 +30,14 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
   
   res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
     sdcHierarchies::hier_convert(as = "sdc")
-  #res_sdc$dims
   
-  #Code split nous donne les hiérarchies ainsi que les niveaux de la hiérarchie 
+  # Code split nous donne les hiérarchies ainsi que les niveaux de la hiérarchie
+  # Permet de selectionn un noeud de l'arbre et ses branches directes
   codes_split <- lapply(
     res_sdc$dims,
     names
   )
   
-  
-  
-  
-  
-  #data <-unique(dfs[[v2]])
-  
-  #intersections <- lapply(codes_split, function(x) intersect(x, unique(data[[v2]])))
-  #codes_split
   ###########################
   # Réduction de hierarchie #
   ###########################
@@ -59,7 +50,7 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     }
   )
   # Nous avons maintenant des data.frames avec 2 variables non hierarchiques
-  # nous pouvons donc appliquer la methode dédiée précédemment codée !
+  # nous pouvons donc appliquer la methode dédiée 
   
   
   # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
