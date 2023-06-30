@@ -14,6 +14,7 @@ source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 #' @export
 #'
 #' @examples
+#' 
 passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt"){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
@@ -22,7 +23,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   } else {
     dir_name <- hrc_dir
   }
-  
+  #le passage de 4 a 3 ne 
   res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name)
   # to do : supprimer les hrc de 5 à 4 puisque non utile pour la suite ?
   

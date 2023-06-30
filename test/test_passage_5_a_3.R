@@ -34,7 +34,7 @@ var_sans_hier <- intersect(
   var_cat
 )
 dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
-res_var<-get_2_smallest(dfs_var_sans_hier)
+res_var<-get_2_smallest(hrcfiles,totcode)
 v1 <- names(res_var)[[1]]
 v2 <- names(res_var)[[2]]
 
@@ -44,3 +44,15 @@ sep_dir <- TRUE
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
 
+data2 <- expand.grid(
+  ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Pays","Paris","province"),
+  AGE = c("Ensemble","adulte","enfant"),
+  ECO = c("Ensemble","riche","pauvre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+dir_name <- "output"
+hrcfiles
+res2 <- passer_de_5_a_3_var(data2,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name)

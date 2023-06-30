@@ -40,9 +40,11 @@ dir_name <- "output"
 
 ###################
 ######TEST#########
-###################
+
 
 res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
+res$hrcs$nom_data_frame_SEX
+
 
 #On s'attend à une réponse du type 
 #list(tabs=list(nom_data_frame_v1,nom_data_frame_v2),
@@ -69,10 +71,6 @@ vecteur <- c("Total_Total", "A_Total", "B_Total", "C_Total", "D_Total", "E_Total
 
 identical(sort(unique(res$tabs$nom_data_frame_SEX$SEX_AGE)),sort(vecteur))
 read.table(res$hrcs$nom_data_frame_SEX)
-
-#########################################################
-t2<-test_tableau(data,v1,v2,res,totcode)
-
 
 
 #####################################
@@ -115,12 +113,7 @@ vecteur2 <- c("Total_Total", "tr1_Total", "tr2_Total", "tr3_Total", "tr1_PA",
 identical(sort(unique(res2$tabs$pizza_treff$treff_cj)),sort(vecteur2))
 read.table(res2$hrcs$pizza_treff)
 
-##########################################################
-##########################################################
-# TEST TABLEAU DE LA BONNE FORME
-##########################################################
-##########################################################
 
-t<-test_tableau(ca_pizzas_4vars,v1,v2,res2,totcode1)
+
 
 
