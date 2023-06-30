@@ -1,7 +1,7 @@
-
-#aider par internet pour trouver nrow et which.min
+#aidé par internet pour trouver nrow et which.min
 source("test/test_nbs_tabs.R")
 
+# Explication rapide à fournir
 plus_petit_hrc <- function(hrcfiles, totcode) {
   v <- list()
   for (i in 1:length(hrcfiles)) {
@@ -12,7 +12,7 @@ plus_petit_hrc <- function(hrcfiles, totcode) {
   return(nom_plus_petit_hrc) 
 }
 
-
+# Explication rapide à fournir
 get_2_smallest <- function(hrcfiles,totcode){
   smallest_hrc<- plus_petit_hrc(hrcfiles, totcode)
   index_smallest <- which(names(hrcfiles) == smallest_hrc)
@@ -27,18 +27,20 @@ source(file = "R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 
 #' Passage d'un data.frame à 4 variables catégorielles
 #' à une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie non emboitées
+#' doté de hierarchie emboitées
 #' 
 #'
-#' @param dfs data.frame à 4 variabls catégorielles
-#' @param nom_dfs nom du data.frame qui modifera les noms des hrc en output
-#' @param totcode liste des totaux liés au data.frame
-#' @param hrcfiles liste des fichiers hrc liés au data.frame
-#' @param sep_dir permet de forcer l'export dans hrc_dir
-#' @param hrc_dir dossier utilisé pour l'écriture lors de l'expot
+#' @param dfs data.frame à 4 variabls catégorielles (n >= 2 dans le cas général)
+#' @param nom_dfs nom du dataframe
+#' @param totcode vecteur normée des totaux pourles variables catégorielles
+#' @param hrcfiles vecteur normée des hrc pour les variables catégorielles hierarchiques
+#' @param sep_dir permet de forcer l'écriture des hrc dans un dossier séparé
+#' par défault à FALSE
+#' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
+#' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
 #'
 #' @return une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie non emboitées
+#' doté de hierarchie emboitées (n-1 dans le cas général)
 #' @export
 #'
 #' @examples
@@ -61,47 +63,45 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
 
   n_vars_sans_hier<-length(var_sans_hier)
   
-  #si superieur à 3 je dis que je regarde celui avec les plus petites moda
+  # Principe: choisir en priorité les variables non hiérarchiques
+  
+  # si superieur à 3 on regarde les variables avec le moins de sous totaux
+  # pour créer le moins de dataframe par la suite
   if (n_vars_sans_hier > 2){
     dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
     res<-get_2_smallest(hrcfiles,totcode)
     v1 <- names(res)[[1]]
     v2 <- names(res)[[2]]
-    # to do : le transformer en une liste d'un seul élément
+    
     return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
   }
-  
-  # 1 - Sélectionner les colonnes à fusionner
-  #Principe: choisir en priorité les variables non hiérarchiques
 
   if(n_vars_sans_hier <= 2){
     v1 <- var_sans_hier[1]
     v2 <- var_sans_hier[2]
   }
 
-  # Test le nb de variables non hier récupérées
+  # Cas 2 variables non hiérarchique
   if(n_vars_sans_hier == 2){
-    # to do : le transformer en une liste d'un seul élément
     return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
-    
+  
+  # Cas 1 variable non hiérarchique
   }else if(n_vars_sans_hier == 1){
-    # Aller chercher une des 3 variables hierarchiques
-    # de préférence celle avec le moins de modalités
+    # On cherche une second variable avec le moins de sous totaux
     v2 <- plus_petit_hrc(hrcfiles,totcode)
 
     return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
+    
+  # Cas 0 variables non hiérarchique
   }else{
-    #cas ou que des var hier
-    # Aller chercher deux des 4 var hier
-    # de préférence celles avec le moins de modalités
+    # On cherche les variables avec le moins de sous totaux
     v1 <- plus_petit_hrc(hrcfiles,totcode)
     
-    # on enlève la var trouvé pour v1 pour trouver v2
+    # on enlève la var trouvé pour v1 pour trouver ensuite v2
     hrc_files_2 <- hrc_files[setdiff(names(hrc_files), v1)]
     v2 <- plus_petit_hrc(hrc_files_2,totcode)
     
     return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }
-
 }
 

@@ -1,16 +1,23 @@
-
 source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 
-#' Title
+#' Fonction passant de 5 à 3 variables catégorielles
 #'
-#' @param dfs 
-#' @param nom_dfs 
-#' @param totcode 
-#' @param hrcfiles 
-#' @param sep_dir 
-#' @param hrc_dir 
-#'
-#' @return
+#' @param dfs dataframe à 5 variables catégorielles. 
+#' Dans l'absolue fonctionne avec des tableaux à n >= 3 variables catégorielles
+#' @param nom_dfs nom du dataframe
+#' @param totcode vecteur normée des totaux pourles variables catégorielles
+#' @param hrcfiles vecteur normée des hrc pour les variables catégorielles hierarchiques
+#' @param sep_dir permet de forcer l'écriture des hrc dans un dossier séparé
+#' par défault à FALSE
+#' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
+#' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
+#' 
+#' @return liste(tabs, hrcs, vars)
+#' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
+#' doté de hiérarchies emboitées
+#' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
+#' vars : liste nommée de vecteur représentant les variables fusionnées
+#' lors des deux étapes de réduction de dimensions
 #' @export
 #'
 #' @examples
@@ -23,7 +30,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   } else {
     dir_name <- hrc_dir
   }
-  #le passage de 4 a 3 ne 
+  
+  # On enlève une dimension à notre dataframe de départ
   res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name)
   # to do : supprimer les hrc de 5 à 4 puisque non utile pour la suite ?
   

@@ -1,3 +1,5 @@
+library(stringr)
+
 #' Fonction reformant le tableaux initiale à 4 dimensions
 #'
 #' @param res Résultat de la fonction qui fait passer un tableaux à 4
@@ -10,11 +12,11 @@
 #' @param data le dataframe donné par l'utilisatuer à l'entrée
 #' @return un dataframe a 4 variables catégorielles contenant toutes les 
 #' données 
-
-
-library(stringr)
-
-
+#' 
+#' @export
+#'
+#' @examples
+#' 
 passer_3_41 <- function(res, data) {
   #On récupère les variables et leurs modalités
   var1 <- res$vars[1]
