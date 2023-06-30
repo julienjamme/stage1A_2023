@@ -8,7 +8,7 @@ source("R/function_passer_3_4.R")
 
 load("data/ca_pizzas_4vars.RData")
 source("R/cas_gen_4_3.R")
-
+source("R/format.R")
 library("dplyr")
 
 hrc_activity <- rtauargus::write_hrc2(
@@ -87,7 +87,6 @@ dir_name <- dirname(hrcfiles[1])
 GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1))
 
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
-
 ########################
 ########TEST###########
 ########################

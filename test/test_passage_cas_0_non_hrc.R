@@ -6,6 +6,7 @@ library(dplyr)
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("test/test_tableau.R", encoding = "UTF-8")
 source("test/test_nbs_tabs.R", encoding = "UTF-8")
+source("R/format.R", encoding = "UTF-8")
 ###########################
 #######DONNEES#############
 ###########################
@@ -45,6 +46,9 @@ dir_name <- "output"
 res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #on a le bon format
 str(res)
+format(res)
+str(format(res))
+
 
 #On a le bon nombre de tableau
 identical(length(res$tabs),as.integer(test_nb_tabs_4hrc(hrcfiles,v2,v1,totcode)))
@@ -89,6 +93,7 @@ res2 <- passage_4_3_cas_0_non_hr(data2, nom_dfs,v1,v2,tot_code,hrc_files,dir_nam
 
 #on a le bon format
 str(res2)
+format(res2)
 #On a le bon nombre de tableau
 identical(length(res2$tabs),as.integer(test_nb_tabs_4hrc(hrc_files,v2,v1,tot_code)))
 

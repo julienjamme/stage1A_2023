@@ -5,7 +5,7 @@ rm(list = ls())
 library(dplyr)
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("test/test_tableau.R",encoding="UTF-8")
-
+source("R/format.R")
 ###############################
 ##########DONNEES##############
 ###############################
@@ -43,8 +43,6 @@ dir_name <- "output"
 
 
 res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
-res$hrcs$nom_data_frame_SEX
-
 
 #On s'attend à une réponse du type 
 #list(tabs=list(nom_data_frame_v1,nom_data_frame_v2),

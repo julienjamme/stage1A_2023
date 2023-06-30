@@ -132,12 +132,16 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   names(tabs) <- c(paste(nom_dfs,v1, sep="_"),paste(nom_dfs,v2, sep="_"))
   hrcs <- list(hrc_tab1, hrc_tab2)
   names(hrcs) <- names(tabs)
-  
+  total_total = paste(totcode[v1],totcode[v2],sep="_")
+  alt_tot=list(total_total,total_total)
+  names(alt_tot)<- names(tabs)
+   
   return(
     list(
         tabs = tabs,
         hrcs = hrcs,
-        vars = c(v1, v2)
+        vars = c(v1, v2),
+        alt_tot=alt_tot
     )
   )
 }
