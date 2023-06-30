@@ -28,7 +28,7 @@ Ainsi nous créons une liste de sous tableaux afin de ne générer que des hiér
 
 ### Créations de sous problèmes en 3 dimensions
 
-Deux fonctions principales sont implémentés afin de passer un tableau de 4 ou 5 dimensions en sous problème à 3 dimensions.
+Deux fonctions principales sont implémentées afin de passer un tableau de 4 ou 5 dimensions en sous problème à 3 dimensions.
 
 ```R
 #' Fonction passant de 4 à 3 variables catégorielles
