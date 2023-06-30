@@ -16,8 +16,12 @@ format<-function(res){
   res2<-setNames(lapply(seq_along(res$tabs), function(i) {
     setNames(list(res$hrcs[[i]]), paste(v1,v2,sep="_"))}),
     paste("T", seq_along(res$tabs),sep = ""))
-  }
-  return (list(tabs=res$tabs,hrcs=res2,vars=res$vars))
+  
+  res3<-setNames(lapply(seq_along(res$tabs), function(i) {
+    setNames(list(res$alt_tot[[i]]), paste(v1,v2,sep="_"))}),
+    paste("T", seq_along(res$tabs),sep = ""))
+}
+  return (list(tabs=res$tabs,hrcs=res2,vars=res$vars,alt_tot=res3))
 }
 
 source("R/cas_gen_4_3.R")
