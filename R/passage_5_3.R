@@ -2,8 +2,7 @@ source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 
 #' Fonction passant de 5 à 3 variables catégorielles
 #'
-#' @param dfs dataframe à 5 variables catégorielles. 
-#' Dans l'absolue fonctionne avec des tableaux à n >= 3 variables catégorielles
+#' @param dfs data.frame à 5 variabls catégorielles (n >= 3 dans le cas général)
 #' @param nom_dfs nom du dataframe
 #' @param totcode vecteur normée des totaux pourles variables catégorielles
 #' @param hrcfiles vecteur normée des hrc pour les variables catégorielles hierarchiques

@@ -25,10 +25,7 @@ source(file = "R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source(file = "R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source(file = "R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 
-#' Passage d'un data.frame à 4 variables catégorielles
-#' à une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie emboitées
-#' 
+#' Fonction passant de 4 à 3 variables catégorielles
 #'
 #' @param dfs data.frame à 4 variabls catégorielles (n >= 2 dans le cas général)
 #' @param nom_dfs nom du dataframe
