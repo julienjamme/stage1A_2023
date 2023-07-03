@@ -12,13 +12,13 @@ rm(list = ls())
 library(stringr)
 source("R/function_passer_3_4.R")
 source("R/format.R")
-source("tauargus_4_3.R")
+source("R/tauargus_4_3.R")
 load("data/ca_pizzas_4vars.RData")
 source("R/cas_gen_4_3.R")
 library("purrr")
 library("dplyr")
 library("rtauargus")
-loc_tauargus <- "C:/Users/ZOW2JK/Downloads/oui/TauArgus4.2.3/TauArgus.exe"
+loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
 
 hrc_activity <- rtauargus::write_hrc2(
@@ -126,4 +126,31 @@ exemple_masq2 <- tab_rtauargus(
 )
 
 
+T4_masq <- exemple_masq2 %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      TRUE ~ Status,
+    )
+)
 
+T4_masq %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+
+# Modular 3h...
+# # A tibble: 4 × 5
+# statut_final n_cell   val_cell pc_n_cell pc_val_cell
+# <chr>         <int>      <dbl>     <dbl>       <dbl>
+#   1 A              2147  21720282.     19.8         3.14
+# 2 B               639  29244675.      5.89        4.22
+# 3 D              4264 171641619.     39.3        24.8 
+# 4 V              3804 469881214.     35.0        67.9 
