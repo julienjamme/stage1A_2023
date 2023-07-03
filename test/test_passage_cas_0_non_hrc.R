@@ -45,7 +45,7 @@ dir_name <- "output"
 
 res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #on a le bon format
-str(res)
+str(res$alt_tot)
 format(res)
 str(format(res))
 
@@ -108,6 +108,6 @@ get_2_smallest(hrc_files,tot_code)
 
 c_AGE<- c( "A_18_25","Total_18_25" , "B_18_25", "C_18_25", "A_18", "B_18", "C_18", "A_19", "B_19", "C_19")
 
-identical(sort(unique(res2$tabs$pizza_Total_18_25_ACT$ACT_AGE)),sort(c_AGE))
-read.table(res2$hrcs$pizza_Total_18_25_ACT)
+identical(sort(unique(res2$tabs$nom_data_frame_Total_18_25_ACT$ACT_AGE)),sort(c_AGE))
+read.table(res2$hrcs$nom_data_frame_Total_18_25_ACT)
 
