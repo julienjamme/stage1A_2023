@@ -17,12 +17,7 @@ source("R/cas_gen_4_3.R")
 library("purrr")
 library("dplyr")
 library("rtauargus")
-<<<<<<< HEAD
-source("R/function_passer_3_4.R")
-loc_tauargus <- "C:/Users/ZOW2JK/Downloads/oui/TauArgus4.2.3/TauArgus.exe"
-=======
-  loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
->>>>>>> 65f29ce553b10277d779de26054cf1a670a2e523
+loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
 
 hrc_activity <- rtauargus::write_hrc2(
@@ -200,3 +195,51 @@ T4_masq %>%
 # 2 B               639  29244675.      5.89        4.22
 # 3 D              4264 171641619.     39.3        24.8 
 # 4 V              3804 469881214.     35.0        67.9 
+
+
+
+## Hypercube
+
+
+exemple_masq3 <- tab_rtauargus(
+  tabs_exemple,
+  files_name = "ca_pizzas_4vars" ,
+  explanatory_vars = c("ACTIVITY","NUTS23","treff","cj"),
+  dir_name = "test_avec_rtauargus",
+  totcode = c(ACTIVITY="Total",NUTS23="Total",treff="Total",cj="Total"),
+  hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE,
+  suppress = "GH(1,100)"
+  
+)
+
+
+T5_masq <- exemple_masq3 %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      TRUE ~ Status,
+    )
+  )
+
+T5_masq %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+
+# statut_final n_cell   val_cell pc_n_cell pc_val_cell
+# <chr>         <int>      <dbl>     <dbl>       <dbl>
+#   1 A              2147  21720282.     19.8         3.14
+# 2 B               639  29244675.      5.89        4.22
+# 3 D              5470 334455095.     50.4        48.3 
+# 4 V              2598 307067737.     23.9        44.3 
