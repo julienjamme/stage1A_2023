@@ -7,7 +7,6 @@
 #####DONNEES########
 ####################
 
-rm(list = ls())
 
 library(stringr)
 source("R/function_passer_3_4.R")
@@ -18,7 +17,12 @@ source("R/cas_gen_4_3.R")
 library("purrr")
 library("dplyr")
 library("rtauargus")
-loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
+<<<<<<< HEAD
+source("R/function_passer_3_4.R")
+loc_tauargus <- "C:/Users/ZOW2JK/Downloads/oui/TauArgus4.2.3/TauArgus.exe"
+=======
+  loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
+>>>>>>> 65f29ce553b10277d779de26054cf1a670a2e523
 options(rtauargus.tauargus_exe = loc_tauargus)
 
 hrc_activity <- rtauargus::write_hrc2(
@@ -44,9 +48,9 @@ res<-passer_de_4_a_3_var(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE
 
 #On a le format utilisé pour rtauargus
 
-list_tabs<-tabs_5_4_to_3(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,"output")
+list_res<-tabs_5_4_to_3(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,"output")
 
-list_tab<-list_tabs$tabs
+list_tab<-list_res$tabs
 list_vars<-list(
   T1=c("ACTIVITY","NUTS23","treff_cj"),
   T2=names(list_tab$T2)[sapply(list_tab$T2, is.character)]
@@ -80,8 +84,8 @@ exemple_masq <- tab_multi_manager(
   dir_name = "test_avec_rtauargus",
   totcode = c(ACTIVITY="Total",NUTS23="Total",treff_cj="Total_Total"),
   hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
-  alt_hrc = list_tabs$hrcs,
-  alt_totcode = list_tabs$alt_tot,
+  alt_hrc = list_res$hrcs,
+  alt_totcode = list_res$alt_tot,
   value = "pizzas_tot",
   maxscore = "pizzas_max",
   freq = "nb_obs",
@@ -91,8 +95,50 @@ exemple_masq <- tab_multi_manager(
 
 str(exemple_masq)
 
-tau<-tauargus_4_3(res,liste_tabs_exemple,totcode,"nb_obs","pizzas_tot")
+tot_code<-c(ACTIVITY="Total",NUTS23="Total",treff_cj="Total_Total")
+value<-"pizzas_tot"
+freq<-"nb_obs"
+
+tau<-tau_argus_4_3(list_res,liste_tabs_exemple,tot_code,freq,value,hrcfiles)
 identical(tau,exemple_masq)
+
+res_4_3<-list(
+  tabs=exemple_masq,
+  hrcs=res$hrcs,
+  vars=res$vars
+)
+
+p<-passer_3_41(res_4_3,ca_pizzas_4vars)
+
+p_compt <- p %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      is_secret_4 ~ "D",
+      TRUE ~ "V"
+    )
+  )
+
+#nombre enlevé 
+p_compt %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+
+# A tibble: 4 × 5
+# statut_final n_cell   val_cell pc_n_cell pc_val_cell
+# <chr>         <int>      <dbl>     <dbl>       <dbl>
+#   1 A              2147  21701410.     19.8         3.13
+# 2 B               639  29207577.      5.89        4.22
+# 3 D              3890 141724101.     35.8        20.5 
+# 4 V              4178 499798732.     38.5        72.2
 
 # On essaye de comparer avec le tableau à 4 variables catégorielles
 
