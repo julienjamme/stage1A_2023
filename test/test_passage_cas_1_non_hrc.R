@@ -104,9 +104,13 @@ dfs <- data2
 nom_dfs <- "kebab"
 
 v1 <- "SEX"
-v2 <- "AGE"#donné grâce à plus petit hrc
-identical("AGE",plus_petit_hrc(hrc_files))
+v2 <- "AGE" # On essaye avec une variable aux hasard
+
 totcode<-c(KEBAB="Kebab",SEX="Total",GEO="Pays",AGE="Total")
+
+identical("AGE",plus_petit_hrc(hrc_files,totcode))
+identical("KEBAB",plus_petit_hrc(hrc_files,totcode))
+
 
 hrcfiles <- hrc_files
 
@@ -114,7 +118,7 @@ dir_name <- "output"
 
 #ACT possède 2 niveau
 
-#test 
+#test data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASCAYAAABWzo5XAAAAWElEQVR42mNgGPTAxsZmJsVqQApgmGw1yApwKcQiT7phRBuCzzCSDSHGMKINIeDNmWQlA2IigKJwIssQkHdINgxfmBBtGDEBS3KCxBc7pMQgMYE5c/AXPwAwSX4lV3pTWwAAAABJRU5ErkJggg==
 
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #On a bien la bonne forme 

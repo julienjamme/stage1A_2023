@@ -5,7 +5,7 @@ rm(list = ls())
 
 library(dplyr)
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
-
+source("R/format.R",encoding = "UTF-8")
 ##############################################################
 ##############################################################
 ####################### Cas 2 var hrc ########################
@@ -41,6 +41,9 @@ res <- passer_de_4_a_3_var(data,"mon_data_frame",tot_code, hrc_files,sep_dir = T
 res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", tot_code, dir_name = "hrc_alt")
 
 identical(res,res2)
+str(res)
+str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
+#On a les bon format
 # [1] TRUE
 
 ##############################################################
@@ -79,7 +82,7 @@ var_sans_hier <- intersect(
 )
 
 v1 <- var_sans_hier[1]
-v2<-plus_petit_hrc(hrc_files)
+v2<-plus_petit_hrc(hrc_files,tot_code)
 
 
 
@@ -92,6 +95,9 @@ res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles)
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 
 identical(res,res2)
+
+str(res)
+str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
 
 ############################################################
 
@@ -130,3 +136,8 @@ res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE)
 res2 <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 
 identical(res,res2)
+
+str(res)
+str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
+
+

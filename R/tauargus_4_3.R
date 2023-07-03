@@ -50,10 +50,9 @@ tau_argus_4_3<-function(list_res,liste_secret,totcode,freq,value=FALSE){
     alt_totcode = list_res$alt_tot,
     value = value,
     freq = freq,
-    secret_var = "is_secret_prim",
+    secret_var = "is_secret_prim")
     
-    return(masq)
-    )}
+    return(masq) }
     
     
     masq <- tab_multi_manager(
@@ -65,7 +64,7 @@ tau_argus_4_3<-function(list_res,liste_secret,totcode,freq,value=FALSE){
         alt_hrc = list_res$hrcs,
         alt_totcode = list_res$alt_tot,
         freq = freq,
-        secret_var = "is_secret_prim",
+        secret_var = "is_secret_prim")
         
      
   return(masq)
