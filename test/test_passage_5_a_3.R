@@ -44,6 +44,26 @@ sep_dir <- TRUE
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
 
+# bon format
+str(res)
+
+# nombre tableau cohérent
+# Passage 5 -> 4
+# AGE, ECO non hrc => 2 tableaux crées lors de leur fusion
+# Passage 4 -> 3
+# GEO, ACT var hrc moins de noeuds : 3, 2 => 3 * 2 combinaisons de hrc simple crée
+# que l'on décline en 2 fois à chaque fois 
+# (à cause de la fusion des 2 vars pour tenir compte de la hierarchie créée)
+# 2 * 3 * 2 * 2 = 24, le compte est bon
+length(res$tabs)
+
+
+##################################
+
+
+
+
+
 data2 <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
