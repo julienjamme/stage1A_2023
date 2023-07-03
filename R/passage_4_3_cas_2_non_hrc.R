@@ -34,39 +34,26 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   var1_mods_n <- length(var1_mods_hors_tot)
   var2_mods_n <- length(var2_mods_hors_tot)
   
-  
-  # to do : enlever la généralisation de fonciton
-  # car le code en devient moins lisible
-  creation_table_3_var <- function(i){
+  # généralisation création des tableaux à variable fusionnées +
+  creation_table_3_var <- function(var_i_total,var_j_total,
+                                   var_i_mods_hors_tot,var_j_mods_hors_tot,
+                                   var_j_mods_n,
+                                   vi,vj,i){
     # Introduction des notations :
     # soit i = 1, j = 2
     # soit i = 2, j = 1
-
+    
     # Construction des niveaux pour la table de correspondance
-    
-    # Création du niveau 1 hier
-    var_j_total <- get(
-      paste("var",3-i,"_total",sep=""))
-    
-    var_i_mods_hors_tot <- get(
-      paste("var",i,"_mods_hors_tot",sep=""))
-    
-    var_j_mods_hors_tot <- get(
-      paste("var",3-i,"_mods_hors_tot",sep=""))
-    
-    var_j_mods_n <- get(
-      paste("var",3-i,"_mods_n",sep=""))
-    
     tabi_nv1 <- expand.grid(
-               v1 = sort(rep(var_i_mods_hors_tot, var_j_mods_n)),
-               v2 = var_j_total,
-               stringsAsFactors = FALSE
-               ) %>% as.data.frame()
+      v1 = sort(rep(var_i_mods_hors_tot, var_j_mods_n)),
+      v2 = var_j_total,
+      stringsAsFactors = FALSE
+    ) %>% as.data.frame()
     
-    vi <- paste("v",i,sep="")
-    vj <- paste("v",3-i,sep="")
+    v_i <- paste("v",i,sep="")
+    v_j <- paste("v",3-i,sep="")
     
-    tabi_nv1$v3 <- paste(tabi_nv1[[vi]], tabi_nv1[[vj]], sep = "_")
+    tabi_nv1$v3 <- paste(tabi_nv1[[v_i]], tabi_nv1[[v_j]], sep = "_")
     
     # Création du niveau 2 hier
     tabi_nv2 <- expand.grid(
@@ -77,7 +64,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     
     tabi_nv2 <- tabi_nv2[order(tabi_nv2$v1, tabi_nv2$v2), ]
     
-    tabi_nv2$v3 <- paste(tabi_nv2[[vi]], tabi_nv2[[vj]], sep = "_")
+    tabi_nv2$v3 <- paste(tabi_nv2[[v_i]], tabi_nv2[[v_j]], sep = "_")
     
     # Création table de correspondance
     tabi_corresp <- data.frame(
@@ -85,15 +72,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
       Niv2 = tabi_nv2$v3,
       stringsAsFactors = FALSE
     )
-
-    # Construction de tabi
-    vi <- get(
-      paste("v",i,sep=""))
-    vj <- get(
-      paste("v",3-i,sep=""))
-    var_i_total <- get(
-      paste("var",i,"_total",sep=""))
-
+    
     tabi <- dfs[(dfs[[vi]] != var_i_total) | 
                   (dfs[[vi]] == var_i_total & dfs[[vj]] == var_j_total), ]
     tabi[[paste(v1, v2, sep = "_")]]<- paste(tabi[[v1]],tabi[[v2]],sep="_")
@@ -104,16 +83,22 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     return(list(tabi,tabi_corresp))
   }
   
-  res1 <- creation_table_3_var(1)
+  # On applique la fonction pour "i=1, j=2" puis pour "i=2,j=1"
+  res1 <-  creation_table_3_var(var1_total,var2_total,
+                                var1_mods_hors_tot,var2_mods_hors_tot,
+                                var2_mods_n,
+                                v1,v2,1)
   tab1 <- res1[[1]]
   tab1_corresp <- res1[[2]]
   
-  res2 <- creation_table_3_var(2)
+  res2 <- creation_table_3_var2(var2_total,var1_total,
+                                var2_mods_hors_tot,var1_mods_hors_tot,
+                                var1_mods_n,
+                                v2,v1,2)
   tab2 <- res2[[1]]
   tab2_corresp <- res2[[2]]
   
   #Construction des hiérarchies
-  
   # to do :
   # utiliser file.path() ?
   # ne pas écrire si le fichier existe déjà ?
@@ -145,4 +130,3 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     )
   )
 }
-
