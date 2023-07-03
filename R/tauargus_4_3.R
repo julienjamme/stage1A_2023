@@ -17,7 +17,7 @@
 #' @return une liste avec de tableaux avec le secret posé
 #' 
 #'
-tau_argus_4_3<-function(list_res,liste_secret,totcode,freq,value=FALSE){
+tau_argus_4_3<-function(list_res,liste_secret,totcode,freq,value="FALSE",hrcfiles){
   
     
   
@@ -28,44 +28,30 @@ tau_argus_4_3<-function(list_res,liste_secret,totcode,freq,value=FALSE){
     
     #On récupère les varibales des différentes tables
 
-    var_cross<-paste(res$vars[1],res$vars[2],sep="_")
+    var_cross<-paste(list_res$vars[1],list_res$vars[2],sep="_")
     d<- intersect(names(list_res$tabs$T1), names(totcode))
 
-    v<-c(d,var_cross)
     
-    list_vars<-replicate(n,v,simplify=FALSE)
+    list_vars<-replicate(n,d,simplify=FALSE)
     names(list_vars)<- c(paste0("T",1:n,sep=""))
     
     # On pose le secret avec tauargus
     #Je vérifie si le tableaux est un tableaux de fréquence
     
-    if (value %in% names(list_res$tabs$T1)){
+   
     masq <- tab_multi_manager(
     list_tables = liste_secret,
     list_explanatory_vars = list_vars  ,
-    dir_name = "test_avec_rtauargus.R",
+    dir_name = "test_avec_rtauargus",
     totcode = totcode,
-    hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
+    hrc = hrcfiles,
     alt_hrc = list_res$hrcs,
     alt_totcode = list_res$alt_tot,
     value = value,
     freq = freq,
     secret_var = "is_secret_prim")
     
-    return(masq) }
-    
-    
-    masq <- tab_multi_manager(
-        list_tables = liste_secret,
-        list_explanatory_vars = list_vars  ,
-        dir_name = "test_avec_rtauargus.R",
-        totcode = totcode,
-        hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
-        alt_hrc = list_res$hrcs,
-        alt_totcode = list_res$alt_tot,
-        freq = freq,
-        secret_var = "is_secret_prim")
-        
+   
      
   return(masq)
 }
