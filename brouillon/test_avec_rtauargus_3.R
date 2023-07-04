@@ -86,6 +86,6 @@ tab_4_compt %>%
 # 3 D              5470 334455095.     50.4        48.3 
 # 4 V              2598 307067737.     23.9        44.3 
 
-tau<-tau_argus_4_3(list_res2,liste_tabs_exemple2,totcode,freq,value,hrc_files)
-identical(tau,masq)
+#tau<-tau_argus_4_3(list_res2,liste_tabs_exemple2,totcode,freq,value,hrc_files)
+#identical(tau,masq)
 

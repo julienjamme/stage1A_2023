@@ -8,10 +8,10 @@
 ####################
 
 
-library(stringr)
+
 source("R/function_passer_3_4.R")
 source("R/format.R")
-#source("R/tauargus_4_3.R")
+#source("brouillon/tauargus_4_3.R")
 load("data/ca_pizzas_4vars.RData")
 source("R/cas_gen_4_3.R")
 library("purrr")
@@ -93,8 +93,8 @@ str(exemple_masq)
 value<-"pizzas_tot"
 freq<-"nb_obs"
 
-tau<-tau_argus_4_3(list_res,liste_tabs_exemple,totcode,freq,value,hrcfiles)
-identical(tau,exemple_masq)
+#tau<-tau_argus_4_3(list_res,liste_tabs_exemple,totcode,freq,value,hrcfiles)
+#identical(tau,exemple_masq)
 
 res_4_3<-list(
   tabs=exemple_masq,
@@ -103,6 +103,12 @@ res_4_3<-list(
 )
 
 p<-passer_3_41(res_4_3,ca_pizzas_4vars)
+# A travailler
+ca_pizzas_4vars$nb_obs <- ceiling(ca_pizzas_4vars$nb_obs)
+p_sans_argus <- p[!sapply(p, is.logical)]
+
+setdiff(p_sans_argus,ca_pizzas_4vars)
+
 
 p_compt <- p %>% 
   mutate(
@@ -131,8 +137,9 @@ p_compt %>%
 # <chr>         <int>      <dbl>     <dbl>       <dbl>
 #   1 A              2147  21701410.     19.8         3.13
 # 2 B               639  29207577.      5.89        4.22
-# 3 D              3890 141724101.     35.8        20.5 
-# 4 V              4178 499798732.     38.5        72.2
+# 3 D              3921 142310503.     36.1        20.6 
+# 4 V              4147 499212329.     38.2        72.1 
+#  
 
 ###################################################################
 # On essaye de comparer avec le tableau à 4 variables catégorielles
