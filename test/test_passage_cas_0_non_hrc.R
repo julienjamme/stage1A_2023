@@ -4,7 +4,7 @@ rm(list = ls())
 
 library(dplyr)
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
-source("test/test_tableau.R", encoding = "UTF-8")
+
 source("test/test_nbs_tabs.R", encoding = "UTF-8")
 source("R/format.R", encoding = "UTF-8")
 ###########################
@@ -54,6 +54,8 @@ identical(length(res$tabs),as.integer(test_nb_tabs_4hrc(hrcfiles,v2,v1,totcode))
 #test plus_petit_hrc et get_2_smallest
 
 identical("GEO",plus_petit_hrc(hrcfiles,totcode))
+identical("ACT",plus_petit_hrc(hrcfiles,totcode))
+
 get_2_smallest(hrcfiles,totcode)
 
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
@@ -108,4 +110,3 @@ c_AGE<- c( "A_18_25","Total_18_25" , "B_18_25", "C_18_25", "A_18", "B_18", "C_18
 
 identical(sort(unique(res2$tabs$nom_data_frame_Total_18_25_ACT$ACT_AGE)),sort(c_AGE))
 read.table(res2$hrcs$nom_data_frame_Total_18_25_ACT)
-

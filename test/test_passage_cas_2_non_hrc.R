@@ -4,7 +4,6 @@ rm(list = ls())
 
 library(dplyr)
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-source("test/test_tableau.R",encoding="UTF-8")
 source("R/format.R")
 ###############################
 ##########DONNEES##############

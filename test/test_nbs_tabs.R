@@ -32,7 +32,7 @@ codes_split_1 <- lapply(
   names
 )
 
-return(2*(length(codes_split)+length(codes_split_1)))}
+return(2*(length(codes_split)*length(codes_split_1)))}
 
 test_nb_tabs_3hrc<-function(hrcfiles,v2,totcode){
   
