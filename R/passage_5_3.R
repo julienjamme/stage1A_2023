@@ -3,8 +3,8 @@ source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 #' Fonction passant de 5 à 3 variables catégorielles
 #'
 #' @param dfs data.frame à 5 variabls catégorielles (n >= 3 dans le cas général)
-#' @param nom_dfs nom du dataframe
-#' @param totcode vecteur normée des totaux pourles variables catégorielles
+#' @param nom_dfs nom du data.frame dans la liste fournie par l'utilisateur
+#' @param totcode vecteur normée des totaux pour les variables catégorielles
 #' @param hrcfiles vecteur normée des hrc pour les variables catégorielles hierarchiques
 #' @param sep_dir permet de forcer l'écriture des hrc dans un dossier séparé
 #' par défault à FALSE
@@ -15,6 +15,7 @@ source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
 #' doté de hiérarchies emboitées
 #' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
+#' alt_tot : liste nommée des totaux
 #' vars : liste nommée de vecteur représentant les variables fusionnées
 #' lors des deux étapes de réduction de dimensions
 #' @export
@@ -66,15 +67,16 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   
   tabs <- unlist(lapply(res_5_3, function(x) x$tabs), recursive = FALSE)
   hrcs <- unlist(lapply(res_5_3, function(x) x$hrcs), recursive = FALSE)
+  alt_tot <- unlist(lapply(res_5_3, function(x) x$alt_tot), recursive = FALSE)
   
   vars1 <- res_5_4$vars
   vars2 <- res_5_3[[1]]$vars
   vars_tot <- list(vars1,vars2)
   names(vars_tot) <- c("Passage 5 à 4","Passage 4 à 3")
   
-  
   return(list(tabs=tabs,
               hrcs=hrcs,
+              alt_tot= alt_tot,
               vars=vars_tot)
         )
 }

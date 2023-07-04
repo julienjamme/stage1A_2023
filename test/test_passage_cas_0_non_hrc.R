@@ -24,6 +24,7 @@ data <- data %>% mutate(VALUE = runif(nrow(data)))
 hrcfiles = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", 
              SEX = "hrc/hrc3.hrc", AGE = "hrc/exemple_1.hrc")
 
+
 totcode<-c(SEX="Total",AGE="LETTRE", GEO="Pays", ACT="Total")
 
 

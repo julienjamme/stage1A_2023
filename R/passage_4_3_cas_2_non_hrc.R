@@ -6,15 +6,19 @@ library(dplyr)
 #' @param nom_dfs nom du data.frame dans la liste fournie par l'utilisateur
 #' @param v1 variable catégorielle non hierarchique
 #' @param v2 variable catégorielle non hierarchique
-#' @param totcode vecteur nommé indiquant la modalité du total
-#' pour chacune des variables catégorielles de dfs
+#' @param totcode vecteur normée des totaux pour les variables catégorielles
 #' @param hrcfiles vecteur nommé indiquant les fichiers hrc des variables 
 #' hiérarchiques parmi les variables catégorielles de dfs
-#' @param dir_name répertoire des fichiers hrc dans le cas où hrcfiles est vide
+#' @param dir_name dossier où écrire les fichiers hrc
+#' si aucun dossier n'est spécifié dans hrcfiles
 #'
-#' @return une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie emboitées (n-1 dans le cas général) ainsi qu'une liste  
-#' contenant les hiérarchies associée.
+#' @return liste(tabs, hrcs, vars)
+#' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
+#' doté de hiérarchies emboitées
+#' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
+#' alt_tot : liste nommée des totaux
+#' vars : liste nommée de vecteur représentant les variables fusionnées
+#' lors des deux étapes de réduction de dimensions
 #' @export
 #'
 #' @examples
@@ -126,8 +130,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     list(
         tabs = tabs,
         hrcs = hrcs,
-        vars = c(v1, v2),
-        alt_tot=alt_tot
-    )
+        alt_tot=alt_tot,
+        vars = c(v1, v2))
   )
 }
