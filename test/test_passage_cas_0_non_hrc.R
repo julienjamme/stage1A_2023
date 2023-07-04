@@ -21,10 +21,10 @@ data <- expand.grid(
   as.data.frame()
 
 data <- data %>% mutate(VALUE = runif(nrow(data)))
-hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", 
+hrcfiles = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", 
               SEX = "hrc/hrc3.hrc", AGE = "hrc/exemple_1.hrc")
 
-tot_code<-c(SEX="Total",AGE="LETTRE", GEO="Pays", ACT="Total")
+totcode<-c(SEX="Total",AGE="LETTRE", GEO="Pays", ACT="Total")
 
 
 # pour execution ligne à ligne
@@ -33,8 +33,6 @@ nom_dfs <- "nom_data_frame"
 
 v1 <- "ACT"
 v2 <- "GEO"
-totcode <- tot_code
-hrcfiles <- hrc_files
 
 # pour supprimer les .hrc facilement
 dir_name <- "output"
