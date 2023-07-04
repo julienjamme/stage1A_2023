@@ -13,7 +13,8 @@ library(dplyr)
 #' @param dir_name répertoire des fichiers hrc dans le cas où hrcfiles est vide
 #'
 #' @return une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie emboitées (n-1 dans le cas général)
+#' doté de hierarchie emboitées (n-1 dans le cas général) ainsi qu'une liste  
+#' contenant les hiérarchies associée.
 #' @export
 #'
 #' @examples
@@ -91,7 +92,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   tab1 <- res1[[1]]
   tab1_corresp <- res1[[2]]
   
-  res2 <- creation_table_3_var2(var2_total,var1_total,
+  res2 <- creation_table_3_var(var2_total,var1_total,
                                 var2_mods_hors_tot,var1_mods_hors_tot,
                                 var1_mods_n,
                                 v2,v1,2)

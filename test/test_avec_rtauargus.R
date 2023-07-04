@@ -208,26 +208,20 @@ data <- read.csv("data/table_test.csv")
 
 hrc_files = c(ACTIVITY = "hrc/corresp_activity.hrc", NUMBER_EMPL = "hrc/hrc_nb_empl.hrc",GEO="hrc/corresp_geo.hrc")
 
-tot_code<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total", PERS="Total")
 
+totcode<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total",AGE="Total")
 
 # pour execution ligne à ligne
 dfs <- data
 nom_dfs <- "nom_data_frame"
 
-totcode <- tot_code
 hrcfiles <- hrc_files
 
 list_res2<-tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt")
 
 list_tab2<-list_res2$tabs
 
-list_vars2<-list(
-  T1=c("SEX","GEO","AGE_ACT"),
-  T2=c("SEX","GEO","AGE_ACT"),
-  T3=c("SEX","GEO","AGE_ACT"),
-  T4=c("SEX","GEO","AGE_ACT")
-)
+
 
 ####################
 ######TEST##########
@@ -251,16 +245,17 @@ liste_tabs_exemple2 <- purrr::map(
 freq<-"nb_obs"
 value<-"value"
 
-totcode<-c(ACTIVITY="Total",PERS_NUMBER_EMPL="Total_Total", GEO="Total")
-n<-length(list_tab)
+totcode<-c(ACTIVITY="Total",NUMBER_EMPL_GEO="Total_Total", PERS="Total")
+
 
 #On récupère les varibales des différentes tables
 
-var_cross<-paste(list_res$vars[1],list_res$vars[2],sep="_")
-d<- intersect(names(list_res$tabs$T1), names(totcode))
+var_cross<-paste(list_res2$vars[1],list_res2$vars[2],sep="_")
+d<- intersect(names(list_res2$tabs$T1), names(totcode))
 
 list_vars<-replicate(n,d,simplify=FALSE)
 names(list_vars)<- c(paste0("T",1:n,sep=""))
+
 
 #On regarde le secret
 
@@ -269,7 +264,7 @@ masq <- tab_multi_manager(
   list_explanatory_vars = list_vars  ,
   dir_name = "test_avec_rtauargus",
   totcode = totcode,
-  hrc = hrcfiles[names(hrcfiles) != "NUMBER_EMPL"],
+  hrc = hrcfiles[!(names(hrcfiles) %in% list_res2$vars)],
   alt_hrc = list_res2$hrcs,
   alt_totcode = list_res2$alt_tot,
   value = value,
