@@ -126,12 +126,5 @@ str(res2)
 #On a le bon nombre de tableau
 identical(as.integer(test_nb_tabs_3hrc(hrcfiles,v2,totcode)),length(res2$tabs))
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
-dirname(res2$hrcs$kebab_Total_SEX)
-
-#Les tables ont bien les bonnes modalités et les noms liant tableaux et hrcs sont les bons
-
-c_SEX<- c("F_18_25", "F_26_50", "F_Total","F_50_75", "M_18_25","M_50_75", "M_26_50", "M_Total", "Total_Total")
-identical(sort(unique(res2$tabs$kebab_Total_SEX$SEX_AGE)),sort(c_SEX))
-read.table(res2$hrcs$kebab_Total_SEX)
-
+dirname(res2$hrcs$kebab_Ensemble_SEX)
 

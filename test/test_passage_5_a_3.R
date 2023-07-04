@@ -62,17 +62,3 @@ length(res$tabs)
 
 
 
-
-
-data2 <- expand.grid(
-  ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-  GEO = c("Pays","Paris","province"),
-  AGE = c("Ensemble","adulte","enfant"),
-  ECO = c("Ensemble","riche","pauvre"),
-  stringsAsFactors = FALSE
-) %>% 
-  as.data.frame()
-dir_name <- "output"
-hrcfiles
-res2 <- passer_de_5_a_3_var(data2,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name)

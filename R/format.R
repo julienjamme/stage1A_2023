@@ -29,9 +29,9 @@ source("R/passage_5_3.R")
 
 tabs_5_4_to_3<-function(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"){
   if (length(totcode)==5){
-    return(format(passer_de_5_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir,hrc_dir)))
+    return(format(passer_de_5_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir = FALSE, hrc_dir = "hrc_alt")))
   }
   if (length(totcode)==4){
-    return(format(passer_de_4_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir,hrc_dir)))
+    return(format(passer_de_4_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir = FALSE, hrc_dir = "hrc_alt")))
   }
 }
