@@ -229,15 +229,15 @@ data <- read.csv("data/table_test.csv")
 hrc_files = c(ACTIVITY = "hrc/corresp_activity.hrc", NUMBER_EMPL = "hrc/hrc_nb_empl.hrc",GEO="hrc/corresp_geo.hrc")
 
 
-totcode<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total",AGE="Total")
+totcode<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total",PERS="Total")
 
 # pour execution ligne à ligne
 dfs <- data
 nom_dfs <- "nom_data_frame"
 
 hrcfiles <- hrc_files
-
-list_res2<-tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt")
+passer_de_4_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir = FALSE, hrc_dir = "hrc_alt")
+list_res2<-tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir,hrc_dir)
 
 list_tab2<-list_res2$tabs
 
@@ -265,7 +265,7 @@ liste_tabs_exemple2 <- purrr::map(
 freq<-"nb_obs"
 value<-"value"
 
-totcode<-c(ACTIVITY="Total",NUMBER_EMPL_GEO="Total_Total", PERS="Total")
+totcode<-c(ACTIVITY="Total",PERS_NUMBER_EMPL="Total_Total", GEO="Total")
 
 
 #On récupère les varibales des différentes tables
@@ -273,6 +273,7 @@ totcode<-c(ACTIVITY="Total",NUMBER_EMPL_GEO="Total_Total", PERS="Total")
 var_cross<-paste(list_res2$vars[1],list_res2$vars[2],sep="_")
 d<- intersect(names(list_res2$tabs$T1), names(totcode))
 
+n<-length(list_tab2)
 list_vars<-replicate(n,d,simplify=FALSE)
 names(list_vars)<- c(paste0("T",1:n,sep=""))
 
