@@ -52,7 +52,7 @@ list_vars<-list(
 )
 
 ####################
-######TEST##########
+######TEST##########  LISTE DE TABLEAUX A 3 DIMENSION
 ####################
 
 # On pose le secret primaire
@@ -76,7 +76,7 @@ exemple_masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
   list_explanatory_vars = list(T1=c("ACTIVITY","NUTS23","treff_cj"),
                                T2=c("ACTIVITY","NUTS23","treff_cj")) ,
-  dir_name = "test_avec_rtauargus",
+  dir_name = "test_avec_rtauargus/hierarchie_2/3/mod",
   totcode = c(ACTIVITY="Total",NUTS23="Total",treff_cj="Total_Total"),
   hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
   alt_hrc = list_res$hrcs,
@@ -134,6 +134,7 @@ p_compt %>%
 # 3 D              3890 141724101.     35.8        20.5 
 # 4 V              4178 499798732.     38.5        72.2
 
+###################################################################
 # On essaye de comparer avec le tableau à 4 variables catégorielles
 
 tabs_exemple <- (
@@ -156,7 +157,7 @@ exemple_masq2 <- tab_rtauargus(
   tabs_exemple,
   files_name = "ca_pizzas_4vars" ,
   explanatory_vars = c("ACTIVITY","NUTS23","treff","cj"),
-  dir_name = "test_avec_rtauargus",
+  dir_name = "test_avec_rtauargus/hierarchie_2/4/mod",
   totcode = c(ACTIVITY="Total",NUTS23="Total",treff="Total",cj="Total"),
   hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
   value = "pizzas_tot",
@@ -204,7 +205,7 @@ exemple_masq3 <- tab_rtauargus(
   tabs_exemple,
   files_name = "ca_pizzas_4vars" ,
   explanatory_vars = c("ACTIVITY","NUTS23","treff","cj"),
-  dir_name = "test_avec_rtauargus",
+  dir_name = "test_avec_rtauargus/hierarchie_2/4/hypercube",
   totcode = c(ACTIVITY="Total",NUTS23="Total",treff="Total",cj="Total"),
   hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
   value = "pizzas_tot",
@@ -283,7 +284,7 @@ names(list_vars)<- c(paste0("T",1:n,sep=""))
 masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple2,
   list_explanatory_vars = list_vars  ,
-  dir_name = "test_avec_rtauargus",
+  dir_name = "test_avec_rtauargus/hierarchie_3/3/mod",
   totcode = totcode,
   hrc = hrcfiles[!(names(hrcfiles) %in% list_res2$vars)],
   alt_hrc = list_res2$hrcs,
