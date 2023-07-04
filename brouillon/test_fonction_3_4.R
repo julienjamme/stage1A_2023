@@ -43,12 +43,16 @@ l<-passer_3_41(res,ca_pizzas_4vars)
 #On a le bon format
 str(l)
 
+
 #On a bien toutes les collonnes 
 
 identical(sort(l$treff),sort(ca_pizzas_4vars$treff))
 
 identical(sort(l$cj),sort(ca_pizzas_4vars$cj))
 
+setdiff(dplyr_order,dplyr_order_l)
+
+#On a bien aucune ligne différentes
 
 #####################
 ######DONNEES2#######
@@ -102,3 +106,10 @@ str(l2)
 identical(sort(l2$AGE),sort(data$AGE))
 
 identical(sort(l2$ACT),sort(data$ACT))
+
+
+
+setdiff(l2,data)
+#pour être sur
+setdiff(l2[1,],data[2,])
+
