@@ -3,6 +3,7 @@ rm(list = ls())
 
 library(dplyr)
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R")
 

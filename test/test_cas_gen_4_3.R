@@ -38,7 +38,7 @@ hrc_dir = "hrc_alt"
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir", sep = "++")
+res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir")
 
 # Vérification vis à vis de la selection des variables
 res_ACT1 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT" )
@@ -58,17 +58,6 @@ res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", totcode, dir
 identical(res,res2)
 str(res)
 str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
-
-# Exemple de données
-v1 <- "ACT"
-var_cat <- c("SEX", "AGE", "GEO", "ACT", "ECO")
-
-# Concaténer les éléments de var_cat en une seule chaîne
-cat_vars <- paste(var_cat, collapse = ", ")
-
-# Afficher le message avec un retour à la ligne
-cat("v1 n'est pas une variable catégorielle, v1 =", v1, "\nLes variables catégorielles sont:\n", cat_vars)
-
 
 #On a les bon format
 # [1] TRUE
@@ -114,7 +103,7 @@ v2<- plus_petit_hrc(hrcfiles,totcode)
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir, sep = "++")
+res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir)
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,hrc_dir)
 
 identical(res,res2)
@@ -153,7 +142,7 @@ v2 <- "GEO"
 # pour supprimer les .hrc facilement
 dir_name <- "hrc_alt"
 
-res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE)
+res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name)
 res2 <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 
 identical(res,res2)
