@@ -1,7 +1,3 @@
-library(dplyr)
-source(file = "R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-
-
 #' Passage de 4 à 3 variables via la fusion d'une variable hiérarchique
 #' et une non hiérarchique
 #'

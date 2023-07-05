@@ -147,4 +147,3 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,hrc
     return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }
 }
-

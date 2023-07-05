@@ -1,5 +1,3 @@
-source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
-
 #' Fonction passant de 5 à 3 variables catégorielles
 #'
 #' @param dfs data.frame à 5 variabls catégorielles (n >= 3 dans le cas général)
@@ -131,4 +129,3 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
               vars=vars_tot)
         )
 }
-

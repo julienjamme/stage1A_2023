@@ -1,5 +1,3 @@
-library(dplyr)
-
 #' Passage de 4 à 3 variables via la fusion de deux variables non hiérarchiques
 #'
 #' @param dfs data.frame à 4 variables catégorielles (n >= 2 dans le cas général)
@@ -39,7 +37,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   var1_mods_n <- length(var1_mods_hors_tot)
   var2_mods_n <- length(var2_mods_hors_tot)
   
-  # généralisation création des tableaux à variable fusionnées +
+  # généralisation création des tableaux à variable fusionnées
   creation_table_3_var <- function(var_i_total,var_j_total,
                                    var_i_mods_hors_tot,var_j_mods_hors_tot,
                                    var_j_mods_n,
@@ -47,6 +45,12 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     # Introduction des notations :
     # soit i = 1, j = 2
     # soit i = 2, j = 1
+    
+    if (i == 1){
+      j <- 2
+    } else {
+      j <- 1
+    }
     
     # Construction des niveaux pour la table de correspondance
     tabi_nv1 <- expand.grid(
@@ -56,7 +60,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     ) %>% as.data.frame()
     
     v_i <- paste("v",i,sep="")
-    v_j <- paste("v",3-i,sep="")
+    v_j <- paste("v",j,sep="")
     
     tabi_nv1$v3 <- paste(tabi_nv1[[v_i]], tabi_nv1[[v_j]], sep = "_")
     

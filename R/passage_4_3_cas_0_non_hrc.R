@@ -1,6 +1,3 @@
-library(dplyr)
-source(file = "R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-
 #' Passage de 4 à 3 variables via la fusion e deux variables hiérarchiques
 #'
 #' @param dfs data.frame à 4 variables catégorielles (n >= 2 dans le cas général)
