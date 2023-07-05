@@ -74,8 +74,8 @@ liste_tabs_exemple <- purrr::map(
 
 exemple_masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
-  list_explanatory_vars = list(T1=c("ACTIVITY","NUTS23","treff_cj"),
-                               T2=c("ACTIVITY","NUTS23","treff_cj")) ,
+  list_explanatory_vars = list(pizza1=c("ACTIVITY","NUTS23","treff_cj"),
+                               pizza2=c("ACTIVITY","NUTS23","treff_cj")) ,
   dir_name = "test_avec_rtauargus/hierarchie_2/3/mod",
   totcode = c(ACTIVITY="Total",NUTS23="Total",treff_cj="Total_Total"),
   hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
