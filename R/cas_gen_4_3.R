@@ -1,7 +1,4 @@
-#aidé par internet pour trouver nrow et which.min
-source("test/test_nbs_tabs.R")
-
-# Explication rapide à fournir
+# Renvoie la variable hierarchique avec le moins de noeuds (= sous totaux)
 plus_petit_hrc <- function(hrcfiles, totcode) {
   v <- list()
   for (i in 1:length(hrcfiles)) {
@@ -12,18 +9,17 @@ plus_petit_hrc <- function(hrcfiles, totcode) {
   return(nom_plus_petit_hrc) 
 }
 
-# Explication rapide à fournir
-get_2_smallest <- function(hrcfiles,totcode){
-  smallest_hrc<- plus_petit_hrc(hrcfiles, totcode)
-  index_smallest <- which(names(hrcfiles) == smallest_hrc)
-  sec_smallest_hrc <- plus_petit_hrc(hrcfiles[-index_smallest], totcode)
-  
-  return(c(smallest_hrc,sec_smallest_hrc))
+# Renvoie la variable  avec le moins de modalité
+# A utiliser en filtrant sur les colonnes des variables non hiérarchique
+plus_petit_mod <- function(dfs) {
+  v <- list()
+  for (colonne in dfs) {
+    v <- append(v,length(unique(colonne)))
+  }
+  indice_petit_mod <- which.min(v)
+  nom_plus_petit_mod <- names(dfs)[indice_petit_mod]
+  return(nom_plus_petit_mod) 
 }
-
-source(file = "R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-source(file = "R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-source(file = "R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 
 #' Fonction passant de 4 à 3 variables catégorielles
 #'
@@ -65,10 +61,10 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
   # si superieur à 3 on regarde les variables avec le moins de sous totaux
   # pour créer le moins de dataframe par la suite
   if (n_vars_sans_hier > 2){
+    
     dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
-    res<-get_2_smallest(hrcfiles,totcode)
-    v1 <- names(res)[[1]]
-    v2 <- names(res)[[2]]
+    v1 <- plus_petit_mod(dfs_var_sans_hier)
+    v2 <- plus_petit_mod(dfs_var_sans_hier[setdiff(names(dfs_var_sans_hier),v1)])
     
     return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
   }
@@ -95,8 +91,7 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
     v1 <- plus_petit_hrc(hrcfiles,totcode)
     
     # on enlève la var trouvé pour v1 pour trouver ensuite v2
-    hrcfiles_2 <- hrcfiles[setdiff(names(hrcfiles), v1)]
-    v2 <- plus_petit_hrc(hrcfiles_2,totcode)
+    v2 <- plus_petit_hrc(hrcfiles[setdiff(names(hrcfiles), v1)],totcode)
     
     return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }
