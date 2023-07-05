@@ -38,7 +38,7 @@ hrc_dir = "hrc_alt"
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir" )
+res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir", sep = "++")
 
 # Vérification vis à vis de la selection des variables
 res_ACT1 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT" )
@@ -114,7 +114,7 @@ v2<- plus_petit_hrc(hrcfiles,totcode)
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir)
+res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir, sep = "++")
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,hrc_dir)
 
 identical(res,res2)

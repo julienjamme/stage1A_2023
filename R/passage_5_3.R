@@ -15,7 +15,8 @@
 #' @param v3 permet de forcer la valeur de la première variable à fusionner 
 #' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL) 
 #' @param v4 permet de forcer la valeur de la seconde variable à fusionner 
-#' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL) 
+#' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL)
+#' @param sep séparateur utilisé lors de la concaténation des variables
 #' 
 #' @return liste(tabs, hrcs, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
@@ -29,7 +30,7 @@
 #' @examples
 #' 
 passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt",
-                                v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL){
+                                v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL, sep = "_"){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -40,17 +41,17 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   
   # On enlève une dimension à notre dataframe de départ
   res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name,
-                                 v1 = v1, v2 = v2)
+                                 v1 = v1, v2 = v2, sep = sep)
   # to do : supprimer les hrc de 5 à 4 puisque non utile pour la suite ?
   
   # Récupération des variables fusionnées
   v1f <- res_5_4$vars[[1]]
   v2f <- res_5_4$vars[[2]]
-  new_var = paste(v1f, v2f, sep="_")
+  new_var = paste(v1f, v2f, sep=sep)
   
   # Mise à jour des totaux
   totcode2 <- totcode
-  totcode2[[new_var]] <- paste(totcode[[v1f]],totcode[[v2f]], sep="_")
+  totcode2[[new_var]] <- paste(totcode[[v1f]],totcode[[v2f]], sep=sep)
   totcode2 <- totcode2[!(names(totcode2) %in% c(v1f, v2f))]
   
   # Mise à jour des fichiers hrc
@@ -104,8 +105,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
     hrcfiles2b <-  c(hrcfiles2, res_5_4$hrcs[[nom_dfsb]])
     names(hrcfiles2b)[length(hrcfiles2b)] <- new_var
     
-    passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE, hrc_dir = dir_name,
-                        v1 = v3, v2 = v4)
+    passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE,
+                        hrc_dir = dir_name,v1 = v3, v2 = v4, sep=sep)
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var

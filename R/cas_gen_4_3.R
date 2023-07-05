@@ -65,13 +65,15 @@ choisir_var <- function(dfs,totcode,hrcfiles){
 #' non spéficié par défault (NULL)
 #' @param v2 permet de forcer la valeur de la seconde variable à fusionner
 #' non spéficié par défault (NULL)
+#' @param sep séparateur utilisé lors de la concaténation des variables
 #' 
 #' @return une liste de data.frame à 3 variables catégorielles
 #' doté de hierarchie emboitées (n-1 dans le cas général)
 #' @export
 #'
 #' @examples
-passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,hrc_dir = "hrc_alt",v1 = NULL,v2 = NULL){
+passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,
+                                hrc_dir = "hrc_alt",v1 = NULL,v2 = NULL, sep = "_"){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -136,14 +138,14 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,hrc
   
   # Cas 2 variables non hiérarchique
   if(n_vars_sans_hier == 2){
-    return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
+    return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name,sep = sep))
   
   # Cas 1 variable non hiérarchique
   }else if(n_vars_sans_hier == 1){
-    return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
+    return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep = sep))
     
   # Cas 0 variables non hiérarchique
   }else{
-    return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
+    return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = sep))
   }
 }

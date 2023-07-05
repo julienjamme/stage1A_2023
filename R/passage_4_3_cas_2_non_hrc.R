@@ -5,10 +5,9 @@
 #' @param v1 variable catégorielle non hierarchique
 #' @param v2 variable catégorielle non hierarchique
 #' @param totcode vecteur normée des totaux pour les variables catégorielles
-#' @param hrcfiles vecteur nommé indiquant les fichiers hrc des variables 
-#' hiérarchiques parmi les variables catégorielles de dfs
 #' @param dir_name dossier où écrire les fichiers hrc
 #' si aucun dossier n'est spécifié dans hrcfiles
+#' @param sep séparateur utilisé lors de la concaténation des variables
 #'
 #' @return liste(tabs, hrcs, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
@@ -20,7 +19,7 @@
 #' @export
 #'
 #' @examples
-passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
+passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name, sep = "_") {
   
   # les différents totaux
   var1_total <- totcode[v1]
@@ -62,7 +61,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     v_i <- paste("v",i,sep="")
     v_j <- paste("v",j,sep="")
     
-    tabi_nv1$v3 <- paste(tabi_nv1[[v_i]], tabi_nv1[[v_j]], sep = "_")
+    tabi_nv1$v3 <- paste(tabi_nv1[[v_i]], tabi_nv1[[v_j]], sep = sep)
     
     # Création du niveau 2 hier
     tabi_nv2 <- expand.grid(
@@ -73,7 +72,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     
     tabi_nv2 <- tabi_nv2[order(tabi_nv2$v1, tabi_nv2$v2), ]
     
-    tabi_nv2$v3 <- paste(tabi_nv2[[v_i]], tabi_nv2[[v_j]], sep = "_")
+    tabi_nv2$v3 <- paste(tabi_nv2[[v_i]], tabi_nv2[[v_j]], sep = sep)
     
     # Création table de correspondance
     tabi_corresp <- data.frame(
@@ -84,7 +83,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
     
     tabi <- dfs[(dfs[[vi]] != var_i_total) | 
                   (dfs[[vi]] == var_i_total & dfs[[vj]] == var_j_total), ]
-    tabi[[paste(v1, v2, sep = "_")]]<- paste(tabi[[v1]],tabi[[v2]],sep="_")
+    tabi[[paste(v1, v2, sep = sep)]]<- paste(tabi[[v1]],tabi[[v2]],sep = sep)
     
     tabi[[v1]]<-NULL
     tabi[[v2]]<-NULL
@@ -126,7 +125,7 @@ passage_4_3_cas_2_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,dir_name) {
   names(tabs) <- c(paste(nom_dfs,v1, sep="_"),paste(nom_dfs,v2, sep="_"))
   hrcs <- list(hrc_tab1, hrc_tab2)
   names(hrcs) <- names(tabs)
-  total_total = paste(totcode[v1],totcode[v2],sep="_")
+  total_total = paste(totcode[v1],totcode[v2],sep=sep)
   alt_tot=list(total_total,total_total)
   names(alt_tot)<- names(tabs)
    

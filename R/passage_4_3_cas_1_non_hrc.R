@@ -10,6 +10,7 @@
 #' hiérarchiques parmi les variables catégorielles de dfs
 #' @param dir_name dossier où écrire les fichiers hrc
 #' si aucun dossier n'est spécifié dans hrcfiles
+#' @param sep séparateur utilisé lors de la concaténation des variables
 #'
 #' @return liste(tabs, hrcs, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
@@ -21,7 +22,7 @@
 #' @export
 #'
 #' @examples
-passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name) {
+passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
   
   #############################
   ## Création des code_split ##
@@ -60,7 +61,7 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     totcode[v2] <- unique(dfs[[v2]])[1]
     nom_dfs <- paste(nom_dfs,totcode[v2],sep="_")
     
-    passage_4_3_cas_2_non_hr(dfs,nom_dfs,v1,v2, totcode,dir_name)
+    passage_4_3_cas_2_non_hr(dfs,nom_dfs,v1,v2, totcode,dir_name, sep = sep)
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var

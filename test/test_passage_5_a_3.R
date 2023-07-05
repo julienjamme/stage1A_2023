@@ -43,12 +43,15 @@ sep_dir <- TRUE
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
 
+# test séparateur
+res_plusplus_ <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, sep = "++")
+
 # Test pour fusionner trois variables ensemble :) (mauvaise idée, trop de noeuds !)
 res_SEX_AGE_ECO <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name, v3 = "SEX",v4 = "AGE_ECO")
 
 # test des erreurs
-res_SEX_SEX <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
-                                   hrc_dir = dir_name, v3 = "SEX",v4 = "SEX")
+res_ACT_ACT <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
+                                   hrc_dir = dir_name, v3 = "ACT",v4 = "ACT")
 # Erreur. Vous essayez de fusionner une variable avec elle-même
 res_MAVAR3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
                                   hrc_dir = dir_name, v3 = "MAVAR")
