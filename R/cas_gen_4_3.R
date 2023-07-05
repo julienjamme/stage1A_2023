@@ -125,7 +125,7 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
                       hrcfiles = hrcfiles[setdiff(names(hrcfiles),v1)])
   }
   
-  if (v1 %in% var_sans_hier){
+  if (v2 %in% var_sans_hier){
     # Mise à jour du nombre de variable hier selectionnée
     n_vars_sans_hier <- n_vars_sans_hier + 1
   }
