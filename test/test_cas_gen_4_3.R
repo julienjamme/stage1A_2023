@@ -44,11 +44,13 @@ res_ACT1 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir 
 res_ACT2 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v2 = "ACT" )
 res_ACT_GEO <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT", v2 = "GEO" )
 
-#
+# Test des erreurs
 res_ACT_ACT <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT", v2 = "ACT" )
+#Erreur. Vous essayez de fusionner une variable avec elle-même
 res_MAVAR <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "MAVAR" )
-
-
+# v1 n'est pas une variable catégorielle
+res_MAVAR <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v2 = "MAVAR" )
+# v2 n'est pas une variable catégorielle
 
 res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", totcode, dir_name = "hrc_dir")
 

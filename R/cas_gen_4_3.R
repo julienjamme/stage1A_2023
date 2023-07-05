@@ -10,7 +10,6 @@ plus_petit_hrc <- function(hrcfiles, totcode) {
 }
 
 # Renvoie la variable  avec le moins de modalité
-# A utiliser en filtrant sur les colonnes des variables non hiérarchique
 plus_petit_mod <- function(dfs) {
   v <- list()
   for (colonne in dfs) {
@@ -19,6 +18,37 @@ plus_petit_mod <- function(dfs) {
   indice_petit_mod <- which.min(v)
   nom_plus_petit_mod <- names(dfs)[indice_petit_mod]
   return(nom_plus_petit_mod) 
+}
+
+# Choisir une variable catégorielle
+# De préférence celle non hierarchique avec le moins de modalité
+# A default la variable hierarchique avec le moins de noeuds
+choisir_var <- function(dfs,totcode,hrcfiles){
+  # Les variables catégorielles sans hiérarchie
+  var_cat <- names(totcode)
+  
+  var_sans_hier <- intersect(
+    setdiff(names(dfs), names(hrcfiles)),
+    var_cat
+  )
+  
+  n_vars_sans_hier<-length(var_sans_hier)
+  
+  # Principe: choisir en priorité les variables non hiérarchiques
+  
+  # si superieur à 1 on regarde les variables avec le moins de modalité
+  # pour créer le moins de dataframe par la suite
+  if (n_vars_sans_hier > 1){
+    dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
+    return (plus_petit_mod(dfs_var_sans_hier))
+  }
+  else if(n_vars_sans_hier == 1){
+    return (var_sans_hier[1])
+  }
+  # Sinon on choisit la variable hierarchique avec le moins de sous totaux
+  else {
+    return (plus_petit_hrc(hrcfiles,totcode))
+  }
 }
 
 #' Fonction passant de 4 à 3 variables catégorielles
@@ -31,13 +61,17 @@ plus_petit_mod <- function(dfs) {
 #' par défault à FALSE
 #' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
 #' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
-#'
+#' @param v1 permet de forcer la valeur de la variable v1 à fusionner, 
+#' non spéficié par défault (NULL)
+#' @param v2 permet de forcer la valeur de la variable v1 à fusionner
+#' non spéficié par défault (NULL)
+#' 
 #' @return une liste de data.frame à 3 variables catégorielles
 #' doté de hierarchie emboitées (n-1 dans le cas général)
 #' @export
 #'
 #' @examples
-passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt"){
+passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt",v1 = NULL, v2 = NULL){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -53,46 +87,61 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
                   setdiff(names(dfs), names(hrcfiles)),
                   var_cat
   )
-
-  n_vars_sans_hier<-length(var_sans_hier)
   
-  # Principe: choisir en priorité les variables non hiérarchiques
+  # Choix des variables et vérification de celles renseignées en argument
   
-  # si superieur à 3 on regarde les variables avec le moins de sous totaux
-  # pour créer le moins de dataframe par la suite
-  if (n_vars_sans_hier > 2){
-    
-    dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
-    v1 <- plus_petit_mod(dfs_var_sans_hier)
-    v2 <- plus_petit_mod(dfs_var_sans_hier[setdiff(names(dfs_var_sans_hier),v1)])
-    
-    return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
-  }
+  n_vars_sans_hier <- 0 # Variable hierarchique selectionnée jusqu'à présent
 
-  if(n_vars_sans_hier <= 2){
-    v1 <- var_sans_hier[1]
-    v2 <- var_sans_hier[2]
+  # Première variable
+  if (!is.null(v1)){
+    if (!(v1 %in% var_cat)){
+      stop("v1 n'est pas une variable catégorielle")
+    }
+  } else {
+    # on choisit une variable en évitant v2
+    v1 <- choisir_var(dfs = dfs[setdiff(names(dfs),v2)],
+                totcode = totcode[setdiff(names(totcode),v2)],
+                hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)])
   }
+  
+  if (v1 %in% var_sans_hier){
+    # Mise à jour du nombre de variable hier selectionnée
+    n_vars_sans_hier <- n_vars_sans_hier + 1
+  }
+  
+  # Seconde variable
+  if (!is.null(v2)){
+    if (!(v2 %in% var_cat)){
+      stop("v2 n'est pas une variable catégorielle")
+    }
+    if (v1 == v2){
+      stop("Erreur. Vous essayez de fusionner une variable avec elle-même")
+    }
 
+  } else {
+    # on choisit une variable en évitant v1
+    v2 <- choisir_var(dfs = dfs[setdiff(names(dfs),v1)],
+                      totcode = totcode[setdiff(names(totcode),v1)],
+                      hrcfiles = hrcfiles[setdiff(names(hrcfiles),v1)])
+  }
+  
+  if (v1 %in% var_sans_hier){
+    # Mise à jour du nombre de variable hier selectionnée
+    n_vars_sans_hier <- n_vars_sans_hier + 1
+  }
+  
+  # On appelle la fonction correspondante
+  
   # Cas 2 variables non hiérarchique
   if(n_vars_sans_hier == 2){
     return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name))
   
   # Cas 1 variable non hiérarchique
   }else if(n_vars_sans_hier == 1){
-    # On cherche une second variable avec le moins de sous totaux
-    v2 <- plus_petit_hrc(hrcfiles,totcode)
-
     return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
     
   # Cas 0 variables non hiérarchique
   }else{
-    # On cherche les variables avec le moins de sous totaux
-    v1 <- plus_petit_hrc(hrcfiles,totcode)
-    
-    # on enlève la var trouvé pour v1 pour trouver ensuite v2
-    v2 <- plus_petit_hrc(hrcfiles[setdiff(names(hrcfiles), v1)],totcode)
-    
     return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name))
   }
 }
