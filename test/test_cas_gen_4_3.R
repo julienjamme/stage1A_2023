@@ -1,9 +1,10 @@
 # Vider l'environnement global
 rm(list = ls())
 
-
-
 library(dplyr)
+source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 ##############################################################
@@ -15,27 +16,41 @@ source("R/format.R",encoding = "UTF-8")
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
-  SEX = c("Total",LETTERS[7:12]),
-  AGE = c("Total",LETTERS[15:25]),
+  SEX = c("Total",LETTERS[1:5]),
+  AGE = c("Total",LETTERS[21:25]),
   stringsAsFactors = FALSE
 ) %>% 
   as.data.frame()
 
 data <- data %>% mutate(VALUE = runif(nrow(data)))
-hrcfiles = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
-
+#hrcfiles = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
+hrcfiles = c(GEO = "hrc/hrc2.hrc")
 totcode<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
 
 # pour execution ligne à ligne
 dfs <- data
 nom_dfs <- "nom_data_frame"
+sep_dir = TRUE
+hrc_dir = "hrc_alt"
 
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = TRUE, hrc_dir = "hrc_alt" )
-res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", totcode, dir_name = "hrc_alt")
+res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir" )
+
+# Vérification vis à vis de la selection des variables
+res_ACT1 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT" )
+res_ACT2 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v2 = "ACT" )
+res_ACT_GEO <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT", v2 = "GEO" )
+
+#
+res_ACT_ACT <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT", v2 = "ACT" )
+res_MAVAR <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "MAVAR" )
+
+
+
+res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", totcode, dir_name = "hrc_dir")
 
 identical(res,res2)
 str(res)
