@@ -61,9 +61,9 @@ choisir_var <- function(dfs,totcode,hrcfiles){
 #' par défault à FALSE
 #' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
 #' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
-#' @param v1 permet de forcer la valeur de la variable v1 à fusionner, 
+#' @param v1 permet de forcer la valeur de la première variable à fusionner, 
 #' non spéficié par défault (NULL)
-#' @param v2 permet de forcer la valeur de la variable v1 à fusionner
+#' @param v2 permet de forcer la valeur de la seconde variable à fusionner
 #' non spéficié par défault (NULL)
 #' 
 #' @return une liste de data.frame à 3 variables catégorielles
@@ -71,7 +71,7 @@ choisir_var <- function(dfs,totcode,hrcfiles){
 #' @export
 #'
 #' @examples
-passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt",v1 = NULL, v2 = NULL){
+passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,hrc_dir = "hrc_alt",v1 = NULL,v2 = NULL){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -95,7 +95,8 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
   # Première variable
   if (!is.null(v1)){
     if (!(v1 %in% var_cat)){
-      stop("v1 n'est pas une variable catégorielle")
+      stop(paste("v1 n'est pas une variable catégorielle, v1 = ", v1,
+           "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
     }
   } else {
     # on choisit une variable en évitant v2
@@ -112,7 +113,8 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode, hrcfiles, sep_dir = FALSE, 
   # Seconde variable
   if (!is.null(v2)){
     if (!(v2 %in% var_cat)){
-      stop("v2 n'est pas une variable catégorielle")
+      stop(paste("v2 n'est pas une variable catégorielle, v2 = ", v2,
+                 "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
     }
     if (v1 == v2){
       stop("Erreur. Vous essayez de fusionner une variable avec elle-même")

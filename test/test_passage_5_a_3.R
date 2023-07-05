@@ -19,7 +19,6 @@ hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/h
 
 tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total", ECO = "Ensemble")
 
-
 # pour execution ligne à ligne
 dfs <- data
 nom_dfs <- "nom_data_frame"
@@ -34,15 +33,31 @@ var_sans_hier <- intersect(
   var_cat
 )
 dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
-res_var<-get_2_smallest(hrcfiles,totcode)
-v1 <- names(res_var)[[1]]
-v2 <- names(res_var)[[2]]
+# res_var<-get_2_smallest(hrcfiles,totcode)
+# v1 <- names(res_var)[[1]]
+# v2 <- names(res_var)[[2]]
 
 dir_name <- "output"
 hrc_dir <- dir_name
 sep_dir <- TRUE
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+
+# Test pour fusionner trois variables ensemble :) (mauvaise idée, trop de noeuds !)
+res_SEX_AGE_ECO <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name, v3 = "SEX",v4 = "AGE_ECO")
+
+# test des erreurs
+res_SEX_SEX <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
+                                   hrc_dir = dir_name, v3 = "SEX",v4 = "SEX")
+# Erreur. Vous essayez de fusionner une variable avec elle-même
+res_MAVAR3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
+                                  hrc_dir = dir_name, v3 = "MAVAR")
+# v3 n'est pas une variable catégorielle
+res_MAVAR4 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
+                                  hrc_dir = dir_name, v4 = "MAVAR")
+# v4 n'est pas une variable catégorielle
+
+unique(unlist(lapply(res$tab,names)))
 
 # bon format
 str(res)

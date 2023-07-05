@@ -7,9 +7,10 @@ source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
+source("test/test_nbs_tabs.R",encoding = "UTF-8")
 ##############################################################
 ##############################################################
-####################### Cas 2 var hrc ########################
+####################### Cas 2 var non hrc ####################
 ##############################################################
 ##############################################################
 
@@ -57,16 +58,27 @@ res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", totcode, dir
 identical(res,res2)
 str(res)
 str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
+
+# Exemple de données
+v1 <- "ACT"
+var_cat <- c("SEX", "AGE", "GEO", "ACT", "ECO")
+
+# Concaténer les éléments de var_cat en une seule chaîne
+cat_vars <- paste(var_cat, collapse = ", ")
+
+# Afficher le message avec un retour à la ligne
+cat("v1 n'est pas une variable catégorielle, v1 =", v1, "\nLes variables catégorielles sont:\n", cat_vars)
+
+
 #On a les bon format
 # [1] TRUE
 
 
 ##############################################################
 ##############################################################
-####################### Cas 1 var hrc ########################
+####################### Cas 1 var non hrc ####################
 ##############################################################
 ##############################################################
-
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -85,6 +97,8 @@ totcode<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total")
 # pour execution ligne à ligne
 dfs <- data
 nom_dfs <- "nom_data_frame"
+sep_dir = TRUE
+hrc_dir = "hrc_alt"
 
 var_cat <- names(totcode)
 
@@ -94,17 +108,14 @@ var_sans_hier <- intersect(
 )
 
 v1 <- var_sans_hier[1]
-v2<-plus_petit_hrc(hrcfiles,totcode)
+v2<- plus_petit_hrc(hrcfiles,totcode)
 
-
-
-dir_name <- dirname(hrcfiles[1])
 
 ##################################
 ########## Vérification ##########
 ##################################
-res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles)
-res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
+res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir)
+res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,hrc_dir)
 
 identical(res,res2)
 

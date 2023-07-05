@@ -10,6 +10,14 @@ source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 #' par défault à FALSE
 #' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
 #' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
+#' @param v1 permet de forcer la valeur de la première variable à fusionner 
+#' lors du passage de 5 à 4 dimensions, non spéficié par défault (NULL) 
+#' @param v2 permet de forcer la valeur de la seconde variable à fusionner 
+#' lors du passage de 5 à 4 dimensions, non spéficié par défault (NULL) 
+#' @param v3 permet de forcer la valeur de la première variable à fusionner 
+#' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL) 
+#' @param v4 permet de forcer la valeur de la seconde variable à fusionner 
+#' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL) 
 #' 
 #' @return liste(tabs, hrcs, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
@@ -22,7 +30,8 @@ source(file = "R/cas_gen_4_3.R",encoding = "UTF-8")
 #'
 #' @examples
 #' 
-passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt"){
+passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt",
+                                v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -32,7 +41,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   }
   
   # On enlève une dimension à notre dataframe de départ
-  res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name)
+  res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name,
+                                 v1 = v1, v2 = v2)
   # to do : supprimer les hrc de 5 à 4 puisque non utile pour la suite ?
   
   # Récupération des variables fusionnées
@@ -49,6 +59,46 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   hrcfiles2 <- hrcfiles
   hrcfiles2 <- hrcfiles2[!(names(hrcfiles2) %in% c(v1f, v2f))]
   
+  # Les variables catégorielles sans hiérarchie dans nos tableaux à 4 dimensions
+  var_cat <- names(totcode2)
+  
+  var_sans_hier <- intersect(
+    setdiff(names(dfs), names(hrcfiles2)),
+    var_cat
+  )
+  
+  # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
+  
+  # Première variable pour le passage 4 à 3
+  if (!is.null(v3)){
+    if (!(v3 %in% var_cat)){
+      stop(paste("v3 n'est pas une variable catégorielle, v3 = ", v3,
+                 "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
+    }
+  } else {
+    # on choisit une variable en évitant v2
+    v3 <- choisir_var(dfs = dfs[setdiff(names(dfs),v4)],
+                      totcode = totcode2[setdiff(names(totcode2),v4)],
+                      hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)])
+  }
+  
+  # Seconde variable pour le passage 4 à 3
+  if (!is.null(v4)){
+    if (!(v4 %in% var_cat)){
+      stop(paste("v4 n'est pas une variable catégorielle, v4 = ", v4,
+                 "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
+    }
+    if (v3 == v4){
+      stop("Erreur. Vous essayez de fusionner une variable avec elle-même")
+    }
+    
+  } else {
+    # on choisit une variable en évitant v1
+    v4 <- choisir_var(dfs = dfs[setdiff(names(dfs),v3)],
+                      totcode = totcode2[setdiff(names(totcode2),v3)],
+                      hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)])
+  }
+  
   appel_4_3_gen <- function(nom_dfsb){
     # Mise à jour des arguments de la fonction
     dfsb <- res_5_4$tabs[[nom_dfsb]]
@@ -56,7 +106,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
     hrcfiles2b <-  c(hrcfiles2, res_5_4$hrcs[[nom_dfsb]])
     names(hrcfiles2b)[length(hrcfiles2b)] <- new_var
     
-    passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE, hrc_dir = dir_name )
+    passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE, hrc_dir = dir_name,
+                        v1 = v3, v2 = v4)
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var
