@@ -46,8 +46,14 @@ dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
 dir_name <- "output"
 hrc_dir <- dir_name
 sep_dir <- TRUE
+v1 = NULL
+v2 = NULL
+v3 = NULL
+v4 = NULL
+sep = "_"
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+str(res)
 
 # test séparateur
 res_plusplus_ <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, sep = "++")
@@ -132,3 +138,57 @@ test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[3], totcode)
 # On obtient bien 
 # Passage 4 à 3: chr [1:2] "AGE_ECO" "ACT"
 res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+
+
+#########
+data <- expand.grid(
+  ACT = c("Ensemble","Est","Ouest","Est1","Ouest1","Est2","Ouest2"),
+  SEX = c("Ensemble","Nord","Sud","Nord1","Sud1","Nord2"),
+  GEO = c("Ensemble","Oui","Non","Oui1","Non1"),
+  AGE = c("Ensemble","adulte","enfant"),
+  ECO = c("Ensemble","riche","pauvre","autre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = runif(nrow(data)))
+hrcfiles <- NULL
+
+totcode <- c(SEX="Ensemble",AGE="Ensemble", GEO="Ensemble", ACT="Ensemble", ECO = "Ensemble")
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
+
+# obtention de V1 et v2
+var_cat <- names(totcode)
+var_sans_hier <- intersect(
+  setdiff(names(dfs), names(hrcfiles)),
+  var_cat
+)
+dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
+# res_var<-get_2_smallest(hrcfiles,totcode)
+# v1 <- names(res_var)[[1]]
+# v2 <- names(res_var)[[2]]
+
+dir_name <- "output"
+hrc_dir <- dir_name
+sep_dir <- TRUE
+v1 <- NULL
+v2 <- NULL
+v3 <- NULL
+v4 <- NULL
+
+res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+
+res5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+
+nb_noeuds <- lapply(names(res5_4$hrcs),
+                    function(x) test_nb_tabs_3hrc(res5_4$hrcs, x, res5_4$alt_tot))
+
+rep(res5_4$hrcs[[1]],nb_noeuds[1])
+
+unlist(lapply(1:length(res5_4$hrcs), function(i) rep(res5_4$hrcs[[i]], nb_noeuds[i])))
+
+
+
