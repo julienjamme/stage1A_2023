@@ -2,15 +2,16 @@
 library(dplyr)
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
-
-
-
+source("R/passage_4_3_cas_1_non_hrc.R")
+source("R/passage_4_3_cas_2_non_hrc.R")
+source("test/test_nbs_tabs.R")
+library(tidyr)
 ######PREMIER EXEMPLE
 
 # Données ###########
 
 data <- expand.grid(
-  ACT = c("Total","A","B","A1","A2","A11","A12"),
+  ACT = c("Total","A","B","A1","A2"),
   SEX = c("Total","F","M"),
   GEO = c("Pays","Dep1","Dep2","Com11","Com12"),
   AGE = c("Ensemble","adulte","enfant","enfant1","enfant2"),
@@ -20,7 +21,7 @@ data <- expand.grid(
 
 dfs <- data %>% mutate(VALUE = runif(nrow(data)))
 
-hrcfiles = c(ACT ="hrc/act_test.hrc", GEO ="hrc/geo_test.hrc" , AGE ="hrc/age_test.hrc"  )
+hrcfiles = c(ACT ="hrc/act_test3.hrc", GEO ="hrc/geo_test.hrc" , AGE ="hrc/age_test.hrc"  )
 
 totcode<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total")
 
@@ -30,25 +31,45 @@ dir_name <-"output"
 v2 <- "AGE"
 v1 <- "SEX"
 
-res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
+res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep="_")
 res1<-format(res,nom_dfs)
-
-str(res1)
-length(res1$tabs)
 
 (read.table(hrcfiles[[v2]]))
-#On a bien 2 noeuds
-
-v2 <- "ACT"
-v1 <- "SEX"
-
-res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
-res1<-format(res,nom_dfs)
+#On a bien 2 noeuds donc 2*2=4 tableaux
 
 length(res1$tabs)
 
-(read.table(hrcfiles[[v2]]))
-#on a bien 3 noeuds 
+
+
+data <- expand.grid(
+  ACT = c("Total","A","B","B1","B2","C","A1","A2"),
+  SEX = c("Total","F","M"),
+  GEO = c("Pays","Dep1","Dep2","Com11","Com12"),
+  AGE = c("Ensemble","adulte","enfant","enfant1","enfant2"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+
+
+hrc_files = c(ACT ="hrc/act_test4.hrc", GEO ="hrc/geo_test.hrc" , AGE ="hrc/age_test.hrc"  )
+
+
+totcode<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total")
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "argus"
+sep_dir<-TRUE
+hrcfiles <- hrc_files
+v2<-"ACT"
+v1<-"SEX"
+dir_name<- "output"
+res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep ="_")
+read.table(hrc_files[["ACT"]])
+#On a bien 3 noeuds donc on a 6 tableaux
+
+length(res$tabs)
 
 data <- expand.grid(
   ACT = c("Total","A","B","B1","B2","A1","A2","A11","A12"),
@@ -69,10 +90,11 @@ hrcfiles = c(ACT ="hrc/act_test2.hrc", GEO ="hrc/geo_test.hrc" , AGE ="hrc/age_t
 res <- passage_4_3_cas_1_non_hr(data, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 res1<-format(res,nom_dfs)
 
+read.table(hrcfiles[[v2]])
+#On a bien 4 noeuds donc 2*4 =8 tableaux
 length(res1$tabs)
 
-read.table(hrcfiles[[v2]])
-#On a bien 4 noeuds
+
 
 #On vérifie les noms des différents fichiers
 all(names(res1$tabs)==names(res1$hrcs))
@@ -87,7 +109,7 @@ lapply(res1$alt_tot,function(tab){
   return (t)})
 
 #On vérifie que les sous_totaux sont les bons
-res_sdc <- sdcHierarchies::hier_import(inp = hrcfiles[["ACT"]], from = "hrc", root = total) %>% 
+res_sdc <- sdcHierarchies::hier_import(inp = hrcfiles[["ACT"]], from = "hrc", root = "Total") %>% 
   sdcHierarchies::hier_convert(as = "sdc")
 
 codes_split <- lapply(
@@ -168,7 +190,7 @@ for (t in names(res1$tabs)) {
 (s)
 
 # Attendu = 0 pour aucune valeur manquante
-#cad aucun pb d'appariement
+#cad aucun pb d'appariementgit
 
 
 
