@@ -18,7 +18,7 @@
 #' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL)
 #' @param sep séparateur utilisé lors de la concaténation des variables
 #' 
-#' @return liste(tabs, hrcs, vars)
+#' @return liste(tabs, hrcs, alt_tot, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
 #' doté de hiérarchies emboitées
 #' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion

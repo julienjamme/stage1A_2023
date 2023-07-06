@@ -67,8 +67,13 @@ choisir_var <- function(dfs,totcode,hrcfiles){
 #' non spéficié par défault (NULL)
 #' @param sep séparateur utilisé lors de la concaténation des variables
 #' 
-#' @return une liste de data.frame à 3 variables catégorielles
-#' doté de hierarchie emboitées (n-1 dans le cas général)
+#' @return liste(tabs, hrcs, alt_tot, vars)
+#' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
+#' doté de hiérarchies emboitées
+#' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
+#' alt_tot : liste nommée des totaux
+#' vars : liste nommée de vecteur représentant les variables fusionnées
+#' lors des deux étapes de réduction de dimensions
 #' @export
 #'
 #' @examples

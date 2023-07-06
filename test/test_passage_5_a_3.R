@@ -66,8 +66,6 @@ res_MAVAR4 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
                                   hrc_dir = dir_name, v4 = "MAVAR")
 # v4 n'est pas une variable catégorielle
 
-unique(unlist(lapply(res$tab,names)))
-
 # bon format
 str(res)
 

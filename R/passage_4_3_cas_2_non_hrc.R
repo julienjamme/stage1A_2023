@@ -9,7 +9,7 @@
 #' si aucun dossier n'est spécifié dans hrcfiles
 #' @param sep séparateur utilisé lors de la concaténation des variables
 #'
-#' @return liste(tabs, hrcs, vars)
+#' @return liste(tabs, hrcs, alt_tot, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
 #' doté de hiérarchies emboitées
 #' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
