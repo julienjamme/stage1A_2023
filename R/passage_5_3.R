@@ -18,11 +18,15 @@
 #' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL)
 #' @param sep séparateur utilisé lors de la concaténation des variables
 #' 
-#' @return liste(tabs, hrcs, alt_tot, vars)
+#' @return liste(tabs, hrcs5_4,hrcs4_3, alt_tot5_4,alt_tot4_3, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
 #' doté de hiérarchies emboitées
-#' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
-#' alt_tot : liste nommée des totaux
+#' hrcs5_4 : liste nommée des hrc spécifiques à la variable crée via la fusion
+#'                lors du passage de 5 à 4 dimensions
+#' hrcs4_3 : liste nommée des hrc spécifiques à la variable crée via la fusion
+#'                lors du passage de 4 à 3 dimensions
+#' alt_tot5_4 : liste nommée des totaux lors du passage de 5 à 4 dimensions
+#' alt_tot4_3 : liste nommée des totaux lors du passage de 4 à 3 dimensions
 #' vars : liste nommée de vecteur représentant les variables fusionnées
 #' lors des deux étapes de réduction de dimensions
 #' @export
@@ -42,7 +46,6 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   # On enlève une dimension à notre dataframe de départ
   res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name,
                                  v1 = v1, v2 = v2, sep = sep)
-  # to do : supprimer les hrc de 5 à 4 puisque non utile pour la suite ?
   
   # Récupération des variables fusionnées
   v1f <- res_5_4$vars[[1]]
@@ -71,7 +74,6 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   nb_noeuds <- lapply(names(res_5_4$hrcs),
                   function(x) test_nb_tabs_3hrc(res_5_4$hrcs, x, res_5_4$alt_tot))
   nb_noeuds_moyen <- sum(unlist(nb_noeuds)) / length(res_5_4$hrcs)
-  
   
   # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
   # On choisit dès maintenant v3 et v4 pour être sûr que la même variable
@@ -145,17 +147,29 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   )
   
   tabs <- unlist(lapply(res_5_3, function(x) x$tabs), recursive = FALSE)
-  hrcs <- unlist(lapply(res_5_3, function(x) x$hrcs), recursive = FALSE)
-  alt_tot <- unlist(lapply(res_5_3, function(x) x$alt_tot), recursive = FALSE)
+  hrcs4_3 <- unlist(lapply(res_5_3, function(x) x$hrcs), recursive = FALSE)
+  alt_tot4_3 <- unlist(lapply(res_5_3, function(x) x$alt_tot), recursive = FALSE)
   
   vars1 <- res_5_4$vars
   vars2 <- res_5_3[[1]]$vars # les variables fusionnées sont toujours les mêmes
   vars_tot <- list(vars1,vars2)
   names(vars_tot) <- c("Passage 5 à 4","Passage 4 à 3")
   
+  # Mémorisation de res5_4
+  # On répète autant de fois  res5_4[i] que le tableau va créer 
+  # de tableaux à 3 dimensions
+  nb_rep <- length(tabs) / length(res_5_4$tabs)
+  hrcs5_4 <- as.list(unlist(lapply(res_5_4$hrcs,
+                        function(x) rep(x,nb_rep))))
+  
+  alt_tot5_4 <- as.list(unlist(lapply(res_5_4$alt_tot,
+                        function(x) rep(x,nb_rep))))
+  
   return(list(tabs=tabs,
-              hrcs=hrcs,
-              alt_tot= alt_tot,
+              hrcs5_4=hrcs5_4,
+              hrcs4_3=hrcs4_3,
+              alt_tot5_4=alt_tot5_4,
+              alt_tot4_3=alt_tot4_3,
               vars=vars_tot)
         )
 }

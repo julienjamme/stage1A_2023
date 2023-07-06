@@ -151,3 +151,28 @@ str(res)
 str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
 
 
+### Cas hrcfile = NULL
+
+data <- expand.grid(
+  ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",LETTERS[1:5]),
+  AGE = c("Total",LETTERS[21:25]),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = runif(nrow(data)))
+#hrcfiles = c(ACT = "hrc/hrc1.hrc", GEO = "hrc/hrc2.hrc")
+hrcfiles <- NULL
+totcode<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
+
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
+sep_dir <- TRUE
+dirname <- "output"
+hrc_dir <- "output"
+
+res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name)

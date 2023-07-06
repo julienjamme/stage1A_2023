@@ -11,11 +11,11 @@ source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
 
 data <- expand.grid(
-  ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  ACT = c("KEBAB",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   AGE = c("Ensemble","adulte","enfant"),
-  ECO = c("Ensemble","riche","pauvre"),
+  ECO = c("PIB","riche","pauvre"),
   stringsAsFactors = FALSE
 ) %>% 
   as.data.frame()
@@ -23,7 +23,7 @@ data <- expand.grid(
 data <- data %>% mutate(VALUE = runif(nrow(data)))
 hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
 
-tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total", ECO = "Ensemble")
+tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="KEBAB", ECO = "PIB")
 
 # pour execution ligne à ligne
 dfs <- data
@@ -53,7 +53,10 @@ v4 = NULL
 sep = "_"
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
-str(res)
+str(res$hrcs5_4)
+str(res$hrcs4_3)
+str(res$alt_tot5_4)
+str(res$alt_tot4_3)
 
 #On vérifie les noms des différents fichiers
 all(names(res$tabs)==names(res$hrcs))
@@ -199,3 +202,49 @@ unlist(lapply(1:length(res5_4$hrcs), function(i) rep(res5_4$hrcs[[i]], nb_noeuds
 
 
 
+##############
+data <- expand.grid(
+  ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  AGE = c("Ensemble","adulte","enfant"),
+  ECO = c("Ensemble","riche","pauvre","autre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = runif(nrow(data)))
+hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
+
+tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="Total", ECO = "Ensemble")
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
+
+totcode <- tot_code
+hrcfiles <- hrc_files
+
+# obtention de V1 et v2
+var_cat <- names(totcode)
+var_sans_hier <- intersect(
+  setdiff(names(dfs), names(hrcfiles)),
+  var_cat
+)
+dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
+# res_var<-get_2_smallest(hrcfiles,totcode)
+# v1 <- names(res_var)[[1]]
+# v2 <- names(res_var)[[2]]
+
+dir_name <- "output"
+hrc_dir <- dir_name
+sep_dir <- TRUE
+v1 = "AGE"
+v2 = "GEO"
+v3 = "ACT"
+v4 = "SEX"
+sep = "_"
+
+res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name,
+                           v1 = "AGE", v2 = "GEO",v3 = "ACT",v4 = "SEX")
+str(res)

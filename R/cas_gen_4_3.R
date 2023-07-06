@@ -77,7 +77,7 @@ choisir_var <- function(dfs,totcode,hrcfiles){
 #' @export
 #'
 #' @examples
-passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,
+passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir = FALSE,
                                 hrc_dir = "hrc_alt",v1 = NULL,v2 = NULL, sep = "_"){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
