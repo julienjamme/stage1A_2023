@@ -48,12 +48,19 @@ hrc_dir <- dir_name
 sep_dir <- TRUE
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+str(res)
+
+#On vérifie les noms des différents fichiers
+all(names(res$tabs)==names(res$hrcs))
+all(names(res$tabs) == names(res$alt_tot))
 
 # test séparateur
 res_plusplus_ <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, sep = "++")
 
+(names(res_plusplus_$tabs$nom_data_frame_AGE_Total_Pays_ACT))
 # Test pour fusionner trois variables ensemble :) (mauvaise idée, trop de noeuds !)
 res_SEX_AGE_ECO <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name, v3 = "SEX",v4 = "AGE_ECO")
+(names(res_SEX_AGE_ECO$tabs$nom_data_frame_AGE_Total_Ensemble_Ensemble_SEX))
 
 # test des erreurs
 res_ACT_ACT <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
@@ -68,6 +75,7 @@ res_MAVAR4 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
 
 # bon format
 str(res)
+
 
 # nombre tableau cohérent
 # Passage 5 -> 4
