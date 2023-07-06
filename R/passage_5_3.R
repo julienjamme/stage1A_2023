@@ -66,7 +66,16 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
     var_cat
   )
   
+  # Nombre de noeud moyen de la nouvelle variable puisque
+  # elle a un fichier hrc différent par tableau !
+  nb_noeuds <- lapply(names(res_5_4$hrcs),
+                  function(x) test_nb_tabs_3hrc(res_5_4$hrcs, x, res_5_4$alt_tot))
+  nb_noeuds_moyen <- sum(unlist(nb_noeuds)) / length(res_5_4$hrcs)
+  
+  
   # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
+  # On choisit dès maintenant v3 et v4 pour être sûr que la même variable
+  # est créé au sein de tous les sous tableaux
   
   # Première variable pour le passage 4 à 3
   if (!is.null(v3)){
@@ -75,10 +84,22 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
                  "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
     }
   } else {
-    # on choisit une variable en évitant v2
+    # on choisit une variable en évitant v4
     v3 <- choisir_var(dfs = dfs[setdiff(names(dfs),v4)],
                       totcode = totcode2[setdiff(names(totcode2),v4)],
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)])
+    
+    # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
+    nb_noeuds_v3 <- test_nb_tabs_3hrc(hrcfiles2, v3, totcode2)
+    if (!is.null(v4)){
+      # Nous devons faire deux if différents sinon NULL != new_var fait planter !
+      if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen){
+        v3 <- new_var
+      }
+    # Si v4 = NULL pas besoin de comparer v4 != new_var
+    } else if (nb_noeuds_v3 > nb_noeuds_moyen){
+      v3 <- new_var
+    }
   }
   
   # Seconde variable pour le passage 4 à 3
@@ -92,10 +113,18 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
     }
     
   } else {
-    # on choisit une variable en évitant v1
+    # on choisit une variable en évitant v3
     v4 <- choisir_var(dfs = dfs[setdiff(names(dfs),v3)],
                       totcode = totcode2[setdiff(names(totcode2),v3)],
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)])
+    
+    # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
+    nb_noeuds_v4 <- test_nb_tabs_3hrc(hrcfiles2, v4, totcode2)
+
+    # Rq : v3 ne peut pas être NULL
+    if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen){
+      v4 <- new_var
+    }
   }
   
   appel_4_3_gen <- function(nom_dfsb){
@@ -120,7 +149,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   alt_tot <- unlist(lapply(res_5_3, function(x) x$alt_tot), recursive = FALSE)
   
   vars1 <- res_5_4$vars
-  vars2 <- res_5_3[[1]]$vars
+  vars2 <- res_5_3[[1]]$vars # les variables fusionnées sont toujours les mêmes
   vars_tot <- list(vars1,vars2)
   names(vars_tot) <- c("Passage 5 à 4","Passage 4 à 3")
   

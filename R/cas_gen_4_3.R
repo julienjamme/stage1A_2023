@@ -144,7 +144,7 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles,sep_dir = FALSE,
   }else if(n_vars_sans_hier == 1){
     return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep = sep))
     
-  # Cas 0 variables non hiérarchique
+  # Cas 0 variable non hiérarchique
   }else{
     return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = sep))
   }

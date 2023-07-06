@@ -80,9 +80,57 @@ str(res)
 # (à cause de la fusion des 2 vars pour tenir compte de la hierarchie créée)
 # 2 * 3 * 2 * 2 = 24, le compte est bon
 length(res$tabs)
+ 
+###############
 
+# Test pour savoir si on peut fusionner 3 variables ensembles :)
+data <- expand.grid(
+  ACT = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  AGE = c("Ensemble","adulte","enfant"),
+  ECO = c("Ensemble","riche","pauvre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
 
-##################################
+data <- data %>% mutate(VALUE = runif(nrow(data)))
+hrc_files = c(ACT = "hrc/hrc3.hrc", GEO = "hrc/hrc3.hrc", SEX = "hrc/hrc3.hrc" )
 
+tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Total", ACT="Total", ECO = "Ensemble")
 
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
 
+totcode <- tot_code
+hrcfiles <- hrc_files
+
+# obtention de V1 et v2
+var_cat <- names(totcode)
+var_sans_hier <- intersect(
+  setdiff(names(dfs), names(hrcfiles)),
+  var_cat
+)
+dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
+# res_var<-get_2_smallest(hrcfiles,totcode)
+# v1 <- names(res_var)[[1]]
+# v2 <- names(res_var)[[2]]
+
+dir_name <- "output"
+hrc_dir <- dir_name
+sep_dir <- TRUE
+
+res5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+
+# On vérifie que la variable fusionnée a moins de noeuds en moyenne que les autres variables
+test_nb_tabs_3hrc(res5_4$hrcs, names(res5_4$hrcs)[1], res5_4$alt_tot)
+test_nb_tabs_3hrc(res5_4$hrcs, names(res5_4$hrcs)[2], res5_4$alt_tot)
+
+test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[1], totcode)
+test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[2], totcode)
+test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[3], totcode)
+
+# On obtient bien 
+# Passage 4 à 3: chr [1:2] "AGE_ECO" "ACT"
+res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
