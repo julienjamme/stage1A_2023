@@ -1,10 +1,12 @@
 
 library(dplyr)
+library(stringr)
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R")
 source("R/passage_4_3_cas_2_non_hrc.R")
 source("test/test_nbs_tabs.R")
+source("R/choisir_sep.R")
 library(tidyr)
 ######PREMIER EXEMPLE
 
@@ -30,8 +32,8 @@ nom_dfs <- "tab"
 dir_name <-"output"
 v2 <- "AGE"
 v1 <- "SEX"
-
-res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep="_")
+sep<-choisir_sep(data)
+res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep="+++")
 res1<-format(res,nom_dfs)
 
 (read.table(hrcfiles[[v2]]))
@@ -192,6 +194,25 @@ for (t in names(res1$tabs)) {
 # Attendu = 0 pour aucune valeur manquante
 #cad aucun pb d'appariementgit
 
+#test séparatuer
+
+data <- read.csv("data/table_test.csv")
+
+
+hrc_files = c(ACTIVITY = "hrc/corresp_activity.hrc", NUMBER_EMPL = "hrc/hrc_nb_empl.hrc",GEO="hrc/corresp_geo.hrc")
+
+
+totcode<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total",PERS="Total")
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
+sep_dir<-TRUE
+hrcfiles <- hrc_files
+sep<-choisir_sep(data)
+l<-passer_de_4_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir = FALSE, hrc_dir = "hrc_alt",sep="?")
+unique(l$tabs$nom_data_frame_Total_PERS$`PERS?NUMBER_EMPL`)
+#On a le bon séparateur
 
 
 

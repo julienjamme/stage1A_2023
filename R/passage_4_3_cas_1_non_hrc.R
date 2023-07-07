@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
+passage_4_3_cas_1_bis <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
   
   #############################
   ## Création des code_split ##
@@ -54,21 +54,28 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
   # Nous avons maintenant des data.frames avec 2 variables non hierarchiques
   # nous pouvons donc appliquer la methode dédiée 
   
+  # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
+  # ...
   
   # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
-  appel_4_3_non_hier <- function(dfs){
-    # Mise à jour des arguments de la fonction
-    totcode[v2] <- unique(dfs[[v2]])[1]
-    nom_dfs <- paste(nom_dfs,totcode[v2],sep="_")
-    
-    passage_4_3_cas_2_non_hr(dfs,nom_dfs,v1,v2, totcode,dir_name, sep = sep)
+  appel_4_3_non_hier <- function(dfs, i){
+    if (i <= length(codes_split)) {
+      totcode[v2] <- codes_split[[i]][1]
+      nom_dfs <- paste(nom_dfs, totcode[v2], sep = "_")
+      passage_4_3_cas_2_non_hr(dfs, nom_dfs, v1, v2, totcode, dir_name, sep = sep)
+    } 
+    else {
+      print(paste("Index", i, "is out of bounds for codes_split."))
+      return(NULL)
+    }
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var
-  res <- lapply(
-    liste_df_4_var_2_non_hr,
-    appel_4_3_non_hier
-  )
+  res <- lapply(seq_along(liste_df_4_var_2_non_hr), function(i) {
+    appel_4_3_non_hier(liste_df_4_var_2_non_hr[[i]], i)
+  })
+  
+  
   # On change l'objet pour qu'il soit le même que dans les autres cas
   tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
   hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)

@@ -13,8 +13,9 @@
 choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\$","\\£",
                                             "\\€","\\:","\\;","\\~","\\&",
                                             "\\#")){
-
-  liste_mod = unique(unlist(lapply(data, unique)))
+  liste_var<-names(data)
+  liste_mod<-unique(unlist(lapply(data, unique)))
+  liste_mod<-c(liste_mod,liste_var)
   n_mod <- length(liste_sep)
   
   i = 0
