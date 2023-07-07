@@ -10,24 +10,23 @@
 #' @export
 #'
 #' @examples
-choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\$","\\£",
-                                            "\\€","\\:","\\;","\\~","\\&",
-                                            "\\#")){
+choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\:",
+                                            "\\;","\\~","\\&","\\#")){
   liste_var<-names(data)
   liste_mod<-unique(unlist(lapply(data, unique)))
   liste_mod<-c(liste_mod,liste_var)
-  n_mod <- length(liste_sep)
+  n_sep <- length(liste_sep)
   
   i = 0
   is_in_mod = TRUE
-  while (i <= n_mod & is_in_mod){
+  while (i <= n_sep & is_in_mod){
     i <- i + 1
     sep <- liste_sep[i]
     is_in_mod = sum(unlist(lapply(liste_mod, function(x) str_detect(x,sep))))
   }
   
   # On a un sépérateur qui fonctionne !
-  if (i  <= n_mod){
+  if (i  <= n_sep){
     # On enlève les \ devant
     sep <- str_sub(liste_sep[i], start = 2, end = 2)
     
@@ -36,6 +35,11 @@ choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\$","\\£",
     return(paste0(sep, collapse = ""))
   }
   # Tous les séparateurs sont présents dans les modalités
-  warning("Aucun séparateur trouvé. Veuillez tester d'autres valeurs")
-  return (NULL)
+  # On concatène tous les séparateurs pour construire un super séparateur
+  return (str_flatten(
+          lapply(liste_sep,
+                 function(x) str_sub(x, start = 2, end = 2)
+                 )
+              )
+          )
 }
