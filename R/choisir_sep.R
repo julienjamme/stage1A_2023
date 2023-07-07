@@ -11,8 +11,8 @@
 #'
 #' @examples
 choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\:",
-                                            "\\;","\\~","\\&",
-                                            "\\#")){
+                                            "\\;","\\~","\\&","\\#")){
+
   liste_var<-names(data)
   liste_mod<-unique(unlist(lapply(data, unique)))
   liste_mod<-c(liste_mod,liste_var)
@@ -36,8 +36,12 @@ choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\:",
     return(paste0(sep, collapse = ""))
   } else {
     # Tous les séparateurs sont présents dans les modalités
-    # warning("Aucun séparateur trouvé. Veuillez tester d'autres valeurs")
-    # le faire sans les \\
-    return (paste0(liste_sep, collapse = ""))
-  }
+    # On concatène tous les séparateurs pour construire un super séparateur
+    return(str_flatten(
+            lapply(liste_sep,
+                  function(x) str_sub(x, start = 2, end = 2)
+                  )
+              )
+          )
+    }
 }
