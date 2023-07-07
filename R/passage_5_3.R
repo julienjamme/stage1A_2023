@@ -117,7 +117,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)])
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
-    nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v3)
+    nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v=v3)
     if (!is.null(v4)){
       # Nous devons faire deux if différents sinon NULL != new_var fait planter !
       if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen){
@@ -146,7 +146,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)])
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
-    nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v4)
+    nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v=v4)
 
     # Rq : v3 ne peut pas être NULL
     if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen_new_var){

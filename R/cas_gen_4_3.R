@@ -23,7 +23,7 @@ plus_petit_mod <- function(dfs) {
 # Choisir une variable catégorielle
 # De préférence celle non hierarchique avec le moins de modalité
 # A default la variable hierarchique avec le moins de noeuds
-choisir_var <- function(dfs,totcode,hrcfiles){
+choisir_var_priorite_non_hierarchique <- function(dfs,totcode,hrcfiles){
   # Les variables catégorielles sans hiérarchie
   var_cat <- names(totcode)
   
@@ -48,6 +48,51 @@ choisir_var <- function(dfs,totcode,hrcfiles){
   # Sinon on choisit la variable hierarchique avec le moins de sous totaux
   else {
     return (plus_petit_hrc(hrcfiles,totcode))
+  }
+}
+
+# Renvoie la variable hiérarchique avec le plus de noeuds
+plus_grand_hrc <- function(hrcfiles, totcode) {
+  v <- list()
+  for (i in 1:length(hrcfiles)) {
+    v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
+  }
+  indice_grand_hrc <- which.max(v)
+  nom_plus_grand_hrc <- names(hrcfiles)[indice_grand_hrc]
+  return(nom_plus_grand_hrc)
+}
+
+# Renvoie la variable avec le plus de modalités
+plus_grand_mod <- function(dfs) {
+  v <- list()
+  for (colonne in dfs) {
+    v <- append(v, length(unique(colonne)))
+  }
+  indice_grand_mod <- which.max(v)
+  nom_plus_grand_mod <- names(dfs)[indice_grand_mod]
+  return(nom_plus_grand_mod)
+}
+
+# Choisir une variable catégorielle
+# De préférence celle hiérarchique avec le plus de noeuds
+# A défaut la variable non hiérarchique avec le plus de modalités
+choisir_var_priorite_hierarchique <- function(dfs, totcode, hrcfiles) {
+  # Principe: choisir en priorité les variables hiérarchiques
+  
+  # Si aucune variable hiérarchique, choisir variable non hiérarchique avec le plus de modalités
+  if (length(hrcfiles) == 0) {
+    return(plus_grand_mod(names(totcode)))
+  # Sinon, choisir la variable hiérarchique avec le plus de sous-totaux
+  } else {
+    return(plus_grand_hrc(hrcfiles, totcode))
+  }
+}
+
+choisir_var <- function(dfs, totcode, hrcfiles, hier = FALSE) {
+  if(hier){
+    return(choisir_var_priorite_hierarchique(dfs, totcode, hrcfiles))
+  } else {
+    return(choisir_var_priorite_non_hierarchique(dfs, totcode, hrcfiles))
   }
 }
 
@@ -108,8 +153,8 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir = FA
   } else {
     # on choisit une variable en évitant v2
     v1 <- choisir_var(dfs = dfs[setdiff(names(dfs),v2)],
-                totcode = totcode[setdiff(names(totcode),v2)],
-                hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)])
+                      totcode = totcode[setdiff(names(totcode),v2)],
+                      hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)])
   }
   
   if (v1 %in% var_sans_hier){
