@@ -97,7 +97,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
   # Nombre de noeud moyen de la nouvelle variable puisque
   # elle a un fichier hrc différent par tableau !
   nb_noeuds_new_var <- lapply(names(res_5_4$hrcs),
-                  function(x) nb_noeuds(res_5_4$hrcs, x))
+                              function(x) nb_noeuds(res_5_4$hrcs, x))
   nb_noeuds_moyen_new_var <- sum(unlist(nb_noeuds_new_var)) / length(res_5_4$hrcs)
   
   # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
@@ -123,7 +123,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
       if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen){
         v3 <- new_var
       }
-    # Si v4 = NULL pas besoin de comparer v4 != new_var
+      # Si v4 = NULL pas besoin de comparer v4 != new_var
     } else if (nb_noeuds_v3 > nb_noeuds_moyen_new_var){
       v3 <- new_var
     }
@@ -147,7 +147,6 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
     nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v=v4)
-
     # Rq : v3 ne peut pas être NULL
     if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen_new_var){
       v4 <- new_var
@@ -188,11 +187,11 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     # de tableaux à 3 dimensions
     nb_rep <- length(tabs) / length(res_5_4$tabs)
     hrcs5_4 <- as.list(unlist(lapply(res_5_4$hrcs,
-                          function(x) rep(x,nb_rep))))
+                                     function(x) rep(x,nb_rep))))
     
     # le total est toujours le même
     alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
-  
+    
     # Si l'on fusionne 3 variables en une, le nombre de tableaux
     # créé par chaque table
   } else if (v3 == new_var){
@@ -219,5 +218,5 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
               alt_tot5_4=alt_tot5_4,
               alt_tot4_3=alt_tot4_3,
               vars=vars_tot)
-        )
+  )
 }
