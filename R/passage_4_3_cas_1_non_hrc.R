@@ -22,7 +22,7 @@
 #' @export
 #'
 #' @examples
-passage_4_3_cas_1_bis <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
+passage_4_3_cas_1_non_hr<- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
   
   #############################
   ## Création des code_split ##
