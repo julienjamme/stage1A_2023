@@ -8,6 +8,7 @@ source("R/passage_4_3_cas_2_non_hrc.R")
 source("test/test_nbs_tabs.R")
 source("R/choisir_sep.R")
 library(tidyr)
+
 ######PREMIER EXEMPLE
 
 # Données ###########
