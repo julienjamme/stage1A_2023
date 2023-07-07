@@ -216,5 +216,28 @@ unique(l$tabs$nom_data_frame_Total_PERS$`PERS?NUMBER_EMPL`)
 #On a le bon séparateur
 
 
+#test si lee TOtal n'est pas en 1er dans la table
+
+data <- read.csv("data/table_test.csv")
+
+
+hrc_files = c(ACTIVITY = "hrc/corresp_activity.hrc", NUMBER_EMPL = "hrc/hrc_nb_empl.hrc",GEO="hrc/corresp_geo.hrc")
+
+
+totcode<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total",PERS="Total")
+
+nom_dfs<-"probleme"
+v1<-"PERS"
+v2<-"ACTIVITY"
+dir_name<-"output"
+
+data$ACTIVITY[1] != totcode[["ACTIVITY"]]
+
+res<-passage_4_3_cas_1_non_hr(data,nom_dfs,v1,v2,totcode ,hrc_files,dir_name,sep="_")
+format(res,nom_dfs)
+
+
+
+
 
 
