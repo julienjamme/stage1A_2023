@@ -1,3 +1,46 @@
+# to do : mettre la fonction au propre
+# hrc_name = FALSE signifie
+# que l'on donne un fichier hrc non nommé à la fonction
+# permet d'éviter d'alourdir le code plus tard
+# pour nommé un hrc uniquement pour appliquer cette fonction
+# si hrc_name = FALSE, hrcfiles est un hrc
+nb_noeuds<-function(hrcfiles,v,hrc_name = TRUE){
+  if (v %in% names(hrcfiles)){
+  
+    hrc <- hrcfiles[[v]]
+    # la valeur du total n'est pas importante
+    # pour compter le nombre de noeuds
+    total <- "Ceci_Est_Mon_Total"
+    
+    res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
+      sdcHierarchies::hier_convert(as = "sdc")
+    
+    codes_split <- lapply(
+      res_sdc$dims,
+      names
+    )
+    return(length(codes_split))
+  }
+  if(!hrc_name){
+    # On donne un fichier hrc seulement sans nom
+    hrc <- hrcfiles
+    # la valeur du total n'est pas importante
+    # pour compter le nombre de noeuds
+    total <- "Ceci_Est_Mon_Total"
+    
+    res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
+      sdcHierarchies::hier_convert(as = "sdc")
+    
+    codes_split <- lapply(
+      res_sdc$dims,
+      names
+    )
+    return(length(codes_split))
+  }
+  # Variable non hierarchique
+  return(1)
+}
+
 #' Fonction passant de 5 à 3 variables catégorielles
 #'
 #' @param dfs data.frame à 5 variabls catégorielles (n >= 3 dans le cas général)
@@ -33,7 +76,7 @@
 #'
 #' @examples
 #' 
-passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE, hrc_dir = "hrc_alt",
+passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir = FALSE, hrc_dir = "hrc_alt",
                                 v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL, sep = "_"){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
@@ -71,9 +114,9 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   
   # Nombre de noeud moyen de la nouvelle variable puisque
   # elle a un fichier hrc différent par tableau !
-  nb_noeuds <- lapply(names(res_5_4$hrcs),
-                  function(x) test_nb_tabs_3hrc(res_5_4$hrcs, x, res_5_4$alt_tot))
-  nb_noeuds_moyen <- sum(unlist(nb_noeuds)) / length(res_5_4$hrcs)
+  nb_noeuds_new_var <- lapply(names(res_5_4$hrcs),
+                  function(x) nb_noeuds(res_5_4$hrcs, x))
+  nb_noeuds_moyen_new_var <- sum(unlist(nb_noeuds_new_var)) / length(res_5_4$hrcs)
   
   # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
   # On choisit dès maintenant v3 et v4 pour être sûr que la même variable
@@ -92,14 +135,14 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)])
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
-    nb_noeuds_v3 <- test_nb_tabs_3hrc(hrcfiles2, v3, totcode2)
+    nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v3)
     if (!is.null(v4)){
       # Nous devons faire deux if différents sinon NULL != new_var fait planter !
       if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen){
         v3 <- new_var
       }
     # Si v4 = NULL pas besoin de comparer v4 != new_var
-    } else if (nb_noeuds_v3 > nb_noeuds_moyen){
+    } else if (nb_noeuds_v3 > nb_noeuds_moyen_new_var){
       v3 <- new_var
     }
   }
@@ -121,10 +164,10 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)])
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
-    nb_noeuds_v4 <- test_nb_tabs_3hrc(hrcfiles2, v4, totcode2)
+    nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v4)
 
     # Rq : v3 ne peut pas être NULL
-    if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen){
+    if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen_new_var){
       v4 <- new_var
     }
   }
@@ -156,14 +199,37 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles, sep_dir = FALSE,
   names(vars_tot) <- c("Passage 5 à 4","Passage 4 à 3")
   
   # Mémorisation de res5_4
-  # On répète autant de fois  res5_4[i] que le tableau va créer 
-  # de tableaux à 3 dimensions
-  nb_rep <- length(tabs) / length(res_5_4$tabs)
-  hrcs5_4 <- as.list(unlist(lapply(res_5_4$hrcs,
-                        function(x) rep(x,nb_rep))))
   
-  alt_tot5_4 <- as.list(unlist(lapply(res_5_4$alt_tot,
-                        function(x) rep(x,nb_rep))))
+  # Cas on fusionne 4 variables différentes 
+  if (!(new_var %in% c(v3,v4))){
+    # On répète autant de fois  res5_4[i] que le tableau va créer 
+    # de tableaux à 3 dimensions
+    nb_rep <- length(tabs) / length(res_5_4$tabs)
+    hrcs5_4 <- as.list(unlist(lapply(res_5_4$hrcs,
+                          function(x) rep(x,nb_rep))))
+    
+    # le total est toujours le même
+    alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
+  
+    # Si l'on fusionne 3 variables en une, le nombre de tableaux
+    # créé par chaque table
+  } else if (v3 == new_var){
+    hrcs5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
+                                     function(x) rep(res_5_4$hrcs[[x]],
+                                                     2 * nb_noeuds(res_5_4$hrcs[[x]],
+                                                                   v3, hrc_name = FALSE)
+                                                     * nb_noeuds(hrcfiles2, v4)))))
+    # le total est toujours le même
+    alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
+  } else {
+    hrcs5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
+                                     function(x) rep(res_5_4$hrcs[[x]],
+                                                     2 * nb_noeuds(res_5_4$hrcs[[x]],
+                                                                   v4, hrc_name = FALSE)
+                                                     * nb_noeuds(hrcfiles2, v3)))))
+    # le total est toujours le même
+    alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
+  }
   
   return(list(tabs=tabs,
               hrcs5_4=hrcs5_4,

@@ -135,6 +135,13 @@ dir_name <- "output"
 hrc_dir <- dir_name
 sep_dir <- TRUE
 
+v1 <- NULL
+v2 <- NULL
+v3 <- NULL
+v4 <- NULL
+
+sep = "_"
+
 res5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
 
 # On vérifie que la variable fusionnée a moins de noeuds en moyenne que les autres variables
@@ -151,6 +158,17 @@ res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc
 
 
 #########
+rm(list = ls())
+
+library(dplyr)
+source(file = "R/passage_5_3.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+source("R/cas_gen_4_3.R",encoding = "UTF-8")
+source("R/format.R",encoding = "UTF-8")
+source("test/test_nbs_tabs.R",encoding = "UTF-8")
+
 data <- expand.grid(
   ACT = c("Ensemble","Est","Ouest","Est1","Ouest1","Est2","Ouest2"),
   SEX = c("Ensemble","Nord","Sud","Nord1","Sud1","Nord2"),
@@ -170,26 +188,23 @@ totcode <- c(SEX="Ensemble",AGE="Ensemble", GEO="Ensemble", ACT="Ensemble", ECO 
 dfs <- data
 nom_dfs <- "nom_data_frame"
 
-# obtention de V1 et v2
-var_cat <- names(totcode)
-var_sans_hier <- intersect(
-  setdiff(names(dfs), names(hrcfiles)),
-  var_cat
-)
-dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
-# res_var<-get_2_smallest(hrcfiles,totcode)
-# v1 <- names(res_var)[[1]]
-# v2 <- names(res_var)[[2]]
-
 dir_name <- "output"
 hrc_dir <- dir_name
 sep_dir <- TRUE
-v1 <- NULL
-v2 <- NULL
-v3 <- NULL
-v4 <- NULL
+v1 <- "AGE"
+v2 <- "ECO"
+v3 <- "AGE_ECO"
+v4 <- "GEO"
 
-res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+sep = "_"
+
+res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, sep_dir = sep_dir, 
+                              hrc_dir = dir_name, v1 = v1,v2 = v2,
+                              v3 = v3, v4 = v4)
+str(res5_3)
+# 14 hrc
+# 6 AGE
+# 8 ECO
 
 res5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
 

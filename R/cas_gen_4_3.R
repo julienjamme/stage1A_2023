@@ -147,6 +147,13 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir = FA
   
   # Cas 1 variable non hiérarchique
   }else if(n_vars_sans_hier == 1){
+    # Il faut que v2 soit hierarchique, v1 non hierarchique
+    # Donc on met les variables dans le bon ordre
+    if (v2 %in% var_sans_hier){
+      tmp <- v2
+      v2 <- v1
+      v1 <- tmp
+    }
     return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep = sep))
     
   # Cas 0 variable non hiérarchique
