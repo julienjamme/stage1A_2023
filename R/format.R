@@ -11,10 +11,10 @@
 #' 
 format<-function(res,nom_dfs){
   if (class(res$vars[1])=="character"){
-    format2(res,nom_dfs)
+    return(format2(res,nom_dfs))
   }
   if (class(res$vars)=="list"){
-    format3(res,nom_dfs)
+    return(format3(res,nom_dfs))
   }}
   
 format2<-function(res,nom_dfs){

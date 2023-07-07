@@ -215,7 +215,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
   return(list(tabs=tabs,
               hrcs5_4=hrcs5_4,
               hrcs4_3=hrcs4_3,
-              alt_tot5_4=alt_tot5_4,
+              alt_tot5_4=as.list(alt_tot5_4),
               alt_tot4_3=alt_tot4_3,
               vars=vars_tot)
   )
