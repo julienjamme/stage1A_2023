@@ -1,44 +1,26 @@
-# to do : mettre la fonction au propre
-# hrc_name = FALSE signifie
-# que l'on donne un fichier hrc non nommé à la fonction
-# permet d'éviter d'alourdir le code plus tard
-# pour nommé un hrc uniquement pour appliquer cette fonction
-# si hrc_name = FALSE, hrcfiles est un hrc
-nb_noeuds<-function(hrcfiles,v,hrc_name = TRUE){
-  if (v %in% names(hrcfiles)){
+# Compte le nombre de noeud dans un fichier hiérarchique
+# 2 arguments sont attendus
+# soit une liste nommée et une variable
+# soit un hrc et hrc_name = FALSE
+nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
+  # Vérifie si la variable à un fichier hrc associé ou si hrc_names == FALSE
+  if (hrc_name && !(v %in% names(hrcfiles)) || (!hrc_name && is.null(hrcfiles))) {
+    # Variable non-hierarchique ou hrcfiles == NULL
+    return(1)
+  }
   
-    hrc <- hrcfiles[[v]]
-    # la valeur du total n'est pas importante
-    # pour compter le nombre de noeuds
-    total <- "Ceci_Est_Mon_Total"
-    
-    res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
-      sdcHierarchies::hier_convert(as = "sdc")
-    
-    codes_split <- lapply(
-      res_sdc$dims,
-      names
-    )
-    return(length(codes_split))
-  }
-  if(!hrc_name){
-    # On donne un fichier hrc seulement sans nom
-    hrc <- hrcfiles
-    # la valeur du total n'est pas importante
-    # pour compter le nombre de noeuds
-    total <- "Ceci_Est_Mon_Total"
-    
-    res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
-      sdcHierarchies::hier_convert(as = "sdc")
-    
-    codes_split <- lapply(
-      res_sdc$dims,
-      names
-    )
-    return(length(codes_split))
-  }
-  # Variable non hierarchique
-  return(1)
+  # Prends le fichier spécifie si hrc_name = TRUE, sinon prend le hrc renseigné directement
+  hrc <- ifelse(hrc_name, hrcfiles[[v]], hrcfiles)
+  
+  # Valeur non importante pour la suite
+  total <- "Ceci_Est_Mon_Total"
+  
+  # Convertir en hierarchie
+  res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>%
+    sdcHierarchies::hier_convert(as = "sdc")
+  
+  # Renvoie le nombre de noeuds
+  return(length(res_sdc$dims))
 }
 
 #' Fonction passant de 5 à 3 variables catégorielles
@@ -115,7 +97,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
   # Nombre de noeud moyen de la nouvelle variable puisque
   # elle a un fichier hrc différent par tableau !
   nb_noeuds_new_var <- lapply(names(res_5_4$hrcs),
-                  function(x) nb_noeuds(res_5_4$hrcs, x))
+                              function(x) nb_noeuds(res_5_4$hrcs, x))
   nb_noeuds_moyen_new_var <- sum(unlist(nb_noeuds_new_var)) / length(res_5_4$hrcs)
   
   # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
@@ -141,7 +123,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
       if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen){
         v3 <- new_var
       }
-    # Si v4 = NULL pas besoin de comparer v4 != new_var
+      # Si v4 = NULL pas besoin de comparer v4 != new_var
     } else if (nb_noeuds_v3 > nb_noeuds_moyen_new_var){
       v3 <- new_var
     }
@@ -165,7 +147,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
     nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v4)
-
+    
     # Rq : v3 ne peut pas être NULL
     if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen_new_var){
       v4 <- new_var
@@ -206,18 +188,18 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     # de tableaux à 3 dimensions
     nb_rep <- length(tabs) / length(res_5_4$tabs)
     hrcs5_4 <- as.list(unlist(lapply(res_5_4$hrcs,
-                          function(x) rep(x,nb_rep))))
+                                     function(x) rep(x,nb_rep))))
     
     # le total est toujours le même
     alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
-  
+    
     # Si l'on fusionne 3 variables en une, le nombre de tableaux
     # créé par chaque table
   } else if (v3 == new_var){
     hrcs5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
                                      function(x) rep(res_5_4$hrcs[[x]],
                                                      2 * nb_noeuds(res_5_4$hrcs[[x]],
-                                                                   v3, hrc_name = FALSE)
+                                                                   hrc_name = FALSE)
                                                      * nb_noeuds(hrcfiles2, v4)))))
     # le total est toujours le même
     alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
@@ -225,7 +207,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     hrcs5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
                                      function(x) rep(res_5_4$hrcs[[x]],
                                                      2 * nb_noeuds(res_5_4$hrcs[[x]],
-                                                                   v4, hrc_name = FALSE)
+                                                                   hrc_name = FALSE)
                                                      * nb_noeuds(hrcfiles2, v3)))))
     # le total est toujours le même
     alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
@@ -237,5 +219,5 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
               alt_tot5_4=alt_tot5_4,
               alt_tot4_3=alt_tot4_3,
               vars=vars_tot)
-        )
+  )
 }
