@@ -171,7 +171,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     
     passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE,
                         hrc_dir = dir_name,v1 = v3, v2 = v4, 
-                        sep=sep, select_hier = select_hier)
+                        sep=sep)
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var
