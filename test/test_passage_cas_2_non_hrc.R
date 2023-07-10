@@ -5,10 +5,8 @@ rm(list = ls())
 library(dplyr)
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/format.R")
-###############################
-##########DONNEES##############
-###############################
-
+source("R/passage_5_3.R",encoding = "UTF-8")
+# Donnée 1 : première table ----------------------------------------------------------------
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   GEO = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -37,9 +35,7 @@ hrcfiles <- hrc_files
 
 dir_name <- "output"
 
-###################
-######TEST#########
-
+# Test 1 ------------------------------------------------------------------
 
 res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
 
@@ -51,11 +47,12 @@ res <- passage_4_3_cas_2_non_hr(data,nom_dfs,v1,v2, tot_code,dir_name)
 
 str(res)
 
-#On a le bon nombre de tableau
-length(res$tabs)
+#On doit avoir 2 tableaux
+length(res$tabs) == 2
+length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v=v1) * nb_noeuds(hrcfiles = hrcfiles, v=v2)
 
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
-dirname(res$hrcs$nom_data_frame_SEX)
+dirname(res$hrcs$nom_data_frame_SEX) == dir_name
 
 #Les tables ont bien les bonnes modalités et les noms liant tableaux et hrcs sont les bons
 vecteur <- c("Total_Total", "A_Total", "B_Total", "C_Total", "D_Total", "E_Total",
@@ -67,12 +64,12 @@ vecteur <- c("Total_Total", "A_Total", "B_Total", "C_Total", "D_Total", "E_Total
              "A_Z", "B_Z", "C_Z", "D_Z", "E_Z")
 
 identical(sort(unique(res$tabs$nom_data_frame_SEX$SEX_AGE)),sort(vecteur))
+
 read.table(res$hrcs$nom_data_frame_SEX)
 
 
-#####################################
-#DEUXIEME DATA ######################
-#####################################
+# Donnée 2 : seconde table ----------------------------------------------------------------
+
 
 load("data/ca_pizzas_4vars.RData")
 hrc_activity <- rtauargus::write_hrc2(
@@ -89,16 +86,18 @@ hrcfiles1<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
 totcode1<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
 nom_dfs1<-"pizza"
 
-####################
-#####TEST###########
-####################
+dir_name <- "output"
+
+# test 2 ------------------------------------------------------------------
+
 
 res2<-passage_4_3_cas_2_non_hr(ca_pizzas_4vars,nom_dfs1,v1 = "treff",v2="cj",totcode1,dir_name)
 
 str(res2)
 
 #On a le bon nombre de tableau
-length(res2$tabs)
+length(res2$tabs) == 2
+length(res2$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles1, v=v1) * nb_noeuds(hrcfiles = hrcfiles1, v=v2)
 
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
 dirname(res2$hrcs$pizza_treff)
@@ -108,9 +107,43 @@ vecteur2 <- c("Total_Total", "tr1_Total", "tr2_Total", "tr3_Total", "tr1_PA",
 
 
 identical(sort(unique(res2$tabs$pizza_treff$treff_cj)),sort(vecteur2))
+
 read.table(res2$hrcs$pizza_treff)
 
 
 
+res2$vars[[1]] == 'treff' 
+res2$vars[[2]] == 'cj'
+
+# Donnée 3 ----------------------------------------------------------------
 
 
+load("data/ca_pizzas_4vars.RData")
+hrc_activity <- rtauargus::write_hrc2(
+  corr_act, 
+  "hrc/activity_2_niv.hrc", 
+  adjust_unique_roots = TRUE
+)
+hrc_nuts <- rtauargus::write_hrc2(
+  corr_nuts,
+  "hrc/nuts23.hrc", 
+  adjust_unique_roots = TRUE
+)
+hrcfiles1<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+totcode1<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
+nom_dfs1<-"pizza"
+
+dir_name <- "output"
+
+# test 3 : séparateur ------------------------------------------------------------------
+
+
+
+res3<-passage_4_3_cas_2_non_hr(ca_pizzas_4vars,nom_dfs1,v1 = "treff",v2="cj",
+                               totcode1,dir_name, sep = "+++")
+
+# Les 5 premières lignes ont bien le séparateur
+all(unlist(lapply(1:5, function(i) str_detect(res3$tabs$pizza_treff$`treff+++cj`[i], "\\+++"))))
+
+# il y a bien une colone avec le séparateur
+any(str_detect(names(res3$tabs$pizza_treff), "\\+++"))
