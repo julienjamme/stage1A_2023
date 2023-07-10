@@ -185,12 +185,15 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
   if (!(new_var %in% c(v3,v4))){
     # On répète autant de fois  res5_4[i] que le tableau va créer 
     # de tableaux à 3 dimensions
+    
+    # Chaque tableau à 4 dimensions va créer le même nombre de tableau à 3 dimensions
+    # car les variables selectionnées ont les mêmes modalités dans chacun d'eux
     nb_rep <- length(tabs) / length(res_5_4$tabs)
     hrcs5_4 <- as.list(unlist(lapply(res_5_4$hrcs,
                                      function(x) rep(x,nb_rep))))
     
-    # le total est toujours le même
-    alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
+    alt_tot5_4 <- as.list(unlist(lapply(res_5_4$alt_tot,
+                                        function(x) rep(x,nb_rep))))
     
     # Si l'on fusionne 3 variables en une, le nombre de tableaux
     # créé par chaque table
@@ -200,22 +203,30 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
                                                      2 * nb_noeuds(res_5_4$hrcs[[x]],
                                                                    hrc_name = FALSE)
                                                      * nb_noeuds(hrcfiles2, v4)))))
-    # le total est toujours le même
-    alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
+    
+    alt_tot5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
+                                        function(x) rep(res_5_4$alt_tot[[x]],
+                                                        2 * nb_noeuds(res_5_4$hrcs[[x]],
+                                                                      hrc_name = FALSE)
+                                                        * nb_noeuds(hrcfiles2, v4)))))
   } else {
     hrcs5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
                                      function(x) rep(res_5_4$hrcs[[x]],
                                                      2 * nb_noeuds(res_5_4$hrcs[[x]],
                                                                    hrc_name = FALSE)
                                                      * nb_noeuds(hrcfiles2, v3)))))
-    # le total est toujours le même
-    alt_tot5_4 <- rep(res_5_4$alt_tot[[1]],length(tabs))
+    
+    alt_tot5_4 <- as.list(unlist(lapply(1:length(res_5_4$hrcs),
+                                        function(x) rep(res_5_4$alt_tot[[x]],
+                                                        2 * nb_noeuds(res_5_4$hrcs[[x]],
+                                                                      hrc_name = FALSE)
+                                                        * nb_noeuds(hrcfiles2, v3)))))
   }
   
   return(list(tabs=tabs,
               hrcs5_4=hrcs5_4,
               hrcs4_3=hrcs4_3,
-              alt_tot5_4=as.list(alt_tot5_4),
+              alt_tot5_4=alt_tot5_4,
               alt_tot4_3=alt_tot4_3,
               vars=vars_tot)
   )
