@@ -208,13 +208,13 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     # Si l'on fusionne 3 variables en une, le nombre de tableaux
     # créé par chaque table change !
   } else {
-    # Stocke le nom de la variable new_var dans un nouvel objet
-    fuse_var <- ifelse(v3 == new_var, v4, v3)
+    # Stocke le nom de la variable qui n'est pas new_var dans un nouvel objet
+    non_fused_var <- ifelse(v3 == new_var, v4, v3)
     
     # Calcule la valeur de nb_noeuds une fois pour chaque res_5_4$hrcs[[x]]
     # pour éviter de calculer deux fois la même quantité
     results <- lapply(1:length(res_5_4$hrcs), function(x) {
-      nb_noeuds_val <- 2 * nb_noeuds(res_5_4$hrcs[[x]], hrc_name = FALSE) * nb_noeuds(hrcfiles2, fuse_var)
+      nb_noeuds_val <- 2 * nb_noeuds(res_5_4$hrcs[[x]], hrc_name = FALSE) * nb_noeuds(hrcfiles2, non_fused_var)
       
       # Utilisez la valeur calculée pour hrcs5_4 et alt_tot5_4
       list(
