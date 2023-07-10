@@ -103,14 +103,16 @@ length(res1$tabs)
 all(names(res1$tabs)==names(res1$hrcs))
 all(names(res$tabs) == names(res$alt_tot))
 
-lapply(res1$hrcs,function(tab){
-  t<-names(res1$hrcs$tab) == "SEX_ACT"
-  return (t)})
 
-lapply(res1$alt_tot,function(tab){
-  t<-names(res1$alt_tot$tab) == "SEX_ACT"
-  return (t)})
+lapply(res1$hrcs, function(tab) {
+  t <- "SEX_ACT" %in% names(tab)
+  return(t)
+})
 
+lapply(res1$alt_tot, function(tab) {
+  t <- "SEX_ACT" %in% names(tab)
+  return(t)
+})
 #On vérifie que les sous_totaux sont les bons
 res_sdc <- sdcHierarchies::hier_import(inp = hrcfiles[["ACT"]], from = "hrc", root = "Total") %>% 
   sdcHierarchies::hier_convert(as = "sdc")
@@ -143,7 +145,7 @@ verif<-sum(unlist(lapply(a2,function(col) sum(is.na(col))))) == 0
 #On veut avoir TRUE 
 (verif)
 # Les deux tables sont-elles bien les tables attendues ?
-l<-list()
+
 
 s <- 0
 # Tests de composition: ok pour les cellules
@@ -171,7 +173,7 @@ for ( t in names(res1$tabs)){
 #On s'attend à avoir une liste de 8 éléments (length(res1$tabs)) contenant que des TRUE
 
 # Les tables sont-elles les tables attendues
-
+#Tous les éléments des hiérarchies sont ils présents dans la table associés
 for (t in names(res1$tabs)) {
     
   hrc1<-read.table(res1$hrcs[[t]]$SEX_ACT) %>% 
