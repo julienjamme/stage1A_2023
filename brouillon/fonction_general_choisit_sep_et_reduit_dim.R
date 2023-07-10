@@ -9,7 +9,20 @@
 #' par défault à FALSE
 #' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
 #' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
+#' @param v1 permet de forcer la valeur de la première variable à fusionner 
+#' lors du passage de la première réduction de dimension, non spéficié par défault (NULL) 
+#' @param v2 permet de forcer la valeur de la seconde variable à fusionner 
+#' lors du passage de la première réduction de dimension, non spéficié par défault (NULL) 
+#' @param v3 permet de forcer la valeur de la première variable à fusionner 
+#' lors du passage de la seconde réduction de dimension, non spéficié par défault (NULL) 
+#' @param v4 permet de forcer la valeur de la seconde variable à fusionner 
+#' lors du passage de la seconde réduction de dimension, non spéficié par défault (NULL) 
 #' @param liste_sep liste des séparateurs candidats à utiliser
+#' @param select_hier précise si l'on préfère selectionner les variables hiérarchiques avec
+#' le plus de noeuds en priorité (hier=TRUE) ce qui génère plus de tableaux
+#' mais de taille moins importante
+#' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
+#' pour créer le moins de tableau
 #'
 #' @return liste(tabs, hrcs, alt_tot, vars)
 #' tab : liste nommée des dataframes à 3 dimensions
@@ -25,8 +38,10 @@
 #' @examples
 gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir=FALSE,
                         hrc_dir="hrc_alt",
+                        v1=NULL,v2=NULL,v3=NULL,v4=NULL,
                         liste_sep = c("\\+", "\\!", "\\?","\\:",
-                                      "\\;","\\~","\\&","\\#")){
+                                      "\\;","\\~","\\&","\\#"),
+                        select_hier = FALSE){
   
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
   
@@ -39,7 +54,9 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir=FALSE,
                              hrcfiles=hrcfiles,
                              sep_dir=sep_dir, 
                              hrc_dir=hrc_dir,
-                             sep=sep)
+                             v1=v1,v2=v2,v3=v3,v4=v4,
+                             sep=sep,
+                             select_hier=select_hier)
     
     return(format(res,nom_dfs))
   }
@@ -50,7 +67,9 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir=FALSE,
                              hrcfiles=hrcfiles,
                              sep_dir=sep_dir, 
                              hrc_dir=hrc_dir,
-                             sep=sep)
+                             v1=v1,v2=v2,
+                             sep=sep,
+                             select_hier=select_hier)
     
     return(format(res,nom_dfs))
   }
