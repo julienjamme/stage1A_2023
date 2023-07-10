@@ -40,13 +40,14 @@ format2<-function(res,nom_dfs){
 
 format3<-function(res,nom_dfs){
   if (class(res$vars)=="list"){
+    #On récupère les différentes variables
     v1<-res$vars[[2]][1]
     v2<-res$vars[[2]][2]
     v3<-res$vars[[1]][1]
     v4<-res$vars[[1]][2]
     var_cross<-paste(v1,v2,sep="_")
-    
     var_cross2<-paste(v3,v4,sep="_")
+    
     for (i in seq_along(res$tabs)) {
       names(res$tabs)[[i]] <- paste(nom_dfs, as.character(i), sep = "")
     }
@@ -64,7 +65,7 @@ format3<-function(res,nom_dfs){
     }), paste(nom_dfs, seq_along(res$tabs), sep = ""))
     
   }
-  return (list(tabs=res$tabs,hrcs=res2,alt_tot=res3,vars=res$vars,))
+  return (list(tabs=res$tabs,hrcs=res2,alt_tot=res3,vars=res$vars))
 }
 
 tabs_5_4_to_3<-function(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"){
