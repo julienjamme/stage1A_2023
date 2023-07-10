@@ -53,6 +53,13 @@ v4 = NULL
 sep = "_"
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+
+# Vérification priorité var hierarchique
+res2 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, select_hier = TRUE)
+# C'est bon
+# On a bien AGE et ACT selectionné pour 4 à 3. On remarque que v4 = ACT (et non v3)
+# car pour que cas_1_nno_hrc fonctionne, il faut que v2 soit hrc, et v1 non hrc !
+
 str(res$hrcs5_4)
 str(res$hrcs4_3)
 str(res$alt_tot5_4)
@@ -381,5 +388,5 @@ v4 = "SEX"
 sep = "_"
 
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name,
-                           v1 = "AGE", v2 = "GEO",v3 = "ACT",v4 = "SEX")
+                           v1 = v1, v2 = v2,v3 = v3,v4 = v4)
 str(res)
