@@ -128,6 +128,7 @@ for ( t in names(res1$tabs)){
 #On s'attend à avoir une liste de 8 éléments (length(res1$tabs)) contenant que des TRUE
 
 # Les tables sont-elles les tables attendues
+#Tous les éléments des hiérarchies sont ils présents dans la table associés
 
 for (t in names(res1$tabs)) {
   

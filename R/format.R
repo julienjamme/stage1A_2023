@@ -34,7 +34,7 @@ format2<-function(res,nom_dfs){
     setNames(list(res$alt_tot[[i]]), var_cross )}),
     paste(nom_dfs, seq_along(res$tabs),sep = ""))
 }
-  return (list(tabs=res$tabs,hrcs=res2,vars=res$vars,alt_tot=res3))
+  return (list(tabs=res$tabs,hrcs=res2,alt_tot=res3,vars=res$vars))
   
 }
 
@@ -64,7 +64,7 @@ format3<-function(res,nom_dfs){
     }), paste(nom_dfs, seq_along(res$tabs), sep = ""))
     
   }
-  return (list(tabs=res$tabs,hrcs=res2,vars=res$vars,alt_tot=res3))
+  return (list(tabs=res$tabs,hrcs=res2,alt_tot=res3,vars=res$vars,))
 }
 
 tabs_5_4_to_3<-function(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"){

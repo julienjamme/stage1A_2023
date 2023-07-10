@@ -65,17 +65,15 @@ str(res$hrcs4_3)
 str(res$alt_tot5_4)
 str(res$alt_tot4_3)
 
-#On vérifie les noms des différents fichiers
-all(names(res$tabs)==names(res$hrcs))
-all(names(res$tabs) == names(res$alt_tot))
 
 # test séparateur
 res_plusplus_ <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, sep = "++")
 
 (names(res_plusplus_$tabs$nom_data_frame_AGE_Total_Pays_ACT))
+str(format(res_plusplus_,nom_dfs))
 # Test pour fusionner trois variables ensemble :) (mauvaise idée, trop de noeuds !)
 res_SEX_AGE_ECO <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name, v3 = "SEX",v4 = "AGE_ECO")
-(names(res_SEX_AGE_ECO$tabs$nom_data_frame_AGE_Total_Ensemble_Ensemble_SEX))
+(names(res_SEX_AGE_ECO$tabs$nom_data_frame_AGE_Total_Ensemble_PIB_SEX))
 
 # test des erreurs
 res_ACT_ACT <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
@@ -102,9 +100,140 @@ str(res)
 # 2 * 3 * 2 * 2 = 24, le compte est bon
 length(res$tabs)
  
+#On vérifie les noms des différents fichiers
+res<-format(res,nom_dfs)
+#On vérifie les noms des différents fichiers
+all(names(res$tabs)==names(res$hrcs))
+all(names(res$tabs) == names(res$alt_tot))
+
+lapply(res$hrcs, function(tab) {
+  t <- "AGE_ECO" %in% names(tab)
+  return(t)
+})
+
+lapply(res$hrcs, function(tab) {
+  t <- "ACT_GEO" %in% names(tab)
+  return(t)
+})
+
+lapply(res$alt_tot, function(tab) {
+  t <- "AGE_ECO" %in% names(tab)
+  return(t)
+})
+
+lapply(res$alt_tot, function(tab) {
+  t <- "ACT_GEO" %in% names(tab)
+  return(t)
+})
+
+#On vérifie que les sous_totaux sont les bons
+res_sdc <- sdcHierarchies::hier_import(inp = hrcfiles[["ACT"]], from = "hrc", root = "KEBAB") %>% 
+  sdcHierarchies::hier_convert(as = "sdc")
+
+res_sdc2 <- sdcHierarchies::hier_import(inp = hrcfiles[["GEO"]], from = "hrc", root = "Pays") %>% 
+  sdcHierarchies::hier_convert(as = "sdc")
+
+codes_split <- lapply(
+  res_sdc$dims,
+  names
+)
+
+codes_split2 <- lapply(
+  res_sdc2$dims,
+  names
+)
+
+l<-c()
+
+
+for (j in (1:length(codes_split))){
+  for (i in (1:length(codes_split2))){
+    l<-c(l,paste(codes_split[[j]][1],codes_split2[[i]][1],sep="_"))
+    l<-c(l,paste(codes_split[[j]][1],codes_split2[[i]][1],sep="_"))
+  }}
+#Les différents totaux
+(l)
+
+l<-rep(l,2)
+#on a les bons all_tot si t=True
+for (i in (1:length(res$alt_tot))){
+  t<-unname(res$alt_tot[[i]][1])==l[i]
+  if (t==FALSE){return(t)}}
+(t)
+
+#LEs sous_totaux de la variable AGE_ECO
+for (i in (1:length(res$alt_tot))){
+  t<-unname(res$alt_tot[[i]][2])=="Ensemble_PIB"
+  if (t==FALSE){return(t)}}
+(t)
+
+
+
+
+#On vérifie si on a toutes les lignes dans le tableaux
+
+liste_tab<-lapply(res$tabs,function(tab){
+  tab<-separate(tab, ACT_GEO, into = c("ACT", "GEO"), sep = "_")
+  tab<-separate(tab, AGE_ECO, into = c("AGE", "ECO"), sep = "_")
+  return (tab)})
+
+tab <- unique(bind_rows(liste_tab)) %>%
+  arrange(ECO, AGE, SEX, ACT, GEO, VALUE)
+
+
+data_range<- data  %>% arrange(ECO,AGE,SEX,ACT,GEO )
+
+a2 <- full_join(tab,data_range, by = c("ECO", "AGE","SEX","ACT","GEO","VALUE"))
+
+verif<-unlist(lapply(a2,function(col) sum(is.na(col))))
+
+(verif)
+# Les deux tables sont-elles bien les tables attendues ?
+
+s <- 0
+# Tests de composition: ok pour les cellules
+# La correspondance entre hrc et tableaux
+
+l<-list()
+
+for (t in names(res$tabs)){
+  
+  p1<-res$tabs[[t]] %>% 
+    filter(AGE_ECO != res$alt_tot[[t]]$AGE_ECO) %>% 
+    pull(AGE_ECO) %>% 
+    unique() %>% 
+    sort() %>% 
+    `==`(
+      read.table(res$hrcs[[t]]$AGE_ECO) %>% 
+        mutate(V1 = gsub("@","",V1)) %>% 
+        pull(V1) %>% 
+        sort()
+    ) %>% 
+    all()
+  p2<-res$tabs[[t]] %>% 
+    filter(ACT_GEO != res$alt_tot[[t]]$ACT_GEO) %>% 
+    pull(ACT_GEO) %>% 
+    unique() %>% 
+    sort() %>% 
+    `==`(
+      read.table(res$hrcs[[t]]$ACT_GEO) %>% 
+        mutate(V1 = gsub("@","",V1)) %>% 
+        pull(V1) %>% 
+        sort()
+    ) %>% 
+    all()
+  l<-append(l,p1)
+  l<-append(l,p2)
+}
+(l) 
+#On s'attend à avoir une liste de 48 éléments 2*(length(res$tabs)) contenant que des TRUE
+l<-list()
+# Les tables sont-elles les tables attendues
+
 ###############
 
 # Test pour savoir si on peut fusionner 3 variables ensembles :)
+#TEST AVEC 3 HRC
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -165,16 +294,7 @@ res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc
 
 
 #########
-rm(list = ls())
-
-library(dplyr)
-source(file = "R/passage_5_3.R",encoding = "UTF-8")
-source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
-source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-source("R/cas_gen_4_3.R",encoding = "UTF-8")
-source("R/format.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R",encoding = "UTF-8")
+#TEST AVEC 0 HRC
 
 data <- expand.grid(
   ACT = c("Ensemble","Est","Ouest","Est1","Ouest1","Est2","Ouest2"),
