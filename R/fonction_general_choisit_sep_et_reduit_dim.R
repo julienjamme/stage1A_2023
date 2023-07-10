@@ -36,12 +36,12 @@
 #' @export
 #'
 #' @examples
-gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir=FALSE,
-                        hrc_dir="hrc_alt",
-                        v1=NULL,v2=NULL,v3=NULL,v4=NULL,
-                        liste_sep = c("\\+", "\\!", "\\?","\\:",
+gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
+                            sep_dir=FALSE,hrc_dir="hrc_alt",
+                            v1=NULL,v2=NULL,v3=NULL,v4=NULL,
+                            liste_sep = c("\\+", "\\!", "\\?","\\:",
                                       "\\;","\\~","\\&","\\#"),
-                        select_hier = FALSE){
+                            select_hier = FALSE){
   
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
   
