@@ -81,15 +81,15 @@ choisir_var_priorite_hierarchique <- function(dfs, totcode, hrcfiles) {
   
   # Si aucune variable hiérarchique, choisir variable non hiérarchique avec le plus de modalités
   if (length(hrcfiles) == 0) {
-    return(plus_grand_mod(names(totcode)))
+    return(plus_grand_mod(dfs[names(dfs) %in% names(totcode)]))
   # Sinon, choisir la variable hiérarchique avec le plus de sous-totaux
   } else {
     return(plus_grand_hrc(hrcfiles, totcode))
   }
 }
 
-choisir_var <- function(dfs, totcode, hrcfiles, hier = FALSE) {
-  if(hier){
+choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
+  if(select_hier){
     return(choisir_var_priorite_hierarchique(dfs, totcode, hrcfiles))
   } else {
     return(choisir_var_priorite_non_hierarchique(dfs, totcode, hrcfiles))
@@ -111,7 +111,12 @@ choisir_var <- function(dfs, totcode, hrcfiles, hier = FALSE) {
 #' @param v2 permet de forcer la valeur de la seconde variable à fusionner
 #' non spéficié par défault (NULL)
 #' @param sep séparateur utilisé lors de la concaténation des variables
-#' 
+#' @param select_hier précise si l'on préfère selectionner les variables hiérarchiques avec
+#' le plus de noeuds en priorité (hier=TRUE) ce qui génère plus de tableaux
+#' mais de taille moins importante
+#' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
+#' pour créer le moins de tableau
+#'
 #' @return liste(tabs, hrcs, alt_tot, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
 #' doté de hiérarchies emboitées
@@ -122,8 +127,10 @@ choisir_var <- function(dfs, totcode, hrcfiles, hier = FALSE) {
 #' @export
 #'
 #' @examples
-passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir = FALSE,
-                                hrc_dir = "hrc_alt",v1 = NULL,v2 = NULL, sep = "_"){
+passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,
+                                sep_dir = FALSE, hrc_dir = "hrc_alt",
+                                v1 = NULL,v2 = NULL, 
+                                sep = "_", select_hier = FALSE){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -154,7 +161,8 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir = FA
     # on choisit une variable en évitant v2
     v1 <- choisir_var(dfs = dfs[setdiff(names(dfs),v2)],
                       totcode = totcode[setdiff(names(totcode),v2)],
-                      hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)])
+                      hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)],
+                      select_hier = select_hier)
   }
   
   if (v1 %in% var_sans_hier){
@@ -176,7 +184,8 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,sep_dir = FA
     # on choisit une variable en évitant v1
     v2 <- choisir_var(dfs = dfs[setdiff(names(dfs),v1)],
                       totcode = totcode[setdiff(names(totcode),v1)],
-                      hrcfiles = hrcfiles[setdiff(names(hrcfiles),v1)])
+                      hrcfiles = hrcfiles[!(names(hrcfiles) == v1)],
+                      select_hier = select_hier)
   }
   
   if (v2 %in% var_sans_hier){

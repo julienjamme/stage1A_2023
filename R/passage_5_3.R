@@ -42,6 +42,11 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 #' @param v4 permet de forcer la valeur de la seconde variable à fusionner 
 #' lors du passage de 4 à 3 dimensions, non spéficié par défault (NULL)
 #' @param sep séparateur utilisé lors de la concaténation des variables
+#' @param select_hier précise si l'on préfère selectionner les variables hiérarchiques avec
+#' le plus de noeuds en priorité (hier=TRUE) ce qui génère plus de tableaux
+#' mais de taille moins importante
+#' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
+#' pour créer le moins de tableau
 #' 
 #' @return liste(tabs, hrcs5_4,hrcs4_3, alt_tot5_4,alt_tot4_3, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
@@ -58,8 +63,10 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 #'
 #' @examples
 #' 
-passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir = FALSE, hrc_dir = "hrc_alt",
-                                v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL, sep = "_"){
+passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, 
+                                sep_dir = FALSE, hrc_dir = "hrc_alt",
+                                v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL, 
+                                sep = "_", select_hier = FALSE){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -70,7 +77,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
   
   # On enlève une dimension à notre dataframe de départ
   res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name,
-                                 v1 = v1, v2 = v2, sep = sep)
+                                 v1 = v1, v2 = v2, sep = sep, select_hier = select_hier)
   
   # Récupération des variables fusionnées
   v1f <- res_5_4$vars[[1]]
@@ -114,7 +121,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     # on choisit une variable en évitant v4
     v3 <- choisir_var(dfs = dfs[setdiff(names(dfs),v4)],
                       totcode = totcode2[setdiff(names(totcode2),v4)],
-                      hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)])
+                      hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)],
+                      select_hier = select_hier)
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
     nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v=v3)
@@ -143,7 +151,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     # on choisit une variable en évitant v3
     v4 <- choisir_var(dfs = dfs[setdiff(names(dfs),v3)],
                       totcode = totcode2[setdiff(names(totcode2),v3)],
-                      hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)])
+                      hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)],
+                      select_hier = select_hier)
     
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
     nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v=v4)
@@ -161,7 +170,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, sep_dir =
     names(hrcfiles2b)[length(hrcfiles2b)] <- new_var
     
     passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE,
-                        hrc_dir = dir_name,v1 = v3, v2 = v4, sep=sep)
+                        hrc_dir = dir_name,v1 = v3, v2 = v4, 
+                        sep=sep, select_hier = select_hier)
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var
