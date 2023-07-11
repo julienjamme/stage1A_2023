@@ -1,80 +1,152 @@
 #' Title
 #'
-#' @param res 
+#' @param res resultat de la fusion de variable composéee d'une liste de liste de tableaux,
+#' une liste de fichiers hiérarchique, une liste de sous_totaux associées à ses fichiers,
+#' et une liste de vectuer de variables ou un vectuer de variables selon la taille de base
+#' du dataframes
+#' @param nom_dfs le nom du dataframes entré
 #'
-#' @return
-#' @export
+#' @return Une liste de liste de tableaux nommé,une liste de hrcs de mêmes noms
+#' que le tableaux associées,une liste de sous_toutaux nommé de même façon que les hrcs
+#' avec eb outre le nom de la variable associées aux sous_totaux , et la liste
+#' des variables fusionnées ou vecteur selon la taille du tableau d'entrée
+
+#' @examples library(dplyr)
 #'
-#' @examples
-#' 
-#' 
-#' 
-format<-function(res,nom_dfs){
-  if (class(res$vars[1])=="character"){
-    return(format2(res,nom_dfs))
+#' source("R/cas_gen_4_3.R",encoding = "UTF-8")
+#' source("R/format.R",encoding = "UTF-8")
+#'
+#'
+#' # Test 1 data avec aucune var hier -----------------------------
+#'
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B"),
+#'   GEO = c("Total", "G1", "G2"),
+#'   SEX = c("Total", "F", "M"),
+#'   AGE = c("Total", "AGE1", "AGE2"),
+#'   stringsAsFactors = FALSE
+#' ) %>%
+#'   as.data.frame()
+#'
+#' data <- data %>% mutate(VALUE = 1)
+#' nrow(data) #81 rows = 3^4
+#'
+#' totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
+#'
+#'
+#' res <- passer_de_4_a_3_var(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = totcode,
+#'   hrcfiles = NULL,
+#'   sep_dir = TRUE,
+#'   hrc_dir = "hrc_alt"
+#' )
+#' format(res,"nom_dfs"tab)
+#'
+
+format <- function(res, nom_dfs,sep) {
+  if (class(res$vars[1]) == "character") {
+    return(format2(res, nom_dfs,sep))
   }
-  if (class(res$vars)=="list"){
-    return(format3(res,nom_dfs))
-  }}
-  
-format2<-function(res,nom_dfs){
-  if (class(res$vars[1])=="character"){
-  v1<-res$vars[1]
-  v2<-res$vars[2]
-  var_cross<-paste(v1,v2,sep="_")
-  
-  for (i in seq_along(res$tabs)){
-    names(res$tabs)[[i]]<-paste(nom_dfs,as.character(i),sep="")}
-  
-  res2<-setNames(lapply(seq_along(res$tabs), function(i) {
-    setNames(list(res$hrcs[[i]]), var_cross)}),
-    paste(nom_dfs, seq_along(res$tabs),sep = ""))
-  
-  res3<-setNames(lapply(seq_along(res$tabs), function(i) {
-    setNames(list(res$alt_tot[[i]]), var_cross )}),
-    paste(nom_dfs, seq_along(res$tabs),sep = ""))
+  if (class(res$vars) == "list") {
+    return(format3(res, nom_dfs,sep))
+  }
 }
-  return (list(tabs=res$tabs,hrcs=res2,alt_tot=res3,vars=res$vars))
+
+#Format pour les tableaux à 4 variables
+
+format2 <- function(res, nom_dfs,sep) {
+  #Données
+  if (class(res$vars[1]) == "character") {
+    v1 <- res$vars[1]
+    v2 <- res$vars[2]
+    var_cross <- paste(v1, v2, sep = sep)
+    
+    for (i in seq_along(res$tabs)) {
+      #Noms des tableaux
+      names(res$tabs)[[i]] <- paste(nom_dfs, as.character(i), sep = "")
+    }
+    
+    #Noms des hrcs
+    res2 <- setNames(lapply(seq_along(res$tabs), function(i) {
+      setNames(list(res$hrcs[[i]]), var_cross)
+    }),
+    paste(nom_dfs, seq_along(res$tabs), sep = ""))
+    
+    #Noms des sous_totaux
+    res3 <- setNames(lapply(seq_along(res$tabs), function(i) {
+      setNames(list(res$alt_tot[[i]]), var_cross)
+    }),
+    paste(nom_dfs, seq_along(res$tabs), sep = ""))
+  }
+  return (list(
+    tabs = res$tabs,
+    hrcs = res2,
+    alt_tot = res3,
+    vars = res$vars
+  ))
   
 }
 
-format3<-function(res,nom_dfs){
-  if (class(res$vars)=="list"){
+format3 <- function(res, nom_dfs,sep) {
+  if (class(res$vars) == "list") {
     #On récupère les différentes variables
-    v1<-res$vars[[2]][1]
-    v2<-res$vars[[2]][2]
-    v3<-res$vars[[1]][1]
-    v4<-res$vars[[1]][2]
-    var_cross<-paste(v1,v2,sep="_")
-    var_cross2<-paste(v3,v4,sep="_")
+    v1 <- res$vars[[2]][1]
+    v2 <- res$vars[[2]][2]
+    v3 <- res$vars[[1]][1]
+    v4 <- res$vars[[1]][2]
+    var_cross <- paste(v1, v2, sep = sep)
+    var_cross2 <- paste(v3, v4, sep = sep)
     
     for (i in seq_along(res$tabs)) {
-      names(res$tabs)[[i]] <- paste(nom_dfs, as.character(i), sep = "")
+      #Noms des tableaux
+      names(res$tabs)[[i]] <-
+        paste(nom_dfs, as.character(i), sep = "")
     }
+    
+    #Noms des hrcs
     
     res2 <- setNames(lapply(seq_along(res$tabs), function(i) {
       list1 <- setNames(list(res$hrcs4_3[[i]]), var_cross)
       list2 <- setNames(list(res$hrcs5_4[[i]]), var_cross2)
       c(list1, list2)
-    }), paste(nom_dfs, seq_along(res$tabs), sep = ""))
+    }),
+    paste(nom_dfs, seq_along(res$tabs), sep = ""))
+    #Noms des sous_totaux
     
     res3 <- setNames(lapply(seq_along(res$tabs), function(i) {
       list1 <- setNames(list(res$alt_tot4_3[[i]]), var_cross)
       list2 <- setNames(list(res$alt_tot5_4[[i]]), var_cross2)
       c(list1, list2)
-    }), paste(nom_dfs, seq_along(res$tabs), sep = ""))
+    }),
+    paste(nom_dfs, seq_along(res$tabs), sep = ""))
     
   }
-  return (list(tabs=res$tabs,hrcs=res2,alt_tot=res3,vars=res$vars))
+  return (list(
+    tabs = res$tabs,
+    hrcs = res2,
+    alt_tot = res3,
+    vars = res$vars
+  ))
 }
 
-tabs_5_4_to_3<-function(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"){
-  if (length(totcode)==5){
-     res<-passer_de_5_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir , hrc_dir )
-    return(format(res,nom_dfs))
+tabs_5_4_to_3 <-
+  function(dfs,
+           nom_dfs,
+           totcode ,
+           hrcfiles ,
+           sep_dir = FALSE,
+           hrc_dir = "hrc_alt",
+           sep) {
+    if (length(totcode) == 5) {
+      res <-
+        passer_de_5_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
+      return(format(res, nom_dfs,sep))
+    }
+    if (length(totcode) == 4) {
+      res <-
+        passer_de_4_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
+      return(format(res, nom_dfs,sep))
+    }
   }
-  if (length(totcode)==4){
-    res<-passer_de_4_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir , hrc_dir)
-    return(format(res,nom_dfs))
-  }
-}

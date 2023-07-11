@@ -53,7 +53,17 @@ corr_pays<-data.frame(
   )
 )
 
-
+vecteur <- c("FR10", "FR61", "FR21", "FR41", "FRA3", "FR53", "FR71", "FR42", "FR81", "FR82", "FR51", "FR52", "FR24", "FR63", "FR43", "FR62", "FR72", "FR26", "FR30", "FR25", "FR22", "FRA1", "FR83", "FRA2", "FR23", "FRA4", "FRA5")
+vecteur<-sort(vecteur)
+corr_nuts<-data.frame(
+  nuts1=  vecteur_raccourci <- substr(vecteur, 1, 3),
+  nuts2= vecteur
+)
+hrc_nuts <- rtauargus::write_hrc2(
+  corr_nuts,
+  "hrc/nuts_test.hrc", 
+  adjust_unique_roots = TRUE
+)
 hrc_pays <- rtauargus::write_hrc2(
   corr_pays,
   "hrc/pays_test.hrc", 
@@ -65,8 +75,8 @@ nom_dfs <- "table_test_3_hrc"
 sep_dir<-FALSE
 
 hrc__files<-c(NUTS=hrc_nuts,PAYS=hrc_pays)
+totcode<-c(cj="Total",NUTS="Total", treff="Total",PAYS="Total")
 
-list_res2<-tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrc__files ,sep_dir)
 
 
 source("R/fonction_general_choisit_sep_et_reduit_dim.R")
@@ -75,6 +85,12 @@ source("test/test_nbs_tabs.R")
 
 gen<-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode,hrc__files,sep_dir = TRUE,
                        hrc_dir = "output",select_hier = TRUE)
+v1<-"NUTS"
+v2<-"PAYS"
+dir_name<-"output"
+
+test1<-passage_4_3_cas_0_non_hr(dfs,nom_dfs,v1,v2,totcode,hrc__files,dir_name,sep ="+++")
+gen2<-format(test1,"test_tab",sep="+++")
 
 list_res2<-gen
 list_tab2<-list_res2$tabs
@@ -118,18 +134,17 @@ liste_tabs_exemple <- purrr::map(
 #   
 # )
 
-list_tab2<-list_res2$tabs
 
 freq<-"nb_obs"
 value<-"pizzas_tot"
 
-totcode<-c(cj="Total",`NUTS+++PAYS`="Total_Total", treff="Total")
+totcode<-c(cj="Total",`NUTS+++PAYS`="Total+++Total", treff="Total")
 
 
 #On récupère les varibales des différentes tables
 
-var_cross<-paste(list_res2$vars[1],list_res2$vars[2],sep="_")
-d<- intersect(names(list_res2$tabs$table_test_3_hrc1), names(totcode))
+var_cross<-paste(list_res2$vars[1],list_res2$vars[2],sep="+++")
+d<- intersect(names(list_res2$tabs$test_tab1), names(totcode))
 
 n<-length(list_tab2)
 list_vars<-replicate(n,d,simplify=FALSE)
@@ -141,9 +156,14 @@ masq <- tab_multi_manager(
   list_explanatory_vars = list_vars ,
   dir_name = "test_avec_rtauargus/hierarchie_3/mod",
   totcode = totcode,
-  hrc = hrc__files[!(names(hrc__files) %in% list_res2$vars)],
   alt_hrc = list_res2$hrcs,
   alt_totcode = list_res2$alt_tot,
   value = value,
   freq = freq,
   secret_var = "is_secret_prim")
+
+
+
+
+
+

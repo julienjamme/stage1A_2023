@@ -58,7 +58,7 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                              sep=sep,
                              select_hier=select_hier)
     
-    return(format(res,nom_dfs))
+    return(format(res,nom_dfs,sep))
   }
   if (length(totcode)==4){
     res<-passer_de_4_a_3_var(dfs=dfs,
@@ -71,6 +71,6 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                              sep=sep,
                              select_hier=select_hier)
     
-    return(format(res,nom_dfs))
+    return(format(res,nom_dfs,sep))
   }
 }
