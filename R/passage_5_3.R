@@ -128,7 +128,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v=v3)
     if (!is.null(v4)){
       # Nous devons faire deux if différents sinon NULL != new_var fait planter !
-      if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen){
+      if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen_new_var){
         v3 <- new_var
       }
       # Si v4 = NULL pas besoin de comparer v4 != new_var
