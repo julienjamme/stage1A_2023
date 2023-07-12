@@ -7,6 +7,7 @@ source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
+source("test/nb_tab_5_a_3.R",encoding = "UTF-8")
 
 
 # test 1 : table avec 5 var non hier : 2 couples de variables créés --------
@@ -144,7 +145,6 @@ length(res$tabs) == 2 * nb_noeuds(hrcfiles = NULL, v="ACT") *
   nb_noeuds(hrcfiles = NULL, v="SEX") * 
   (1/2 * 2 * nb_noeuds(hrcfiles = res$hrcs5_4[[1]], hrc_name = FALSE) +
    1/2 * 2 * nb_noeuds(hrcfiles = res$hrcs5_4[[7]], hrc_name = FALSE)   )
-
 # Explication de la formule :
 
 # Lors du passage 5-> 4, on créé 
@@ -167,6 +167,19 @@ length(res$tabs) == 2 * nb_noeuds(hrcfiles = NULL, v="ACT") *
 # Rq :
 # nb_noeuds(hrcfiles = res$hrcs5_4[[1]], hrc_name = FALSE) = nombre de modalité de ACt
 # nb_noeuds(hrcfiles = res$hrcs5_4[[7]], hrc_name = FALSE) = nombre de moalité de GEO
+
+
+# Avec la fonction dédiée
+n_mod_v1 = length(unique(data[["ACT"]]))
+n_mod_v2 = length(unique(data[["GEO"]]))
+
+length(res$tabs) == calculer_nb_tab(v1="ACT",
+                                    v2="GEO",
+                                    v3="SEX",
+                                    hrcfiles = NULL,
+                                    n_mod_v1=n_mod_v1,
+                                    n_mod_v2=n_mod_v2)
+
 
 # test d'incohérences 1: ok
 purrr::map(

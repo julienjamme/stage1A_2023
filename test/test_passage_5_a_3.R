@@ -498,16 +498,17 @@ tot_code <-
 dfs <- data
 nom_dfs <- "nom_data_frame"
 
+
 totcode <- tot_code
 hrcfiles <- hrc_files
 
 dir_name <- "output"
 hrc_dir <- dir_name
 sep_dir <- TRUE
-v1 = "AGE"
+v1 = "ACT"
 v2 = "GEO"
-v3 = "ACT"
-v4 = "SEX"
+v3 = NULL
+v4 = "ACT_GEO"
 sep = "_"
 
 # test 4 ------------------------------------------------------------------

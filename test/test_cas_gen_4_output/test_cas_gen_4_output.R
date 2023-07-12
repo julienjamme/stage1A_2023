@@ -32,7 +32,7 @@ res <- passer_de_4_a_3_var(
   totcode = totcode, 
   hrcfiles = NULL,
   sep_dir = TRUE,
-  hrc_dir = "hrc_alt" 
+  hrc_dir = "test/test_cas_gen_4_output/test1" 
 )
 
 #Les variables ACt et GEO ont été fusionnées
