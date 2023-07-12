@@ -110,7 +110,10 @@ format3 <- function(res, nom_dfs,sep) {
                    alt_tot = res$alt_tot4_3,
                    vars = res$vars[[2]]
                  )
-      return(format(res2, nom_dfs,sep))
+      res2 <- format(res2, nom_dfs,sep)
+      # On garde l'information des variables fusionnés à chaque étape
+      res2$vars <- res$vars
+      return(res2)
     }
     
     for (i in seq_along(res$tabs)) {

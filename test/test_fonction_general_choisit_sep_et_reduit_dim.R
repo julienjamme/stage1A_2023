@@ -238,11 +238,11 @@ purrr::map2(names(res5_3$tabs), 1:length(res5_3$tabs),
   unlist() %>% 
   all()
 
-# Le séparateur est bien +++
+# Les infos relatifs aux variables fusionnés à chaque étape sont présentes
 
+length(res5_3$vars) == 2
 
-var_fusionnes <- c(paste(res5_3$vars[[1]][1],res5_3$vars[[1]][2],sep="+++"),
-                   paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="+++"))
+var_fusionnes <- c(paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="+++"))
 
 
 # les totaux sont bien de la forme c(v1_v2 = tot_v1_v2, ...)
@@ -278,6 +278,7 @@ purrr::map(res5_3$hrcs,
   all()
 
 
+# Le séparateur est bien +++
 # Il n'y a pas de + dans les colonnes initiales 
 
 !any(sapply(names(data), function(i) return(grepl("\\+", i))))
