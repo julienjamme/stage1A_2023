@@ -24,7 +24,7 @@
 #' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
 #' pour créer le moins de tableau
 #'
-#' @return liste(tabs, hrcs, alt_tot, vars)
+#' @return liste(tabs, hrcs, alt_tot, vars, sep)
 #' tab : liste nommée des dataframes à 3 dimensions
 #' doté de hiérarchies emboitées
 #' hrcs : liste nommée des hrc spécifiques aux variables créés
@@ -33,6 +33,7 @@
 #'              lors de la fusion pour passer en dimension 3
 #' vars : liste nommée de vecteur représentant les variables fusionnées
 #'            lors des deux étapes de réduction de dimensions
+#' sep : séparateur utilisé pour lier les variables
 #' @export
 #'
 #' @examples

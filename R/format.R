@@ -84,7 +84,8 @@ format2 <- function(res, nom_dfs,sep) {
     tabs = res$tabs,
     hrcs = res2,
     alt_tot = res3,
-    vars = res$vars
+    vars = res$vars,
+    sep=sep
   ))
   
 }
@@ -108,7 +109,8 @@ format3 <- function(res, nom_dfs,sep) {
       res2 <- list(tabs = res$tabs,
                    hrcs = res$hrcs4_3,
                    alt_tot = res$alt_tot4_3,
-                   vars = res$vars[[2]]
+                   vars = res$vars[[2]],
+                   sep=sep
                  )
       res2 <- format(res2, nom_dfs,sep)
       # On garde l'information des variables fusionnés à chaque étape
@@ -144,26 +146,27 @@ format3 <- function(res, nom_dfs,sep) {
     tabs = res$tabs,
     hrcs = res2,
     alt_tot = res3,
-    vars = res$vars
+    vars = res$vars,
+    sep=sep
   ))
 }
 
-tabs_5_4_to_3 <-
-  function(dfs,
-           nom_dfs,
-           totcode ,
-           hrcfiles ,
-           sep_dir = FALSE,
-           hrc_dir = "hrc_alt",
-           sep) {
-    if (length(totcode) == 5) {
-      res <-
-        passer_de_5_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
-      return(format(res, nom_dfs,sep))
-    }
-    if (length(totcode) == 4) {
-      res <-
-        passer_de_4_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
-      return(format(res, nom_dfs,sep))
-    }
-  }
+# tabs_5_4_to_3 <-
+#   function(dfs,
+#            nom_dfs,
+#            totcode ,
+#            hrcfiles ,
+#            sep_dir = FALSE,
+#            hrc_dir = "hrc_alt",
+#            sep) {
+#     if (length(totcode) == 5) {
+#       res <-
+#         passer_de_5_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
+#       return(format(res, nom_dfs,sep))
+#     }
+#     if (length(totcode) == 4) {
+#       res <-
+#         passer_de_4_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
+#       return(format(res, nom_dfs,sep))
+#     }
+#   }

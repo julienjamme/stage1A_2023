@@ -1,6 +1,8 @@
 rm(list = ls())
 
 library(dplyr)
+library(data.table)
+library(stringr)
 source(file = "R/passage_5_3.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
@@ -25,6 +27,7 @@ data <- expand.grid(
   as.data.frame()
 
 data <- data %>% mutate(VALUE = runif(nrow(data)))
+
 hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
 
 tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="KEBAB", ECO = "PIB")
@@ -219,8 +222,8 @@ liste_sep = c("\\+", "\\!", "\\?","\\:",
 
 v1 = "AGE"
 v2 = "ECO"
-v3 = NULL
-v4 = "AGE+++ECO"
+v4 = NULL
+v3 = "AGE+++ECO"
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
                             v1=v1,v2=v2,v3=v3,v4=v4)
@@ -278,7 +281,8 @@ purrr::map(res5_3$hrcs,
   all()
 
 
-# Le séparateur est bien +++
+# Le séparateur est bien +++ (visuellement)
+
 # Il n'y a pas de + dans les colonnes initiales 
 
 !any(sapply(names(data), function(i) return(grepl("\\+", i))))
