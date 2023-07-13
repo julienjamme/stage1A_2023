@@ -46,8 +46,7 @@ dir_name <- "output"
 res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #on a le bon format
 str(res$alt_tot)
-format(res)
-str(format(res))
+format(res,nom_dfs,sep="_")
 
 
 #On a le bon nombre de tableau
@@ -58,7 +57,6 @@ identical(length(res$tabs),as.integer(test_nb_tabs_4hrc(hrcfiles,v2,v1,totcode))
 identical("GEO",plus_petit_hrc(hrcfiles,totcode))
 identical("ACT",plus_petit_hrc(hrcfiles,totcode))
 
-get_2_smallest(hrcfiles,totcode)
 
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
 dirname(res$hrcs$nom_data_frame_Total_Pays_ACT)
