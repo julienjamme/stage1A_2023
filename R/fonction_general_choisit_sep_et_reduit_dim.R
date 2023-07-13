@@ -17,7 +17,7 @@
 #' lors du passage de la seconde réduction de dimension, non spéficié par défault (NULL) 
 #' @param v4 permet de forcer la valeur de la seconde variable à fusionner 
 #' lors du passage de la seconde réduction de dimension, non spéficié par défault (NULL) 
-#' @param liste_sep liste des séparateurs candidats à utiliser
+#' @param vec_sep vecteur des séparateurs candidats à utiliser
 #' @param select_hier précise si l'on préfère selectionner les variables hiérarchiques avec
 #' le plus de noeuds en priorité (hier=TRUE) ce qui génère plus de tableaux
 #' mais de taille moins importante
@@ -40,7 +40,7 @@
 gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                             sep_dir=FALSE,hrc_dir="hrc_alt",
                             v1=NULL,v2=NULL,v3=NULL,v4=NULL,
-                            liste_sep = c("\\+", "\\!", "\\?","\\:",
+                            vec_sep = c("\\+", "\\!", "\\?","\\:",
                                       "\\;","\\~","\\&","\\#"),
                             select_hier = FALSE){
   
