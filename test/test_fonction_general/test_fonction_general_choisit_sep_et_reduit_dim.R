@@ -34,19 +34,21 @@ tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="KEBAB", ECO = "PIB")
 
 # pour execution ligne à ligne
 dfs <- data
-nom_dfs <- "nom_data_frame"
+nom_dfs <- "OPPO"
 
 totcode <- tot_code
 hrcfiles <- hrc_files
 
-dir_name <- "output"
+dir_name <- "test/test_fonction_general/test1"
 hrc_dir <- dir_name
 sep_dir <- TRUE
 
 liste_sep = c("\\+", "\\!", "\\?","\\:",
               "\\;","\\~","\\&","\\#")
 
-res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles)
+res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
+                            sep_dir= TRUE,
+                            hrc_dir = "test/test_fonction_general/test1")
 
 # on a le bon format de sortie
 names(res5_3) 
@@ -134,7 +136,7 @@ totcode<-c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 dfs <- data
 nom_dfs <- "nom_data_frame"
 sep_dir = TRUE
-hrc_dir = "hrc_alt"
+hrc_dir = "test/test_fonction_general/test2"
 
 res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles)
 str(res4_3)
@@ -213,7 +215,7 @@ nom_dfs <- "nom_data_frame"
 totcode <- tot_code
 hrcfiles <- hrc_files
 
-dir_name <- "output"
+dir_name <- "test/test_fonction_general/test3"
 hrc_dir <- dir_name
 sep_dir <- TRUE
 
@@ -222,8 +224,8 @@ liste_sep = c("\\+", "\\!", "\\?","\\:",
 
 v1 = "AGE"
 v2 = "ECO"
-v4 = NULL
-v3 = "AGE+++ECO"
+v3 = NULL
+v4 = "AGE+++ECO"
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
                             v1=v1,v2=v2,v3=v3,v4=v4)
@@ -242,7 +244,6 @@ purrr::map2(names(res5_3$tabs), 1:length(res5_3$tabs),
   all()
 
 # Les infos relatifs aux variables fusionnés à chaque étape sont présentes
-
 length(res5_3$vars) == 2
 
 var_fusionnes <- c(paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="+++"))
