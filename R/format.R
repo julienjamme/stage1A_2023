@@ -61,7 +61,7 @@ format4 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
   if (class(res$vars[1]) == "character") {
     v1 <- res$vars[1]
     v2 <- res$vars[2]
-    
+    tabs<-res$tabs
     var_cross <- paste(v1, v2, sep = sep)
     tot_cross <- paste(totcode[[v1]],totcode[[v2]],sep=sep)
    
@@ -73,7 +73,7 @@ format4 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
     v <-c(d,var_cross)
     list_vars<-replicate(n,v,simplify=FALSE)
     names(list_vars)<- c(paste0(nom_dfs,1:n,sep=""))
-    tabs<-res$tabs
+   
     names(tabs)<- c(paste0(nom_dfs,1:n,sep=""))
     
     
