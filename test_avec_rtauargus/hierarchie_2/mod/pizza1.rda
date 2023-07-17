@@ -1,0 +1,21 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+NUTS23
+  <RECODEABLE>
+  <TOTCODE> "Total"
+treff
+  <RECODEABLE>
+  <TOTCODE> "Total"
+cj_ACTIVITY
+  <RECODEABLE>
+  <TOTCODE> "Total_TOTAL"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_pizz_TOTAL_cj_unif.hrc"
+  <HIERLEADSTRING> "@"
+pizzas_tot
+  <NUMERIC>
+  <DECIMALS> 13
+nb_obs
+  <FREQUENCY>

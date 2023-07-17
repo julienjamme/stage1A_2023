@@ -1,0 +1,38 @@
+15-juil.-2023 16:22:35 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.arb
+15-juil.-2023 16:22:35 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.tab"
+15-juil.-2023 16:22:35 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.rda"
+15-juil.-2023 16:22:35 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 16:22:35 : <SAFETYRULE> MAN(10)
+15-juil.-2023 16:22:35 : <READTABLE> 1
+15-juil.-2023 16:22:36 : Tables have been read
+15-juil.-2023 16:22:36 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.hst",1,",",0,0
+15-juil.-2023 16:22:37 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 16:22:37 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.hst has been read
+15-juil.-2023 16:22:37 : <SUPPRESS> MOD(1,5,1,0,0)
+15-juil.-2023 16:22:37 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 16:22:47 : End of modular protection. Time used 9 seconds
+                       Number of suppressions: 767
+15-juil.-2023 16:22:47 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.csv")
+15-juil.-2023 16:22:47 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.csv
+15-juil.-2023 16:22:47 : End of TauArgus run
+15-juil.-2023 19:50:43 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.arb
+15-juil.-2023 19:50:43 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.tab"
+15-juil.-2023 19:50:43 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.rda"
+15-juil.-2023 19:50:43 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 19:50:43 : <SAFETYRULE> MAN(10)
+15-juil.-2023 19:50:43 : <READTABLE> 1
+15-juil.-2023 19:50:44 : Tables have been read
+15-juil.-2023 19:50:44 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.hst",1,",",0,0
+15-juil.-2023 19:50:44 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 19:50:44 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.hst has been read
+15-juil.-2023 19:50:44 : <SUPPRESS> MOD(1,5,0,0,0)
+15-juil.-2023 19:50:45 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 19:50:53 : End of modular protection. Time used 8 seconds
+                       Number of suppressions: 222
+15-juil.-2023 19:50:53 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.csv")
+15-juil.-2023 19:50:53 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer51.csv
+15-juil.-2023 19:50:53 : End of TauArgus run

@@ -1,0 +1,459 @@
+  B,**adulte,  ***FR1_E0,    0.00000000000000,  52
+  B,**adulte,  *FR1_E1T9,   55.81388888888890,  12
+  B,**adulte,  FR1_EGE10, 7628.32777777778028,  23
+  B,**adulte,  FR1_Total, 7684.14166666667006,  87
+  B,**adulte,  ***FRB_E0,    1.00000000000000,  11
+  B,**adulte,  *FRB_E1T9,   45.74722222222220,  11
+  B,**adulte,  FRB_EGE10,  200.15277777777800,   7
+  B,**adulte,  FRB_Total,  246.90000000000001,  29
+  B,**adulte,  ***FRC_E0,    2.00000000000000,  21
+  B,**adulte,  *FRC_E1T9,  121.72499999999999,  26
+  B,**adulte,  FRC_EGE10,  445.40833333333302,  18
+  B,**adulte,  FRC_Total,  569.13333333333298,  65
+  B,**adulte,  ***FRD_E0,    2.00000000000000,   9
+  B,**adulte,  *FRD_E1T9,   50.62222222222220,  13
+  B,**adulte,  FRD_EGE10,  170.53888888888901,   5
+  B,**adulte,  FRD_Total,  223.16111111111101,  27
+  B,**adulte,  ***FRE_E0,    2.00000000000000,  14
+  B,**adulte,  *FRE_E1T9,   55.06944444444440,  13
+  B,**adulte,  FRE_EGE10, 1112.82777777778006,  16
+  B,**adulte,  FRE_Total, 1169.89722222222008,  43
+  B,**adulte,  ***FRF_E0,    5.00000000000000,  24
+  B,**adulte,  *FRF_E1T9,  187.67500000000001,  35
+  B,**adulte,  FRF_EGE10, 1200.49722222221999,  25
+  B,**adulte,  FRF_Total, 1393.17222222221994,  84
+  B,**adulte,  ***FRG_E0,   19.00000000000000,  13
+  B,**adulte,  *FRG_E1T9,   58.56944444444440,  18
+  B,**adulte,  FRG_EGE10,  793.29444444444505,  10
+  B,**adulte,  FRG_Total,  870.86388888888996,  41
+  B,**adulte,  ***FRH_E0,    1.00000000000000,   5
+  B,**adulte,  *FRH_E1T9,   24.50833333333330,  10
+  B,**adulte,  FRH_EGE10,  430.78055555555500,   5
+  B,**adulte,  FRH_Total,  456.28888888888901,  20
+  B,**adulte,  ***FRI_E0,    3.00000000000000,  19
+  B,**adulte,  *FRI_E1T9,  143.75000000000000,  33
+  B,**adulte,  FRI_EGE10,  814.35555555555595,  26
+  B,**adulte,  FRI_Total,  961.10555555555595,  78
+  B,**adulte,  ***FRJ_E0,    2.00000000000000,  23
+  B,**adulte,  *FRJ_E1T9,  267.55277777777798,  62
+  B,**adulte,  FRJ_EGE10,  880.46388888888896,  25
+  B,**adulte,  FRJ_Total, 1150.01666666667006, 110
+  B,**adulte,  ***FRK_E0,    1.00000000000000,  30
+  B,**adulte,  *FRK_E1T9,  237.34166666666701,  57
+  B,**adulte,  FRK_EGE10, 1298.05833333332998,  35
+  B,**adulte,  FRK_Total, 1536.40000000000009, 122
+  B,**adulte,  ***FRL_E0,    2.00000000000000,  12
+  B,**adulte,  *FRL_E1T9,  118.76666666666701,  33
+  B,**adulte,  FRL_EGE10,  661.80277777777803,  13
+  B,**adulte,  FRL_Total,  782.56944444444400,  58
+  B,**adulte,  ***FRM_E0,    1.00000000000000,   7
+  B,**adulte,  *FRM_E1T9,   28.03888888888890,   5
+  B,**adulte,  FRM_EGE10,  157.08611111111099,   4
+  B,**adulte,  FRM_Total,  186.12500000000000,  16
+  B,**adulte,  ***FRY_E0,    5.00000000000000,  39
+  B,**adulte,  *FRY_E1T9,  260.07222222222202,  64
+  B,**adulte,  FRY_EGE10,  454.14722222222201,  20
+  B,**adulte,  FRY_Total,  719.21944444444500, 123
+  B,**adulte,Total_Total,17948.99444444440087, 903
+  B,**Enfant,  ***FR1_E0,    1.00000000000000,   1
+  B,**Enfant,  FR1_Total,    1.00000000000000,   1
+  B,**Enfant,  ***FRC_E0,    4.00000000000000,   4
+  B,**Enfant,  *FRC_E1T9,    5.46388888888889,   2
+  B,**Enfant,  FRC_Total,    9.46388888888889,   6
+  B,**Enfant,  ***FRD_E0,    1.00000000000000,   1
+  B,**Enfant,  FRD_Total,    1.00000000000000,   1
+  B,**Enfant,  ***FRE_E0,    1.00000000000000,   2
+  B,**Enfant,  FRE_Total,    1.00000000000000,   2
+  B,**Enfant,  ***FRF_E0,    2.00000000000000,   4
+  B,**Enfant,  FRF_Total,    2.00000000000000,   4
+  B,**Enfant,  ***FRG_E0,   98.00000000000000, 113
+  B,**Enfant,  *FRG_E1T9,   67.26944444444440,  51
+  B,**Enfant,  FRG_Total,  165.26944444444399, 164
+  B,**Enfant,  ***FRH_E0,    3.00000000000000,   4
+  B,**Enfant,  *FRH_E1T9,    6.20555555555556,   2
+  B,**Enfant,  FRH_Total,    9.20555555555556,   6
+  B,**Enfant,  ***FRI_E0,   21.00000000000000,  28
+  B,**Enfant,  *FRI_E1T9,   11.71111111111110,   7
+  B,**Enfant,  FRI_EGE10,   40.91944444444440,   2
+  B,**Enfant,  FRI_Total,   73.63055555555550,  37
+  B,**Enfant,  ***FRJ_E0,   10.00000000000000,  15
+  B,**Enfant,  *FRJ_E1T9,    9.25555555555556,   4
+  B,**Enfant,  FRJ_Total,   19.25555555555560,  19
+  B,**Enfant,  ***FRK_E0,    7.00000000000000,   7
+  B,**Enfant,  *FRK_E1T9,    2.00000000000000,   1
+  B,**Enfant,  FRK_Total,    9.00000000000000,   8
+  B,**Enfant,  ***FRL_E0,    3.00000000000000,   3
+  B,**Enfant,  *FRL_E1T9,    4.52222222222222,   2
+  B,**Enfant,  FRL_Total,    7.52222222222222,   5
+  B,**Enfant,  ***FRY_E0,    6.00000000000000,   6
+  B,**Enfant,  *FRY_E1T9,    7.10277777777778,   3
+  B,**Enfant,  FRY_Total,   13.10277777777780,   9
+  B,**Enfant,Total_Total,  311.44999999999999, 262
+  B,retraite,  ***FRF_E0,    0.00000000000000,   3
+  B,retraite,  FRF_EGE10,   53.88333333333330,   1
+  B,retraite,  FRF_Total,   53.88333333333330,   4
+  B,retraite,  ***FRI_E0,    0.00000000000000,   1
+  B,retraite,  FRI_Total,    0.00000000000000,   1
+  B,retraite,  ***FRJ_E0,    0.00000000000000,   1
+  B,retraite,  FRJ_Total,    0.00000000000000,   1
+  B,retraite,  ***FRL_E0,    0.00000000000000,   1
+  B,retraite,  FRL_Total,    0.00000000000000,   1
+  B,retraite,Total_Total,   53.88333333333330,   7
+  B,   Total,  ***FR1_E0,    1.00000000000000,  53
+  B,   Total,  *FR1_E1T9,   55.81388888888890,  12
+  B,   Total,  FR1_EGE10, 7628.32777777778028,  23
+  B,   Total,  FR1_Total, 7685.14166666667006,  88
+  B,   Total,  ***FRB_E0,    1.00000000000000,  11
+  B,   Total,  *FRB_E1T9,   45.74722222222220,  11
+  B,   Total,  FRB_EGE10,  200.15277777777800,   7
+  B,   Total,  FRB_Total,  246.90000000000001,  29
+  B,   Total,  ***FRC_E0,    6.00000000000000,  25
+  B,   Total,  *FRC_E1T9,  127.18888888888900,  28
+  B,   Total,  FRC_EGE10,  445.40833333333302,  18
+  B,   Total,  FRC_Total,  578.59722222222194,  71
+  B,   Total,  ***FRD_E0,    3.00000000000000,  10
+  B,   Total,  *FRD_E1T9,   50.62222222222220,  13
+  B,   Total,  FRD_EGE10,  170.53888888888901,   5
+  B,   Total,  FRD_Total,  224.16111111111101,  28
+  B,   Total,  ***FRE_E0,    3.00000000000000,  16
+  B,   Total,  *FRE_E1T9,   55.06944444444440,  13
+  B,   Total,  FRE_EGE10, 1112.82777777778006,  16
+  B,   Total,  FRE_Total, 1170.89722222222008,  45
+  B,   Total,  ***FRF_E0,    7.00000000000000,  31
+  B,   Total,  *FRF_E1T9,  187.67500000000001,  35
+  B,   Total,  FRF_EGE10, 1254.38055555556002,  26
+  B,   Total,  FRF_Total, 1449.05555555555998,  92
+  B,   Total,  ***FRG_E0,  117.00000000000000, 126
+  B,   Total,  *FRG_E1T9,  125.83888888888900,  69
+  B,   Total,  FRG_EGE10,  793.29444444444505,  10
+  B,   Total,  FRG_Total, 1036.13333333333003, 205
+  B,   Total,  ***FRH_E0,    4.00000000000000,   9
+  B,   Total,  *FRH_E1T9,   30.71388888888890,  12
+  B,   Total,  FRH_EGE10,  430.78055555555500,   5
+  B,   Total,  FRH_Total,  465.49444444444401,  26
+  B,   Total,  ***FRI_E0,   24.00000000000000,  48
+  B,   Total,  *FRI_E1T9,  155.46111111111099,  40
+  B,   Total,  FRI_EGE10,  855.27499999999998,  28
+  B,   Total,  FRI_Total, 1034.73611111110995, 116
+  B,   Total,  ***FRJ_E0,   12.00000000000000,  39
+  B,   Total,  *FRJ_E1T9,  276.80833333333300,  66
+  B,   Total,  FRJ_EGE10,  880.46388888888896,  25
+  B,   Total,  FRJ_Total, 1169.27222222222008, 130
+  B,   Total,  ***FRK_E0,    8.00000000000000,  37
+  B,   Total,  *FRK_E1T9,  239.34166666666701,  58
+  B,   Total,  FRK_EGE10, 1298.05833333332998,  35
+  B,   Total,  FRK_Total, 1545.40000000000009, 130
+  B,   Total,  ***FRL_E0,    5.00000000000000,  16
+  B,   Total,  *FRL_E1T9,  123.28888888888901,  35
+  B,   Total,  FRL_EGE10,  661.80277777777803,  13
+  B,   Total,  FRL_Total,  790.09166666666704,  64
+  B,   Total,  ***FRM_E0,    1.00000000000000,   7
+  B,   Total,  *FRM_E1T9,   28.03888888888890,   5
+  B,   Total,  FRM_EGE10,  157.08611111111099,   4
+  B,   Total,  FRM_Total,  186.12500000000000,  16
+  B,   Total,  ***FRY_E0,   11.00000000000000,  45
+  B,   Total,  *FRY_E1T9,  267.17500000000001,  67
+  B,   Total,  FRY_EGE10,  454.14722222222201,  20
+  B,   Total,  FRY_Total,  732.32222222222197, 132
+  B,   Total,Total_Total,18314.32777777779847,1172
+B05,**adulte,  ***FRE_E0,    0.00000000000000,   1
+B05,**adulte,  FRE_Total,    0.00000000000000,   1
+B05,**adulte,Total_Total,    0.00000000000000,   1
+B05,   Total,  ***FRE_E0,    0.00000000000000,   1
+B05,   Total,  FRE_Total,    0.00000000000000,   1
+B05,   Total,Total_Total,    0.00000000000000,   1
+B06,**adulte,  ***FR1_E0,    0.00000000000000,  26
+B06,**adulte,  FR1_EGE10,   37.31388888888890,   1
+B06,**adulte,  FR1_Total,   37.31388888888890,  27
+B06,**adulte,  ***FRF_E0,    0.00000000000000,   3
+B06,**adulte,  FRF_EGE10,   51.18611111111110,   1
+B06,**adulte,  FRF_Total,   51.18611111111110,   4
+B06,**adulte,  ***FRI_E0,    0.00000000000000,   2
+B06,**adulte,  *FRI_E1T9,    3.37777777777778,   1
+B06,**adulte,  FRI_EGE10,  177.17500000000001,   2
+B06,**adulte,  FRI_Total,  180.55277777777800,   5
+B06,**adulte,  ***FRL_E0,    0.00000000000000,   1
+B06,**adulte,  FRL_Total,    0.00000000000000,   1
+B06,**adulte,Total_Total,  269.05277777777798,  37
+B06,   Total,  ***FR1_E0,    0.00000000000000,  26
+B06,   Total,  FR1_EGE10,   37.31388888888890,   1
+B06,   Total,  FR1_Total,   37.31388888888890,  27
+B06,   Total,  ***FRF_E0,    0.00000000000000,   3
+B06,   Total,  FRF_EGE10,   51.18611111111110,   1
+B06,   Total,  FRF_Total,   51.18611111111110,   4
+B06,   Total,  ***FRI_E0,    0.00000000000000,   2
+B06,   Total,  *FRI_E1T9,    3.37777777777778,   1
+B06,   Total,  FRI_EGE10,  177.17500000000001,   2
+B06,   Total,  FRI_Total,  180.55277777777800,   5
+B06,   Total,  ***FRL_E0,    0.00000000000000,   1
+B06,   Total,  FRL_Total,    0.00000000000000,   1
+B06,   Total,Total_Total,  269.05277777777798,  37
+B07,**adulte,  ***FR1_E0,    0.00000000000000,   1
+B07,**adulte,  *FR1_E1T9,    2.32222222222222,   1
+B07,**adulte,  FR1_EGE10,   30.65277777777770,   1
+B07,**adulte,  FR1_Total,   32.97499999999990,   3
+B07,**adulte,  ***FRE_E0,    0.00000000000000,   1
+B07,**adulte,  FRE_Total,    0.00000000000000,   1
+B07,**adulte,  ***FRI_E0,    0.00000000000000,   1
+B07,**adulte,  FRI_Total,    0.00000000000000,   1
+B07,**adulte,  FRJ_EGE10,   98.70555555555561,   2
+B07,**adulte,  FRJ_Total,   98.70555555555561,   2
+B07,**adulte,  ***FRY_E0,    3.00000000000000,  31
+B07,**adulte,  *FRY_E1T9,  170.13055555555599,  41
+B07,**adulte,  FRY_EGE10,  297.29166666666703,  11
+B07,**adulte,  FRY_Total,  470.42222222222199,  83
+B07,**adulte,Total_Total,  602.10277777777799,  90
+B07,**Enfant,  ***FR1_E0,    1.00000000000000,   1
+B07,**Enfant,  FR1_Total,    1.00000000000000,   1
+B07,**Enfant,  ***FRJ_E0,    0.00000000000000,   1
+B07,**Enfant,  FRJ_Total,    0.00000000000000,   1
+B07,**Enfant,  ***FRK_E0,    1.00000000000000,   1
+B07,**Enfant,  FRK_Total,    1.00000000000000,   1
+B07,**Enfant,  ***FRY_E0,    4.00000000000000,   4
+B07,**Enfant,  FRY_Total,    4.00000000000000,   4
+B07,**Enfant,Total_Total,    6.00000000000000,   7
+B07,   Total,  ***FR1_E0,    1.00000000000000,   2
+B07,   Total,  *FR1_E1T9,    2.32222222222222,   1
+B07,   Total,  FR1_EGE10,   30.65277777777770,   1
+B07,   Total,  FR1_Total,   33.97499999999990,   4
+B07,   Total,  ***FRE_E0,    0.00000000000000,   1
+B07,   Total,  FRE_Total,    0.00000000000000,   1
+B07,   Total,  ***FRI_E0,    0.00000000000000,   1
+B07,   Total,  FRI_Total,    0.00000000000000,   1
+B07,   Total,  ***FRJ_E0,    0.00000000000000,   1
+B07,   Total,  FRJ_EGE10,   98.70555555555561,   2
+B07,   Total,  FRJ_Total,   98.70555555555561,   3
+B07,   Total,  ***FRK_E0,    1.00000000000000,   1
+B07,   Total,  FRK_Total,    1.00000000000000,   1
+B07,   Total,  ***FRY_E0,    7.00000000000000,  35
+B07,   Total,  *FRY_E1T9,  170.13055555555599,  41
+B07,   Total,  FRY_EGE10,  297.29166666666703,  11
+B07,   Total,  FRY_Total,  474.42222222222199,  87
+B07,   Total,Total_Total,  608.10277777777799,  97
+B08,**adulte,  ***FR1_E0,    0.00000000000000,  13
+B08,**adulte,  *FR1_E1T9,   45.48611111111110,   8
+B08,**adulte,  FR1_EGE10, 7196.15833333333012,  18
+B08,**adulte,  FR1_Total, 7241.64444444443961,  39
+B08,**adulte,  ***FRB_E0,    1.00000000000000,  10
+B08,**adulte,  *FRB_E1T9,   38.27777777777780,   9
+B08,**adulte,  FRB_EGE10,  200.15277777777800,   7
+B08,**adulte,  FRB_Total,  239.43055555555500,  26
+B08,**adulte,  ***FRC_E0,    1.00000000000000,  20
+B08,**adulte,  *FRC_E1T9,  115.28333333333300,  25
+B08,**adulte,  FRC_EGE10,  445.40833333333302,  18
+B08,**adulte,  FRC_Total,  561.69166666666695,  63
+B08,**adulte,  ***FRD_E0,    2.00000000000000,   9
+B08,**adulte,  *FRD_E1T9,   50.62222222222220,  13
+B08,**adulte,  FRD_EGE10,  170.53888888888901,   5
+B08,**adulte,  FRD_Total,  223.16111111111101,  27
+B08,**adulte,  ***FRE_E0,    2.00000000000000,  11
+B08,**adulte,  *FRE_E1T9,   55.06944444444440,  13
+B08,**adulte,  FRE_EGE10, 1112.82777777778006,  16
+B08,**adulte,  FRE_Total, 1169.89722222222008,  40
+B08,**adulte,  ***FRF_E0,    5.00000000000000,  20
+B08,**adulte,  *FRF_E1T9,  176.70833333333300,  33
+B08,**adulte,  FRF_EGE10, 1119.36388888888996,  22
+B08,**adulte,  FRF_Total, 1301.07222222222003,  75
+B08,**adulte,  ***FRG_E0,   19.00000000000000,  13
+B08,**adulte,  *FRG_E1T9,   58.56944444444440,  18
+B08,**adulte,  FRG_EGE10,  793.29444444444505,  10
+B08,**adulte,  FRG_Total,  870.86388888888996,  41
+B08,**adulte,  ***FRH_E0,    1.00000000000000,   5
+B08,**adulte,  *FRH_E1T9,   24.50833333333330,  10
+B08,**adulte,  FRH_EGE10,  430.78055555555500,   5
+B08,**adulte,  FRH_Total,  456.28888888888901,  20
+B08,**adulte,  ***FRI_E0,    3.00000000000000,  15
+B08,**adulte,  *FRI_E1T9,  140.37222222222201,  32
+B08,**adulte,  FRI_EGE10,  637.18055555555600,  24
+B08,**adulte,  FRI_Total,  780.55277777777803,  71
+B08,**adulte,  ***FRJ_E0,    2.00000000000000,  20
+B08,**adulte,  *FRJ_E1T9,  264.18888888888898,  60
+B08,**adulte,  FRJ_EGE10,  781.75833333333298,  23
+B08,**adulte,  FRJ_Total, 1047.94722222222003, 103
+B08,**adulte,  ***FRK_E0,    1.00000000000000,  30
+B08,**adulte,  *FRK_E1T9,  234.78888888888901,  56
+B08,**adulte,  FRK_EGE10, 1271.57222222222003,  34
+B08,**adulte,  FRK_Total, 1507.36111111110995, 120
+B08,**adulte,  ***FRL_E0,    2.00000000000000,  11
+B08,**adulte,  *FRL_E1T9,  117.61111111111100,  32
+B08,**adulte,  FRL_EGE10,  661.80277777777803,  13
+B08,**adulte,  FRL_Total,  781.41388888888901,  56
+B08,**adulte,  ***FRM_E0,    1.00000000000000,   6
+B08,**adulte,  *FRM_E1T9,   28.03888888888890,   5
+B08,**adulte,  FRM_EGE10,  157.08611111111099,   4
+B08,**adulte,  FRM_Total,  186.12500000000000,  15
+B08,**adulte,  ***FRY_E0,    2.00000000000000,   6
+B08,**adulte,  *FRY_E1T9,   84.48611111111110,  21
+B08,**adulte,  FRY_EGE10,  137.41388888888901,   8
+B08,**adulte,  FRY_Total,  223.90000000000001,  35
+B08,**adulte,Total_Total,16591.34999999999854, 731
+B08,**Enfant,  ***FRC_E0,    4.00000000000000,   4
+B08,**Enfant,  *FRC_E1T9,    5.46388888888889,   2
+B08,**Enfant,  FRC_Total,    9.46388888888889,   6
+B08,**Enfant,  ***FRD_E0,    1.00000000000000,   1
+B08,**Enfant,  FRD_Total,    1.00000000000000,   1
+B08,**Enfant,  ***FRE_E0,    1.00000000000000,   2
+B08,**Enfant,  FRE_Total,    1.00000000000000,   2
+B08,**Enfant,  ***FRF_E0,    2.00000000000000,   4
+B08,**Enfant,  FRF_Total,    2.00000000000000,   4
+B08,**Enfant,  ***FRG_E0,   98.00000000000000, 113
+B08,**Enfant,  *FRG_E1T9,   67.26944444444440,  51
+B08,**Enfant,  FRG_Total,  165.26944444444399, 164
+B08,**Enfant,  ***FRH_E0,    3.00000000000000,   4
+B08,**Enfant,  *FRH_E1T9,    6.20555555555556,   2
+B08,**Enfant,  FRH_Total,    9.20555555555556,   6
+B08,**Enfant,  ***FRI_E0,   21.00000000000000,  27
+B08,**Enfant,  *FRI_E1T9,   11.71111111111110,   7
+B08,**Enfant,  FRI_EGE10,   40.91944444444440,   2
+B08,**Enfant,  FRI_Total,   73.63055555555550,  36
+B08,**Enfant,  ***FRJ_E0,   10.00000000000000,  14
+B08,**Enfant,  *FRJ_E1T9,    9.25555555555556,   4
+B08,**Enfant,  FRJ_Total,   19.25555555555560,  18
+B08,**Enfant,  ***FRK_E0,    6.00000000000000,   6
+B08,**Enfant,  *FRK_E1T9,    2.00000000000000,   1
+B08,**Enfant,  FRK_Total,    8.00000000000000,   7
+B08,**Enfant,  ***FRL_E0,    3.00000000000000,   3
+B08,**Enfant,  *FRL_E1T9,    4.52222222222222,   2
+B08,**Enfant,  FRL_Total,    7.52222222222222,   5
+B08,**Enfant,  ***FRY_E0,    1.00000000000000,   1
+B08,**Enfant,  *FRY_E1T9,    7.10277777777778,   3
+B08,**Enfant,  FRY_Total,    8.10277777777778,   4
+B08,**Enfant,Total_Total,  304.44999999999999, 253
+B08,retraite,  ***FRF_E0,    0.00000000000000,   3
+B08,retraite,  FRF_EGE10,   53.88333333333330,   1
+B08,retraite,  FRF_Total,   53.88333333333330,   4
+B08,retraite,  ***FRI_E0,    0.00000000000000,   1
+B08,retraite,  FRI_Total,    0.00000000000000,   1
+B08,retraite,  ***FRJ_E0,    0.00000000000000,   1
+B08,retraite,  FRJ_Total,    0.00000000000000,   1
+B08,retraite,  ***FRL_E0,    0.00000000000000,   1
+B08,retraite,  FRL_Total,    0.00000000000000,   1
+B08,retraite,Total_Total,   53.88333333333330,   7
+B08,   Total,  ***FR1_E0,    0.00000000000000,  13
+B08,   Total,  *FR1_E1T9,   45.48611111111110,   8
+B08,   Total,  FR1_EGE10, 7196.15833333333012,  18
+B08,   Total,  FR1_Total, 7241.64444444443961,  39
+B08,   Total,  ***FRB_E0,    1.00000000000000,  10
+B08,   Total,  *FRB_E1T9,   38.27777777777780,   9
+B08,   Total,  FRB_EGE10,  200.15277777777800,   7
+B08,   Total,  FRB_Total,  239.43055555555500,  26
+B08,   Total,  ***FRC_E0,    5.00000000000000,  24
+B08,   Total,  *FRC_E1T9,  120.74722222222201,  27
+B08,   Total,  FRC_EGE10,  445.40833333333302,  18
+B08,   Total,  FRC_Total,  571.15555555555602,  69
+B08,   Total,  ***FRD_E0,    3.00000000000000,  10
+B08,   Total,  *FRD_E1T9,   50.62222222222220,  13
+B08,   Total,  FRD_EGE10,  170.53888888888901,   5
+B08,   Total,  FRD_Total,  224.16111111111101,  28
+B08,   Total,  ***FRE_E0,    3.00000000000000,  13
+B08,   Total,  *FRE_E1T9,   55.06944444444440,  13
+B08,   Total,  FRE_EGE10, 1112.82777777778006,  16
+B08,   Total,  FRE_Total, 1170.89722222222008,  42
+B08,   Total,  ***FRF_E0,    7.00000000000000,  27
+B08,   Total,  *FRF_E1T9,  176.70833333333300,  33
+B08,   Total,  FRF_EGE10, 1173.24722222221999,  23
+B08,   Total,  FRF_Total, 1356.95555555556007,  83
+B08,   Total,  ***FRG_E0,  117.00000000000000, 126
+B08,   Total,  *FRG_E1T9,  125.83888888888900,  69
+B08,   Total,  FRG_EGE10,  793.29444444444505,  10
+B08,   Total,  FRG_Total, 1036.13333333333003, 205
+B08,   Total,  ***FRH_E0,    4.00000000000000,   9
+B08,   Total,  *FRH_E1T9,   30.71388888888890,  12
+B08,   Total,  FRH_EGE10,  430.78055555555500,   5
+B08,   Total,  FRH_Total,  465.49444444444401,  26
+B08,   Total,  ***FRI_E0,   24.00000000000000,  43
+B08,   Total,  *FRI_E1T9,  152.08333333333300,  39
+B08,   Total,  FRI_EGE10,  678.10000000000002,  26
+B08,   Total,  FRI_Total,  854.18333333333305, 108
+B08,   Total,  ***FRJ_E0,   12.00000000000000,  35
+B08,   Total,  *FRJ_E1T9,  273.44444444444400,  64
+B08,   Total,  FRJ_EGE10,  781.75833333333298,  23
+B08,   Total,  FRJ_Total, 1067.20277777778006, 122
+B08,   Total,  ***FRK_E0,    7.00000000000000,  36
+B08,   Total,  *FRK_E1T9,  236.78888888888901,  57
+B08,   Total,  FRK_EGE10, 1271.57222222222003,  34
+B08,   Total,  FRK_Total, 1515.36111111110995, 127
+B08,   Total,  ***FRL_E0,    5.00000000000000,  15
+B08,   Total,  *FRL_E1T9,  122.13333333333300,  34
+B08,   Total,  FRL_EGE10,  661.80277777777803,  13
+B08,   Total,  FRL_Total,  788.93611111111102,  62
+B08,   Total,  ***FRM_E0,    1.00000000000000,   6
+B08,   Total,  *FRM_E1T9,   28.03888888888890,   5
+B08,   Total,  FRM_EGE10,  157.08611111111099,   4
+B08,   Total,  FRM_Total,  186.12500000000000,  15
+B08,   Total,  ***FRY_E0,    3.00000000000000,   7
+B08,   Total,  *FRY_E1T9,   91.58888888888890,  24
+B08,   Total,  FRY_EGE10,  137.41388888888901,   8
+B08,   Total,  FRY_Total,  232.00277777777799,  39
+B08,   Total,Total_Total,16949.68333333330156, 991
+B09,**adulte,  ***FR1_E0,    0.00000000000000,  12
+B09,**adulte,  *FR1_E1T9,    8.00555555555556,   3
+B09,**adulte,  FR1_EGE10,  364.20277777777699,   3
+B09,**adulte,  FR1_Total,  372.20833333333297,  18
+B09,**adulte,  ***FRB_E0,    0.00000000000000,   1
+B09,**adulte,  *FRB_E1T9,    7.46944444444445,   2
+B09,**adulte,  FRB_Total,    7.46944444444445,   3
+B09,**adulte,  ***FRC_E0,    1.00000000000000,   1
+B09,**adulte,  *FRC_E1T9,    6.44166666666667,   1
+B09,**adulte,  FRC_Total,    7.44166666666667,   2
+B09,**adulte,  ***FRE_E0,    0.00000000000000,   1
+B09,**adulte,  FRE_Total,    0.00000000000000,   1
+B09,**adulte,  ***FRF_E0,    0.00000000000000,   1
+B09,**adulte,  *FRF_E1T9,   10.96666666666670,   2
+B09,**adulte,  FRF_EGE10,   29.94722222222220,   2
+B09,**adulte,  FRF_Total,   40.91388888888890,   5
+B09,**adulte,  ***FRI_E0,    0.00000000000000,   1
+B09,**adulte,  FRI_Total,    0.00000000000000,   1
+B09,**adulte,  ***FRJ_E0,    0.00000000000000,   3
+B09,**adulte,  *FRJ_E1T9,    3.36388888888889,   2
+B09,**adulte,  FRJ_Total,    3.36388888888889,   5
+B09,**adulte,  *FRK_E1T9,    2.55277777777778,   1
+B09,**adulte,  FRK_EGE10,   26.48611111111110,   1
+B09,**adulte,  FRK_Total,   29.03888888888890,   2
+B09,**adulte,  *FRL_E1T9,    1.15555555555556,   1
+B09,**adulte,  FRL_Total,    1.15555555555556,   1
+B09,**adulte,  ***FRM_E0,    0.00000000000000,   1
+B09,**adulte,  FRM_Total,    0.00000000000000,   1
+B09,**adulte,  ***FRY_E0,    0.00000000000000,   2
+B09,**adulte,  *FRY_E1T9,    5.45555555555556,   2
+B09,**adulte,  FRY_EGE10,   19.44166666666670,   1
+B09,**adulte,  FRY_Total,   24.89722222222230,   5
+B09,**adulte,Total_Total,  486.48888888888803,  44
+B09,**Enfant,  ***FRI_E0,    0.00000000000000,   1
+B09,**Enfant,  FRI_Total,    0.00000000000000,   1
+B09,**Enfant,  ***FRY_E0,    1.00000000000000,   1
+B09,**Enfant,  FRY_Total,    1.00000000000000,   1
+B09,**Enfant,Total_Total,    1.00000000000000,   2
+B09,   Total,  ***FR1_E0,    0.00000000000000,  12
+B09,   Total,  *FR1_E1T9,    8.00555555555556,   3
+B09,   Total,  FR1_EGE10,  364.20277777777699,   3
+B09,   Total,  FR1_Total,  372.20833333333297,  18
+B09,   Total,  ***FRB_E0,    0.00000000000000,   1
+B09,   Total,  *FRB_E1T9,    7.46944444444445,   2
+B09,   Total,  FRB_Total,    7.46944444444445,   3
+B09,   Total,  ***FRC_E0,    1.00000000000000,   1
+B09,   Total,  *FRC_E1T9,    6.44166666666667,   1
+B09,   Total,  FRC_Total,    7.44166666666667,   2
+B09,   Total,  ***FRE_E0,    0.00000000000000,   1
+B09,   Total,  FRE_Total,    0.00000000000000,   1
+B09,   Total,  ***FRF_E0,    0.00000000000000,   1
+B09,   Total,  *FRF_E1T9,   10.96666666666670,   2
+B09,   Total,  FRF_EGE10,   29.94722222222220,   2
+B09,   Total,  FRF_Total,   40.91388888888890,   5
+B09,   Total,  ***FRI_E0,    0.00000000000000,   2
+B09,   Total,  FRI_Total,    0.00000000000000,   2
+B09,   Total,  ***FRJ_E0,    0.00000000000000,   3
+B09,   Total,  *FRJ_E1T9,    3.36388888888889,   2
+B09,   Total,  FRJ_Total,    3.36388888888889,   5
+B09,   Total,  *FRK_E1T9,    2.55277777777778,   1
+B09,   Total,  FRK_EGE10,   26.48611111111110,   1
+B09,   Total,  FRK_Total,   29.03888888888890,   2
+B09,   Total,  *FRL_E1T9,    1.15555555555556,   1
+B09,   Total,  FRL_Total,    1.15555555555556,   1
+B09,   Total,  ***FRM_E0,    0.00000000000000,   1
+B09,   Total,  FRM_Total,    0.00000000000000,   1
+B09,   Total,  ***FRY_E0,    1.00000000000000,   3
+B09,   Total,  *FRY_E1T9,    5.45555555555556,   2
+B09,   Total,  FRY_EGE10,   19.44166666666670,   1
+B09,   Total,  FRY_Total,   25.89722222222230,   6
+B09,   Total,Total_Total,  487.48888888888803,  46

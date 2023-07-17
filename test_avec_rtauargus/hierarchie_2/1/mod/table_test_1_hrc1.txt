@@ -1,0 +1,12 @@
+07-juil.-2023 16:44:40 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_hrc1.arb
+07-juil.-2023 16:44:41 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_hrc1.tab"
+07-juil.-2023 16:44:41 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_hrc1.rda"
+07-juil.-2023 16:44:41 : <SPECIFYTABLE> "ACTIVITY""ident""cj_pays"|"pizzas_tot"||
+07-juil.-2023 16:44:41 : <SAFETYRULE> MAN(10)
+07-juil.-2023 16:44:41 : <READTABLE> 1
+07-juil.-2023 17:02:15 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_hrc1.arb
+07-juil.-2023 17:02:15 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_hrc1.tab"
+07-juil.-2023 17:02:15 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_hrc1.rda"
+07-juil.-2023 17:02:15 : <SPECIFYTABLE> "ACTIVITY""ident""cj_pays"|"pizzas_tot"||
+07-juil.-2023 17:02:15 : <SAFETYRULE> MAN(10)
+07-juil.-2023 17:02:15 : <READTABLE> 1

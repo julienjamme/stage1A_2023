@@ -1,0 +1,38 @@
+15-juil.-2023 17:58:49 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.arb
+15-juil.-2023 17:58:50 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.tab"
+15-juil.-2023 17:58:50 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.rda"
+15-juil.-2023 17:58:50 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 17:58:50 : <SAFETYRULE> MAN(10)
+15-juil.-2023 17:58:50 : <READTABLE> 1
+15-juil.-2023 17:58:51 : Tables have been read
+15-juil.-2023 17:58:51 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.hst",1,",",0,0
+15-juil.-2023 17:58:51 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 17:58:51 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.hst has been read
+15-juil.-2023 17:58:51 : <SUPPRESS> MOD(1,5,1,0,0)
+15-juil.-2023 17:58:52 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 17:59:00 : End of modular protection. Time used 8 seconds
+                       Number of suppressions: 167
+15-juil.-2023 17:59:00 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.csv")
+15-juil.-2023 17:59:00 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.csv
+15-juil.-2023 17:59:00 : End of TauArgus run
+15-juil.-2023 21:13:27 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.arb
+15-juil.-2023 21:13:27 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.tab"
+15-juil.-2023 21:13:27 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.rda"
+15-juil.-2023 21:13:27 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 21:13:27 : <SAFETYRULE> MAN(10)
+15-juil.-2023 21:13:27 : <READTABLE> 1
+15-juil.-2023 21:13:29 : Tables have been read
+15-juil.-2023 21:13:29 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.hst",1,",",0,0
+15-juil.-2023 21:13:29 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 21:13:29 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.hst has been read
+15-juil.-2023 21:13:29 : <SUPPRESS> MOD(1,5,0,0,0)
+15-juil.-2023 21:13:29 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 21:13:36 : End of modular protection. Time used 7 seconds
+                       Number of suppressions: 3
+15-juil.-2023 21:13:36 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.csv")
+15-juil.-2023 21:13:36 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer4.csv
+15-juil.-2023 21:13:37 : End of TauArgus run

@@ -1,0 +1,38 @@
+12-juil.-2023 12:05:22 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.arb
+12-juil.-2023 12:05:22 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.tab"
+12-juil.-2023 12:05:22 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.rda"
+12-juil.-2023 12:05:22 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+12-juil.-2023 12:05:22 : <SAFETYRULE> MAN(10)
+12-juil.-2023 12:05:22 : <READTABLE> 1
+12-juil.-2023 12:05:23 : Tables have been read
+12-juil.-2023 12:05:23 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.hst",1,",",0,0
+12-juil.-2023 12:05:23 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+12-juil.-2023 12:05:23 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.hst has been read
+12-juil.-2023 12:05:23 : <SUPPRESS> MOD(1,5,1,0,0)
+12-juil.-2023 12:05:23 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+12-juil.-2023 13:50:17 : End of modular protection. Time used 6293 seconds
+                       Number of suppressions: 2179
+12-juil.-2023 13:50:18 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.csv")
+12-juil.-2023 13:50:18 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.csv
+12-juil.-2023 13:50:18 : End of TauArgus run
+12-juil.-2023 16:03:37 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.arb
+12-juil.-2023 16:03:38 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.tab"
+12-juil.-2023 16:03:38 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.rda"
+12-juil.-2023 16:03:38 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+12-juil.-2023 16:03:38 : <SAFETYRULE> MAN(10)
+12-juil.-2023 16:03:38 : <READTABLE> 1
+12-juil.-2023 16:03:38 : Tables have been read
+12-juil.-2023 16:03:38 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.hst",1,",",0,0
+12-juil.-2023 16:03:39 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+12-juil.-2023 16:03:39 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.hst has been read
+12-juil.-2023 16:03:39 : <SUPPRESS> MOD(1,5,1,0,0)
+12-juil.-2023 16:03:39 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+12-juil.-2023 16:09:20 : End of modular protection. Time used 341 seconds
+                       Number of suppressions: 1641
+12-juil.-2023 16:09:20 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.csv")
+12-juil.-2023 16:09:20 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\table_enfer2.csv
+12-juil.-2023 16:09:21 : End of TauArgus run

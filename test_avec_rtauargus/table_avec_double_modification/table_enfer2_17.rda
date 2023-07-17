@@ -1,0 +1,24 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+ACTIVITY
+  <RECODEABLE>
+  <TOTCODE> "R"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_table_enfer2_17_unif.hrc"
+  <HIERLEADSTRING> "@"
+PERS
+  <RECODEABLE>
+  <TOTCODE> "Total"
+GEO_NUMBER_EMPL
+  <RECODEABLE>
+  <TOTCODE> "Total_Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_table_enfer_Total_Total_NUMBER_EMPL_unif.hrc"
+  <HIERLEADSTRING> "@"
+value
+  <NUMERIC>
+  <DECIMALS> 15
+nb_obs
+  <FREQUENCY>

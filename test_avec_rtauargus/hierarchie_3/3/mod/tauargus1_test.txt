@@ -1,0 +1,13 @@
+06-juil.-2023 13:52:45 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus1_test.arb
+06-juil.-2023 13:52:45 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus1_test.tab"
+06-juil.-2023 13:52:45 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus1_test.rda"
+06-juil.-2023 13:52:45 : <SPECIFYTABLE> "ACTIVITY""GEO""PERS_NUMBER_EMPL"|"value"||
+06-juil.-2023 13:52:45 : <SAFETYRULE> MAN(10)
+06-juil.-2023 13:52:45 : <READTABLE> 1
+06-juil.-2023 13:52:48 : Tables have been read
+06-juil.-2023 13:52:48 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus1_test.hst",1,",",0,0
+06-juil.-2023 13:52:48 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus1_test.hst has been applied
+                       to table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 13:52:48 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus1_test.hst has been read
+06-juil.-2023 13:52:48 : <SUPPRESS> MOD(1,5,1,0,0)
+06-juil.-2023 13:52:48 : Start of the modular protection for table ACTIVITY x GEO x PERS_NUMBER_EMPL | value

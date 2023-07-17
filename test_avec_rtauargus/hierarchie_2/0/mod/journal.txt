@@ -1,0 +1,253 @@
+Start time: 2023-07-07  17:25:07
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for first iteration: 10
+Interval Protection Level for other iterations: 0
+Nb of tables to treat:  2
+-----------------------------------------
+Tables to treat: table_test_0_hrc1 table_test_0_hrc2
+-----------------------------------------
+All explanatory variables: type_distrib A10 treff_cj
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------
+1 -Treatment of table table_test_0_hrc1
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 91 ( 17 %)
+- secondary secret: 134 ( 25 %)
+- valid cells: 310 ( 57.9 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 98
+-----------------------------------------
+-----------------------------------------
+2 -Treatment of table table_test_0_hrc2
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 191 ( 35.3 %)
+- secondary secret: 97 ( 17.9 %)
+- valid cells: 253 ( 46.8 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 49
+-----------------------------------------
+-----------------------------------------
+3 -Treatment of table table_test_0_hrc1
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 274 ( 51.2 %)
+- secondary secret: 14 ( 2.6 %)
+- valid cells: 247 ( 46.2 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 14
+-----------------------------------------
+-----------------------------------------
+4 -Treatment of table table_test_0_hrc2
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 302 ( 55.8 %)
+- secondary secret: 5 ( 0.9 %)
+- valid cells: 234 ( 43.3 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 3
+-----------------------------------------
+-----------------------------------------
+5 -Treatment of table table_test_0_hrc1
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 291 ( 54.4 %)
+- secondary secret: 0 ( 0 %)
+- valid cells: 244 ( 45.6 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 0
+-----------------------------------------
+-----------------------------------------
+End of iterating after 3 iterations for table_test_0_hrc1
+End of iterating after 2 iterations for table_test_0_hrc2
+-----------------------------------------
+Final Summary
+-----------------------------------------
+Secreted cells counts per table
+-----------------------------------------
+---TAB  table_test_0_hrc1  ---
+primary_secret    91
+secondary_secret 200
+total_secret     291
+valid_cells      244
+-----------------------------------------
+---TAB  table_test_0_hrc2  ---
+primary_secret    93
+secondary_secret 214
+total_secret     307
+valid_cells      234
+-----------------------------------------
+-----------------------------------------
+Common cells hit by the secret:
+type_distrib A10 treff_cj iteration
+1     AZ    tr2_LL      1
+1     BE    tr2_LL      1
+1     FZ    tr1_LL      1
+1     FZ    tr3_SP      1
+1     GI    tr2_SP      1
+1     GI    tr3_LL      1
+1     GI    tr3_SP      1
+1     JZ    tr2_SP      1
+1     JZ    tr3_SP      1
+1     KZ    tr1_LL      1
+1     KZ    tr2_LL      1
+1     KZ    tr2_SP      1
+1     LZ    tr1_LL      1
+1     LZ    tr1_PA      1
+1     LZ    tr2_LL      1
+1     LZ    tr2_SP      1
+1     MN    tr2_LL      1
+1     OQ    tr1_PA      1
+1     OQ    tr2_LL      1
+1     RU    tr2_SP      1
+1     Total tr2_PA      1
+1     Total tr2_SP      1
+2     AZ    tr1_LL      1
+2     AZ    tr1_SP      1
+2     BE    tr1_SP      1
+2     BE    tr3_SP      1
+2     FZ    tr1_LL      1
+2     GI    tr2_SP      1
+2     GI    tr3_LL      1
+2     GI    tr3_SP      1
+2     JZ    tr1_SP      1
+2     JZ    tr2_LL      1
+2     JZ    tr3_LL      1
+2     KZ    tr1_SP      1
+2     KZ    tr2_LL      1
+2     LZ    tr1_SP      1
+2     MN    tr1_PA      1
+2     MN    tr1_SP      1
+2     MN    tr2_SP      1
+2     MN    tr3_LL      1
+2     OQ    tr1_PA      1
+2     Total tr2_SP      1
+3     AZ    Total_Total 1
+3     AZ    tr1_LL      1
+3     BE    tr1_SP      1
+3     BE    tr2_LL      1
+3     BE    tr2_SP      1
+3     FZ    tr2_LL      1
+3     FZ    tr2_SP      1
+3     JZ    tr2_LL      1
+3     KZ    tr1_LL      1
+3     KZ    tr2_LL      1
+3     LZ    tr1_LL      1
+3     LZ    tr1_SP      1
+3     MN    tr1_SP      1
+3     MN    tr2_SP      1
+3     MN    tr3_LL      1
+3     OQ    tr1_SP      1
+3     OQ    tr2_SP      1
+3     RU    Total_Total 1
+3     RU    tr1_SP      1
+3     RU    tr2_LL      1
+3     Total tr1_PA      1
+3     Total tr1_SP      1
+3     Total tr3_LL      1
+4     BE    tr1_SP      1
+4     BE    tr3_LL      1
+4     FZ    tr2_LL      1
+4     JZ    tr2_LL      1
+4     KZ    tr1_LL      1
+4     KZ    tr1_SP      1
+4     KZ    tr2_LL      1
+4     MN    tr1_SP      1
+4     MN    tr2_LL      1
+4     OQ    tr1_SP      1
+4     OQ    tr2_LL      1
+4     OQ    tr2_SP      1
+4     RU    Total_Total 1
+4     RU    tr1_PA      1
+4     RU    tr1_SP      1
+4     RU    tr2_LL      1
+4     Total tr1_SP      1
+4     Total tr3_LL      1
+Total AZ    tr1_LL      1
+Total AZ    tr1_SP      1
+Total BE    tr2_SP      1
+Total FZ    tr3_LL      1
+Total FZ    tr3_SP      1
+Total GI    tr2_SP      1
+Total JZ    tr1_PA      1
+Total JZ    tr1_SP      1
+Total JZ    tr2_SP      1
+Total KZ    tr1_LL      1
+Total KZ    tr1_SP      1
+Total LZ    tr1_SP      1
+Total LZ    tr3_LL      1
+Total MN    tr2_SP      1
+Total RU    tr2_SP      1
+1     AZ    tr1_SP      2
+1     BE    tr1_LL      2
+1     BE    tr1_PA      2
+1     BE    tr1_SP      2
+1     BE    tr3_SP      2
+1     FZ    tr2_LL      2
+1     FZ    tr2_SP      2
+1     GI    tr1_LL      2
+1     GI    tr1_PA      2
+1     MN    tr1_PA      2
+1     MN    tr3_LL      2
+1     OQ    tr2_SP      2
+1     RU    tr1_SP      2
+1     Total tr1_PA      2
+1     Total tr1_SP      2
+2     BE    tr2_SP      2
+2     GI    tr1_LL      2
+2     GI    tr1_PA      2
+2     LZ    tr1_LL      2
+2     MN    tr2_LL      2
+2     MN    tr3_SP      2
+2     Total tr1_PA      2
+2     Total tr1_SP      2
+3     FZ    tr1_LL      2
+3     JZ    Total_Total 2
+3     JZ    tr1_LL      2
+3     JZ    tr1_SP      2
+3     OQ    tr1_LL      2
+3     RU    tr1_LL      2
+3     Total tr2_SP      2
+4     BE    tr1_LL      2
+4     JZ    Total_Total 2
+4     JZ    tr1_LL      2
+4     OQ    tr1_LL      2
+4     RU    tr1_LL      2
+Total BE    tr1_PA      2
+Total BE    tr1_SP      2
+Total FZ    tr2_LL      2
+Total FZ    tr2_SP      2
+Total GI    tr1_PA      2
+Total GI    tr3_SP      2
+Total JZ    tr1_LL      2
+Total JZ    tr3_LL      2
+Total KZ    tr2_LL      2
+Total LZ    tr1_LL      2
+Total LZ    tr2_SP      2
+Total MN    tr1_PA      2
+Total MN    tr3_SP      2
+Total RU    tr1_PA      2
+1     BE    tr3_LL      3
+1     MN    tr1_SP      3
+1     MN    tr3_SP      3
+1     RU    tr1_PA      3
+2     BE    tr2_LL      3
+3     Total tr2_LL      3
+4     Total tr2_LL      3
+4     Total tr2_SP      3
+Total GI    tr1_LL      3
+Total GI    tr3_LL      3
+Total LZ    tr2_LL      3
+Total MN    tr1_SP      3
+Total MN    tr3_LL      3
+Total RU    tr1_LL      3
+2     BE    tr1_LL      4
+Total MN    tr2_LL      4
+Total RU    tr2_LL      4
+-----------------------------------------
+End time:  2023-07-07  17:34:31
+-----------------------------------------

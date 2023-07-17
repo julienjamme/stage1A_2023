@@ -1,0 +1,24 @@
+Start time: 2023-07-11  15:53:40
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for first iteration: 10
+Interval Protection Level for other iterations: 0
+Nb of tables to treat:  2
+-----------------------------------------
+Tables to treat: table_enfer19 table_enfer20
+-----------------------------------------
+All explanatory variables: ACTIVITY PERS GEO_NUMBER_EMPL
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------
+1 -Treatment of table table_enfer19
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 832 ( 20.9 %)
+- secondary secret: 883 ( 22.2 %)
+- valid cells: 2257 ( 56.8 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 618
+-----------------------------------------
+-----------------------------------------

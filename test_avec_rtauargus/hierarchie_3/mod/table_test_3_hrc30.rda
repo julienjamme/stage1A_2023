@@ -1,0 +1,21 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+treff
+  <RECODEABLE>
+  <TOTCODE> "Total"
+cj
+  <RECODEABLE>
+  <TOTCODE> "Total"
+NUTS___PAYS
+  <RECODEABLE>
+  <TOTCODE> "FR7___Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_table_test_3_hrc_FR7_Total_PAYS_unif.hrc"
+  <HIERLEADSTRING> "@"
+pizzas_tot
+  <NUMERIC>
+  <DECIMALS> 6
+nb_obs
+  <FREQUENCY>

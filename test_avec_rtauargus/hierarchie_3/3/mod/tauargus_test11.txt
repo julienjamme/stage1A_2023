@@ -1,0 +1,13 @@
+06-juil.-2023 17:22:39 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus_test11.arb
+06-juil.-2023 17:22:40 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus_test11.tab"
+06-juil.-2023 17:22:40 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus_test11.rda"
+06-juil.-2023 17:22:40 : <SPECIFYTABLE> "GEO""NUMBER_EMPL""PERS_ACTIVITY"|"value"||
+06-juil.-2023 17:22:40 : <SAFETYRULE> MAN(10)
+06-juil.-2023 17:22:40 : <READTABLE> 1
+06-juil.-2023 17:22:41 :  Error in line 1 of table file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\tauargus_test11.tab
+                       Code not in codelist
+                        Codes: "**FR1", "***E0", "*******adulte_B"
+                        code nr: 2
+06-juil.-2023 17:22:41 : Something wrong in readTablesBatch()
+06-juil.-2023 17:22:41 : Error in batch file
+06-juil.-2023 17:22:41 : End of TauArgus run

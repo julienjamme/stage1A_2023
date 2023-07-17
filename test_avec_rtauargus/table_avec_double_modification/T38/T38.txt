@@ -1,0 +1,32 @@
+13-juil.-2023 09:55:02 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.arb
+13-juil.-2023 09:55:02 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.tab"
+13-juil.-2023 09:55:02 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.rda"
+13-juil.-2023 09:55:02 : <SPECIFYTABLE> "GEO_NUMBER_EMPL""ACTIVITY""PERS"|"value"||
+13-juil.-2023 09:55:02 : <SAFETYRULE> MAN(10)
+13-juil.-2023 09:55:02 : <READTABLE> 1
+13-juil.-2023 09:55:03 :  Error in line 76 of table file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.tab
+                       Code not in codelist
+                        Codes: "**FRI_Total", "*****H", "**adulte"
+                        code nr: 0
+13-juil.-2023 09:55:03 : Something wrong in readTablesBatch()
+13-juil.-2023 09:55:03 : Error in batch file
+13-juil.-2023 09:55:03 : End of TauArgus run
+13-juil.-2023 10:48:20 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.arb
+13-juil.-2023 10:48:20 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.tab"
+13-juil.-2023 10:48:20 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.rda"
+13-juil.-2023 10:48:20 : <SPECIFYTABLE> "GEO_NUMBER_EMPL""ACTIVITY""PERS"|"value"||
+13-juil.-2023 10:48:20 : <SAFETYRULE> MAN(10)
+13-juil.-2023 10:48:20 : <READTABLE> 1
+13-juil.-2023 10:48:21 : Tables have been read
+13-juil.-2023 10:48:21 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.hst",1,",",0,0
+13-juil.-2023 10:48:21 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.hst has been applied
+                       to table: GEO_NUMBER_EMPL x ACTIVITY x PERS | value
+13-juil.-2023 10:48:21 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.hst has been read
+13-juil.-2023 10:48:21 : <SUPPRESS> MOD(1,5,1,0,0)
+13-juil.-2023 10:48:21 : Start of the modular protection for table GEO_NUMBER_EMPL x ACTIVITY x PERS | value
+13-juil.-2023 10:49:31 : End of modular protection. Time used 69 seconds
+                       Number of suppressions: 1635
+13-juil.-2023 10:49:31 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.csv")
+13-juil.-2023 10:49:31 : Table: GEO_NUMBER_EMPL x ACTIVITY x PERS | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification\T38\T38.csv
+13-juil.-2023 10:49:31 : End of TauArgus run

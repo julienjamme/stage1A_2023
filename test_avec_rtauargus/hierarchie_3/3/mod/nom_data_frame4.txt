@@ -1,0 +1,63 @@
+06-juil.-2023 16:04:42 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.arb
+06-juil.-2023 16:04:42 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.tab"
+06-juil.-2023 16:04:42 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.rda"
+06-juil.-2023 16:04:42 : <SPECIFYTABLE> "ACTIVITY""GEO""PERS_NUMBER_EMPL"|"value"||
+06-juil.-2023 16:04:42 : <SAFETYRULE> MAN(10)
+06-juil.-2023 16:04:42 : <READTABLE> 1
+06-juil.-2023 16:04:44 : Tables have been read
+06-juil.-2023 16:04:44 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst",1,",",0,0
+06-juil.-2023 16:04:46 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst has been applied
+                       to table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 16:04:46 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst has been read
+06-juil.-2023 16:04:46 : <SUPPRESS> GH(1,100)
+06-juil.-2023 16:04:46 : Start of the hypercube protection for table ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 16:05:30 : End of hypercube protection. Time used 44 seconds
+                       Number of suppressions: 16964
+06-juil.-2023 16:05:30 : The hypercube procedure has been applied
+                       16964 cells have been suppressed
+06-juil.-2023 16:05:30 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.csv")
+06-juil.-2023 16:05:30 : Table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.csv
+06-juil.-2023 16:05:30 : End of TauArgus run
+06-juil.-2023 16:16:15 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.arb
+06-juil.-2023 16:16:16 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.tab"
+06-juil.-2023 16:16:16 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.rda"
+06-juil.-2023 16:16:16 : <SPECIFYTABLE> "ACTIVITY""GEO""PERS_NUMBER_EMPL"|"value"||
+06-juil.-2023 16:16:16 : <SAFETYRULE> MAN(0)
+06-juil.-2023 16:16:16 : <READTABLE> 1
+06-juil.-2023 16:16:18 : Tables have been read
+06-juil.-2023 16:16:18 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst",1,",",0,0
+06-juil.-2023 16:16:20 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst has been applied
+                       to table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 16:16:20 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst has been read
+06-juil.-2023 16:16:20 : <SUPPRESS> GH(1,100)
+06-juil.-2023 16:16:20 : Start of the hypercube protection for table ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 16:16:43 : End of hypercube protection. Time used 22 seconds
+                       Number of suppressions: 580
+06-juil.-2023 16:16:43 : The hypercube procedure has been applied
+                       580 cells have been suppressed
+06-juil.-2023 16:16:43 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.csv")
+06-juil.-2023 16:16:43 : Table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.csv
+06-juil.-2023 16:16:43 : End of TauArgus run
+06-juil.-2023 16:27:20 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.arb
+06-juil.-2023 16:27:21 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.tab"
+06-juil.-2023 16:27:21 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.rda"
+06-juil.-2023 16:27:21 : <SPECIFYTABLE> "ACTIVITY""GEO""PERS_NUMBER_EMPL"|"value"||
+06-juil.-2023 16:27:21 : <SAFETYRULE> MAN(0)
+06-juil.-2023 16:27:21 : <READTABLE> 1
+06-juil.-2023 16:27:23 : Tables have been read
+06-juil.-2023 16:27:23 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst",1,",",0,0
+06-juil.-2023 16:27:25 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst has been applied
+                       to table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 16:27:25 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.hst has been read
+06-juil.-2023 16:27:25 : <SUPPRESS> GH(1,100)
+06-juil.-2023 16:27:25 : Start of the hypercube protection for table ACTIVITY x GEO x PERS_NUMBER_EMPL | value
+06-juil.-2023 16:27:47 : End of hypercube protection. Time used 21 seconds
+                       Number of suppressions: 7
+06-juil.-2023 16:27:47 : The hypercube procedure has been applied
+                       7 cells have been suppressed
+06-juil.-2023 16:27:47 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.csv")
+06-juil.-2023 16:27:47 : Table: ACTIVITY x GEO x PERS_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_3\3\mod\nom_data_frame4.csv
+06-juil.-2023 16:27:47 : End of TauArgus run

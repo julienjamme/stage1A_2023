@@ -1,0 +1,38 @@
+15-juil.-2023 13:26:14 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.arb
+15-juil.-2023 13:26:15 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.tab"
+15-juil.-2023 13:26:15 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.rda"
+15-juil.-2023 13:26:15 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 13:26:15 : <SAFETYRULE> MAN(10)
+15-juil.-2023 13:26:15 : <READTABLE> 1
+15-juil.-2023 13:26:16 : Tables have been read
+15-juil.-2023 13:26:16 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.hst",1,",",0,0
+15-juil.-2023 13:26:16 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 13:26:16 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.hst has been read
+15-juil.-2023 13:26:16 : <SUPPRESS> MOD(1,5,1,0,0)
+15-juil.-2023 13:26:16 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 13:26:22 : End of modular protection. Time used 6 seconds
+                       Number of suppressions: 81
+15-juil.-2023 13:26:22 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.csv")
+15-juil.-2023 13:26:22 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.csv
+15-juil.-2023 13:26:23 : End of TauArgus run
+15-juil.-2023 20:36:30 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.arb
+15-juil.-2023 20:36:30 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.tab"
+15-juil.-2023 20:36:30 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.rda"
+15-juil.-2023 20:36:30 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 20:36:31 : <SAFETYRULE> MAN(10)
+15-juil.-2023 20:36:31 : <READTABLE> 1
+15-juil.-2023 20:36:32 : Tables have been read
+15-juil.-2023 20:36:32 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.hst",1,",",0,0
+15-juil.-2023 20:36:32 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 20:36:32 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.hst has been read
+15-juil.-2023 20:36:32 : <SUPPRESS> MOD(1,5,0,0,0)
+15-juil.-2023 20:36:32 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 20:36:40 : End of modular protection. Time used 7 seconds
+                       Number of suppressions: 4
+15-juil.-2023 20:36:40 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.csv")
+15-juil.-2023 20:36:40 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer8.csv
+15-juil.-2023 20:36:40 : End of TauArgus run

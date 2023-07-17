@@ -1,0 +1,14 @@
+Start time: 2023-07-04  10:51:36
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for first iteration: 10
+Interval Protection Level for other iterations: 0
+Nb of tables to treat:  4
+-----------------------------------------
+Tables to treat: T1 T2 T3 T4
+-----------------------------------------
+All explanatory variables: ACTIVITY GEO PERS_NUMBER_EMPL
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------

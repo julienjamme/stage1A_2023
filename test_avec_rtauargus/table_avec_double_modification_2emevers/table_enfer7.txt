@@ -1,0 +1,38 @@
+15-juil.-2023 13:23:22 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.arb
+15-juil.-2023 13:23:23 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.tab"
+15-juil.-2023 13:23:23 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.rda"
+15-juil.-2023 13:23:23 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 13:23:23 : <SAFETYRULE> MAN(10)
+15-juil.-2023 13:23:23 : <READTABLE> 1
+15-juil.-2023 13:23:24 : Tables have been read
+15-juil.-2023 13:23:24 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.hst",1,",",0,0
+15-juil.-2023 13:23:25 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 13:23:25 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.hst has been read
+15-juil.-2023 13:23:25 : <SUPPRESS> MOD(1,5,1,0,0)
+15-juil.-2023 13:23:25 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 13:23:36 : End of modular protection. Time used 11 seconds
+                       Number of suppressions: 1118
+15-juil.-2023 13:23:36 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.csv")
+15-juil.-2023 13:23:36 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.csv
+15-juil.-2023 13:23:36 : End of TauArgus run
+15-juil.-2023 18:18:52 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.arb
+15-juil.-2023 18:18:53 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.tab"
+15-juil.-2023 18:18:53 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.rda"
+15-juil.-2023 18:18:53 : <SPECIFYTABLE> "ACTIVITY""PERS""GEO_NUMBER_EMPL"|"value"||
+15-juil.-2023 18:18:53 : <SAFETYRULE> MAN(10)
+15-juil.-2023 18:18:53 : <READTABLE> 1
+15-juil.-2023 18:18:54 : Tables have been read
+15-juil.-2023 18:18:54 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.hst",1,",",0,0
+15-juil.-2023 18:18:54 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.hst has been applied
+                       to table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 18:18:54 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.hst has been read
+15-juil.-2023 18:18:54 : <SUPPRESS> MOD(1,5,0,0,0)
+15-juil.-2023 18:18:54 : Start of the modular protection for table ACTIVITY x PERS x GEO_NUMBER_EMPL | value
+15-juil.-2023 18:19:04 : End of modular protection. Time used 10 seconds
+                       Number of suppressions: 102
+15-juil.-2023 18:19:04 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.csv")
+15-juil.-2023 18:19:05 : Table: ACTIVITY x PERS x GEO_NUMBER_EMPL | value has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_avec_double_modification_2emevers\table_enfer7.csv
+15-juil.-2023 18:19:05 : End of TauArgus run

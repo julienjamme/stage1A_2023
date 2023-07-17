@@ -1,0 +1,27 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+ACTIVITY
+  <RECODEABLE>
+  <TOTCODE> "Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\hrc\activity_2_niv_unif.hrc"
+  <HIERLEADSTRING> "@"
+NUTS23
+  <RECODEABLE>
+  <TOTCODE> "Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\hrc\nuts23_unif.hrc"
+  <HIERLEADSTRING> "@"
+treff
+  <RECODEABLE>
+  <TOTCODE> "Total"
+cj
+  <RECODEABLE>
+  <TOTCODE> "Total"
+pizzas_tot
+  <NUMERIC>
+  <DECIMALS> 13
+nb_obs
+  <FREQUENCY>

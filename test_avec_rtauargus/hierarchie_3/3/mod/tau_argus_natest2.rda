@@ -1,0 +1,27 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+ACTIVITY
+  <RECODEABLE>
+  <TOTCODE> "Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\hrc\corresp_activity_unif.hrc"
+  <HIERLEADSTRING> "@"
+NUMBER_EMPL
+  <RECODEABLE>
+  <TOTCODE> "Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\hrc\hrc_nb_empl_unif.hrc"
+  <HIERLEADSTRING> "@"
+PERS_GEO
+  <RECODEABLE>
+  <TOTCODE> "Total_Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_tau_argus_natest_Total_GEO_unif.hrc"
+  <HIERLEADSTRING> "@"
+value
+  <NUMERIC>
+  <DECIMALS> 17
+nb_obs
+  <FREQUENCY>

@@ -1,0 +1,190 @@
+03-juil.-2023 10:18:54 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 10:18:54 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 10:18:54 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 10:18:54 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 10:18:54 : <SAFETYRULE> MAN(10)
+03-juil.-2023 10:18:54 : <READTABLE> 1
+03-juil.-2023 10:18:54 : Tables have been read
+03-juil.-2023 10:18:54 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 10:18:55 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 10:18:55 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 10:18:55 : <SUPPRESS> MOD(1,5,1,0,0)
+03-juil.-2023 10:18:55 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 10:21:42 : End of modular protection. Time used 167 seconds
+                       Number of suppressions: 1640
+03-juil.-2023 10:21:42 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 10:21:43 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 10:21:43 : End of TauArgus run
+03-juil.-2023 10:22:52 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 10:22:53 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 10:22:53 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 10:22:53 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 10:22:53 : <SAFETYRULE> MAN(0)
+03-juil.-2023 10:22:53 : <READTABLE> 1
+03-juil.-2023 10:22:53 : Tables have been read
+03-juil.-2023 10:22:53 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 10:22:53 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 10:22:53 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 10:22:53 : <SUPPRESS> MOD(1,5,0,0,0)
+03-juil.-2023 10:22:53 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 10:22:59 : End of modular protection. Time used 5 seconds
+                       Number of suppressions: 0
+03-juil.-2023 10:22:59 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 10:22:59 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 10:22:59 : End of TauArgus run
+03-juil.-2023 13:56:23 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 13:56:23 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 13:56:23 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 13:56:23 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 13:56:23 : <SAFETYRULE> MAN(10)
+03-juil.-2023 13:56:23 : <READTABLE> 1
+03-juil.-2023 13:56:23 : Tables have been read
+03-juil.-2023 13:56:23 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 13:56:23 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 13:56:23 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 13:56:23 : <SUPPRESS> MOD(1,5,1,0,0)
+03-juil.-2023 13:56:23 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 13:58:30 : End of modular protection. Time used 126 seconds
+                       Number of suppressions: 1634
+03-juil.-2023 13:58:30 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 13:58:30 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 13:58:30 : End of TauArgus run
+03-juil.-2023 13:59:58 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 13:59:58 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 13:59:58 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 13:59:58 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 13:59:58 : <SAFETYRULE> MAN(0)
+03-juil.-2023 13:59:58 : <READTABLE> 1
+03-juil.-2023 13:59:58 : Tables have been read
+03-juil.-2023 13:59:58 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 13:59:59 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 13:59:59 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 13:59:59 : <SUPPRESS> MOD(1,5,0,0,0)
+03-juil.-2023 13:59:59 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 14:00:05 : End of modular protection. Time used 6 seconds
+                       Number of suppressions: 0
+03-juil.-2023 14:00:05 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 14:00:05 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 14:00:05 : End of TauArgus run
+03-juil.-2023 14:33:04 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 14:33:04 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 14:33:04 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 14:33:04 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 14:33:04 : <SAFETYRULE> MAN(10)
+03-juil.-2023 14:33:04 : <READTABLE> 1
+03-juil.-2023 14:33:04 : Tables have been read
+03-juil.-2023 14:33:04 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 14:33:04 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 14:33:04 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 14:33:04 : <SUPPRESS> MOD(1,5,1,0,0)
+03-juil.-2023 14:33:04 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 14:34:20 : End of modular protection. Time used 76 seconds
+                       Number of suppressions: 1595
+03-juil.-2023 14:34:20 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 14:34:20 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 14:34:20 : End of TauArgus run
+03-juil.-2023 14:35:33 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 14:35:33 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 14:35:33 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 14:35:33 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 14:35:33 : <SAFETYRULE> MAN(0)
+03-juil.-2023 14:35:33 : <READTABLE> 1
+03-juil.-2023 14:35:33 : Tables have been read
+03-juil.-2023 14:35:33 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 14:35:33 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 14:35:33 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 14:35:33 : <SUPPRESS> MOD(1,5,0,0,0)
+03-juil.-2023 14:35:33 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 14:35:40 : End of modular protection. Time used 6 seconds
+                       Number of suppressions: 0
+03-juil.-2023 14:35:40 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 14:35:40 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 14:35:40 : End of TauArgus run
+03-juil.-2023 15:12:55 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 15:12:55 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 15:12:55 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 15:12:55 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 15:12:55 : <SAFETYRULE> MAN(10)
+03-juil.-2023 15:12:55 : <READTABLE> 1
+03-juil.-2023 15:12:55 : Tables have been read
+03-juil.-2023 15:12:55 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 15:12:55 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:12:55 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 15:12:55 : <SUPPRESS> MOD(1,5,1,0,0)
+03-juil.-2023 15:12:55 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:14:10 : End of modular protection. Time used 74 seconds
+                       Number of suppressions: 1594
+03-juil.-2023 15:14:10 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 15:14:10 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 15:14:10 : End of TauArgus run
+03-juil.-2023 15:14:56 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 15:14:56 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 15:14:56 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 15:14:56 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 15:14:57 : <SAFETYRULE> MAN(0)
+03-juil.-2023 15:14:57 : <READTABLE> 1
+03-juil.-2023 15:14:57 : Tables have been read
+03-juil.-2023 15:14:57 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 15:14:57 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:14:57 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 15:14:57 : <SUPPRESS> MOD(1,5,0,0,0)
+03-juil.-2023 15:14:57 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:15:04 : End of modular protection. Time used 7 seconds
+                       Number of suppressions: 0
+03-juil.-2023 15:15:04 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 15:15:04 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 15:15:04 : End of TauArgus run
+03-juil.-2023 15:16:46 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 15:16:46 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 15:16:46 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 15:16:46 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 15:16:46 : <SAFETYRULE> MAN(10)
+03-juil.-2023 15:16:46 : <READTABLE> 1
+03-juil.-2023 15:16:46 : Tables have been read
+03-juil.-2023 15:16:46 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 15:16:47 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:16:47 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 15:16:47 : <SUPPRESS> MOD(1,5,1,0,0)
+03-juil.-2023 15:16:47 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:18:01 : End of modular protection. Time used 74 seconds
+                       Number of suppressions: 1639
+03-juil.-2023 15:18:01 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 15:18:01 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 15:18:01 : End of TauArgus run
+03-juil.-2023 15:18:50 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.arb
+03-juil.-2023 15:18:50 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.tab"
+03-juil.-2023 15:18:50 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.rda"
+03-juil.-2023 15:18:50 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+03-juil.-2023 15:18:50 : <SAFETYRULE> MAN(0)
+03-juil.-2023 15:18:50 : <READTABLE> 1
+03-juil.-2023 15:18:51 : Tables have been read
+03-juil.-2023 15:18:51 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst",1,",",0,0
+03-juil.-2023 15:18:51 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been applied
+                       to table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:18:51 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.hst has been read
+03-juil.-2023 15:18:51 : <SUPPRESS> MOD(1,5,0,0,0)
+03-juil.-2023 15:18:51 : Start of the modular protection for table ACTIVITY x NUTS23 x treff_cj | pizzas_tot
+03-juil.-2023 15:18:58 : End of modular protection. Time used 6 seconds
+                       Number of suppressions: 0
+03-juil.-2023 15:18:58 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv")
+03-juil.-2023 15:18:58 : Table: ACTIVITY x NUTS23 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\T2.csv
+03-juil.-2023 15:18:58 : End of TauArgus run

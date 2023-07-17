@@ -1,0 +1,32 @@
+Start time: 2023-07-15  23:37:52
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for primary secret cells: 10
+Nb of tables to treat:  77
+-----------------------------------------
+Tables to treat: table_enfer1_1 table_enfer1_2 table_enfer1_3 
+table_enfer1_4 table_enfer1_5 table_enfer1_6 table_enfer1_7 
+table_enfer1_8 table_enfer1_9 table_enfer1_10 table_enfer1_11 
+table_enfer1_12 table_enfer1_13 table_enfer1_14 table_enfer1_15 
+table_enfer1_16 table_enfer1_17 table_enfer1_18 table_enfer2 
+table_enfer3 table_enfer4 table_enfer5 table_enfer6 table_enfer7 
+table_enfer8 table_enfer9 table_enfer10 table_enfer11 
+table_enfer12 table_enfer13 table_enfer14 table_enfer15 
+table_enfer16 table_enfer17 table_enfer18 table_enfer19 
+table_enfer20 table_enfer21 table_enfer22 table_enfer23 
+table_enfer24 table_enfer25 table_enfer26 table_enfer27 
+table_enfer28 table_enfer29 table_enfer30 table_enfer31 
+table_enfer32 table_enfer33 table_enfer34 table_enfer35 
+table_enfer36 table_enfer37 table_enfer38 table_enfer39 
+table_enfer40 table_enfer41 table_enfer42 table_enfer43 
+table_enfer44 table_enfer45 table_enfer46 table_enfer47 
+table_enfer48 table_enfer49 table_enfer50 table_enfer51 
+table_enfer52 table_enfer53 table_enfer54 table_enfer55 
+table_enfer56 table_enfer57 table_enfer58 table_enfer59 
+table_enfer60
+-----------------------------------------
+All explanatory variables: ACTIVITY PERS GEO_NUMBER_EMPL
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------

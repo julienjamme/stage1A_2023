@@ -1,0 +1,14 @@
+17-juil.-2023 11:08:33 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_38413\test_grande_table.arb
+17-juil.-2023 11:08:34 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_38413\test_grande_table.tab"
+17-juil.-2023 11:08:34 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_38413\test_grande_table.rda"
+17-juil.-2023 11:08:34 : <SPECIFYTABLE> "treff""dep""a732"|"pizzas_tot"||
+17-juil.-2023 11:08:34 : <SAFETYRULE> MAN(10)
+17-juil.-2023 11:08:34 : <READTABLE> 1
+17-juil.-2023 11:08:34 : Something wrong
+17-juil.-2023 11:08:34 : Code does not exist
+17-juil.-2023 11:08:34 : Error in file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_38413\test_grande_table.tab on line 4.
+                       Line = Total,  *75,Total, 2671901.2723730001598597, 19467
+                       Code does not exist
+17-juil.-2023 11:08:34 : Something wrong in readTablesBatch()
+17-juil.-2023 11:08:34 : Error in batch file
+17-juil.-2023 11:08:34 : End of TauArgus run
