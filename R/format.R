@@ -96,7 +96,8 @@ format4 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
     vars = list_vars,
     sep=sep,
     totcode=totcode_2,
-    hrcfile=hrcfiles[!(names(hrcfiles) %in% res$vars)]
+    hrcfile=hrcfiles[!(names(hrcfiles) %in% res$vars)],
+    fus_vars=res$vars
   ))
   
 }
@@ -115,7 +116,7 @@ format5 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
     
     tot_cross <- paste(totcode[[v1]],totcode[[v2]],sep=sep)
     tot_cross2 <- paste(totcode[[v3]],totcode[[v4]],sep=sep)
-    
+    tabs<-res$tabs
     d<- intersect(names(res$tabs[[1]]), names(totcode))
     p<-totcode[names(totcode) %in% d ]
 
@@ -170,7 +171,8 @@ format5 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
     vars = list_vars,
     sep=sep,
     totcode=totcode_2,
-    hrcfile=hrcfiles[!(names(hrcfiles) %in% names(totcode_2) )]
+    hrcfile=hrcfiles[!(names(hrcfiles) %in% names(totcode_2) )],
+    fus_vars=res$vars
   ))
 }
 
