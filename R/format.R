@@ -45,28 +45,37 @@
 #' format(res,"nom_dfs"tab)
 #'
 
-format <- function(res, nom_dfs,sep) {
+format <- function(res, nom_dfs,sep,totcode,hrcfiles) {
   if (class(res$vars[1]) == "character") {
-    return(format2(res, nom_dfs,sep))
+    return(format4(res, nom_dfs,sep,totcode,hrcfiles))
   }
   if (class(res$vars) == "list") {
-    return(format3(res, nom_dfs,sep))
+    return(format5(res, nom_dfs,sep,totcode,hrcfiles))
   }
 }
 
 #Format pour les tableaux à 4 variables
 
-format2 <- function(res, nom_dfs,sep) {
+format4 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
   #Données
   if (class(res$vars[1]) == "character") {
     v1 <- res$vars[1]
     v2 <- res$vars[2]
-    var_cross <- paste(v1, v2, sep = sep)
     
-    for (i in seq_along(res$tabs)) {
-      #Noms des tableaux
-      names(res$tabs)[[i]] <- paste(nom_dfs, as.character(i), sep = "")
-    }
+    var_cross <- paste(v1, v2, sep = sep)
+    tot_cross <- paste(totcode[[v1]],totcode[[v2]],sep=sep)
+   
+    d<- intersect(names(res$tabs[[1]]), names(totcode))
+    p<-totcode[names(totcode) %in% d ]
+    names(tot_cross)<-var_cross
+    totcode_2 <-c(p,tot_cross)
+    n<-length(tabs)
+    v <-c(d,var_cross)
+    list_vars<-replicate(n,v,simplify=FALSE)
+    names(list_vars)<- c(paste0(nom_dfs,1:n,sep=""))
+    tabs<-res$tabs
+    names(tabs)<- c(paste0(nom_dfs,1:n,sep=""))
+    
     
     #Noms des hrcs
     res2 <- setNames(lapply(seq_along(res$tabs), function(i) {
@@ -81,18 +90,20 @@ format2 <- function(res, nom_dfs,sep) {
     paste(nom_dfs, seq_along(res$tabs), sep = ""))
   }
   return (list(
-    tabs = res$tabs,
+    tabs = tabs,
     hrcs = res2,
     alt_tot = res3,
-    vars = res$vars,
-    sep=sep
+    vars = list_vars,
+    sep=sep,
+    totcode=totcode_2,
+    hrcfile=hrcfiles[!(names(hrcfiles) %in% res$vars)]
   ))
   
 }
 
 #Format pour les tableaux à 5 variables
 
-format3 <- function(res, nom_dfs,sep) {
+format5 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
   if (class(res$vars) == "list") {
     #On récupère les différentes variables
     v1 <- res$vars[[2]][1]
@@ -101,6 +112,22 @@ format3 <- function(res, nom_dfs,sep) {
     v4 <- res$vars[[1]][2]
     var_cross <- paste(v1, v2, sep = sep)
     var_cross2 <- paste(v3, v4, sep = sep)
+    
+    tot_cross <- paste(totcode[[v1]],totcode[[v2]],sep=sep)
+    tot_cross2 <- paste(totcode[[v3]],totcode[[v4]],sep=sep)
+    
+    d<- intersect(names(res$tabs[[1]]), names(totcode))
+    p<-totcode[names(totcode) %in% d ]
+
+    names(tot_cross)<-var_cross
+    names(tot_cross2)<-var_cross2
+    totcode_2 <-c(p,tot_cross,tot_cross2)
+    
+    n<-length(res$tabs)
+    v<-c(d,var_cross,var_cross2)
+    list_vars<-replicate(n,v,simplify=FALSE)
+    names(list_vars)<- c(paste0(nom_dfs,1:n,sep=""))
+    names(tabs)<- c(paste0(nom_dfs,1:n,sep=""))
     
     # On fusionne 3 variables en une
     # Donc les infos relatifs à deux variables fusionnées lors de 5->4
@@ -112,16 +139,10 @@ format3 <- function(res, nom_dfs,sep) {
                    vars = res$vars[[2]],
                    sep=sep
                  )
-      res2 <- format(res2, nom_dfs,sep)
+      res2 <- format(res2, nom_dfs,sep,totcode,hrcfiles)
       # On garde l'information des variables fusionnés à chaque étape
       res2$vars <- res$vars
       return(res2)
-    }
-    
-    for (i in seq_along(res$tabs)) {
-      #Noms des tableaux
-      names(res$tabs)[[i]] <-
-        paste(nom_dfs, as.character(i), sep = "")
     }
     
     #Noms des hrcs
@@ -143,11 +164,13 @@ format3 <- function(res, nom_dfs,sep) {
     
   }
   return (list(
-    tabs = res$tabs,
+    tabs = tabs,
     hrcs = res2,
     alt_tot = res3,
-    vars = res$vars,
-    sep=sep
+    vars = list_vars,
+    sep=sep,
+    totcode=totcode_2,
+    hrcfile=hrcfiles[!(names(hrcfiles) %in% names(totcode_2) )]
   ))
 }
 
