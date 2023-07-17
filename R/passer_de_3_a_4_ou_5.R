@@ -8,9 +8,9 @@ passer_a_4_ou_5 <- function(res){
   sep_regex <- gsub("([+])", "\\\\\\1", sep)
   
   # Ancien tableau à 4 dimensions
-  if (class(res$vars) == "character") {
-    v1 = res$vars[1]
-    v2 = res$vars[2]
+  if (class(res$fus_vars) == "character") {
+    v1 = res$fus_vars[1]
+    v2 = res$fus_vars[2]
     v1_v2 = paste(v1,v2,sep=sep)
     
     function_sep <- function(df){ df %>% 
@@ -19,12 +19,12 @@ passer_a_4_ou_5 <- function(res){
     
   # Ancien tableau à 5 dimensions
   } else {
-    v1 = res$vars$`Passage 5 à 4`[1]
-    v2 = res$vars$`Passage 5 à 4`[2]
+    v1 = res$fus_vars$`Passage 5 à 4`[1]
+    v2 = res$fus_vars$`Passage 5 à 4`[2]
     v1_v2 = paste(v1,v2,sep=sep)
     
-    v3 = res$vars$`Passage 4 à 3`[1]
-    v4 = res$vars$`Passage 4 à 3`[2]
+    v3 = res$fus_vars$`Passage 4 à 3`[1]
+    v4 = res$fus_vars$`Passage 4 à 3`[2]
     
     # Deux couples ont été créés
     if (!(v1_v2 == v3 | v1_v2 == v4)){
@@ -58,9 +58,9 @@ passer_a_4_ou_5_r_base <- function(res){
   sep <- res$sep
   sep_regex <- gsub("([+])", "\\\\\\1", sep)
   
-  if (class(res$vars) == "character") {
-    v1 = res$vars[1]
-    v2 = res$vars[2]
+  if (class(res$fus_vars) == "character") {
+    v1 = res$fus_vars[1]
+    v2 = res$fus_vars[2]
     v1_v2 = paste(v1, v2, sep=sep)
     
     function_sep <- function(df) {
@@ -72,12 +72,12 @@ passer_a_4_ou_5_r_base <- function(res){
     }
     
   } else {
-    v1 = res$vars$`Passage 5 à 4`[1]
-    v2 = res$vars$`Passage 5 à 4`[2]
+    v1 = res$fus_vars$`Passage 5 à 4`[1]
+    v2 = res$fus_vars$`Passage 5 à 4`[2]
     v1_v2 = paste(v1, v2, sep=sep)
     
-    v3 = res$vars$`Passage 4 à 3`[1]
-    v4 = res$vars$`Passage 4 à 3`[2]
+    v3 = res$fus_vars$`Passage 4 à 3`[1]
+    v4 = res$fus_vars$`Passage 4 à 3`[2]
     
     if (!(v1_v2 == v3 | v1_v2 == v4)){
       v3_v4 = paste(v3, v4, sep=sep)
