@@ -48,5 +48,20 @@ po/*~
 # RStudio Connect folder
 rsconnect/
 
+# Visualisation du README par rstudio
 README.html
+
+# fichier créés lors de test
 output/
+
+test/test_cas_gen_4_output/test1
+test/test_cas_gen_4_output/test2
+test/test_cas_gen_4_output/test3
+test/test_cas_gen_4_output/test4
+test/test_cas_gen_4_output/test5
+test/test_cas_gen_4_output/test6
+test/test_cas_gen_4_output/test7
+
+test/test_cas_gen_5_output/test1
+test/test_cas_gen_5_output/test2
+test/test_cas_gen_5_output/test3
