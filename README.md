@@ -224,11 +224,11 @@ Comptons tout d’abord le nombre de noeuds lié à la variable SEX_GEO.
 
 Il y a un tableau différent par croisement des modalité SEX et GEO. Ensuite, il y a deux hierarchiques créés : une sur les marges de SEX, l’autre sur GEO.
 
-La hierarchie sur les marges de AGE a autant de noeuds qu’AGE à de modalités, et de façon analogue pour SEX.
+La hierarchie sur les marges de AGE a autant de noeuds qu’AGE a de modalités, et de façon analogue pour SEX.
 
 Nous obtenons alors :
 
-$$\textit{nombre de tableau lié à v1_v2}=2 \times 
+$$\textit{nombre de tableau lié à v1_v2} = 
 \sum_{i\in\textit{{noeud + branche v1}}} \sum_{j\in\textit{{noeud + branche v2}}} \textit{nb_mod_i + nb_mod_j}$$
 
 où nb_mod_i et nb_mod_j correpondent au nombre de modalité respectif du regroupement i et j. Par exemple si i = {France, Région 1, Région 2} alors nb_mod_i = 3.
@@ -240,22 +240,22 @@ $$
 $$
 
 $$
-=4 \times \textit{nombre_noeuds_v3} \times \sum_{i\in\textit{{noeud + branche v1}}}
+=2 \times \textit{nombre_noeuds_v3} \times \sum_{i\in\textit{{noeud + branche v1}}}
 \sum_{j\in\textit{{noeud + branche v2}}}
 \textit{nb_mod_i + nb_mod_j}
 $$
 
 Dans l’exemple de SEX_GEO_AGE, nous obtenons :
 
-$$\textit{nombre de tableau lié à SEXE_GEO} = 2 \times ( (3+3)+(3+4)+(3+5) ) = 42$$
+$$\textit{nombre de tableau lié à SEXE_GEO} =  (3+3)+(3+4)+(3+5) = 21$$
 
-$$\textit{nombre de tableau total} = 2 \times 1 \times 42 = 84$$
+$$\textit{nombre de tableau total} = 2 \times 1 \times 42 = 42$$
 
 Puisque SEX n’est pas hierarchique donc on ne considère que {Ensemble,Homme,Femme} (qui a donc trois modalités), GEO a trois noeuds : {France, Région 1, Région 2}, {Région 1, Commune 11, Commune 12, Commune 13}, {Région 2, Commune 21, Commune 22,Commune 23,Commune 24} ayant respectivement 3, 4 et 5 modalités.
 
 Pour finir AGE étant non hiérarchique, elle n’a qu’un seul noeud.
 
-Nous obtenons donc 84 tableaux lors de la création de SEX_GEO_AGE. Par construction la variable SEX_GEO engendre des hiérarchies avec beaucoup de noeuds donc la fusion de trois variables en une est rare si l’on choisit de minimiser le nombre de table créée.
+Nous obtenons donc 42 tableaux lors de la création de SEX_GEO_AGE. Par construction la variable SEX_GEO engendre des hiérarchies avec beaucoup de noeuds donc la fusion de trois variables en une est rare si l’on choisit de minimiser le nombre de table créée.
 
 ### Revenir à la dimension initiale
 
