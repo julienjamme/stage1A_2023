@@ -8,8 +8,26 @@
 #' sinon renvoie NULL
 #' 
 #' @export
-#'
+#' 
 #' @examples
+#' data <- expand.grid(
+#'   AGE = c("+","ça va ?","Mais non, Pas possible !!!"),
+#'   ECO = c("ça fait 5€"),
+#'   stringsAsFactors = FALSE
+#' ) %>%
+#'   as.data.frame()
+#' 
+#' 
+#' liste_sep = c("\\+", "\\!", "\\?","\\$","\\£",
+#'               "\\€","\\:","\\;","\\~","\\&",
+#'               "\\#")
+#' choisir_sep(data,liste_sep = liste_sep) == "$$$"
+#' TRUE
+#' 
+#' 
+#' liste_sep = c("\\+", "\\!", "\\?")
+#' choisir_sep(data,liste_sep = liste_sep) == "+!?"
+#' TRUE
 choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\:",
                                             "\\;","\\~","\\&","\\#")){
 

@@ -84,10 +84,13 @@ format2 <- function(res, nom_dfs,sep) {
     tabs = res$tabs,
     hrcs = res2,
     alt_tot = res3,
-    vars = res$vars
+    vars = res$vars,
+    sep=sep
   ))
   
 }
+
+#Format pour les tableaux à 5 variables
 
 format3 <- function(res, nom_dfs,sep) {
   if (class(res$vars) == "list") {
@@ -98,6 +101,22 @@ format3 <- function(res, nom_dfs,sep) {
     v4 <- res$vars[[1]][2]
     var_cross <- paste(v1, v2, sep = sep)
     var_cross2 <- paste(v3, v4, sep = sep)
+    
+    # On fusionne 3 variables en une
+    # Donc les infos relatifs à deux variables fusionnées lors de 5->4
+    # ne nous sont plus utiles puisque la variable n'existe plus en dimension 3
+    if (var_cross2 %in% c(v1,v2)){
+      res2 <- list(tabs = res$tabs,
+                   hrcs = res$hrcs4_3,
+                   alt_tot = res$alt_tot4_3,
+                   vars = res$vars[[2]],
+                   sep=sep
+                 )
+      res2 <- format(res2, nom_dfs,sep)
+      # On garde l'information des variables fusionnés à chaque étape
+      res2$vars <- res$vars
+      return(res2)
+    }
     
     for (i in seq_along(res$tabs)) {
       #Noms des tableaux
@@ -127,26 +146,27 @@ format3 <- function(res, nom_dfs,sep) {
     tabs = res$tabs,
     hrcs = res2,
     alt_tot = res3,
-    vars = res$vars
+    vars = res$vars,
+    sep=sep
   ))
 }
 
-tabs_5_4_to_3 <-
-  function(dfs,
-           nom_dfs,
-           totcode ,
-           hrcfiles ,
-           sep_dir = FALSE,
-           hrc_dir = "hrc_alt",
-           sep) {
-    if (length(totcode) == 5) {
-      res <-
-        passer_de_5_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
-      return(format(res, nom_dfs,sep))
-    }
-    if (length(totcode) == 4) {
-      res <-
-        passer_de_4_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
-      return(format(res, nom_dfs,sep))
-    }
-  }
+# tabs_5_4_to_3 <-
+#   function(dfs,
+#            nom_dfs,
+#            totcode ,
+#            hrcfiles ,
+#            sep_dir = FALSE,
+#            hrc_dir = "hrc_alt",
+#            sep) {
+#     if (length(totcode) == 5) {
+#       res <-
+#         passer_de_5_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
+#       return(format(res, nom_dfs,sep))
+#     }
+#     if (length(totcode) == 4) {
+#       res <-
+#         passer_de_4_a_3_var(dfs, nom_dfs, totcode , hrcfiles , sep_dir , hrc_dir)
+#       return(format(res, nom_dfs,sep))
+#     }
+#   }

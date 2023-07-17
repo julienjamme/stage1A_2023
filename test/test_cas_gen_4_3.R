@@ -9,11 +9,8 @@ source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
-##############################################################
-##############################################################
-####################### Cas 2 var non hrc ####################
-##############################################################
-##############################################################
+
+# Donnée 1 : cas 2 var non hier -------------------------------------------
 
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -39,18 +36,27 @@ hier = TRUE
 v1 = NULL
 v2 = NULL
 
-##################################
-########## Vérification ##########
-##################################
+
+# test 1 ------------------------------------------------------------------
+
 res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir")
+length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="SEX") * nb_noeuds(hrcfiles = hrcfiles, v="AGE")
+all(sort(res$vars) == sort(unlist(list("AGE","SEX"))))
 
 # On privilégie les var hierarchiques
 res2 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir", select_hier = TRUE)
+length(res2$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * nb_noeuds(hrcfiles = hrcfiles, v="GEO")
+all(sort(res2$vars) == sort(unlist(list("ACT","GEO"))))
 
 # Vérification vis à vis de la selection des variables
 res_ACT1 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT" )
+res_ACT1$vars[[1]] == "ACT"
+
 res_ACT2 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v2 = "ACT" )
+res_ACT2$vars[[2]] == "ACT"
+
 res_ACT_GEO <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT", v2 = "GEO" )
+res_ACT_GEO$vars[[1]] == "ACT" & res_ACT_GEO$vars[[2]] == "GEO"
 
 # Test des erreurs
 res_ACT_ACT <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir",v1 = "ACT", v2 = "ACT" )
@@ -69,12 +75,9 @@ str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"
 #On a les bon format
 # [1] TRUE
 
+# Donnée 2 : cas 1 var non hier -------------------------------------------
 
-##############################################################
-##############################################################
-####################### Cas 1 var non hrc ####################
-##############################################################
-##############################################################
+
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
   SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -109,9 +112,8 @@ hier = TRUE
 # v2 = NULL
 
 
-##################################
-########## Vérification ##########
-##################################
+# test 2 ------------------------------------------------------------------
+
 res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir)
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,hrc_dir)
 
@@ -129,10 +131,8 @@ res3 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc
 # On a bien choisit SEX puis GEO (SEX a plus de noeuds que GEO donc a été choisis en premier)
 
 
-############################################################
 
-
-source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+# donnée 3 : cas 0 var non hier ----------------------------------------------------------------
 
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
@@ -160,6 +160,9 @@ v2 <- "GEO"
 # pour supprimer les .hrc facilement
 dir_name <- "hrc_alt"
 
+
+# test 3 ------------------------------------------------------------------
+
 res <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name)
 res2 <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 
@@ -168,8 +171,8 @@ identical(res,res2)
 str(res)
 str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
 
+# test 4 : cas hrcfiles = NULL --------------------------------------------
 
-### Cas hrcfile = NULL
 
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),

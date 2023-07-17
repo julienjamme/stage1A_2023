@@ -12,8 +12,8 @@ data <- expand.grid(
 liste_sep = c("\\+", "\\!", "\\?","\\$","\\£",
               "\\€","\\:","\\;","\\~","\\&",
               "\\#")
-choisir_sep(data,liste_sep = liste_sep)
+choisir_sep(data,liste_sep = liste_sep) == "$$$"
 
 # test aucun séparateur disponible
-liste_sep = c("\\+")
-choisir_sep(data,liste_sep = liste_sep)
+liste_sep = c("\\+", "\\!", "\\?")
+choisir_sep(data,liste_sep = liste_sep) == "+!?"
