@@ -48,6 +48,14 @@ res <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #on a le bon format
 str(res$alt_tot)
 
+format(res,nom_dfs,sep="_")
+
+#test plus_petit_hrc 
+
+identical("GEO",plus_petit_hrc(hrcfiles,totcode))
+identical("ACT",plus_petit_hrc(hrcfiles,totcode))
+
+
 #On a le bon nombre de tableau
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v=v1) * nb_noeuds(hrcfiles = hrcfiles, v=v2)
 
