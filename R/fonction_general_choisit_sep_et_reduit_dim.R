@@ -46,8 +46,8 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
   
   # On épure les fichiers hrc et les totaux au cas où
   # ils concernent des variables qui n'existent pas
-  hrcfiles <-  dfs[names(hrcfiles) %in% names(dfs)]
-  totcode <-  dfs[names(totcode) %in% names(dfs)]
+  hrcfiles <-  hrcfiles[names(hrcfiles) %in% names(dfs)]
+  totcode <-  totcode[names(totcode) %in% names(dfs)]
   
   # Choix du séparateur
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
