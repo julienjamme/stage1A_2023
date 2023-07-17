@@ -697,6 +697,27 @@ do.call("rbind",res$tabs) %>%
 # les cellules communes des tableaux
 
 
+# test hrc
+purrr::map(
+  names(res$tabs),
+  function(df){
+    p <- res$tabs[[df]] %>% 
+      filter(SEX_ACT != res$alt_tot[[df]]) %>% 
+      pull(SEX_ACT) %>% 
+      unique() %>% 
+      sort() %>% 
+      `==`(
+        read.table(res$hrcs[[df]]) %>% 
+          mutate(V1 = gsub("@","",V1)) %>% 
+          pull(V1) %>% 
+          sort()
+      ) %>% 
+      all()
+  }
+) %>% 
+  unlist() %>% 
+  all()
+
 # Test 5: quatre variables hiérarchiques -------------------------------
 
 data <- expand.grid(
@@ -840,7 +861,26 @@ do.call("rbind",res$tabs) %>%
   `==`(0)
 
 
-# les cellules communes des tableaux
+# test hrc
+purrr::map(
+  names(res$tabs),
+  function(df){
+    p <- res$tabs[[df]] %>% 
+      filter(ACT_GEO != res$alt_tot[[df]]) %>% 
+      pull(ACT_GEO) %>% 
+      unique() %>% 
+      sort() %>% 
+      `==`(
+        read.table(res$hrcs[[df]]) %>% 
+          mutate(V1 = gsub("@","",V1)) %>% 
+          pull(V1) %>% 
+          sort()
+      ) %>% 
+      all()
+  }
+) %>% 
+  unlist() %>% 
+  all()
 
 
 # Test 6: Fusion d'une variable hiérarchique de profondeur 4 avec var non hier------------
@@ -892,7 +932,26 @@ all(sort(res$vars) == sort(unlist(list("ACT","GEO"))))
 # On vérifie le nombre de tableau (ici les variables non hier ont 1 seul noeud)
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * nb_noeuds(hrcfiles = hrcfiles, v="GEO")
 
-# to do : continuer les tests
+# test hrc
+purrr::map(
+  names(res$tabs),
+  function(df){
+    p <- res$tabs[[df]] %>% 
+      filter(GEO_ACT != res$alt_tot[[df]]) %>% 
+      pull(GEO_ACT) %>% 
+      unique() %>% 
+      sort() %>% 
+      `==`(
+        read.table(res$hrcs[[df]]) %>% 
+          mutate(V1 = gsub("@","",V1)) %>% 
+          pull(V1) %>% 
+          sort()
+      ) %>% 
+      all()
+  }
+) %>% 
+  unlist() %>% 
+  all()
 
 # Test 7: Fusion de deux var hier - profondeur 3 avec profondeur 4------------
 
@@ -955,4 +1014,23 @@ all(sort(res$vars) == sort(unlist(list("ACT","AGE"))))
 # On vérifie le nombre de tableau (ici les variables non hier ont 1 seul noeud)
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * nb_noeuds(hrcfiles = hrcfiles, v="AGE")
 
-# to do : continuer les tests
+# test hrc
+purrr::map(
+  names(res$tabs),
+  function(df){
+    p <- res$tabs[[df]] %>% 
+      filter(ACT_AGE != res$alt_tot[[df]]) %>% 
+      pull(ACT_AGE) %>% 
+      unique() %>% 
+      sort() %>% 
+      `==`(
+        read.table(res$hrcs[[df]]) %>% 
+          mutate(V1 = gsub("@","",V1)) %>% 
+          pull(V1) %>% 
+          sort()
+      ) %>% 
+      all()
+  }
+) %>% 
+  unlist() %>% 
+  all()

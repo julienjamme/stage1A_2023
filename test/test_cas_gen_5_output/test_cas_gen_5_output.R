@@ -102,8 +102,6 @@ do.call("rbind",res$tabs) %>%
   sum() %>% 
   `==`(0)
 
-# to do : vérifier HRC créés ???
-
 # test 2 : table avec 5 var non hier : 3 variables fusinnées en une --------
 
 data <- expand.grid(
@@ -371,5 +369,3 @@ do.call("rbind",res$tabs) %>%
   is.na() %>% 
   sum() %>% 
   `==`(0)
-
-# to do : vérifier HRC créés ???
