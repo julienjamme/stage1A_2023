@@ -44,11 +44,16 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                                       "\\;","\\~","\\&","\\#"),
                             select_hier = FALSE){
   
-  data_var_cat <- dfs[names(dfs) %in% names(totcode)]
+  # On épure les fichiers hrc et les totaux au cas où
+  # ils concernent des variables qui n'existent pas
+  hrcfiles <-  dfs[names(hrcfiles) %in% names(dfs)]
+  totcode <-  dfs[names(totcode) %in% names(dfs)]
   
+  # Choix du séparateur
+  data_var_cat <- dfs[names(dfs) %in% names(totcode)]
   sep <- choisir_sep(data_var_cat,liste_sep )
     
-  if (length(totcode)==5){
+  if (length(totcode) == 5){
     res<-passer_de_5_a_3_var(dfs=dfs,
                              nom_dfs=nom_dfs,
                              totcode=totcode,
@@ -60,8 +65,8 @@ gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                              select_hier=select_hier)
     
     return(format(res,nom_dfs,sep))
-  }
-  if (length(totcode)==4){
+    
+  } else if (length(totcode) == 4){
     res<-passer_de_4_a_3_var(dfs=dfs,
                              nom_dfs=nom_dfs,
                              totcode=totcode,
