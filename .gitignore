@@ -69,3 +69,8 @@ test/test_cas_gen_5_output/test3
 test/test_fonction_general/test1
 test/test_fonction_general/test2
 test/test_fonction_general/test3
+test/test_fonction_general/test4
+test/test_tauargus_test4/mod
+test/test_tauargus_test4/hypercube
+
+test_avec_rtauargus/
