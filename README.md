@@ -29,9 +29,12 @@ Le principe est de fusionner deux variables en une. Par exemple en fusionnant le
 
 Prenons les variables SEX et AGE telles que les modalités de SEX sont Total, Femme et Homme et les modalités de AGE sont Ensemble, Adulte et Eenfant, avec Total la somme des modalité Femme et Homme, et Ensemble la somme des modalités Adulte et Enfant.
 
-Alors les modalités de SEX_AGE sont des combinaisons du type Total_Ensemble, Femme_Adulte, etc. Néanmoins, cette fusion naive crée des hierarchies non emboité.
+Alors les modalités de SEX_AGE sont des combinaisons du type Total_Ensemble, Femme_Adulte, Femme_Enfant, Homme_Enfant,Homme_Adulte.
 
-Par exemple Total_Ensemble = Total_Adulte + Total_Enfant = Femme_Ensemble + Homme_Ensemble
+Néanmoins, cette fusion naive crée des hierarchies non emboité.
+
+Par exemple Total_Ensemble = Total_Adulte + Total_Enfant  mais on a aussi
+            Total_Ensemble = Femme_Ensemble + Homme_Ensemble
 
 Pour ne pas perdre cette hierarchie, nous créons deux tableaux : l’un a pour marge SEX, l’autre AGE.
 
@@ -43,11 +46,11 @@ Pour ne pas perdre cette hierarchie, nous créons deux tableaux : l’un a pour 
 | Femme_Enfant             |	|	Homme_Adulte                |
 | Homme_Ensemble           | 	|	Total_Enfant                |
 | Homme_Adulte             |	|	Femme_Enfant                |
-| Homme_Enfant             |	|	Femme_Enfant                |
+| Homme_Enfant             |	|	Homme_Enfant                |
 
 Lorsqu’il y a des hierarchies, nous décomposons ses hierarchies en plusieurs tableau à variable non hiérarchique.
 
-Par exemple pour une variable GEO prenant des modalités France, toutes les Régions, tous les Départements, nous créons un tableau avec la France et toutes les régions, et pour chacun des Régions, un tableau avec la Région et chacun des départements qui la composent.
+Par exemple pour une variable GEO prenant des modalités France, toutes les Régions, tous les Départements, nous créons un tableau avec la France et toutes les régions, ensuites ,pour chacunes des Régions, un tableau avec la Région et chacun des départements qui la composent.
 
 ## Implémentation
 
