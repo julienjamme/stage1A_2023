@@ -58,18 +58,24 @@ format <- function(res, nom_dfs,sep,totcode,hrcfiles) {
 
 format4 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
   #Données
-  if (class(res$vars[1]) == "character") {
+  
     v1 <- res$vars[1]
     v2 <- res$vars[2]
     tabs<-res$tabs
+    n<-length(tabs)
     var_cross <- paste(v1, v2, sep = sep)
-    tot_cross <- paste(totcode[[v1]],totcode[[v2]],sep=sep)
+    if (v1 %in% names(totcode)){
+    tot1<-totcode[[v1]]}else tot1<-paste(res$fus_vars[1],res$fus_vars[2],sep=sep)
+    if (v2 %in% names(totcode)){
+    tot2<-totcode[[v2]]}else tot2<-paste(res$fus_vars[1],res$fus_vars[2],sep=sep)
+    
+    tot_cross <- paste(tot1,tot2,sep=sep)
    
     d<- intersect(names(res$tabs[[1]]), names(totcode))
     p<-totcode[names(totcode) %in% d ]
     names(tot_cross)<-var_cross
     totcode_2 <-c(p,tot_cross)
-    n<-length(tabs)
+   
     v <-c(d,var_cross)
     list_vars<-replicate(n,v,simplify=FALSE)
     names(list_vars)<- c(paste0(nom_dfs,1:n,sep=""))
@@ -88,7 +94,8 @@ format4 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
       setNames(list(res$alt_tot[[i]]), var_cross)
     }),
     paste(nom_dfs, seq_along(res$tabs), sep = ""))
-  }
+  
+  
   return (list(
     tabs = tabs,
     hrcs = res2,
@@ -114,6 +121,25 @@ format5 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
     var_cross <- paste(v1, v2, sep = sep)
     var_cross2 <- paste(v3, v4, sep = sep)
     
+    # On fusionne 3 variables en une
+    # Donc les infos relatifs à deux variables fusionnées lors de 5->4
+    # ne nous sont plus utiles puisque la variable n'existe plus en dimension 3
+    if (var_cross2 %in% c(v1,v2)){
+      res2 <- list(tabs = res$tabs,
+                   hrcs = res$hrcs4_3,
+                   alt_tot = res$alt_tot4_3,
+                   vars = res$vars[[2]],
+                   sep=sep,
+                   fus_vars=c(v3,v4)
+      )
+      res2 <- format(res2, nom_dfs,sep,totcode,hrcfiles)
+      
+      # On garde l'information des variables fusionnés à chaque étape
+    
+      return(res2)
+    }
+    
+
     tot_cross <- paste(totcode[[v1]],totcode[[v2]],sep=sep)
     tot_cross2 <- paste(totcode[[v3]],totcode[[v4]],sep=sep)
     tabs<-res$tabs
@@ -129,23 +155,7 @@ format5 <- function(res, nom_dfs,sep,totcode,hrcfiles) {
     list_vars<-replicate(n,v,simplify=FALSE)
     names(list_vars)<- c(paste0(nom_dfs,1:n,sep=""))
     names(tabs)<- c(paste0(nom_dfs,1:n,sep=""))
-    
-    # On fusionne 3 variables en une
-    # Donc les infos relatifs à deux variables fusionnées lors de 5->4
-    # ne nous sont plus utiles puisque la variable n'existe plus en dimension 3
-    if (var_cross2 %in% c(v1,v2)){
-      res2 <- list(tabs = res$tabs,
-                   hrcs = res$hrcs4_3,
-                   alt_tot = res$alt_tot4_3,
-                   vars = res$vars[[2]],
-                   sep=sep
-                 )
-      res2 <- format(res2, nom_dfs,sep,totcode,hrcfiles)
-      # On garde l'information des variables fusionnés à chaque étape
-      res2$vars <- res$vars
-      return(res2)
-    }
-    
+   
     #Noms des hrcs
     
     res2 <- setNames(lapply(seq_along(res$tabs), function(i) {
