@@ -194,5 +194,3 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
   return(noeuds_tot)
 }
 
-
-

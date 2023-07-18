@@ -182,11 +182,11 @@ length(unique(tapp_tab))
 
 all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 
-# cas 3 : dimension 4 - 2 hier : ne passe pas, à corriger --------------------
+# cas 3 : dimension 4 - 2 hier --------------------
 
 data <- expand.grid(
-  ACT = c("Total", "A", "B", "A1", "A2","A3", "B1", "B2","B3","B4","C","D","E","F","G","B5"),
-  GEO = c("Total", "GA", "GB", "GA1", "GA2", "GB1", "GB2","GA3","GA4","GB3","GB4","GB5","GB6","GB7","GB8","GB9","GA4","GA5","GA6","GA7","GA8","GA9","GA10","GA11","GB10"),
+  ACT = c("Total", "A", "B", "A1", "A2","A3", "B1", "B2","B3","B4","C","D","E","F","G","B5","I","J","K","L","M","N"),
+  GEO = c("Total", "GA", "GB", "GA1", "GA2", "GB1", "GB2","GA3","GA4","GB3","GB4","GB5","GB6","GB7","GB8","GB9","GA5","GA6","GA7","GA8","GA9","GA10","GA11","GC","GD","GE","GF","GH","GA12","GA13","GA14","GA15"),
   SEX = c("Total", "F", "M"),
   AGE = c("Total", "AGE1", "AGE2"),
   stringsAsFactors = FALSE,
@@ -200,7 +200,7 @@ data <- data %>% mutate(VALUE = 1:n())
 dfs <- data
 
 hrc_act <- "test/test_cas_gen_4_output/test3/hrc_ACT.hrc"
-sdcHierarchies::hier_create(root = "Total", nodes = c("A","B","C","D","E","F","G")) %>% 
+sdcHierarchies::hier_create(root = "Total", nodes = c("A","B","C","D","E","F","G","I","J","K","L","M","N")) %>% 
   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2","A3")) %>% 
   sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2","B3","B4","B5")) %>% 
   sdcHierarchies::hier_convert(as = "argus") %>%
@@ -210,9 +210,9 @@ sdcHierarchies::hier_create(root = "Total", nodes = c("A","B","C","D","E","F","G
   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
 
 hrc_geo <- "test/test_cas_gen_4_output/test3/hrc_GEO.hrc"
-sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>% 
-  sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2","GA3","GA4","GA5","GA6","GA7","GA8","GA9","GA10","GA11")) %>% 
-  sdcHierarchies::hier_add(root = "GB", nodes = c("GB1","GB2","GB3","GB4","GB5","GB6","GB7","GB8","GB9","GB10")) %>% 
+sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB","GC","GD","GE","GF","GH")) %>% 
+  sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2","GA3","GA4","GA5","GA6","GA7","GA8","GA9","GA10","GA11","GA12","GA13","GA14","GA15")) %>% 
+  sdcHierarchies::hier_add(root = "GB", nodes = c("GB1","GB2","GB3","GB4","GB5","GB6","GB7","GB8","GB9")) %>% 
   sdcHierarchies::hier_convert(as = "argus") %>%
   slice(-1) %>% 
   mutate(levels = substring(paste0(level,name),3)) %>% 
@@ -244,36 +244,13 @@ l_tab <- length_tabs(dfs=data,
 
 tapp_tab <- lapply(res$tabs, nrow)
 
+# to do : faire en sorte que les tableaux aient tous un nombre de ligne différent
 length(l_tab)
 length(unique(l_tab))
 length(tapp_tab)
 length(unique(tapp_tab))
 
 all(mapply(function(x, y) x == y, l_tab, tapp_tab))
-
-df <- data.frame(l_tab = unlist(l_tab), tapp_tab = unlist(tapp_tab))
-df
-
-# setdiff(unique(l_tab),unique(tapp_tab))
-# 
-# setdiff(unique(tapp_tab),unique(l_tab))
-
-unique(res$tabs$tab_Total_GA_ACT$SEX)
-unique(res$tabs$tab_Total_GA_ACT$AGE)
-unique(res$tabs$tab_Total_GA_ACT$ACT_GEO)
-
-tab_Total_GA_ACT <- expand.grid(
-  ACT = c("Total","A","B","C","D","E","F","G"),
-  GEO = c("GA", "GA1","GA2","GA3","GA4","GA5","GA6","GA7","GA8","GA9","GA10","GA11"),
-  SEX = c("Total", "F", "M"),
-  AGE = c("Total", "AGE1", "AGE2"),
-  stringsAsFactors = FALSE
-) %>% 
-  as.data.frame() %>% 
-  filter(ACT != "Total" | (ACT == "Total" & GEO == "GA"))
-
-nrow(tab_Total_GA_ACT)
-
 
 # cas 4 : dimension 5 - 2 couples de variables - 4 non hier -----------------
 
@@ -318,7 +295,7 @@ l_tab <- length_tabs_5_4_var(dfs = data,
 all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 
 
-# cas 5 : dimension 5 - 2 couples de variables - 2 non hier/ 2 hier -----------
+# cas 5 : dimension 5 - 2 couples de variables - 2 non hier/ 2 hier : marche pas -----------
 
 data <- expand.grid(
   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2","B3","B4","A3"),
@@ -357,13 +334,18 @@ sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>%
 totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total", ECO = "PIB")
 
 #hrcfiles = c(ACT = hrc_act, GEO = hrc_geo)
-hrcfiles = c(ACT = hrc_act) # marche
-# hrcfiles = c(GEO = hrc_geo) # marche pas
+# hrcfiles = c(ACT = hrc_act) # marche
+hrcfiles = c(GEO = hrc_geo) # marche pas
+
+# v1 hier => marche
+# v2 hier => marche
+# v3 hier => marche pas
+# v4 hier => marche pas
 
 v1 = "ACT"
-v2 = "SEX"
-v3 = "AGE"
-v4 = "GEO"
+v4 = "SEX"
+v2 = "AGE"
+v3 = "GEO"
 
 # Résultat de la fonction
 res <- passer_de_5_a_3_var(
