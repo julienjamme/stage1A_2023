@@ -54,22 +54,24 @@ passage_4_3_cas_0_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
   liste_df_4_var_1_non_hr <- fonc_liste_df_4_var_1_non_hr(codes_split_1,dfs)
   # Nous avons maintenant des data.frames avec 1 variables non hierarchiques (v1)
   # nous pouvons donc appliquer la methode dédiée
-  
-  
-  # Mise à jour des arguments puis appel de la fonction cas_1_non_hrc
-  appel_4_3_1_non_hier <- function(dfs){
-    # Mise à jour des arguments de la fonction
-    totcode[v1] <- unique(dfs[[v1]])[1]
-    nom_dfs <- paste(nom_dfs,totcode[v1],sep="_")
-    
-    passage_4_3_cas_1_non_hr(dfs,nom_dfs,v1,v2, totcode, hrcfiles, dir_name, sep = sep)
+
+  # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
+  appel_4_3_non_hier <- function(dfs, i){
+    if (i <= length(codes_split_1)) {
+      totcode[v1] <- codes_split_1[[i]][1]
+      nom_dfs <- paste(nom_dfs, totcode[v1], sep = "_")
+      passage_4_3_cas_1_non_hr(dfs,nom_dfs,v1,v2, totcode, hrcfiles, dir_name, sep = sep)
+    } 
+    else {
+      print(paste("Index", i, "is out of bounds for codes_split."))
+      return(NULL)
+    }
   }
   
   # On transforme tous nos tableaux de 4 var en 3 var
-  res <- lapply(
-    liste_df_4_var_1_non_hr,
-    appel_4_3_1_non_hier
-  )
+  res <- lapply(seq_along(liste_df_4_var_1_non_hr), function(i) {
+    appel_4_3_non_hier(liste_df_4_var_1_non_hr[[i]], i)
+  })
   
   tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
   hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)
