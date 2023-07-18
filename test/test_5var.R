@@ -16,6 +16,7 @@ source("R/fonction_general_choisit_sep_et_reduit_dim.R")
 source("R/choisir_sep.R")
 source("test/test_nbs_tabs.R")
 library("rtauargus")
+source("R/passer_de_3_a_4_ou_5.R")
 
 loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
@@ -185,10 +186,27 @@ hrc_nuts <- rtauargus::write_hrc2(
 
 totcode<-c(treff="Total",cj="Total",A10="Total",type_distrib="Total",NUTS="Total")
 
-test_5_1_hrc<-gen_tabs_5_4_to_3(test_5_var,"var",hrcfiles=NULL,totcode,sep_dir = TRUE,hrc_dir = "output",vec_sep =c("\\_"))
+test_5_1_hrc<-gen_tabs_5_4_to_3(test_5_var_1hrc,"var",hrcfiles=hrc_nuts,totcode,sep_dir = TRUE,hrc_dir = "output",vec_sep =c("\\_"))
 
 
-
+list_tab2<-test_5_1_hrc$tabs
+value<-"pizzas_tot"
+max<-"pizzas_max"
+freq<-"nb_obs"
+liste_tabs_exemple2 <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max  > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs) ,
+        pizzas_tot = abs(ceiling(pizzas_tot))
+      )})
+lapply(liste_tabs_exemple2, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
 
 tic()
 
@@ -204,7 +222,68 @@ masq2 <- tab_multi_manager(
   secret_var = "is_secret_prim")
 
 t<-toc()
-# 738 s
+
+
+# > masq2 <- tab_multi_manager(
+#   +   list_tables = liste_tabs_exemple2,
+#   +   list_explanatory_vars = test_5_1_hrc$vars ,
+#   +   dir_name = "test_avec_rtauargus/test-table5_var/hypercurbe",
+#   +   totcode = test_5_1_hrc$totcode,
+#   +   alt_hrc = test_5_1_hrc$hrcs,
+#   +   alt_totcode = test_5_1_hrc$alt_tot,
+#   +   value = value,
+#   +   freq = freq,
+#   +   secret_var = "is_secret_prim")
+# --- Current table to treat:  var1 ---
+#   --- Current table to treat:  var2 ---
+#   --- Current table to treat:  var3 ---
+#   --- Current table to treat:  var4 ---
+#   --- Current table to treat:  var1 ---
+#   --- Current table to treat:  var2 ---
+#   --- Current table to treat:  var3 ---
+#   --- Current table to treat:  var4 ---
+#   --- Current table to treat:  var1 ---
+#   --- Current table to treat:  var2 ---
+#   --- Current table to treat:  var3 ---
+#   > 
+#   > t<-toc()
+# 10571.37 sec elapsed
+# edit : it was modular
 
 
 
+res3<-test_5_1_hrc
+res3$tabs<-masq2
+res3_5_r_base <- passer_a_4_ou_5_r_base(res3)
+# on ajoute les lignes de tous les tableaux
+data_fusion <- unique(do.call("rbind",res3_5_r_base))
+
+
+p_compt <- data_fusion %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      is_secret_11 ~ "D",
+      TRUE ~ "V"
+    )
+  )
+#nombre enlevé 
+p_compt %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+
+# # A tibble: 4 × 5
+# statut_final n_cell  val_cell pc_n_cell pc_val_cell
+# <chr>         <int>     <dbl>     <dbl>       <dbl>
+#   1 A              3526  34620584     20.1         3.75
+# 2 B              1201  41303216      6.84        4.47
+# 3 D              8354 294485122     47.6        31.9 
+# 4 V              4468 552913453     25.5        59.9
