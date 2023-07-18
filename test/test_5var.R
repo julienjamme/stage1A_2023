@@ -206,7 +206,7 @@ liste_tabs_exemple2 <- purrr::map(
         nb_obs = ceiling(nb_obs) ,
         pizzas_tot = abs(ceiling(pizzas_tot))
       )})
-
+lapply(liste_tabs_exemple2, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
 
 tic()
 
@@ -264,11 +264,10 @@ p_compt <- data_fusion %>%
     statut_final = case_when(
       is_secret_freq ~ "A",
       is_secret_dom ~ "B",
-      is_secret_4 ~ "D",
+      is_secret_11 ~ "D",
       TRUE ~ "V"
     )
   )
-
 #nombre enlevé 
 p_compt %>% 
   group_by(statut_final) %>% 
@@ -286,5 +285,5 @@ p_compt %>%
 # <chr>         <int>     <dbl>     <dbl>       <dbl>
 #   1 A              3526  34620584     20.1         3.75
 # 2 B              1201  41303216      6.84        4.47
-# 3 D              8052 277629418     45.9        30.1 
-# 4 V              4770 569769157     27.2        61.7 
+# 3 D              8354 294485122     47.6        31.9 
+# 4 V              4468 552913453     25.5        59.9
