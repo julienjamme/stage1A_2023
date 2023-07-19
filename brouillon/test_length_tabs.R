@@ -53,6 +53,8 @@ l_tab <- length_tabs(dfs=data,
 
 tapp_tab <- lapply(res$tabs, nrow)
 
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
 length(l_tab)
 length(unique(l_tab))
 length(tapp_tab)
@@ -114,6 +116,8 @@ l_tab <- length_tabs(dfs=data,
                      v2 = v2)
 tapp_tab <- lapply(res$tabs, nrow)
 
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
 length(l_tab)
 length(unique(l_tab))
 length(tapp_tab)
@@ -175,6 +179,8 @@ l_tab <- length_tabs(dfs=data,
                      v2 = v2)
 tapp_tab <- lapply(res$tabs, nrow)
 
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
 length(l_tab)
 length(unique(l_tab))
 length(tapp_tab)
@@ -244,7 +250,8 @@ l_tab <- length_tabs(dfs=data,
 
 tapp_tab <- lapply(res$tabs, nrow)
 
-# to do : faire en sorte que les tableaux aient tous un nombre de ligne différent
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
 length(l_tab)
 length(unique(l_tab))
 length(tapp_tab)
@@ -255,10 +262,10 @@ all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 # cas 4 : dimension 5 - 2 couples de variables - 4 non hier -----------------
 
 data <- expand.grid(
-  ACT = c("Total", "A", "B","C"),
-  GEO = c("Total", "G1", "G2","G3","G4"),
-  SEX = c("Total", "F", "M"),
-  AGE = c("Total","5","10","25","50","75","Dead"),
+  ACT = c("Total", paste0("A", seq(1,5))),
+  GEO = c("Total", paste0("G", seq(1,15))),
+  SEX = c("Total", "F", "M","A"),
+  AGE = c("Total",paste0("E", seq(1,25))),
   ECO = c("PIB","Ménages","Entreprises"),
   stringsAsFactors = FALSE
 ) %>% 
@@ -294,14 +301,21 @@ l_tab <- length_tabs_5_4_var(dfs = data,
 
 all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
+length(l_tab)
+length(unique(l_tab))
+length(tapp_tab)
+length(unique(tapp_tab))
 
-# cas 5 : dimension 5 - 2 couples de variables - 2 non hier/ 2 hier : marche pas -----------
+
+# cas 5 : dimension 5 - 2 couples de variables - 2 non hier/ 2 hier -----------
 
 data <- expand.grid(
-  ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2","B3","B4","A3"),
-  GEO = c("Total", "GA", "GB", "GA1", "GA2", "GB1", "GB2","GA3","GB3","GB4"),
-  SEX = c("Total", "F", "M","F1","F2","M1","M2"),
-  AGE = c("Total", "AGE1", "AGE2", "AGE11", "AGE12", "AGE21", "AGE22"),
+  ACT = c("Total_A", paste0("A", seq(1,5),"_"),paste0("A1_", seq(1,7)),paste0("A2_", seq(1,9))),
+  GEO = c("Total_G", "GA", "GB", "GA1", "GA2", "GB1", "GB2","GA3","GB3","GB4"),
+  SEX = c("Total_S", "F", "M","F1","F2","M1","M2"),
+  AGE = c("Ensemble", "AGE1", "AGE2", "AGE11", "AGE12", "AGE21", "AGE22"),
   ECO = c("PIB","Ménages","Entreprises"),
   stringsAsFactors = FALSE,
   KEEP.OUT.ATTRS = FALSE
@@ -312,9 +326,9 @@ data <- data %>% mutate(VALUE = 1:n())
 nrow(data) # 7203 rows = 7**4*3
 
 hrc_act <- "test/test_cas_gen_5_output/test3/hrc_ACT.hrc"
-sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
-  sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2","A3")) %>% 
-  sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2","B3","B4")) %>% 
+sdcHierarchies::hier_create(root = "Total_A", nodes = paste0("A", seq(1,5),"_")) %>% 
+  sdcHierarchies::hier_add(root = "A1_", nodes = paste0("A1_", seq(1,7))) %>% 
+  sdcHierarchies::hier_add(root = "A2_", nodes = paste0("A2_", seq(1,9))) %>% 
   sdcHierarchies::hier_convert(as = "argus") %>%
   slice(-1) %>% 
   mutate(levels = substring(paste0(level,name),3)) %>% 
@@ -322,7 +336,7 @@ sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>%
   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
 
 hrc_geo <- "test/test_cas_gen_5_output/test3/hrc_GEO.hrc"
-sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>% 
+sdcHierarchies::hier_create(root = "Total_G", nodes = c("GA","GB")) %>% 
   sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2","GA3")) %>% 
   sdcHierarchies::hier_add(root = "GB", nodes = c("GB1","GB2","GB3","GB4")) %>% 
   sdcHierarchies::hier_convert(as = "argus") %>%
@@ -331,21 +345,15 @@ sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>%
   select(levels) %>% 
   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
 
-totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total", ECO = "PIB")
+totcode <- c(SEX="Total_S",AGE="Ensemble", GEO="Total_G", ACT="Total_A", ECO = "PIB")
 
-#hrcfiles = c(ACT = hrc_act, GEO = hrc_geo)
-# hrcfiles = c(ACT = hrc_act) # marche
-hrcfiles = c(GEO = hrc_geo) # marche pas
-
-# v1 hier => marche
-# v2 hier => marche
-# v3 hier => marche pas
-# v4 hier => marche pas
+hrcfiles = c(ACT = hrc_act, GEO = hrc_geo)
 
 v1 = "ACT"
-v4 = "SEX"
 v2 = "AGE"
+
 v3 = "GEO"
+v4 = "SEX"
 
 # Résultat de la fonction
 res <- passer_de_5_a_3_var(
@@ -362,17 +370,120 @@ res <- passer_de_5_a_3_var(
 )
 
 length(res$tabs)
-tapp_tab <- lapply(res$tabs, nrow)
+l_reel <- lapply(res$tabs, nrow)
 
-l_tab <- length_tabs_5_4_var(dfs = data,
-                             hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+l_predict <- length_tabs_5_4_var(dfs = data,
+                                 hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
 
-all(mapply(function(x, y) x == y, l_tab, tapp_tab))
+all(mapply(function(x, y) x == y, l_reel, l_predict))
 
-length(l_tab)
-length(unique(l_tab))
-length(tapp_tab)
-length(unique(tapp_tab))
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
+length(l_reel)
+length(unique(l_reel))
+length(l_predict)
+length(unique(l_predict))
 
-df <- data.frame(l_tab = unlist(l_tab), tapp_tab = unlist(tapp_tab))
+# cas 6 : dimension 5 - 2 couples de variables - 4 hier -----------
+
+data <- expand.grid(
+  ACT = c("Total_A", paste0("A", seq(1,5),"_"),paste0("A1_", seq(1,7))),
+  GEO = c("Total_G", paste0("G", seq(1,9),"_"),paste0("G1_", seq(1,11))),
+  SEX = c("Total_S", paste0("S", seq(1,17),"_"),paste0("O1_", seq(1,15))),
+  AGE = c("Total_O", paste0("O", seq(1,13),"_"),paste0("S1_", seq(1,19))),
+  ECO = c("PIB","Ménages","Entreprises"),
+  stringsAsFactors = FALSE,
+  KEEP.OUT.ATTRS = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = 1:n())
+nrow(data) # 7203 rows = 7**4*3
+
+hrc_act <- "test/test_cas_gen_5_output/test3/hrc_ACT.hrc"
+sdcHierarchies::hier_create(root = "Total_A", nodes = paste0("A", seq(1,5),"_")) %>% 
+  sdcHierarchies::hier_add(root = "A1_", nodes = paste0("A1_", seq(1,7))) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+
+hrc_geo <- "test/test_cas_gen_5_output/test3/hrc_GEO.hrc"
+sdcHierarchies::hier_create(root = "Total_G", nodes = paste0("G", seq(1,9),"_")) %>% 
+  sdcHierarchies::hier_add(root = "G1_", nodes = paste0("G1_", seq(1,11))) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+
+hrc_age <- "test/test_cas_gen_5_output/test3/hrc_AGE.hrc"
+sdcHierarchies::hier_create(root = "Total_O", nodes = paste0("O", seq(1,13),"_")) %>% 
+  sdcHierarchies::hier_add(root = "O1_", nodes = paste0("O1_", seq(1,15))) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_age, row.names = F, col.names = F, quote = F)
+
+hrc_sex <- "test/test_cas_gen_5_output/test3/hrc_SEX.hrc"
+sdcHierarchies::hier_create(root = "Total_S", nodes = paste0("S", seq(1,17),"_")) %>% 
+  sdcHierarchies::hier_add(root = "S1_", nodes = paste0("S1_", seq(1,19))) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
+
+totcode <- c(SEX="Total_S",AGE="Total_O", GEO="Total_G", ACT="Total_A", ECO = "PIB")
+
+hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, AGE = hrc_age, SEX = hrc_sex)
+
+dfs = data
+nom_dfs = "tab"
+sep_dir = TRUE
+hrc_dir = "test/test_cas_gen_5_output/test3"
+v1 = "ACT"
+v2 = "GEO"
+v3 = "SEX"
+v4 = "AGE"
+
+# Résultat de la fonction
+res <- passer_de_5_a_3_var(
+  dfs = data,
+  nom_dfs = "tab",
+  totcode = totcode, 
+  hrcfiles = hrcfiles,
+  sep_dir = TRUE,
+  hrc_dir = "test/test_cas_gen_5_output/test3",
+  v1 = "ACT",
+  v2 = "GEO",
+  v3 = "SEX",
+  v4 = "AGE"
+)
+
+length(res$tabs)
+l_reel <- lapply(res$tabs, nrow)
+
+l_predict <- length_tabs_5_4_var(dfs = data,
+                                 hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+
+all(mapply(function(x, y) x == y, l_reel, l_predict))
+
+# On fait attention à engendrer des tables ayant toutes
+# un nombre de ligne différent afin d'éviter les faux positifs
+length(l_reel)
+length(unique(l_reel))
+length(l_predict)
+length(unique(l_predict))
+
+df <- data.frame(l_reel = unlist(l_reel),l_predict = unlist(l_predict))
 df
+
+dfo <- data.frame(l_reel = sort(unlist(l_reel)),l_predict = sort(unlist(l_predict)))
+dfo
+
+# data.frame(l_reel = sort(unlist(l_reel[1:12])),l_predict = sort(unlist(l_predict[1:12])))
+# 
+# data.frame(l_reel = unlist(l_reel[1:12]),l_predict = unlist(l_predict[1:12]))

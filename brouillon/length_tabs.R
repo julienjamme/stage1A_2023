@@ -135,49 +135,54 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
                      recursive = FALSE)
   
   # On split par rapport à v2 dans cas 1 non hrc donc il faut mettre dans l'ordre
+  # ici v1 ~ v3 et v4 ~ v2 dans l'analogie
   if (!(v4 %in% names(hrcfiles)) & (v3 %in% names(hrcfiles))){
     tmp <- level_v3
     level_v3 <- level_v4
     level_v4 <- tmp
+    
+    tmp <- v3
+    v3 <- v4
+    v4 <- tmp
   }
   
   
-  
-  
-  # On fait tout les croisements possible
-  # entre v1 et v2
-  # => représente les tableaux créés lors de la création de v1_v2 à l'étape 5->4
-  
-  # pour chacun de ses tableaux, il y a deux hierarchies possibles
-  # une avec les totaux de v1, l'autre avec les totaux de v2
   nb_noeuds <- lapply(1:length(level_v1), function(i) {
     lapply(1:length(level_v2), function(j) {
-      c((length(level_v1[[i]]) - 1) * length(level_v2[[j]]) + 1,
-        length(level_v1[[i]]) * (length(level_v2[[j]]) - 1) + 1)
-    })
-  })
-  
-  nb_noeuds <- lapply(1:length(level_v1), function(i) {
-    lapply(1:length(level_v2), function(j) {
-      lapply(1:length(level_v3), function(k) {
-        lapply(1:length(level_v4), function(l) {
-          
-          c( ((length(level_v1[[i]]) - 1) * length(level_v2[[j]]) + 1) * 
-               ((length(level_v3[[k]]) - 1) * length(level_v4[[l]]) + 1),
-             
-             ((length(level_v1[[i]]) - 1) * length(level_v2[[j]]) + 1) *
-               (length(level_v3[[k]]) * (length(level_v4[[l]]) - 1) + 1),
-             
-             (length(level_v1[[i]]) * (length(level_v2[[j]]) - 1) + 1) *
-               ((length(level_v3[[k]]) - 1) * length(level_v4[[l]]) + 1),
-             
-             (length(level_v1[[i]]) * (length(level_v2[[j]]) - 1) + 1) *
-               (length(level_v3[[k]]) * (length(level_v4[[l]]) - 1) + 1)
-          )
+    
+        
+      c(
+        lapply(1:length(level_v3), function(k) {
+          lapply(1:length(level_v4), function(l) {
+            
+            c( ((length(level_v1[[i]]) - 1) * length(level_v2[[j]]) + 1) * 
+                 ((length(level_v3[[k]]) - 1) * length(level_v4[[l]]) + 1),
+               
+               ((length(level_v1[[i]]) - 1) * length(level_v2[[j]]) + 1) *
+                 (length(level_v3[[k]]) * (length(level_v4[[l]]) - 1) + 1)
+            )
+          })
+        }),
+        
+        lapply(1:length(level_v3), function(k) {
+          lapply(1:length(level_v4), function(l) {
+            
+            c( (length(level_v1[[i]]) * (length(level_v2[[j]]) - 1) + 1) *
+                 ((length(level_v3[[k]]) - 1) * length(level_v4[[l]]) + 1),
+               
+               (length(level_v1[[i]]) * (length(level_v2[[j]]) - 1) + 1) *
+                 (length(level_v3[[k]]) * (length(level_v4[[l]]) - 1) + 1)
+            )
+          })
         })
-      })
+      )
+      
     })
   })
+  
+  
+  
+  
   
   
   # Il faut maintenant multiplier par les modalités des variables non fusionnées
