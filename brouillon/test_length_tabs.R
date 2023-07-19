@@ -389,8 +389,8 @@ length(unique(l_predict))
 data <- expand.grid(
   ACT = c("Total_A", paste0("A", seq(1,5),"_"),paste0("A1_", seq(1,7))),
   GEO = c("Total_G", paste0("G", seq(1,9),"_"),paste0("G1_", seq(1,11))),
-  SEX = c("Total_S", paste0("S", seq(1,17),"_"),paste0("O1_", seq(1,15))),
-  AGE = c("Total_O", paste0("O", seq(1,13),"_"),paste0("S1_", seq(1,19))),
+  SEX = c("Total_S", paste0("S", seq(1,17),"_"),paste0("S1_", seq(1,19))),
+  AGE = c("Total_O", paste0("O", seq(1,13),"_"),paste0("O1_", seq(1,15))),
   ECO = c("PIB","Ménages","Entreprises"),
   stringsAsFactors = FALSE,
   KEEP.OUT.ATTRS = FALSE
@@ -450,6 +450,8 @@ v3 = "SEX"
 v4 = "AGE"
 
 # Résultat de la fonction
+
+# 5 à 3 plante
 res <- passer_de_5_a_3_var(
   dfs = data,
   nom_dfs = "tab",
@@ -468,22 +470,9 @@ l_reel <- lapply(res$tabs, nrow)
 
 l_predict <- length_tabs_5_4_var(dfs = data,
                                  hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+# > max(unlist(l_predict))
+# [1] 81435
+# > min(unlist(l_predict))
+# [1] 35955
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
-
-# On fait attention à engendrer des tables ayant toutes
-# un nombre de ligne différent afin d'éviter les faux positifs
-length(l_reel)
-length(unique(l_reel))
-length(l_predict)
-length(unique(l_predict))
-
-df <- data.frame(l_reel = unlist(l_reel),l_predict = unlist(l_predict))
-df
-
-dfo <- data.frame(l_reel = sort(unlist(l_reel)),l_predict = sort(unlist(l_predict)))
-dfo
-
-# data.frame(l_reel = sort(unlist(l_reel[1:12])),l_predict = sort(unlist(l_predict[1:12])))
-# 
-# data.frame(l_reel = unlist(l_reel[1:12]),l_predict = unlist(l_predict[1:12]))
