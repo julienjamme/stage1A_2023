@@ -86,7 +86,6 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
   
   # Mise à jour des totaux
   totcode2 <- totcode
-  totcode2[[new_var]] <- paste(totcode[[v1f]],totcode[[v2f]], sep=sep)
   totcode2 <- totcode2[!(names(totcode2) %in% c(v1f, v2f))]
   
   # Mise à jour des fichiers hrc
@@ -94,7 +93,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
   hrcfiles2 <- hrcfiles2[!(names(hrcfiles2) %in% c(v1f, v2f))]
   
   # Les variables catégorielles sans hiérarchie dans nos tableaux à 4 dimensions
-  var_cat <- names(totcode2)
+  var_cat <- c(names(totcode2),new_var)
   
   var_sans_hier <- intersect(
     setdiff(names(dfs), names(hrcfiles2)),
@@ -168,6 +167,8 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     
     hrcfiles2b <-  c(hrcfiles2, res_5_4$hrcs[[nom_dfsb]])
     names(hrcfiles2b)[length(hrcfiles2b)] <- new_var
+    
+    totcode2[[new_var]] <- res_5_4$alt_tot[[nom_dfsb]]
     
     passer_de_4_a_3_var(dfsb, nom_dfsb,totcode2, hrcfiles2b, sep_dir = TRUE,
                         hrc_dir = dir_name,v1 = v3, v2 = v4, 
