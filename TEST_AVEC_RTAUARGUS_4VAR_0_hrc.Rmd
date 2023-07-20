@@ -6,7 +6,7 @@ date: "2023-07-18"
 
 ## Introduction
 
-Le but de ce test est de savoir quand est ce que l'on peut utiliser rtauargus quand on a une table a 4 dimension .En outre, on essayera de comparer les différents résultats avec une petite table (res_all_dtp de 679 lignes ) et ensuite une grande table de 14890 lignes .
+Le but de ce test est de savoir quand est ce que l'on peut utiliser rtauargus quand on a une table a 4 dimension .En outre, on essayera de comparer les différents résultats avec une petite table (res_all_dtp de 679 lignes ) et ensuite une grande table de 10000 lignes .
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -18,11 +18,12 @@ Pour pouvoir faire ses tests, on aura besoin de différents package:
 - rtauargus (pour utiliser tauargus)
 - dplyr (non nécessaire mais plus pratique pour la pose du secret)
 - tictoc (pour voir le temps que prends le programme)
+- stringr (sert pour détecter les séparateurs, dans choisir_sep)
 - des sources pour l'utilisations des fonctions divisant des tables de 4 variables catégorielles en tables à 3 variables catégorielles
 
 
 ```{r}
-
+library("stringr")
 library("dplyr")
 library(tictoc)
 library("rtauargus")
@@ -75,12 +76,13 @@ liste_tabs_exemple <- purrr::map(
       ) %>% 
       mutate(
         is_secret_prim = is_secret_freq | is_secret_dom,
-        nb_obs = ceiling(nb_obs)
+        nb_obs = ceiling(nb_obs),
+        pizzas_tot=ceiling(abs(pizzas_tot))
       )})
 
 ```
 
-On peut compter le secret primaire des différents tableaux. Il faut noter que le nombre de case étant conserner par le secret primaire influence sur le temps que tauargus met pour poser le secret secondaire dans les différentes tables et cela influence donc tab_multimanager.
+On peut compter le secret primaire des différents tableaux. Il faut noter que le nombre de case étant conserner par le secret primaire influence sur le temps que tauargus met pour poser le secret secondaire dans les différentes tables et cela influence donc tab_multimanager. On utilise abs et ceiling pour enlever les nombres négatifs et supprimer aussi des décimals
 
 
 ```{r}
@@ -101,9 +103,8 @@ exemple_masq <- tab_multi_manager(
   alt_hrc = list_res2$hrcs,
   alt_totcode = list_res2$alt_tot,
   value = "pizzas_tot",
-  maxscore = "pizzas_max",
   freq = "nb_obs",
-  secret_var = "is_secret_prim",
+  secret_var = "is_secret_prim"
 )
 t<-toc()
 ```
@@ -127,7 +128,7 @@ data_compt <- data_fusion %>%
     statut_final = case_when(
       is_secret_freq ~ "A",
       is_secret_dom ~ "B",
-      is_secret_5 ~ "D",
+      is_secret_6 ~ "D",
       TRUE ~ "V"
     )
   )
@@ -163,17 +164,6 @@ exemple_masq <- tab_multi_manager(
 )
 t<-toc()
 ```
-Le programme se lance néanmoins hypercube ne fonctionne pas. La console R affiche cette erreur :
-
---- Current table to treat:  table_test_0_hrc1 ---
-Error in batch file
-Avis : cannot open file 'test_avec_rtauargus/hierarchie_2/0/hypercube/table_test_0_hrc1.csv': No such file or directoryError in file(file, "rt") : cannot open the connection
-
-et le dossier text de tauargus dis :
-19-juil.-2023 10:10:48 : Start of the hypercube protection for table type_distrib x A10 x treff_cj | pizzas_tot
-19-juil.-2023 10:10:49 : Unable to write the file TABELLE for the Hypercube
-19-juil.-2023 10:10:49 : Error in batch file
-19-juil.-2023 10:10:49 : End of TauArgus run
 
 
 ## COMPARAISON AVEC LA TABLE A 4 DIMENSION
@@ -192,7 +182,8 @@ tabs_exemple4 <- (
     ) %>% 
     mutate(
       is_secret_prim = is_secret_freq | is_secret_dom,
-      nb_obs = ceiling(nb_obs)
+      nb_obs = ceiling(nb_obs),
+      pizzas_tot=abs(pizzas_tot)
     ))
 
 tabs_exemple4 %>% count(is_secret_prim)
@@ -204,7 +195,7 @@ tabs_exemple4 %>% count(is_secret_prim)
 ```{r}
 tic()
 
-exemple_masq3 <- tab_rtauargus(
+exemple_masq3 <- tab_rtauargus2(
   tabs_exemple4,
   files_name = "table_test_0_hrc" ,
   explanatory_vars = c("treff","A10","type_distrib","cj"),
@@ -287,6 +278,14 @@ T_hypercube %>%
     pc_val_cell = val_cell/sum(val_cell)*100
   )
 ```
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | 
+|--------------|--------|-------------|------------|-------------|
+| A            | 79     | 2,172,240   | 11.465893  | 0.7058481   |    
+| B            | 35     | 5,499,388   | 5.079826   | 1.7869719   |  
+| D            | 284    | 128,582,170 | 41.219158  | 41.7815051  |   
+| V            | 291    | 171,495,215 | 42.235123  | 55.7256749  |
+
+
 On a alors bien hypercube qui sursecretisepar rapport au 2 autre méthode vu avant .
 
 ## TABLEAU RECAPITULATIF DE MODULAR
@@ -294,10 +293,11 @@ On a alors bien hypercube qui sursecretisepar rapport au 2 autre méthode vu ava
 
 | statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode   | temps    |
 |--------------|--------|-------------|------------|-------------|-----------|----------|
-| A            | 79     | 2,172,240   | 11.465893  | 0.7058516   | liste de  | 322.44 s |
-| B            | 35     | 5,497,851   | 5.079826   | 1.7864812   | tableaux  |          |
-| D            | 250    | 38,848,471  | 36.284470  | 12.6234897  |           |          |
-| V            | 325    | 261,228,913 | 47.169811  | 84.8841775  |           |          |
+| A            | 79     | 2,172,276   | 11.465893  | 0.705859    | liste de  | 149.8 s  |
+| B            | 35     | 5,499,408   | 5.079826   | 1.786976    | tableaux  |          |
+| D            | 289    | 53,687,485  | 41.944848  | 17.4451985  |           |          |
+| V            | 286    | 246,390,181 | 41.509434  | 80.0619663  |           |          |
+
 | statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode   | temps    |
 |--------------|--------|-------------|------------|-------------|-----------|----------|
 | A            | 79     | 2,172,240   | 11.465893  | 0.7058481   | tableaux  | 390.32 s |
@@ -335,7 +335,8 @@ tabs_exemple4<-test_4_var_0hrc_grand %>%
       ) %>% 
       mutate(
         is_secret_prim = is_secret_freq | is_secret_dom,
-        nb_obs = ceiling(nb_obs)
+        nb_obs = ceiling(nb_obs),
+        pizzas_tot=abs(pizzas_tot)
       )
 tabs_exemple4 %>% count(is_secret_prim)
 ```
@@ -406,7 +407,6 @@ masq_1 <- tab_rtauargus(
 
 toc<-toc()
 ```
-  Hypercube ne fonctionne pas 
   
  
 ### Test avec une liste de tableaux à 3 dimensions
@@ -426,7 +426,8 @@ liste_tabs_exemple <- purrr::map(
       ) %>% 
       mutate(
         is_secret_prim = is_secret_freq | is_secret_dom,
-        nb_obs = ceiling(nb_obs)
+        nb_obs = ceiling(nb_obs),
+        pizzas_tot=abs(pizzas_tot)
       )})
 
 lapply(liste_tabs_exemple, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
@@ -439,7 +440,7 @@ tic()
 exemple_masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
   list_explanatory_vars = list_res2$vars ,
-  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod",
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod/test",
   totcode = list_res2$totcode,
   alt_hrc = list_res2$hrcs,
   alt_totcode = list_res2$alt_tot,
@@ -450,7 +451,7 @@ exemple_masq <- tab_multi_manager(
 )
 t<-toc()
 ```
-
+(tab_rtaurgus est plus perfomant sur la version 1.1 que sur la version 1.2 )
 On observe maintenant les cellules enlevés
 
 ```{r}
@@ -517,7 +518,7 @@ L'algorithme ne passe pas avec hypercube ce qui est étonnant mais on peut expli
 ## Tableau récapitulatif pour la grande table
 
 
-## Petite table
+## Grande table
 
 | statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode     | temps      |
 |--------------|--------|-------------|------------|-------------|-------------|------------|
@@ -533,15 +534,18 @@ L'algorithme ne passe pas avec hypercube ce qui est étonnant mais on peut expli
 | D            | 3663   | 34,819,024  | 38.263867  | 11.314154   |             |            |
 | V            | 3310   | 231,349,946 | 34.576413  | 75.175254   |             |            |
 
-
+Cela est un résultat étonnant car l'intution dirait plutôt qu'il y aurait une certaine sursecrétisation 
 
 ##CONCLUSION
 
 Il n'y a pas une grande différence de secret et tau_argus semble être un peu plus efficace à 4 dimensions quand il n'y a pas de hiérarchie dans la table et que la table est petite et encore.La différence entre les deux tables en termes de secret n'est pas très grande. On peut aussi ajouter que tauargus pour les petites tables et que celui-ci semble être plus rapide que notre fonction. 
 
-Cependant dès que l'on passe à des grandes tables, 
+Cependant dès que l'on passe à des grandes tables (>1000 lignes), 
 il semblerait que la méthode de faire une liste de tableaux est plus perfomantes.
-Le but serait alors de trouver un certain seuil ou tau argus fonctionne et pour lequel la liste de tableaux devient plus efficace que tauargus sur une table directement. On peut penser que le warning de tauargus quand il y a 4 dimensions y est pour quelque chose
+On peut penser que le warning de tauargus quand il y a 4 dimensions y est pour quelque chose.
+
+
+
 
 
 
