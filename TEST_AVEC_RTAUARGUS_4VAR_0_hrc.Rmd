@@ -1,0 +1,547 @@
+---
+title: "TEST AVEC RTAUARGUS A 4 DIMENSION AVEC 0 HIERARCHIE"
+output: html_document
+date: "2023-07-18"
+---
+
+## Introduction
+
+Le but de ce test est de savoir quand est ce que l'on peut utiliser rtauargus quand on a une table a 4 dimension .En outre, on essayera de comparer les différents résultats avec une petite table (res_all_dtp de 679 lignes ) et ensuite une grande table de 14890 lignes .
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+### Librairies et source nécessaires pour les différents tests
+
+Pour pouvoir faire ses tests, on aura besoin de différents package:
+- rtauargus (pour utiliser tauargus)
+- dplyr (non nécessaire mais plus pratique pour la pose du secret)
+- tictoc (pour voir le temps que prends le programme)
+- des sources pour l'utilisations des fonctions divisant des tables de 4 variables catégorielles en tables à 3 variables catégorielles
+
+
+```{r}
+
+library("dplyr")
+library(tictoc)
+library("rtauargus")
+loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
+options(rtauargus.tauargus_exe = loc_tauargus)
+
+source("R/passer_de_3_a_4_ou_5.R",encoding = "UTF-8")
+source("R/cas_gen_4_3.R",encoding = "UTF-8")
+source("R/format.R",encoding = "UTF-8")
+source("R/fonction_general_choisit_sep_et_reduit_dim.R")
+source("R/choisir_sep.R")
+source("R/passage_4_3_cas_0_non_hrc.R")
+source("R/passage_4_3_cas_1_non_hrc.R")
+source("R/passage_4_3_cas_2_non_hrc.R")
+load("data/ca_test_0_hrc.RData")
+
+
+```
+
+## Test avec une liste de tableaux à 3 dimensions (petite tables)
+
+### Utilisation de la fonction passant de 4 à 3 variables catégorielles 
+
+Cette fonction va nous permettre d'obtenir à partir du tableau à 4 dimensions en entrée une liste de tableaux à 3 dimensions sans hiérarchie emboitées 
+
+```{r pressure, echo=FALSE}
+
+hrcfiles<-NULL
+totcode<-c(treff="Total",cj="Total", A10="Total",type_distrib="Total")
+dfs <- res_all_dtp
+nom_dfs <- "table_test_0_hrc"
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_") )
+
+```
+
+### Pose du secret primaire sur les tableaux
+
+```{r}
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+```
+
+On peut compter le secret primaire des différents tableaux. Il faut noter que le nombre de case étant conserner par le secret primaire influence sur le temps que tauargus met pour poser le secret secondaire dans les différentes tables et cela influence donc tab_multimanager.
+
+
+```{r}
+lapply(liste_tabs_exemple, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
+
+```
+### Utilisation de tau argus pour poser le secret
+
+On applique maintenant tau_argus sur la liste de table on notera aussi le temps prix par la procédure dans t
+
+```{r}
+tic()
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+)
+t<-toc()
+```
+Après avoir masqué nos tables , on les réassemble en  une table à 4 dimensions et on regarde alors le secret créer 
+
+
+```{r}
+
+res_4_3<-list(
+  tabs=exemple_masq,
+  hrcs=list_res2$hrcs,
+  sep=list_res2$sep,
+  fus_vars=list_res2$fus_vars
+)
+
+p<-passer_a_4_ou_5_r_base(res_4_3)
+data_fusion <- unique(do.call("rbind",p))
+
+data_compt <- data_fusion %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      is_secret_5 ~ "D",
+      TRUE ~ "V"
+    )
+  )
+
+#nombre enlevé 
+
+data_compt %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+```
+###TEST AVEC HYPERCUBE
+
+```{r}
+tic()
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/hypercube",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  suppress="GH(1,100)"
+)
+t<-toc()
+```
+Le programme se lance néanmoins hypercube ne fonctionne pas. La console R affiche cette erreur :
+
+--- Current table to treat:  table_test_0_hrc1 ---
+Error in batch file
+Avis : cannot open file 'test_avec_rtauargus/hierarchie_2/0/hypercube/table_test_0_hrc1.csv': No such file or directoryError in file(file, "rt") : cannot open the connection
+
+et le dossier text de tauargus dis :
+19-juil.-2023 10:10:48 : Start of the hypercube protection for table type_distrib x A10 x treff_cj | pizzas_tot
+19-juil.-2023 10:10:49 : Unable to write the file TABELLE for the Hypercube
+19-juil.-2023 10:10:49 : Error in batch file
+19-juil.-2023 10:10:49 : End of TauArgus run
+
+
+## COMPARAISON AVEC LA TABLE A 4 DIMENSION
+
+Pour voir l'utilité de notre fonction on essaye de comparer le secret poser ainsi que le temps pris par l'algorithme si on l'avait mis sur rtauargus directement .
+
+### Pose du secret primaire
+
+```{r}
+tabs_exemple4 <- (
+  res_all_dtp %>% 
+    mutate(
+      is_secret_freq = nb_obs > 0 & nb_obs < 3,
+      is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot),
+      pizzas_tot= abs(pizzas_tot)
+    ) %>% 
+    mutate(
+      is_secret_prim = is_secret_freq | is_secret_dom,
+      nb_obs = ceiling(nb_obs)
+    ))
+
+tabs_exemple4 %>% count(is_secret_prim)
+```
+
+
+### Pose du secret secondaire avec rtauargus
+
+```{r}
+tic()
+
+exemple_masq3 <- tab_rtauargus(
+  tabs_exemple4,
+  files_name = "table_test_0_hrc" ,
+  explanatory_vars = c("treff","A10","type_distrib","cj"),
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod/table",
+  totcode = c(A10="Total",type_distrib="Total",treff="Total",cj="Total"),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE
+)
+
+t<-toc()
+```
+
+On observe le secret créée
+
+```{r}
+
+T4_masq <- exemple_masq3 %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      TRUE ~ Status,
+    )
+  )
+
+T4_masq %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+```
+
+### TEST AVEC HYPERCUBE
+
+```{r}
+tic()
+
+exemple_masq3 <- tab_rtauargus(
+  tabs_exemple4,
+  files_name = "table_test_0_hrc" ,
+  explanatory_vars = c("treff","A10","type_distrib","cj"),
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/hypercube/table",
+  totcode = c(A10="Total",type_distrib="Total",treff="Total",cj="Total"),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE,
+  suppress="GH(1,100)"
+)
+
+t<-toc()
+```
+On observe qu'hypercube et rapide et fonctionne . On va maintenant observer le secret posé.Cela est très étrange que hypercube ne fonctionnait pas avec tab_multimanager 
+
+```{r}
+T_hypercube <- exemple_masq3 %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      TRUE ~ Status,
+    )
+  )
+
+T_hypercube %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+```
+On a alors bien hypercube qui sursecretisepar rapport au 2 autre méthode vu avant .
+
+## TABLEAU RECAPITULATIF DE MODULAR
+
+
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode   | temps    |
+|--------------|--------|-------------|------------|-------------|-----------|----------|
+| A            | 79     | 2,172,240   | 11.465893  | 0.7058516   | liste de  | 322.44 s |
+| B            | 35     | 5,497,851   | 5.079826   | 1.7864812   | tableaux  |          |
+| D            | 250    | 38,848,471  | 36.284470  | 12.6234897  |           |          |
+| V            | 325    | 261,228,913 | 47.169811  | 84.8841775  |           |          |
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode   | temps    |
+|--------------|--------|-------------|------------|-------------|-----------|----------|
+| A            | 79     | 2,172,240   | 11.465893  | 0.7058481   | tableaux  | 390.32 s |
+| B            | 35     | 5,499,388   | 5.079826   | 1.7869719   |           |          |
+| D            | 315    | 36,055,739  | 45.718433  | 11.7159561  |           |          |
+| V            | 260    | 264,021,645 | 37.735849  | 85.7912240  |           |          |
+
+## TEST AVEC UNE GRANDE TABLE (10000 lignes)
+
+### Donnée
+
+```{r}
+
+load("data/test_4_var_0hrc_grand.RData")
+
+totcode<-c(treff="Total",dep="Total",cj="Total", A10="Total")
+dfs<-test_4_var_0hrc_grand
+nom_dfs<-"test_grand"
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,NULL,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_") )
+
+list_tab2<-list_res2$tabs
+                       
+```
+
+### Test avec le tableau à 4 variables catégorielles 
+
+#### Secret primaire
+```{r}
+
+tabs_exemple4<-test_4_var_0hrc_grand %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )
+tabs_exemple4 %>% count(is_secret_prim)
+```
+
+#### Secret secondaire 
+
+```{r}
+tic()
+
+masquine <- tab_rtauargus(
+  tabs_exemple4,
+  files_name = "test_grand" ,
+  explanatory_vars = c("treff","dep","A10","cj"),
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod",
+  totcode = c(treff="Total",dep="Total",cj="Total", A10="Total"),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE
+)
+
+
+toc<-toc()
+```
+```{r}
+
+T_grand <- masquine %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      TRUE ~ Status,
+    )
+  )
+
+T_grand %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+```
+
+
+
+
+  
+```{r}
+tic()
+
+masq_1 <- tab_rtauargus(
+  tabs_exemple4,
+  files_name = "test_grand" ,
+  explanatory_vars = c("treff","dep","A10","cj"),
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/hypercube",
+  totcode = c(treff="Total",dep="Total",cj="Total", A10="Total"),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE,
+  suppress="GH(1,100)"
+)
+
+
+toc<-toc()
+```
+  Hypercube ne fonctionne pas 
+  
+ 
+### Test avec une liste de tableaux à 3 dimensions
+
+#### Pose du secret primaire
+
+```{r}
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+lapply(liste_tabs_exemple, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
+
+```
+#### POSE du secret secondaire
+
+```{r}
+tic()
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+)
+t<-toc()
+```
+
+On observe maintenant les cellules enlevés
+
+```{r}
+res_4_3<-list(
+  tabs=exemple_masq,
+  hrcs=list_res2$hrcs,
+  sep=list_res2$sep,
+  fus_vars=list_res2$fus_vars
+)
+
+p<-passer_a_4_ou_5_r_base(res_4_3)
+data_fusion <- unique(do.call("rbind",p))
+
+tab_compt <- data_fusion %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      is_secret_5 ~ "D",
+      TRUE ~ "V"
+    )
+  )
+
+#nombre enlevé 
+
+tab_compt %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+```
+### TESTAVEC HYPERCUBE
+```{r}
+tic()
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/hierarchie_2/0/hypercube",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  suppress="GH(1,100)"
+)
+t<-toc()
+```
+
+
+
+
+Error in batch file
+Avis : cannot open file 'test_avec_rtauargus/hierarchie_2/0/hypercube/test_grand1.csv': No such file or directoryError in file(file, "rt") : cannot open the connection
+
+L'algorithme ne passe pas avec hypercube ce qui est étonnant mais on peut expliquer cela 
+
+## Tableau récapitulatif pour la grande table
+
+
+## Petite table
+
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode     | temps      |
+|--------------|--------|-------------|------------|-------------|-------------|------------|
+| A            | 79     | 2,172,240   | 11.465893  | 0.7058516   | liste de    | 897.91 s   |
+| B            | 35     | 5,497,851   | 5.079826   | 1.7864812   | tableaux    |            |
+| D            | 250    | 38,848,471  | 36.284470  | 12.6234897  |             |            |
+| V            | 325    | 261,228,913 | 47.169811  | 84.8841775  |             |            |
+
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode     | temps      |
+|--------------|--------|-------------|------------|-------------|-------------|------------|
+| A            | 1892   | 20,656,734  | 19.763919  | 6.712235    | tableaux    | 1455.43 s  |
+| B            | 708    | 20,921,771  | 7.395801   | 6.798357    |             |            |
+| D            | 3663   | 34,819,024  | 38.263867  | 11.314154   |             |            |
+| V            | 3310   | 231,349,946 | 34.576413  | 75.175254   |             |            |
+
+
+
+##CONCLUSION
+
+Il n'y a pas une grande différence de secret et tau_argus semble être un peu plus efficace à 4 dimensions quand il n'y a pas de hiérarchie dans la table et que la table est petite et encore.La différence entre les deux tables en termes de secret n'est pas très grande. On peut aussi ajouter que tauargus pour les petites tables et que celui-ci semble être plus rapide que notre fonction. 
+
+Cependant dès que l'on passe à des grandes tables, 
+il semblerait que la méthode de faire une liste de tableaux est plus perfomantes.
+Le but serait alors de trouver un certain seuil ou tau argus fonctionne et pour lequel la liste de tableaux devient plus efficace que tauargus sur une table directement. On peut penser que le warning de tauargus quand il y a 4 dimensions y est pour quelque chose
+
+
+

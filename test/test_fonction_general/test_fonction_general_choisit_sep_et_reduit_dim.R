@@ -12,7 +12,10 @@ source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/choisir_sep.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
-
+library(tictoc)
+library("rtauargus")
+loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
+options(rtauargus.tauargus_exe = loc_tauargus)
 # Test dimension 5 - 2 couples créés --------------------------------------
 
 
@@ -43,12 +46,12 @@ dir_name <- "test/test_fonction_general/test1"
 hrc_dir <- dir_name
 sep_dir <- TRUE
 
-liste_sep = c("\\+", "\\!", "\\?","\\:",
-              "\\;","\\~","\\&","\\#")
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
                             sep_dir= TRUE,
-                            hrc_dir = "test/test_fonction_general/test1")
+                            hrc_dir = "test/test_fonction_general/test1",vec_sep =  c("\\_+"))
+
+choisir_sep(data, liste_sep=c("\\_+"))
 
 # on a le bon format de sortie
 names(res5_3) 
@@ -66,8 +69,8 @@ purrr::map2(names(res5_3$tabs), 1:length(res5_3$tabs),
 # Le séparateur est bien +++
 
 
-var_fusionnes <- c(paste(res5_3$vars[[1]][1],res5_3$vars[[1]][2],sep="+++"),
-                   paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="+++"))
+var_fusionnes <- c(paste(res5_3$vars[[1]][1],res5_3$vars[[1]][2],sep="\\_+?"),
+                   paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="\\_+?"))
 
 
 # les totaux sont bien de la forme c(v1_v2 = tot_v1_v2, ...)
@@ -297,3 +300,297 @@ all(sapply(res5_3$tabs,
            function(tab) return(any(sapply(names(tab), 
                                            function(i) return(grepl("\\+", i)
                                            ))))))
+
+
+# separateur --------------------------------------------------------------
+
+
+#TEST DES SEPARATEURS avec tauargus
+# le _ ou "___"
+
+load("data/ca_test_0_hrc.RData")
+hrcfiles<-NULL
+totcode<-c(treff="Total",cj="Total", A10="Total",type_distrib="Total")
+dfs <- res_all_dtp
+nom_dfs <- "table_test_0_hrc"
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\___") )
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/underscore",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+)
+
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_") )
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/mod",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+ 
+)
+
+# label ne fonctionnant pas -----------------------------------------------
+
+
+# le "+++" 
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\+\\+\\+") )
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/plus",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim"
+)
+# Error in `[.data.frame`(res_import, , explanatory_vars, drop = FALSE) : 
+#   colonnes non définies sélectionnées
+# Table1 passe mais pas les autres je pense les regex
+# le "???"
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\???") )
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/interrogation",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim"
+)
+# --- Current table to treat:  table_test_0_hrc1 ---
+#   Error in `[.data.frame`(res_import, , explanatory_vars, drop = FALSE) : 
+#   colonnes non définies sélectionnées
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("zzz") )
+
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/zzz",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim"
+)
+#Fonctionne sans expression régulière
+
+# Label fonctionnant ----------------------------------------------------
+
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_+_") )
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/underscore_plus_underscore",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim"
+)
+
+str(exemple_masq)
+
+
+res_4_3<-list(
+  tabs=exemple_masq,
+  hrcs=list_res2$hrcs,
+  sep=list_res2$sep,
+  fus_vars=list_res2$fus_vars
+)
+
+p<-passer_a_4_ou_5_r_base(res_4_3)
+data_fusion <- unique(do.call("rbind",p))
+
+data_compt <- data_fusion %>% 
+  mutate(
+    statut_final = case_when(
+      is_secret_freq ~ "A",
+      is_secret_dom ~ "B",
+      is_secret_4 ~ "D",
+      TRUE ~ "V"
+    )
+  )
+
+#nombre enlevé 
+
+data_compt %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+
+
+# <chr>         <int>      <dbl>     <dbl>       <dbl>
+#   1 A                79   2172240.     11.5        0.706
+# 2 B                35   5497851.      5.08       1.79 
+# 3 D               250  38848471.     36.3       12.6  
+# 4 V               325 261228913.     47.2       84.9  
+
+# ON va tester avec un autre
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_+?") )
+
+
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+
+exemple_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/test_separateur/underscore_plus_interrogation",
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim"
+)
