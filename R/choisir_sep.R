@@ -28,9 +28,9 @@
 #' liste_sep = c("\\+", "\\!", "\\?")
 #' choisir_sep(data,liste_sep = liste_sep) == "+!?"
 #' TRUE
-choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\:",
-                                            "\\;","\\~","\\&","\\#")){
-
+choisir_sep <- function(data, liste_sep = c("\\_+", "\\_!", "\\_?","\\_:",
+                                            "\\_;","\\_~","\\_&","\\_#")){
+  
   liste_var<-names(data)
   liste_mod<-unique(unlist(lapply(data, unique)))
   liste_mod<-c(liste_mod,liste_var)
@@ -47,19 +47,18 @@ choisir_sep <- function(data, liste_sep = c("\\+", "\\!", "\\?","\\:",
   # On a un sépérateur qui fonctionne !
   if (i  <= n_sep){
     # On enlève les \ devant
-    sep <- str_sub(liste_sep[i], start = 2, end = 2)
+    sep <- str_sub(liste_sep[i], start = 2)
     
     # On renvoie le triple du séparateur
-    sep <- rep(sep, times = 3)
     return(paste0(sep, collapse = ""))
   } else {
     # Tous les séparateurs sont présents dans les modalités
     # On concatène tous les séparateurs pour construire un super séparateur
     return(str_flatten(
-            lapply(liste_sep,
-                  function(x) str_sub(x, start = 2, end = 2)
-                  )
-              )
-          )
-    }
+      lapply(liste_sep,
+             function(x) str_sub(x, start = 2)
+      )
+    )
+    )
+  }
 }
