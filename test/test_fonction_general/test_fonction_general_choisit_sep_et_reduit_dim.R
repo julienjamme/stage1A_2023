@@ -138,7 +138,9 @@ nom_dfs <- "nom_data_frame"
 sep_dir = TRUE
 hrc_dir = "test/test_fonction_general/test2"
 
-res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles)
+res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
+                           sep_dir = sep_dir,
+                           hrc_dir = hrc_dir)
 str(res4_3)
 
 
@@ -228,7 +230,9 @@ v3 = NULL
 v4 = "AGE+++ECO"
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
-                            v1=v1,v2=v2,v3=v3,v4=v4)
+                            v1=v1,v2=v2,v3=v3,v4=v4,
+                            sep_dir = sep_dir,
+                            hrc_dir = hrc_dir)
 
 # on a le bon format de sortie
 names(res5_3) 
