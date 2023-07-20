@@ -4,10 +4,6 @@ output: html_document
 date: "2023-07-18"
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
 
 Le but de ce test est de vérifier comment tauargus se débrouille avec 1 hiérarchie .
 POur cela nous allons comparer l'utilisation de tauargus avec une table à 4 variables catégorielles dont 1 hiérarchiques. Dans ce test , on vérifiera si modular ou hypercube et modular fonctionnent et s'il y a un warning quand on utilise tauargus . Puis, on comparera le secret quand on utilise nos fonctions qui permettent de diviser
@@ -54,7 +50,7 @@ Cette fonction va nous permettre d'obtenir à partir du tableau à 4 dimensions 
 ```{r pressure, echo=FALSE}
 
 hrc_activity<-"hrc/activity_2_niv.hrc"
-hrcfiles<-hrc_activity
+hrcfiles<-c(ACTIVITY=hrc_activity)
 totcode<-c(treff="Total",cj="Total", ACTIVITY  ="Total",nuts1="Total")
 dfs <- test_4_var_1hrc
 nom_dfs <- "table_test_1_hrc"
@@ -101,7 +97,7 @@ tic()
 exemple_masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
   list_explanatory_vars = list_res2$vars ,
-  dir_name = "test_avec_rtauargus/hierarchie_2/0/mod",
+  dir_name = "test_avec_rtauargus/hierarchie_2/1/mod",
   hrcfiles = list_res2$hrcfile,
   totcode = list_res2$totcode,
   alt_hrc = list_res2$hrcs,
@@ -153,7 +149,25 @@ data_compt %>%
   )
 
 ```
-
+### Hypercube
+```{r}
+tic()
+hypercube_masq <- tab_multi_manager(
+  list_tables = liste_tabs_exemple,
+  list_explanatory_vars = list_res2$vars ,
+  dir_name = "test_avec_rtauargus/hierarchie_2/1/hypercube",
+  hrcfiles = list_res2$hrcfile,
+  totcode = list_res2$totcode,
+  alt_hrc = list_res2$hrcs,
+  alt_totcode = list_res2$alt_tot,
+  value = "pizzas_tot",
+  maxscore = "pizzas_max",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  suppress="GH(1,100)"
+)
+t<-toc()
+```
 
 ## COMPARAISON AVEC LA TABLE A 4 DIMENSION
 
@@ -173,7 +187,7 @@ tabs_exemple4 <- (
       is_secret_prim = is_secret_freq | is_secret_dom,
       nb_obs = ceiling(nb_obs)
     ))
-
+tabs_exemple4 %>% count(is_secret_prim)
 ```
 
 
@@ -184,7 +198,7 @@ tabs_exemple4 <- (
 tic()
 
 masq3<- tab_rtauargus(
-  tab_exemple,
+  tabs_exemple4,
   files_name = "Tables",
   hrcfiles=c(ACTIVITY=hrcfiles),
   dir_name = "test_avec_rtauargus/hierarchie_2/1/mod/table",
@@ -233,8 +247,9 @@ On utilise hypercube pour voir son comportement sur les différentes tables avec
 
 ### Test sur la table seul
 ```{r}
+tic()
 masq3<- tab_rtauargus(
-  tab_exemple,
+  tabs_exemple4,
   files_name = "Tables",
   hrcfiles=c(ACTIVITY=hrcfiles),
   dir_name = "test_avec_rtauargus/hierarchie_2/1/hypercube/table",
@@ -246,33 +261,117 @@ masq3<- tab_rtauargus(
   verbose =FALSE,
   suppress="GH(1,100)"
 )
+
+p<-toc()
 ```
 
+On regarde le secret posé
+```{r}
+masq_compt <- masq3 %>% 
+    mutate(
+      statut_final = case_when(
+        is_secret_freq ~ "A",
+        is_secret_dom ~ "B",
+        TRUE ~ Status,
+      )
+    )
 
-### Test sur la liste de tableaux
+#nombre enlevé 
+
+masq_compt %>% 
+  group_by(statut_final) %>% 
+  summarise(
+    n_cell = n(),
+    val_cell = sum(pizzas_tot)
+  ) %>%
+  mutate(
+    pc_n_cell = n_cell/sum(n_cell)*100,
+    pc_val_cell = val_cell/sum(val_cell)*100
+  )
+```
+   
+
+
+### Hypercube
+
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | 
+|--------------|--------|-------------|------------|-------------|
+| A            | 559    | 7,252,531   | 16.354593  | 1.571043    |           
+| B            | 157    | 14,834,269  | 4.593329   | 3.213398    |           
+| D            | 1166   | 115,646,613 | 34.113517  | 25.051361   |           
+| V            | 1536   | 323,904,623 | 44.938561  | 70.164197   |       
+
+## RECAPITULATIF
+
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode           | temps     |
+|--------------|--------|-------------|------------|-------------|-------------------|-----------|
+| A            | 559    | 7,250,862   | 16.354593  | 1.570738    | liste_tableaux    | 964.7 s   |
+| B            | 157    | 14,819,116  | 4.593329   | 3.210233    |                   |           |
+| D            | 976    | 62,048,379  | 28.554710  | 13.441405   |                   |           |
+| V            | 1726   | 377,502,857 | 50.497367  | 81.777623   |                   |           |
+| statut_final | n_cell | val_cell    | pc_n_cell  | pc_val_cell | méthode           | temps     |
+|--------------|--------|-------------|------------|-------------|-------------------|-----------|
+| A            | 559    | 7,252,531   | 16.354593  | 1.571043    | tableau           | 390.3 s   |
+| B            | 157    | 14,834,269  | 4.593329   | 3.213398    |                   |           |
+| D            | 1220   | 43,653,644  | 35.693388  | 9.456249    |                   |           |
+| V            | 1482   | 395,897,592 | 43.358689  | 85.759309   |                   |           |
+
+
+## Test avec une table plus grande
+### Donnée
+
+```{r}
+load("data/test_4_var_1hrc_grand.RData")
+```
 
 ```{r}
 
+hrc_nuts<-"hrc/nuts23.hrc"
+hrcfiles<-c(NUTS=hrc_nuts)
+totcode<-c(treff="Total",A21="Total", cj  ="Total",NUTS="Total")
+dfs <- test_4_var_1hrc_grand
+nom_dfs <- "table_test_1_grandhrc"
+
+list_res2<-
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_") )
+
+```
+
+```{r}
+list_tab2<-list_res2$tabs
+
+liste_tabs_exemple <- purrr::map(
+  list_tab2,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
+lapply(liste_tabs_exemple, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
+
+
+```
+
+```{r}
 tic()
-exemple_masq <- tab_multi_manager(
+exemple_masq_grand <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
   list_explanatory_vars = list_res2$vars ,
-  dir_name = "test_avec_rtauargus/hierarchie_2/1/hypercube",
-  totcode = list_res2$totcode,
+  dir_name = "test_avec_rtauargus/hierarchie_2/1/mod",
   hrcfiles = list_res2$hrcfile,
+  totcode = list_res2$totcode,
   alt_hrc = list_res2$hrcs,
   alt_totcode = list_res2$alt_tot,
   value = "pizzas_tot",
   maxscore = "pizzas_max",
   freq = "nb_obs",
   secret_var = "is_secret_prim",
-  suppress="GH(1,100)")
+)
 t<-toc()
-
 ```
 
-
-
-##CONCLUSION
-
-On observe une légère différence sur le posage de secret . On observe qu'à 4 dimension tauargus , on a une meilleur conservation
