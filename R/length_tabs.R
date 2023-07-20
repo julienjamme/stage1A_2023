@@ -26,7 +26,7 @@ length_tabs <- function(dfs,v1,v2,v3=NULL,v4=NULL,hrcfiles=NULL){
     
   # On a renseigné 3 variables -> cas 5 dimensions, un trio fusionné
   } else if (!is.null(v3)){
-    return(length_tabs_5_3_var(dfs,v1,v2,v3))
+    return(length_tabs_5_3_var(dfs,v1,v2,v3,hrcfiles))
   
   # On a renseigné 2 variables -> cas 4 dimension
   } else {
@@ -201,14 +201,18 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
 }
 
 # cas 5 dimensions, trois variables fusionnées en une
-length_tabs_5_3_var <- function(dfs,v1,v2,v3){
+length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
   
+  # Au moins une variable hiérarchique
+  if (length(setdiff(names(hrcfiles),c(v1,v2,v3))) != length(hrcfiles)){
+    stop("Le cas où une variable hierarchique participe à un trio fusionné n'a pas été implémenté pour le moment.")
+  }
+  
+  # Cas 3 variables non hiérarchiques
   n_mod_v1 <- length(unique(dfs[[v1]]))
   n_mod_v2 <- length(unique(dfs[[v2]]))
   n_mod_v3 <- length(unique(dfs[[v3]]))
  
-  
-  
   nb_rows <- c(
                   1 + (n_mod_v3 - 1) * n_mod_v1,
                   1 + n_mod_v3 * (n_mod_v1 - 1),
