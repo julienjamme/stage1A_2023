@@ -20,27 +20,25 @@
 #' @examples
 length_tabs <- function(dfs,v1,v2,v3=NULL,v4=NULL,hrcfiles=NULL){
   
-  # Pour généraliser la fonction à l'emploi de NA pour une fonction externe
-  v3 <- if (!is.null(v3) && is.na(v3)) NULL else v3
-  v4 <- if (!is.null(v4) && is.na(v4)) NULL else v4
-  
   # On a renseigné 4 variables -> cas 5 dimensions, 2 couples créés
-  if (!is.na(v4)){
+  if (!(is.null(v4) | is.na(v4))){
     return(length_tabs_5_4_var(dfs,hrcfiles,v1,v2,v3,v4))
     
-    # On a renseigné 3 variables -> cas 5 dimensions, un trio fusionné
-  } else if (!is.null(v3)){
+  # On a renseigné 3 variables -> cas 5 dimensions, un trio fusionné
+  } else if (!(is.null(v3) | is.na(v3))){
     return(length_tabs_5_3_var(dfs,v1,v2,v3,hrcfiles))
-    
-    # On a renseigné 2 variables -> cas 4 dimension
-  } else {
+  
+  # On a renseigné 2 variables -> cas 4 dimension
+  } else if ( (!(is.null(v1) | is.na(v1))) & !(is.null(v2) | is.na(v2)) ){
     return(length_tabs_4(dfs,hrcfiles,v1,v2))
+  } else {
+    stop("Arguments non valides !")
   }
 }
 
 # cas 4 dimensions
 length_tabs_4 <- function(dfs,hrcfiles,v1,v2){
-  
+
   # Récupération des regroupements {noeuds + branche}
   # en fonction de si la variable est hierarchique ou non
   
@@ -48,14 +46,14 @@ length_tabs_4 <- function(dfs,hrcfiles,v1,v2){
   # sinon le ifelse renvoie le  premier élement de import_hierarchy (big total)
   # au lieu de renvoyer tous les noeuds
   level_v1 <- unlist(ifelse(v1 %in% names(hrcfiles),
-                            list(import_hierarchy(hrcfiles[[v1]])),
-                            list(list(unique(dfs[[v1]])))),
-                     recursive = FALSE)
+                     list(import_hierarchy(hrcfiles[[v1]])),
+                     list(list(unique(dfs[[v1]])))),
+                recursive = FALSE)
   
   level_v2 <- unlist(ifelse(v2 %in% names(hrcfiles),
-                            list(import_hierarchy(hrcfiles[[v2]])),
-                            list(list(unique(dfs[[v2]])))),
-                     recursive = FALSE)
+                     list(import_hierarchy(hrcfiles[[v2]])),
+                     list(list(unique(dfs[[v2]])))),
+                recursive = FALSE)
   
   # On split par rapport à v2 dans cas 1 non hrc donc il faut mettre dans l'ordre
   if (!(v2 %in% names(hrcfiles)) & (v1 %in% names(hrcfiles))){
@@ -108,12 +106,12 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
   level_v1 <- unlist(ifelse(v1 %in% names(hrcfiles),
                             list(import_hierarchy(hrcfiles[[v1]])),
                             list(list(unique(dfs[[v1]])))),
-                     recursive = FALSE)
+                      recursive = FALSE)
   
   level_v2 <- unlist(ifelse(v2 %in% names(hrcfiles),
                             list(import_hierarchy(hrcfiles[[v2]])),
                             list(list(unique(dfs[[v2]])))),
-                     recursive = FALSE)
+                      recursive = FALSE)
   
   # On split par rapport à v2 dans cas 1 non hrc donc il faut mettre dans l'ordre
   if (!(v2 %in% names(hrcfiles)) & (v1 %in% names(hrcfiles))){
@@ -153,7 +151,7 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
   
   nb_rows <- lapply(1:length(level_v1), function(i) {
     lapply(1:length(level_v2), function(j) {
-      
+    
       # Une petite gymnastique est nécéessaire pour calculer la longueur des tableaux
       # dans l'ordre
       # Résultat vérifié empiriquement
@@ -189,7 +187,7 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
       
     })
   })
-  
+
   # Il faut maintenant multiplier par les modalités des variables non fusionnées
   
   liste_var_non_fusionnées <- names(totcode[!(names(totcode) %in% c(v1,v2,v3,v4))])
@@ -216,20 +214,20 @@ length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
   n_mod_v1 <- length(unique(dfs[[v1]]))
   n_mod_v2 <- length(unique(dfs[[v2]]))
   n_mod_v3 <- length(unique(dfs[[v3]]))
-  
+ 
   nb_rows <- c(
-    1 + (n_mod_v3 - 1) * n_mod_v1,
-    1 + n_mod_v3 * (n_mod_v1 - 1),
-    
-    rep(c(1 + (n_mod_v3 - 1) * n_mod_v2,
-          1 + n_mod_v3 * (n_mod_v2 - 1))
-        , n_mod_v1),
-    
-    rep(c(1 + (n_mod_v3 - 1) * n_mod_v1,
-          1 + n_mod_v3 * (n_mod_v1 - 1))
-        , n_mod_v2 - 1)
+                  1 + (n_mod_v3 - 1) * n_mod_v1,
+                  1 + n_mod_v3 * (n_mod_v1 - 1),
+                  
+                  rep(c(1 + (n_mod_v3 - 1) * n_mod_v2,
+                        1 + n_mod_v3 * (n_mod_v2 - 1))
+                      , n_mod_v1),
+                  
+                  rep(c(1 + (n_mod_v3 - 1) * n_mod_v1,
+                        1 + n_mod_v3 * (n_mod_v1 - 1))
+                      , n_mod_v2 - 1)
   )
-  
+
   # Il faut maintenant multiplier par les modalités des variables non fusionnées
   
   liste_var_non_fusionnées <- names(totcode[!(names(totcode) %in% c(v1,v2,v3,v4))])
