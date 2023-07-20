@@ -47,7 +47,7 @@ res <- passer_de_4_a_3_var(
 
 
 l_tab <- length_tabs_4(dfs=data,
-            hrcfiles = NULL,
+            hrcfiles = hrcfiles,
             v1 = "SEX",
             v2 = "AGE")
 
@@ -64,7 +64,7 @@ all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 
 # On vérifie que la fonction général qui choisit la bonne fonction de compte marche bien
 gen_tab <- length_tabs(dfs=data,
-                       hrcfiles = NULL,
+                       hrcfiles = hrcfiles,
                        v1 = "SEX",
                        v2 = "AGE")
 all(mapply(function(x, y) x == y, l_tab, gen_tab))
@@ -99,13 +99,14 @@ totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
 v1 = "ACT"
 v2 = "GEO"
+hrcfiles = c(ACT = hrc_act)
 
 # Résultat de la fonction
 res <- passer_de_4_a_3_var(
   dfs = data,
   nom_dfs = "tab",
   totcode = totcode, 
-  hrcfiles = c(ACT = hrc_act),
+  hrcfiles = hrcfiles,
   sep_dir = TRUE,
   hrc_dir = "output",
   v1 = v1,
@@ -161,13 +162,14 @@ totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
 v1 = "GEO"
 v2 = "ACT"
+hrcfiles = c(ACT = hrc_act)
 
 # Résultat de la fonction
 res <- passer_de_4_a_3_var(
   dfs = data,
   nom_dfs = "tab",
   totcode = totcode, 
-  hrcfiles = c(ACT = hrc_act),
+  hrcfiles = hrcfiles,
   sep_dir = TRUE,
   hrc_dir = "output",
   v1 = v1,
@@ -239,7 +241,7 @@ res <- passer_de_4_a_3_var(
   dfs = data,
   nom_dfs = "tab",
   totcode = totcode, 
-  hrcfiles = c(ACT = hrc_act, GEO = hrc_geo),
+  hrcfiles = hrcfiles,
   sep_dir = TRUE,
   hrc_dir = "output",
   v1 = v1,
@@ -290,7 +292,7 @@ res <- passer_de_5_a_3_var(
   dfs = data,
   nom_dfs = "tab",
   totcode = totcode, 
-  hrcfiles = NULL,
+  hrcfiles = hrcfiles,
   sep_dir = TRUE,
   hrc_dir = "output",
   v1=v1,v2=v2,v3=v3,v4=v4
@@ -499,37 +501,7 @@ data <- data %>% mutate(VALUE = 1)
 
 dfs <- data
 
-hrc_act <- "output/hrc_ACT.hrc"
-sdcHierarchies::hier_create(root = "Total_A", nodes = c("A1","A2","A3")) %>% 
-  sdcHierarchies::hier_add(root = "A1", nodes = c("A11","A12")) %>% 
-  sdcHierarchies::hier_add(root = "A2", nodes = c("A21","A22")) %>% 
-  sdcHierarchies::hier_convert(as = "argus") %>%
-  slice(-1) %>% 
-  mutate(levels = substring(paste0(level,name),3)) %>% 
-  select(levels) %>% 
-  write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
-
-hrc_geo <- "output/hrc_GEO.hrc"
-sdcHierarchies::hier_create(root = "Total_G", nodes = c("G1","G2","G3")) %>% 
-  sdcHierarchies::hier_add(root = "G1", nodes = c("G11","G12")) %>% 
-  sdcHierarchies::hier_add(root = "G2", nodes = c("G21","G22")) %>% 
-  sdcHierarchies::hier_convert(as = "argus") %>%
-  slice(-1) %>% 
-  mutate(levels = substring(paste0(level,name),3)) %>% 
-  select(levels) %>% 
-  write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
-
-hrc_sex <- "output/hrc_SEX.hrc"
-sdcHierarchies::hier_create(root = "Total_S", nodes = c("S1","S2","S3")) %>% 
-  sdcHierarchies::hier_add(root = "S1", nodes = c("S11","S12")) %>% 
-  sdcHierarchies::hier_add(root = "S2", nodes = c("S21","S22")) %>% 
-  sdcHierarchies::hier_convert(as = "argus") %>%
-  slice(-1) %>% 
-  mutate(levels = substring(paste0(level,name),3)) %>% 
-  select(levels) %>% 
-  write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
-
-hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, AGE = hrc_age, SEX = hrc_sex)
+hrcfiles = NULL
 
 totcode <- c(SEX="Total_S",AGE="Total_0", GEO="Total_G", ACT="Total_A", ECO = "PIB")
 
@@ -538,13 +510,13 @@ res <- passer_de_5_a_3_var(
   dfs = data,
   nom_dfs = "tab",
   totcode = totcode, 
-  hrcfiles = NULL,
+  hrcfiles = hrcfiles,
   sep_dir = TRUE,
   hrc_dir = "output",
   v1 = "ACT",
   v2 = "GEO",
-  v3 = "SEX",
-  v4 = "ACT_GEO"
+  v3 = "ACT_GEO",
+  v4 = "SEX",
 )
 
 length(res$tabs)
@@ -562,7 +534,7 @@ gen_predict <- length_tabs(dfs = data,
 
 all(mapply(function(x, y) x == y, gen_predict, l_predict))
 
-# cas 8 : dimension 5 - 3 var non hier fusionnées autre exemple ------------------
+# cas 8 : dimension 5 - 3 var hier fusionnées v1_v2_v3 ------------------
 
 data <- expand.grid(
   ACT = c("Total_A","A1","A2","A3","A11","A12","A13"),
@@ -617,7 +589,7 @@ res <- passer_de_5_a_3_var(
   dfs = data,
   nom_dfs = "tab",
   totcode = totcode, 
-  hrcfiles = NULL,
+  hrcfiles = hrcfiles,
   sep_dir = TRUE,
   hrc_dir = "output",
   v1 = "ACT",
@@ -634,8 +606,7 @@ l_predict <- length_tabs_5_3_var(dfs = data,
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
 
-
-# cas 9 : test du seul limite
+# cas 9 : test du seul limite ------------------
 
 data <- expand.grid(
   ACT = c("Total", "A", "B","C","D"),

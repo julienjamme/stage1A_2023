@@ -66,6 +66,9 @@ length_tabs_4 <- function(dfs,hrcfiles,v1,v2){
   
   # pour chacun de ses tableaux, il y a deux hierarchies possibles
   # une avec les totaux de v1, l'autre avec les totaux de v2
+  # ainsi pour l'un des modalités, on ne fait pas de croisement aec son total
+  # d'où le -1
+  # et enfin on rajoute le super total, d'où le +1
   nb_rows <- lapply(1:length(level_v1), function(i) {
     lapply(1:length(level_v2), function(j) {
       c((length(level_v1[[i]]) - 1) * length(level_v2[[j]]) + 1,
@@ -147,8 +150,13 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
   nb_rows <- lapply(1:length(level_v1), function(i) {
     lapply(1:length(level_v2), function(j) {
     
-        
+      # Une petite gymnastique est nécéessaire pour calculer la longueur des tableaux
+      # dans l'ordre
+      # Résultat vérifié empiriquement
+      
       c(
+        # Pour le 4->3, on met d'un côté les tableaux
+        # la marge de v1_v2 ne prennant pas le total sur v1
         lapply(1:length(level_v3), function(k) {
           lapply(1:length(level_v4), function(l) {
             
@@ -161,6 +169,7 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
           })
         }),
         
+        # puis ceux ayant une marge de v1_v2 ne prennant pas de total sur v2
         lapply(1:length(level_v3), function(k) {
           lapply(1:length(level_v4), function(l) {
             
