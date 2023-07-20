@@ -199,3 +199,43 @@ length_tabs_5_4_var <- function(dfs,hrcfiles,v1,v2,v3,v4){
   return(noeuds_tot)
 }
 
+# Cas deux couples de variables fusionnés
+length_tabs_5_3_var <- function(dfs,hrcfiles,v1,v2,v3){
+  
+  
+  n_mod_v1 <- length(unique(dfs[[v1]]))
+  n_mod_v2 <- length(unique(dfs[[v2]]))
+  n_mod_v3 <- length(unique(dfs[[v3]]))
+ 
+  
+  
+  nb_noeuds <- c(
+                  1 + (n_mod_v3 - 1) * n_mod_v1,
+                  1 + n_mod_v3 * (n_mod_v1 - 1),
+                  
+                  rep(c(1 + (n_mod_v3 - 1) * n_mod_v2,
+                        1 + n_mod_v3 * (n_mod_v2 - 1))
+                      , n_mod_v1),
+                  
+                  rep(c(1 + (n_mod_v3 - 1) * n_mod_v1,
+                        1 + n_mod_v3 * (n_mod_v1 - 1))
+                      , n_mod_v2 - 1)
+  )
+
+  
+  liste_var_non_fusionnées <- names(totcode[!(names(totcode) %in% c(v1,v2,v3,v4))])
+  
+  mod_var_non_fusionnées <- lapply(liste_var_non_fusionnées, 
+                                   function(x)  length(unique(dfs[[x]])))
+  
+  prod_numbers <- prod(unlist(mod_var_non_fusionnées))
+  
+  noeuds_tot <- lapply(unlist(nb_noeuds), function(x) x * prod_numbers)
+  
+  return(noeuds_tot)
+}
+
+
+
+
+

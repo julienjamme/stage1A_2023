@@ -451,7 +451,6 @@ v4 = "AGE"
 
 # Résultat de la fonction
 
-# 5 à 3 plante
 res <- passer_de_5_a_3_var(
   dfs = data,
   nom_dfs = "tab",
@@ -470,9 +469,167 @@ l_reel <- lapply(res$tabs, nrow)
 
 l_predict <- length_tabs_5_4_var(dfs = data,
                                  hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
-# > max(unlist(l_predict))
-# [1] 81435
-# > min(unlist(l_predict))
-# [1] 35955
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
+
+length(l_reel)
+length(unique(l_reel))
+length(l_predict)
+length(unique(l_predict))
+
+
+# cas 7 : dimension 5 - 3 var non hier fusionnées ------------------
+
+data <- expand.grid(
+  ACT = c("Total_A","A1","A2","A3","A11","A12","A21","A22"),
+  GEO = c("Total_G","G1","G2","G3","G11","G12","G21","G22"),
+  SEX = c("Total_S","S1","S2","S3","S11","S12","S21","S22"),
+  AGE = c("Total_0"),
+  ECO = c("PIB"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = 1)
+
+dfs <- data
+
+hrc_act <- "test/test_cas_gen_5_output/test3/hrc_ACT.hrc"
+sdcHierarchies::hier_create(root = "Total_A", nodes = c("A1","A2","A3")) %>% 
+  sdcHierarchies::hier_add(root = "A1", nodes = c("A11","A12")) %>% 
+  sdcHierarchies::hier_add(root = "A2", nodes = c("A21","A22")) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+
+hrc_geo <- "test/test_cas_gen_5_output/test3/hrc_GEO.hrc"
+sdcHierarchies::hier_create(root = "Total_G", nodes = c("G1","G2","G3")) %>% 
+  sdcHierarchies::hier_add(root = "G1", nodes = c("G11","G12")) %>% 
+  sdcHierarchies::hier_add(root = "G2", nodes = c("G21","G22")) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+
+hrc_sex <- "test/test_cas_gen_5_output/test3/hrc_SEX.hrc"
+sdcHierarchies::hier_create(root = "Total_S", nodes = c("S1","S2","S3")) %>% 
+  sdcHierarchies::hier_add(root = "S1", nodes = c("S11","S12")) %>% 
+  sdcHierarchies::hier_add(root = "S2", nodes = c("S21","S22")) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
+
+hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, AGE = hrc_age, SEX = hrc_sex)
+
+totcode <- c(SEX="Total_S",AGE="Total_0", GEO="Total_G", ACT="Total_A", ECO = "PIB")
+
+# Résultat de la fonction
+res <- passer_de_5_a_3_var(
+  dfs = data,
+  nom_dfs = "tab",
+  totcode = totcode, 
+  hrcfiles = NULL,
+  sep_dir = TRUE,
+  hrc_dir = "test/test_cas_gen_5_output/test2",
+  v1 = "ACT",
+  v2 = "GEO",
+  v3 = "SEX",
+  v4 = "ACT_GEO"
+)
+
+length(res$tabs)
+l_reel <- lapply(res$tabs, nrow)
+
+l_predict <- length_tabs_5_3_var(dfs = data,
+                                 v1 = v1,v2 = v2,v3 = v3)
+
+all(mapply(function(x, y) x == y, l_reel, l_predict))
+
+length(l_reel)
+length(unique(l_reel))
+length(l_predict)
+length(unique(l_predict))
+
+
+# cas 8 : dimension 5 - 3 var non hier fusionnées autre exemple ------------------
+
+data <- expand.grid(
+  ACT = c("Total_A","A1","A2","A3","A11","A12","A13"),
+  GEO = c("Total_G","G1","G2","G3","G11","G12","G21","G22","G31","G32"),
+  SEX = c("Total_S","S1","S2","S3","S11","S12","S21","S22"),
+  AGE = c("Total_0"),
+  ECO = c("PIB"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = 1)
+
+dfs <- data
+
+hrc_act <- "test/test_cas_gen_5_output/test3/hrc_ACT.hrc"
+sdcHierarchies::hier_create(root = "Total_A", nodes = c("A1","A2","A3")) %>% 
+  sdcHierarchies::hier_add(root = "A1", nodes = c("A11","A12","A13")) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+
+hrc_geo <- "test/test_cas_gen_5_output/test3/hrc_GEO.hrc"
+sdcHierarchies::hier_create(root = "Total_G", nodes = c("G1","G2","G3")) %>% 
+  sdcHierarchies::hier_add(root = "G1", nodes = c("G11","G12")) %>% 
+  sdcHierarchies::hier_add(root = "G2", nodes = c("G21","G22")) %>% 
+  sdcHierarchies::hier_add(root = "G3", nodes = c("G31","G32")) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+
+hrc_sex <- "test/test_cas_gen_5_output/test3/hrc_SEX.hrc"
+sdcHierarchies::hier_create(root = "Total_S", nodes = c("S1","S2","S3")) %>% 
+  sdcHierarchies::hier_add(root = "S1", nodes = c("S11","S12")) %>% 
+  sdcHierarchies::hier_add(root = "S2", nodes = c("S21","S22")) %>% 
+  sdcHierarchies::hier_convert(as = "argus") %>%
+  slice(-1) %>% 
+  mutate(levels = substring(paste0(level,name),3)) %>% 
+  select(levels) %>% 
+  write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
+
+hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, AGE = hrc_age, SEX = hrc_sex)
+
+totcode <- c(SEX="Total_S",AGE="Total_0", GEO="Total_G", ACT="Total_A", ECO = "PIB")
+
+# Résultat de la fonction
+res <- passer_de_5_a_3_var(
+  dfs = data,
+  nom_dfs = "tab",
+  totcode = totcode, 
+  hrcfiles = NULL,
+  sep_dir = TRUE,
+  hrc_dir = "test/test_cas_gen_5_output/test2",
+  v1 = "ACT",
+  v2 = "GEO",
+  v3 = "ACT_GEO",
+  v4 = "SEX"
+)
+
+length(res$tabs)
+l_reel <- lapply(res$tabs, nrow)
+
+l_predict <- length_tabs_5_3_var(dfs = data,
+                                 v1 = v1,v2 = v2,v3 = v3)
+
+all(mapply(function(x, y) x == y, l_reel, l_predict))
+
+length(l_reel)
+length(unique(l_reel))
+length(l_predict)
+length(unique(l_predict))
+
