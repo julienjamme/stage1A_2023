@@ -38,12 +38,19 @@
 #'
 #' @examples
 #' TODO exemples
-gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
-                            sep_dir=FALSE,hrc_dir="hrc_alt",
-                            v1=NULL,v2=NULL,v3=NULL,v4=NULL,
-                            vec_sep = c("\\+", "\\!", "\\?","\\:",
-                                        "\\;","\\~","\\&","\\#"),
-                            select_hier = FALSE){
+gen_tabs_5_4_to_3<-function(
+    dfs,
+    nom_dfs,
+    totcode,
+    hrcfiles = NULL,
+    sep_dir=FALSE, 
+    hrc_dir="hrc_alt",
+    v1 = NULL, v2 = NULL, v3 = NULL, v4 = NULL,
+    vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
+    select_hier = FALSE
+){
+  
+  dfs <- as.data.frame(dfs)
   
   # On épure les fichiers hrc et les totaux au cas où
   # ils concernent des variables qui n'existent pas
