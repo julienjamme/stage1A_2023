@@ -1,5 +1,8 @@
 library(dplyr)
 
+# Vider l'environnement global
+rm(list = ls())
+
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
@@ -50,12 +53,27 @@ totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
 hrcfiles <- c(ACT = hrc_act, GEO = hrc_geo)
 
-choisir_var_a_fusionner(dfs=data,
+choisir_var_a_fusionner_general(dfs=data,
                         totcode,
                         hrcfiles,
-                        LIMIT=150)
+                        LIMIT=150,
+                        nb_var = 4)
   
+dfs=data
+totcode
+hrcfiles
+LIMIT=150
+nb_var = 3
+v3=NULL
+V4=NULL
 
+length_tabs(dfs = data,v1 = "ACT",v2="GEO")
+
+
+dfs=dfs
+result_comb=result_comb
+hrcfiles=hrcfiles
+LIMIT=LIMIT
 # -------------------------------------------------------------------------
 
 data <- expand.grid(

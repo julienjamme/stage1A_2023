@@ -207,26 +207,80 @@ length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
   
   # Au moins une variable hiérarchique
   if (length(setdiff(names(hrcfiles),c(v1,v2,v3))) != length(hrcfiles)){
-    stop("Le cas où une variable hierarchique participe à un trio fusionné n'a pas été implémenté pour le moment.")
-  }
-  
+    warning("Ce cas est WIP")
+    
+    
+    # Passage 5-> 4
+    
+    # On doit lister puis faire un unlist
+    # sinon le ifelse renvoie le  premier élement de import_hierarchy (big total)
+    # au lieu de renvoyer tous les noeuds
+    level_v1 <- unlist(ifelse(v1 %in% names(hrcfiles),
+                              list(import_hierarchy(hrcfiles[[v1]])),
+                              list(list(unique(dfs[[v1]])))),
+                       recursive = FALSE)
+    
+    level_v2 <- unlist(ifelse(v2 %in% names(hrcfiles),
+                              list(import_hierarchy(hrcfiles[[v2]])),
+                              list(list(unique(dfs[[v2]])))),
+                       recursive = FALSE)
+    
+    # On split par rapport à v2 dans cas 1 non hrc donc il faut mettre dans l'ordre
+    if (!(v2 %in% names(hrcfiles)) & (v1 %in% names(hrcfiles))){
+      tmp <- level_v1
+      level_v1 <- level_v2
+      level_v2 <- tmp
+    }
+    
+    # Passage 4 -> 3
+    
+    # On doit lister puis faire un unlist
+    # sinon le ifelse renvoie le  premier élement de import_hierarchy (big total)
+    # au lieu de renvoyer tous les noeuds
+    level_v3 <- unlist(ifelse(v3 %in% names(hrcfiles),
+                              list(import_hierarchy(hrcfiles[[v3]])),
+                              list(list(unique(dfs[[v3]])))),
+                       recursive = FALSE)
+    
+    
+    nb_rows <- lapply(1:length(level_v1), function(i) {
+      lapply(1:length(level_v2), function(j) {
+
+        c(
+          lapply(1:length(level_v3), function(k) {
+              
+              c( (length(level_v1[[i]]) - 1) * length(level_v3[[k]]) + 1,
+                 length(level_v1[[i]]) * (length(level_v3[[k]]) - 1) + 1,
+                 
+                 (length(level_v2[[i]]) - 1) * length(level_v3[[k]]) + 1,
+                 length(level_v2[[i]]) * (length(level_v3[[k]]) - 1) + 1,
+              )
+          }),
+        )
+        
+      })
+    })
+    
   # Cas 3 variables non hiérarchiques
-  n_mod_v1 <- length(unique(dfs[[v1]]))
-  n_mod_v2 <- length(unique(dfs[[v2]]))
-  n_mod_v3 <- length(unique(dfs[[v3]]))
- 
-  nb_rows <- c(
-                  1 + (n_mod_v3 - 1) * n_mod_v1,
-                  1 + n_mod_v3 * (n_mod_v1 - 1),
-                  
-                  rep(c(1 + (n_mod_v3 - 1) * n_mod_v2,
-                        1 + n_mod_v3 * (n_mod_v2 - 1))
-                      , n_mod_v1),
-                  
-                  rep(c(1 + (n_mod_v3 - 1) * n_mod_v1,
-                        1 + n_mod_v3 * (n_mod_v1 - 1))
-                      , n_mod_v2 - 1)
-  )
+  } else {
+    
+    n_mod_v1 <- length(unique(dfs[[v1]]))
+    n_mod_v2 <- length(unique(dfs[[v2]]))
+    n_mod_v3 <- length(unique(dfs[[v3]]))
+   
+    nb_rows <- c(
+                    1 + (n_mod_v3 - 1) * n_mod_v1,
+                    1 + n_mod_v3 * (n_mod_v1 - 1),
+                    
+                    rep(c(1 + (n_mod_v3 - 1) * n_mod_v2,
+                          1 + n_mod_v3 * (n_mod_v2 - 1))
+                        , n_mod_v1),
+                    
+                    rep(c(1 + (n_mod_v3 - 1) * n_mod_v1,
+                          1 + n_mod_v3 * (n_mod_v1 - 1))
+                        , n_mod_v2 - 1)
+    )
+  }
 
   # Il faut maintenant multiplier par les modalités des variables non fusionnées
   

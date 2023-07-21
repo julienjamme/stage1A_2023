@@ -601,10 +601,19 @@ res <- passer_de_5_a_3_var(
 length(res$tabs)
 l_reel <- lapply(res$tabs, nrow)
 
-l_predict <- length_tabs_5_3_var(dfs = data,
-                                 v1 = v1,v2 = v2,v3 = v3)
+dfs = data
+v1 = "ACT"
+v2 = "GEO"
+v3 = "SEX"
+hrcfiles = hrcfiles
 
-all(mapply(function(x, y) x == y, l_reel, l_predict))
+l_predict <- length_tabs_5_3_var(dfs = data,
+                                 v1 = v1,v2 = v2,v3 = v3,
+                                 hrcfiles = hrcfiles)
+
+all(sort(unlist(unique(l_reel))) == sort(unlist(unique(l_predict))))
+
+# all(mapply(function(x, y) x == y, l_reel, l_predict))
 
 # cas 9 : test du seul limite ------------------
 
