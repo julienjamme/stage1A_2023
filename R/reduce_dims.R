@@ -37,6 +37,7 @@
 #' @export
 #'
 #' @examples
+#' TODO exemples
 gen_tabs_5_4_to_3<-function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                             sep_dir=FALSE,hrc_dir="hrc_alt",
                             v1=NULL,v2=NULL,v3=NULL,v4=NULL,
