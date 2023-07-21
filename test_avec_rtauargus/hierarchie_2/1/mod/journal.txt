@@ -1,13 +1,13 @@
-Start time: 2023-07-07  16:58:44
+Start time: 2023-07-19  16:03:34
 -----------------------------------------
 Function called to protect the tables: tab_rtauargus2
 Interval Protection Level for first iteration: 10
 Interval Protection Level for other iterations: 0
 Nb of tables to treat:  2
 -----------------------------------------
-Tables to treat: table_test_1_hrc1 table_test_1_hrc2
+Tables to treat: table_test_1_grandhrc1 table_test_1_grandhrc2
 -----------------------------------------
-All explanatory variables: ACTIVITY ident cj_pays
+All explanatory variables: NUTS A21 treff___cj
 -----------------------------------------
 Initialisation work completed
 -----------------------------------------

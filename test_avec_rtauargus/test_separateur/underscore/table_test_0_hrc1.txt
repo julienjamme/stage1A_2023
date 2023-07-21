@@ -1,0 +1,125 @@
+19-juil.-2023 11:18:52 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+19-juil.-2023 11:18:52 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+19-juil.-2023 11:18:52 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+19-juil.-2023 11:18:52 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+19-juil.-2023 11:18:52 : <SAFETYRULE> MAN(10)
+19-juil.-2023 11:18:52 : <READTABLE> 1
+19-juil.-2023 11:18:53 : Tables have been read
+19-juil.-2023 11:18:53 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+19-juil.-2023 11:18:53 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff___cj | pizzas_tot
+19-juil.-2023 11:18:53 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been read
+19-juil.-2023 11:18:53 : <SUPPRESS> GH(1,100)
+19-juil.-2023 11:18:53 : Start of the hypercube protection for table type_distrib x A10 x treff___cj | pizzas_tot
+19-juil.-2023 11:18:53 : Unable to write the file TABELLE for the Hypercube
+19-juil.-2023 11:18:53 : Error in batch file
+19-juil.-2023 11:18:53 : End of TauArgus run
+20-juil.-2023 10:52:33 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:52:33 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:52:33 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:52:33 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:52:33 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:52:33 : <READTABLE> 1
+20-juil.-2023 10:52:34 : Tables have been read
+20-juil.-2023 10:52:34 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:52:34 : Illegal values for the protection levels: -76.9.. -76.9Line number 92
+                       Line: 1,AZ,***tr1___LL,pl,-76.9,-76.9
+20-juil.-2023 10:52:34 : An error has occurred when processing apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst
+20-juil.-2023 10:52:34 : Error in batch file
+20-juil.-2023 10:52:34 : End of TauArgus run
+20-juil.-2023 10:53:25 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:53:25 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:53:25 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:53:25 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:53:25 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:53:25 : <READTABLE> 1
+20-juil.-2023 10:53:25 : Tables have been read
+20-juil.-2023 10:53:25 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:53:25 : Illegal values for the protection levels: -76.9.. -76.9Line number 92
+                       Line: 1,AZ,***tr1___LL,pl,-76.9,-76.9
+20-juil.-2023 10:53:25 : An error has occurred when processing apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst
+20-juil.-2023 10:53:25 : Error in batch file
+20-juil.-2023 10:53:25 : End of TauArgus run
+20-juil.-2023 10:54:17 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:54:18 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:54:18 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:54:18 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:54:18 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:54:18 : <READTABLE> 1
+20-juil.-2023 10:54:18 : Tables have been read
+20-juil.-2023 10:54:18 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:54:18 : Illegal values for the protection levels: -76.9.. -76.9Line number 92
+                       Line: 1,AZ,***tr1___LL,pl,-76.9,-76.9
+20-juil.-2023 10:54:18 : An error has occurred when processing apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst
+20-juil.-2023 10:54:18 : Error in batch file
+20-juil.-2023 10:54:18 : End of TauArgus run
+20-juil.-2023 10:55:43 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:55:43 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:55:43 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:55:43 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:55:43 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:55:43 : <READTABLE> 1
+20-juil.-2023 10:55:44 : Tables have been read
+20-juil.-2023 10:55:44 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:55:44 : Illegal values for the protection levels: -76.9.. -76.9Line number 92
+                       Line: 1,AZ,***tr1___LL,pl,-76.9,-76.9
+20-juil.-2023 10:55:44 : An error has occurred when processing apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst
+20-juil.-2023 10:55:44 : Error in batch file
+20-juil.-2023 10:55:44 : End of TauArgus run
+20-juil.-2023 10:57:37 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:57:37 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:57:37 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:57:37 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 10:57:37 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:57:37 : <READTABLE> 1
+20-juil.-2023 10:57:37 : Tables have been read
+20-juil.-2023 10:57:37 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:57:37 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:57:37 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been read
+20-juil.-2023 10:57:37 : <SUPPRESS> MOD(1,5,1,0,0)
+20-juil.-2023 10:57:37 : Start of the modular protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:57:48 : End of modular protection. Time used 10 seconds
+                       Number of suppressions: 154
+20-juil.-2023 10:57:48 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.csv")
+20-juil.-2023 10:57:48 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.csv
+20-juil.-2023 10:57:49 : End of TauArgus run
+20-juil.-2023 10:58:35 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:58:35 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:58:35 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:58:35 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 10:58:35 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:58:35 : <READTABLE> 1
+20-juil.-2023 10:58:35 : Tables have been read
+20-juil.-2023 10:58:35 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:58:35 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:58:35 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been read
+20-juil.-2023 10:58:35 : <SUPPRESS> MOD(1,5,0,0,0)
+20-juil.-2023 10:58:35 : Start of the modular protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:58:35 : End of modular protection. Time used 0 seconds
+                       Number of suppressions: 22
+20-juil.-2023 10:58:35 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.csv")
+20-juil.-2023 10:58:35 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.csv
+20-juil.-2023 10:58:36 : End of TauArgus run
+20-juil.-2023 10:59:20 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.arb
+20-juil.-2023 10:59:20 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.tab"
+20-juil.-2023 10:59:20 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.rda"
+20-juil.-2023 10:59:20 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 10:59:20 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:59:20 : <READTABLE> 1
+20-juil.-2023 10:59:20 : Tables have been read
+20-juil.-2023 10:59:20 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:59:20 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:59:20 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.hst has been read
+20-juil.-2023 10:59:20 : <SUPPRESS> MOD(1,5,0,0,0)
+20-juil.-2023 10:59:20 : Start of the modular protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:59:21 : End of modular protection. Time used 0 seconds
+                       Number of suppressions: 0
+20-juil.-2023 10:59:21 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.csv")
+20-juil.-2023 10:59:21 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore\table_test_0_hrc1.csv
+20-juil.-2023 10:59:21 : End of TauArgus run

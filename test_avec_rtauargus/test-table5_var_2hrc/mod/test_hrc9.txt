@@ -1,0 +1,76 @@
+18-juil.-2023 12:51:59 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.arb
+18-juil.-2023 12:52:00 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.tab"
+18-juil.-2023 12:52:00 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.rda"
+18-juil.-2023 12:52:00 : <SPECIFYTABLE> "NUTS""ACTIVITY""type_distrib_treff_cj"|"pizzas_tot"||
+18-juil.-2023 12:52:00 : <SAFETYRULE> MAN(10)
+18-juil.-2023 12:52:00 : <READTABLE> 1
+18-juil.-2023 12:52:01 : Tables have been read
+18-juil.-2023 12:52:01 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst",1,",",0,0
+18-juil.-2023 12:52:01 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been applied
+                       to table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 12:52:01 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been read
+18-juil.-2023 12:52:01 : <SUPPRESS> MOD(1,5,1,0,0)
+18-juil.-2023 12:52:01 : Start of the modular protection for table NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 13:54:11 : End of modular protection. Time used 3729 seconds
+                       Number of suppressions: 1743
+18-juil.-2023 13:54:11 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv")
+18-juil.-2023 13:54:11 : Table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv
+18-juil.-2023 13:54:12 : End of TauArgus run
+18-juil.-2023 17:22:41 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.arb
+18-juil.-2023 17:22:41 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.tab"
+18-juil.-2023 17:22:41 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.rda"
+18-juil.-2023 17:22:41 : <SPECIFYTABLE> "NUTS""ACTIVITY""type_distrib_treff_cj"|"pizzas_tot"||
+18-juil.-2023 17:22:41 : <SAFETYRULE> MAN(0)
+18-juil.-2023 17:22:41 : <READTABLE> 1
+18-juil.-2023 17:22:42 : Tables have been read
+18-juil.-2023 17:22:42 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst",1,",",0,0
+18-juil.-2023 17:22:42 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been applied
+                       to table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 17:22:42 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been read
+18-juil.-2023 17:22:42 : <SUPPRESS> MOD(1,5,0,0,0)
+18-juil.-2023 17:22:42 : Start of the modular protection for table NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 17:22:58 : End of modular protection. Time used 16 seconds
+                       Number of suppressions: 792
+18-juil.-2023 17:22:58 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv")
+18-juil.-2023 17:22:59 : Table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv
+18-juil.-2023 17:22:59 : End of TauArgus run
+18-juil.-2023 17:33:09 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.arb
+18-juil.-2023 17:33:09 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.tab"
+18-juil.-2023 17:33:09 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.rda"
+18-juil.-2023 17:33:09 : <SPECIFYTABLE> "NUTS""ACTIVITY""type_distrib_treff_cj"|"pizzas_tot"||
+18-juil.-2023 17:33:09 : <SAFETYRULE> MAN(0)
+18-juil.-2023 17:33:09 : <READTABLE> 1
+18-juil.-2023 17:33:10 : Tables have been read
+18-juil.-2023 17:33:10 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst",1,",",0,0
+18-juil.-2023 17:33:10 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been applied
+                       to table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 17:33:10 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been read
+18-juil.-2023 17:33:10 : <SUPPRESS> MOD(1,5,0,0,0)
+18-juil.-2023 17:33:10 : Start of the modular protection for table NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 17:33:15 : End of modular protection. Time used 5 seconds
+                       Number of suppressions: 34
+18-juil.-2023 17:33:15 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv")
+18-juil.-2023 17:33:16 : Table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv
+18-juil.-2023 17:33:16 : End of TauArgus run
+18-juil.-2023 17:46:46 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.arb
+18-juil.-2023 17:46:46 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.tab"
+18-juil.-2023 17:46:46 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.rda"
+18-juil.-2023 17:46:46 : <SPECIFYTABLE> "NUTS""ACTIVITY""type_distrib_treff_cj"|"pizzas_tot"||
+18-juil.-2023 17:46:46 : <SAFETYRULE> MAN(0)
+18-juil.-2023 17:46:46 : <READTABLE> 1
+18-juil.-2023 17:46:46 : Tables have been read
+18-juil.-2023 17:46:46 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst",1,",",0,0
+18-juil.-2023 17:46:47 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been applied
+                       to table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 17:46:47 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.hst has been read
+18-juil.-2023 17:46:47 : <SUPPRESS> MOD(1,5,0,0,0)
+18-juil.-2023 17:46:47 : Start of the modular protection for table NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot
+18-juil.-2023 17:46:52 : End of modular protection. Time used 5 seconds
+                       Number of suppressions: 0
+18-juil.-2023 17:46:52 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv")
+18-juil.-2023 17:46:52 : Table: NUTS x ACTIVITY x type_distrib_treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var_2hrc\mod\test_hrc9.csv
+18-juil.-2023 17:46:52 : End of TauArgus run

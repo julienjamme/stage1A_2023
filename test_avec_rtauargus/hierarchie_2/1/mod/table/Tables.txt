@@ -1,0 +1,23 @@
+19-juil.-2023 15:00:05 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.arb
+19-juil.-2023 15:00:06 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.tab"
+19-juil.-2023 15:00:06 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.rda"
+19-juil.-2023 15:00:06 : <SPECIFYTABLE> "treff""cj""ACTIVITY""nuts1"|"pizzas_tot"||
+19-juil.-2023 15:00:06 : <SAFETYRULE> MAN(10)
+19-juil.-2023 15:00:06 : <READTABLE> 1
+19-juil.-2023 15:00:07 : Tables have been read
+19-juil.-2023 15:00:07 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.hst",1,",",0,0
+19-juil.-2023 15:00:07 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.hst has been applied
+                       to table: treff x cj x ACTIVITY x nuts1 | pizzas_tot
+19-juil.-2023 15:00:07 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.hst has been read
+19-juil.-2023 15:00:07 : <SUPPRESS> MOD(1,5,1,0,0)
+19-juil.-2023 15:00:07 : Start of the modular protection for table treff x cj x ACTIVITY x nuts1 | pizzas_tot
+19-juil.-2023 15:00:07 : WARNING: The table has 4 dimensions.
+                       Running Modular can take a lot of time and maybe it is difficult to obtain a correct result.
+                       Please check the results carefully.
+                       
+19-juil.-2023 15:05:09 : End of modular protection. Time used 302 seconds
+                       Number of suppressions: 1220
+19-juil.-2023 15:05:09 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.csv")
+19-juil.-2023 15:05:09 : Table: treff x cj x ACTIVITY x nuts1 | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table\Tables.csv
+19-juil.-2023 15:05:09 : End of TauArgus run

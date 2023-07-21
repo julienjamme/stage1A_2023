@@ -1,0 +1,18 @@
+20-juil.-2023 21:19:19 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.arb
+20-juil.-2023 21:19:19 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.tab"
+20-juil.-2023 21:19:19 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.rda"
+20-juil.-2023 21:19:19 : <SPECIFYTABLE> "dep""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 21:19:19 : <SAFETYRULE> MAN(10)
+20-juil.-2023 21:19:19 : <READTABLE> 1
+20-juil.-2023 21:19:21 : Tables have been read
+20-juil.-2023 21:19:21 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.hst",1,",",0,0
+20-juil.-2023 21:19:21 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.hst has been applied
+                       to table: dep x A10 x treff_cj | pizzas_tot
+20-juil.-2023 21:19:21 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.hst has been read
+20-juil.-2023 21:19:21 : <SUPPRESS> MOD(1,5,1,0,0)
+20-juil.-2023 21:19:21 : Start of the modular protection for table dep x A10 x treff_cj | pizzas_tot
+20-juil.-2023 22:07:14 : End of modular protection. Time used 2872 seconds
+                       Number of suppressions: 1485
+20-juil.-2023 22:07:14 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.csv")
+20-juil.-2023 22:07:14 : Table: dep x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\mod\test\nouvellevars\test_grand1.csv

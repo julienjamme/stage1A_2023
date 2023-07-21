@@ -1,0 +1,535 @@
+    1,   AZ,TotalzzzTotal,    8446.981067,   115
+    1,   AZ,  ***tr1zzzLL,    -768.750137,    89
+    1,   AZ,  ***tr1zzzSP,    1300.840908,    21
+    1,   AZ,  tr1zzzTotal,     532.090771,   110
+    1,   AZ,  ***tr2zzzLL,    7914.890296,     6
+    1,   AZ,  tr2zzzTotal,    7914.890296,     6
+    1,   BE,TotalzzzTotal, 3783382.686274,  6236
+    1,   BE,  ***tr1zzzLL,  112460.921526,  1166
+    1,   BE,  ***tr1zzzPA,    3746.128900,    16
+    1,   BE,  ***tr1zzzSP,  269583.837584,  4389
+    1,   BE,  tr1zzzTotal,  385790.888010,  5570
+    1,   BE,  ***tr2zzzLL,  344045.844247,   277
+    1,   BE,  ***tr2zzzPA,      92.737000,     1
+    1,   BE,  ***tr2zzzSP,  760515.825817,   347
+    1,   BE,  tr2zzzTotal, 1104654.407064,   625
+    1,   BE,  ***tr3zzzLL,  312046.662600,    10
+    1,   BE,  ***tr3zzzSP, 1980890.728600,    31
+    1,   BE,  tr3zzzTotal, 2292937.391200,    41
+    1,   FZ,TotalzzzTotal,  397813.522432, 14946
+    1,   FZ,  ***tr1zzzLL,   53503.242837,  4717
+    1,   FZ,  ***tr1zzzPA,     438.129400,   849
+    1,   FZ,  ***tr1zzzSP,  109239.171763,  8914
+    1,   FZ,  tr1zzzTotal,  163180.544000, 14479
+    1,   FZ,  ***tr2zzzLL,   34402.637796,    62
+    1,   FZ,  ***tr2zzzSP,   84090.647636,   399
+    1,   FZ,  tr2zzzTotal,  118493.285432,   461
+    1,   FZ,  ***tr3zzzLL,       0.000000,     2
+    1,   FZ,  ***tr3zzzSP,  116139.693000,     5
+    1,   FZ,  tr3zzzTotal,  116139.693000,     7
+    1,   GI,TotalzzzTotal, 1634169.060428, 31429
+    1,   GI,  ***tr1zzzLL,  290777.633180, 12062
+    1,   GI,  ***tr1zzzPA,     610.597072,    41
+    1,   GI,  ***tr1zzzSP,  320323.668471, 17924
+    1,   GI,  tr1zzzTotal,  611711.898723, 30026
+    1,   GI,  ***tr2zzzLL,  252498.794099,   642
+    1,   GI,  ***tr2zzzPA,      96.928800,     1
+    1,   GI,  ***tr2zzzSP,  351450.622806,   737
+    1,   GI,  tr2zzzTotal,  604046.345705,  1380
+    1,   GI,  ***tr3zzzLL,  118029.886800,    12
+    1,   GI,  ***tr3zzzSP,  300380.929200,    12
+    1,   GI,  tr3zzzTotal,  418410.816000,    24
+    1,   JZ,TotalzzzTotal,  535002.993053,  3797
+    1,   JZ,  ***tr1zzzLL,   26949.825402,  1379
+    1,   JZ,  ***tr1zzzPA,      44.902500,     6
+    1,   JZ,  ***tr1zzzSP,   65458.138912,  2300
+    1,   JZ,  tr1zzzTotal,   92452.866814,  3684
+    1,   JZ,  ***tr2zzzLL,  280172.735646,    39
+    1,   JZ,  ***tr2zzzPA,       0.696400,     1
+    1,   JZ,  ***tr2zzzSP,   86973.040493,    66
+    1,   JZ,  tr2zzzTotal,  367146.472539,   106
+    1,   JZ,  ***tr3zzzLL,   19702.832000,     2
+    1,   JZ,  ***tr3zzzSP,   55700.821700,     6
+    1,   JZ,  tr3zzzTotal,   75403.653700,     8
+    1,   KZ,TotalzzzTotal,  273410.029602,  3845
+    1,   KZ,  ***tr1zzzLL,   99364.305202,  1338
+    1,   KZ,  ***tr1zzzPA,    1268.928300,    12
+    1,   KZ,  ***tr1zzzSP,  110755.348800,  2436
+    1,   KZ,  tr1zzzTotal,  211388.582302,  3785
+    1,   KZ,  ***tr2zzzLL,    9698.644100,    21
+    1,   KZ,  ***tr2zzzPA,       0.000000,     1
+    1,   KZ,  ***tr2zzzSP,   22564.998200,    36
+    1,   KZ,  tr2zzzTotal,   32263.642300,    58
+    1,   KZ,  ***tr3zzzLL,     998.015400,     1
+    1,   KZ,  ***tr3zzzSP,   28759.789600,     1
+    1,   KZ,  tr3zzzTotal,   29757.805000,     2
+    1,   LZ,TotalzzzTotal, 1450714.995749,  5684
+    1,   LZ,  ***tr1zzzLL,  136923.034471,  2032
+    1,   LZ,  ***tr1zzzPA,     471.715600,    17
+    1,   LZ,  ***tr1zzzSP,  219687.678003,  3562
+    1,   LZ,  tr1zzzTotal,  357082.428074,  5611
+    1,   LZ,  ***tr2zzzLL,  182684.569100,    35
+    1,   LZ,  ***tr2zzzSP,  175445.861975,    37
+    1,   LZ,  tr2zzzTotal,  358130.431075,    71
+    1,   LZ,  ***tr3zzzLL,  735502.136600,     2
+    1,   LZ,  tr3zzzTotal,  735502.136600,     2
+    1,   MN,TotalzzzTotal,  835639.036680, 20617
+    1,   MN,  ***tr1zzzLL,  279420.262152,  7643
+    1,   MN,  ***tr1zzzPA,     138.992460,    57
+    1,   MN,  ***tr1zzzSP,  203331.818607, 12220
+    1,   MN,  tr1zzzTotal,  482891.073219, 19919
+    1,   MN,  ***tr2zzzLL,   70772.740692,   272
+    1,   MN,  ***tr2zzzPA,      82.905800,     1
+    1,   MN,  ***tr2zzzSP,  149423.886569,   403
+    1,   MN,  tr2zzzTotal,  220279.533061,   676
+    1,   MN,  ***tr3zzzLL,   27359.091900,     8
+    1,   MN,  ***tr3zzzSP,  105109.338500,    14
+    1,   MN,  tr3zzzTotal,  132468.430400,    22
+    1,   OQ,TotalzzzTotal,  183092.616660, 12808
+    1,   OQ,  ***tr1zzzLL,   27387.555000,  4202
+    1,   OQ,  ***tr1zzzPA,     113.578400,    51
+    1,   OQ,  ***tr1zzzSP,   89209.134560,  8374
+    1,   OQ,  tr1zzzTotal,  116710.267960, 12627
+    1,   OQ,  ***tr2zzzLL,   15075.854100,    58
+    1,   OQ,  ***tr2zzzSP,   49067.446000,   121
+    1,   OQ,  tr2zzzTotal,   64143.300100,   179
+    1,   OQ,  ***tr3zzzSP,    2239.048600,     2
+    1,   OQ,  tr3zzzTotal,    2239.048600,     2
+    1,   RU,TotalzzzTotal,  179262.453722, 10932
+    1,   RU,  ***tr1zzzLL,   34665.908962,  3375
+    1,   RU,  ***tr1zzzPA,    2576.631670,   150
+    1,   RU,  ***tr1zzzSP,   72999.643110,  7345
+    1,   RU,  tr1zzzTotal,  110242.183742, 10868
+    1,   RU,  ***tr2zzzLL,   46395.375210,    30
+    1,   RU,  ***tr2zzzSP,   14928.885870,    32
+    1,   RU,  tr2zzzTotal,   61324.261080,    62
+    1,   RU,  ***tr3zzzSP,    7696.008900,     2
+    1,   RU,  tr3zzzTotal,    7696.008900,     2
+    1,Total,TotalzzzTotal, 9280934.375667,110405
+    1,Total,  ***tr1zzzLL, 1060683.938595, 37999
+    1,Total,  ***tr1zzzPA,    9409.604302,  1196
+    1,Total,  ***tr1zzzSP, 1461889.280718, 67480
+    1,Total,  tr1zzzTotal, 2531982.823615,106675
+    1,Total,  ***tr2zzzLL, 1243662.085286,  1440
+    1,Total,  ***tr2zzzPA,     273.268000,     5
+    1,Total,  ***tr2zzzSP, 1694461.215366,  2176
+    1,Total,  tr2zzzTotal, 2938396.568652,  3620
+    1,Total,  ***tr3zzzLL, 1213638.625300,    37
+    1,Total,  ***tr3zzzSP, 2596916.358100,    73
+    1,Total,  tr3zzzTotal, 3810554.983400,   110
+    2,   AZ,TotalzzzTotal,    7719.666475,   199
+    2,   AZ,  ***tr1zzzLL,    5957.311770,    64
+    2,   AZ,  ***tr1zzzSP,    1762.354705,   136
+    2,   AZ,  tr1zzzTotal,    7719.666475,   199
+    2,   BE,TotalzzzTotal, 1444055.300959,  4313
+    2,   BE,  ***tr1zzzLL,  135779.741361,  2812
+    2,   BE,  ***tr1zzzPA,     399.424480,    11
+    2,   BE,  ***tr1zzzSP,   42419.430506,  1034
+    2,   BE,  tr1zzzTotal,  178598.596347,  3856
+    2,   BE,  ***tr2zzzLL,  696998.057402,   238
+    2,   BE,  ***tr2zzzSP,  257573.535210,   203
+    2,   BE,  tr2zzzTotal,  954571.592612,   440
+    2,   BE,  ***tr3zzzLL,  132894.978800,    11
+    2,   BE,  ***tr3zzzSP,  177990.133200,     7
+    2,   BE,  tr3zzzTotal,  310885.112000,    18
+    2,   FZ,TotalzzzTotal,  182969.814624,  9917
+    2,   FZ,  ***tr1zzzLL,   35486.815477,  4616
+    2,   FZ,  ***tr1zzzPA,      16.384800,     5
+    2,   FZ,  ***tr1zzzSP,   46423.012710,  4981
+    2,   FZ,  tr1zzzTotal,   81926.212987,  9602
+    2,   FZ,  ***tr2zzzLL,   60500.279716,   169
+    2,   FZ,  ***tr2zzzSP,   36814.909921,   146
+    2,   FZ,  tr2zzzTotal,   97315.189637,   315
+    2,   FZ,  ***tr3zzzLL,    3728.412000,     1
+    2,   FZ,  tr3zzzTotal,    3728.412000,     1
+    2,   GI,TotalzzzTotal, 1822692.387091, 19709
+    2,   GI,  ***tr1zzzLL,  264784.061574, 11235
+    2,   GI,  ***tr1zzzPA,      48.790550,   141
+    2,   GI,  ***tr1zzzSP,  542424.358839,  7409
+    2,   GI,  tr1zzzTotal,  807257.210963, 18784
+    2,   GI,  ***tr2zzzLL,  472089.106382,   485
+    2,   GI,  ***tr2zzzPA,     252.339200,     1
+    2,   GI,  ***tr2zzzSP,  134812.953782,   407
+    2,   GI,  tr2zzzTotal,  607154.399364,   893
+    2,   GI,  ***tr3zzzLL,  211083.225764,    19
+    2,   GI,  ***tr3zzzSP,  197197.551000,    14
+    2,   GI,  tr3zzzTotal,  408280.776764,    33
+    2,   JZ,TotalzzzTotal, 1073950.588535,  3386
+    2,   JZ,  ***tr1zzzLL,   64987.347042,  2288
+    2,   JZ,  ***tr1zzzPA,      14.446400,     2
+    2,   JZ,  ***tr1zzzSP,   23975.021695,  1029
+    2,   JZ,  tr1zzzTotal,   88976.815137,  3318
+    2,   JZ,  ***tr2zzzLL,   41174.781598,    44
+    2,   JZ,  ***tr2zzzSP,   39383.325100,    16
+    2,   JZ,  tr2zzzTotal,   80558.106698,    60
+    2,   JZ,  ***tr3zzzLL,   44628.278800,     4
+    2,   JZ,  ***tr3zzzSP,  859787.387900,     4
+    2,   JZ,  tr3zzzTotal,  904415.666700,     8
+    2,   KZ,TotalzzzTotal,  226890.502500,  2996
+    2,   KZ,  ***tr1zzzLL,  128767.036300,  1748
+    2,   KZ,  ***tr1zzzPA,       0.590600,     3
+    2,   KZ,  ***tr1zzzSP,   87240.226400,  1212
+    2,   KZ,  tr1zzzTotal,  216007.853300,  2963
+    2,   KZ,  ***tr2zzzLL,    7751.349300,    21
+    2,   KZ,  ***tr2zzzSP,    3131.299900,    12
+    2,   KZ,  tr2zzzTotal,   10882.649200,    33
+    2,   LZ,TotalzzzTotal,  549508.646637,  4442
+    2,   LZ,  ***tr1zzzLL,  236482.069108,  2560
+    2,   LZ,  ***tr1zzzPA,       8.928000,     2
+    2,   LZ,  ***tr1zzzSP,  108229.761553,  1854
+    2,   LZ,  tr1zzzTotal,  344720.758661,  4415
+    2,   LZ,  ***tr2zzzLL,     993.095080,     9
+    2,   LZ,  ***tr2zzzSP,   99227.395896,    18
+    2,   LZ,  tr2zzzTotal,  100220.490976,    27
+    2,   LZ,  ***tr3zzzLL,  104567.397000,     1
+    2,   LZ,  tr3zzzTotal,  104567.397000,     1
+    2,   MN,TotalzzzTotal,  812632.927382, 13723
+    2,   MN,  ***tr1zzzLL,  391030.713944,  8550
+    2,   MN,  ***tr1zzzPA,    1807.982088,    37
+    2,   MN,  ***tr1zzzSP,   76234.110896,  4548
+    2,   MN,  tr1zzzTotal,  469072.806928, 13134
+    2,   MN,  ***tr2zzzLL,   63569.198917,   243
+    2,   MN,  ***tr2zzzSP,   35799.789337,   336
+    2,   MN,  tr2zzzTotal,   99368.988254,   578
+    2,   MN,  ***tr3zzzLL,  164285.262300,     9
+    2,   MN,  ***tr3zzzSP,   79905.869900,     3
+    2,   MN,  tr3zzzTotal,  244191.132200,    12
+    2,   OQ,TotalzzzTotal,  437001.392200,  9442
+    2,   OQ,  ***tr1zzzLL,   31213.104900,  5515
+    2,   OQ,  ***tr1zzzPA,      23.981000,     7
+    2,   OQ,  ***tr1zzzSP,   11701.499400,  3777
+    2,   OQ,  tr1zzzTotal,   42938.585300,  9299
+    2,   OQ,  ***tr2zzzLL,   49322.977100,    80
+    2,   OQ,  ***tr2zzzSP,   23162.629300,    53
+    2,   OQ,  tr2zzzTotal,   72485.606400,   133
+    2,   OQ,  ***tr3zzzLL,  315337.908900,     7
+    2,   OQ,  ***tr3zzzSP,    6239.291600,     3
+    2,   OQ,  tr3zzzTotal,  321577.200500,    10
+    2,   RU,TotalzzzTotal,  135346.369845,  9613
+    2,   RU,  ***tr1zzzLL,   48387.155107,  5072
+    2,   RU,  ***tr1zzzPA,      19.521700,     5
+    2,   RU,  ***tr1zzzSP,   45918.215308,  4442
+    2,   RU,  tr1zzzTotal,   94324.892115,  9518
+    2,   RU,  ***tr2zzzLL,    4232.465442,    20
+    2,   RU,  ***tr2zzzSP,   36789.012288,    76
+    2,   RU,  tr2zzzTotal,   41021.477730,    96
+    2,Total,TotalzzzTotal, 6692767.596248, 77736
+    2,Total,  ***tr1zzzLL, 1342875.356583, 44457
+    2,Total,  ***tr1zzzPA,    2340.049618,   212
+    2,Total,  ***tr1zzzSP,  986327.992012, 30417
+    2,Total,  tr1zzzTotal, 2331543.398213, 75084
+    2,Total,  ***tr2zzzLL, 1396631.310937,  1306
+    2,Total,  ***tr2zzzPA,     252.339200,     1
+    2,Total,  ***tr2zzzSP,  666694.850734,  1264
+    2,Total,  tr2zzzTotal, 2063578.500871,  2570
+    2,Total,  ***tr3zzzLL,  976525.463564,    52
+    2,Total,  ***tr3zzzSP, 1321120.233600,    31
+    2,Total,  tr3zzzTotal, 2297645.697164,    83
+    3,   AZ,TotalzzzTotal,     923.118940,    89
+    3,   AZ,  ***tr1zzzLL,     747.699640,    86
+    3,   AZ,  ***tr1zzzSP,       4.660500,     2
+    3,   AZ,  tr1zzzTotal,     752.360140,    88
+    3,   AZ,  ***tr2zzzLL,     170.758800,     1
+    3,   AZ,  tr2zzzTotal,     170.758800,     1
+    3,   BE,TotalzzzTotal,  298647.315700,  1492
+    3,   BE,  ***tr1zzzLL,   77481.439348,   878
+    3,   BE,  ***tr1zzzPA,       9.047040,     3
+    3,   BE,  ***tr1zzzSP,    5954.941377,   439
+    3,   BE,  tr1zzzTotal,   83445.427765,  1319
+    3,   BE,  ***tr2zzzLL,  143534.449859,   153
+    3,   BE,  ***tr2zzzSP,   17992.655076,    20
+    3,   BE,  tr2zzzTotal,  161527.104935,   172
+    3,   BE,  ***tr3zzzLL,   53674.783000,     2
+    3,   BE,  tr3zzzTotal,   53674.783000,     2
+    3,   FZ,TotalzzzTotal,   83262.147132,  3573
+    3,   FZ,  ***tr1zzzLL,   35495.934567,  2430
+    3,   FZ,  ***tr1zzzPA,       1.984000,     1
+    3,   FZ,  ***tr1zzzSP,    8452.083189,   872
+    3,   FZ,  tr1zzzTotal,   43950.001756,  3302
+    3,   FZ,  ***tr2zzzLL,   35829.774576,   264
+    3,   FZ,  ***tr2zzzSP,    1466.215200,     6
+    3,   FZ,  tr2zzzTotal,   37295.989776,   270
+    3,   FZ,  ***tr3zzzLL,    2016.155600,     1
+    3,   FZ,  tr3zzzTotal,    2016.155600,     1
+    3,   GI,TotalzzzTotal,  358435.269298,  7674
+    3,   GI,  ***tr1zzzLL,  118597.766725,  4808
+    3,   GI,  ***tr1zzzPA,      28.151100,     3
+    3,   GI,  ***tr1zzzSP,   32071.919948,  2643
+    3,   GI,  tr1zzzTotal,  150697.837773,  7453
+    3,   GI,  ***tr2zzzLL,   91973.181724,   160
+    3,   GI,  ***tr2zzzSP,   52431.297701,    52
+    3,   GI,  tr2zzzTotal,  144404.479425,   212
+    3,   GI,  ***tr3zzzLL,   63332.952100,    10
+    3,   GI,  tr3zzzTotal,   63332.952100,    10
+    3,   JZ,TotalzzzTotal,   37535.228534,   796
+    3,   JZ,  ***tr1zzzLL,   23095.386898,   674
+    3,   JZ,  ***tr1zzzSP,    1035.951884,    88
+    3,   JZ,  tr1zzzTotal,   24131.338782,   762
+    3,   JZ,  ***tr2zzzLL,   12363.412552,    30
+    3,   JZ,  ***tr2zzzSP,    1040.477200,     3
+    3,   JZ,  tr2zzzTotal,   13403.889752,    33
+    3,   JZ,  ***tr3zzzLL,       0.000000,     1
+    3,   JZ,  tr3zzzTotal,       0.000000,     1
+    3,   KZ,TotalzzzTotal,  103981.945200,   907
+    3,   KZ,  ***tr1zzzLL,   24918.662200,   715
+    3,   KZ,  ***tr1zzzSP,   77732.107200,   175
+    3,   KZ,  tr1zzzTotal,  102650.769400,   890
+    3,   KZ,  ***tr2zzzLL,    1242.093200,    16
+    3,   KZ,  ***tr2zzzSP,      89.082600,     1
+    3,   KZ,  tr2zzzTotal,    1331.175800,    17
+    3,   LZ,TotalzzzTotal,  115986.856155,  1388
+    3,   LZ,  ***tr1zzzLL,   38910.409784,  1095
+    3,   LZ,  ***tr1zzzSP,   15103.067071,   289
+    3,   LZ,  tr1zzzTotal,   54013.476855,  1383
+    3,   LZ,  ***tr2zzzLL,   60860.141800,     3
+    3,   LZ,  ***tr2zzzSP,      12.065000,     1
+    3,   LZ,  tr2zzzTotal,   60872.206800,     4
+    3,   LZ,  ***tr3zzzSP,    1101.172500,     1
+    3,   LZ,  tr3zzzTotal,    1101.172500,     1
+    3,   MN,TotalzzzTotal,  299152.318417,  3417
+    3,   MN,  ***tr1zzzLL,   58508.240403,  2871
+    3,   MN,  ***tr1zzzPA,       4.514500,     1
+    3,   MN,  ***tr1zzzSP,    9461.412439,   385
+    3,   MN,  tr1zzzTotal,   67974.167342,  3257
+    3,   MN,  ***tr2zzzLL,  191434.570335,   131
+    3,   MN,  ***tr2zzzSP,   10736.590740,    25
+    3,   MN,  tr2zzzTotal,  202171.161075,   156
+    3,   MN,  ***tr3zzzLL,   29006.990000,     5
+    3,   MN,  tr3zzzTotal,   29006.990000,     5
+    3,   OQ,TotalzzzTotal,   34304.158510,  3168
+    3,   OQ,  ***tr1zzzLL,   14182.651200,  2416
+    3,   OQ,  ***tr1zzzPA,       0.000000,     2
+    3,   OQ,  ***tr1zzzSP,    1563.805110,   699
+    3,   OQ,  tr1zzzTotal,   15746.456310,  3117
+    3,   OQ,  ***tr2zzzLL,   10927.529400,    38
+    3,   OQ,  ***tr2zzzSP,    1202.037600,    13
+    3,   OQ,  tr2zzzTotal,   12129.567000,    51
+    3,   OQ,  ***tr3zzzSP,    6428.135200,     1
+    3,   OQ,  tr3zzzTotal,    6428.135200,     1
+    3,   RU,TotalzzzTotal,   23021.020702,  2469
+    3,   RU,  ***tr1zzzLL,   14156.318857,  2163
+    3,   RU,  ***tr1zzzPA,       0.932100,     1
+    3,   RU,  ***tr1zzzSP,    3450.713845,   291
+    3,   RU,  tr1zzzTotal,   17607.964802,  2455
+    3,   RU,  ***tr2zzzLL,    5388.121900,    13
+    3,   RU,  ***tr2zzzSP,      24.934000,     1
+    3,   RU,  tr2zzzTotal,    5413.055900,    14
+    3,Total,TotalzzzTotal, 1355249.378588, 24969
+    3,Total,  ***tr1zzzLL,  406094.509622, 18131
+    3,Total,  ***tr1zzzPA,      44.628740,    11
+    3,Total,  ***tr1zzzSP,  154830.662563,  5880
+    3,Total,  tr1zzzTotal,  560969.800925, 24021
+    3,Total,  ***tr2zzzLL,  553724.034146,   807
+    3,Total,  ***tr2zzzSP,   84995.355117,   120
+    3,Total,  tr2zzzTotal,  638719.389263,   927
+    3,Total,  ***tr3zzzLL,  148030.880700,    19
+    3,Total,  ***tr3zzzSP,    7529.307700,     2
+    3,Total,  tr3zzzTotal,  155560.188400,    21
+    4,   AZ,TotalzzzTotal,     255.469300,     6
+    4,   AZ,  ***tr1zzzLL,     255.469300,     6
+    4,   AZ,  tr1zzzTotal,     255.469300,     6
+    4,   BE,TotalzzzTotal,  794440.507779,  1438
+    4,   BE,  ***tr1zzzLL,   73384.375756,  1260
+    4,   BE,  ***tr1zzzPA,    2756.461200,     1
+    4,   BE,  ***tr1zzzSP,     673.141556,    21
+    4,   BE,  tr1zzzTotal,   76813.978512,  1282
+    4,   BE,  ***tr2zzzLL,  241242.379967,   145
+    4,   BE,  ***tr2zzzSP,     991.325600,     3
+    4,   BE,  tr2zzzTotal,  242233.705567,   148
+    4,   BE,  ***tr3zzzLL,  406619.738600,     7
+    4,   BE,  ***tr3zzzSP,   68773.085100,     1
+    4,   BE,  tr3zzzTotal,  475392.823700,     8
+    4,   FZ,TotalzzzTotal,  140328.157488,  1435
+    4,   FZ,  ***tr1zzzLL,   17081.585292,  1332
+    4,   FZ,  ***tr1zzzPA,       6.944000,     2
+    4,   FZ,  ***tr1zzzSP,      43.609800,    14
+    4,   FZ,  tr1zzzTotal,   17132.139092,  1348
+    4,   FZ,  ***tr2zzzLL,  107838.304496,    85
+    4,   FZ,  ***tr2zzzSP,      81.075800,     1
+    4,   FZ,  tr2zzzTotal,  107919.380296,    86
+    4,   FZ,  ***tr3zzzLL,   15276.638100,     1
+    4,   FZ,  tr3zzzTotal,   15276.638100,     1
+    4,   GI,TotalzzzTotal,  290156.740358,  5799
+    4,   GI,  ***tr1zzzLL,  167031.710805,  5537
+    4,   GI,  ***tr1zzzPA,      14.285500,     3
+    4,   GI,  ***tr1zzzSP,     429.582300,    41
+    4,   GI,  tr1zzzTotal,  167475.578605,  5581
+    4,   GI,  ***tr2zzzLL,  119364.192329,   206
+    4,   GI,  ***tr2zzzSP,    3316.969424,    13
+    4,   GI,  tr2zzzTotal,  122681.161753,   219
+    4,   JZ,TotalzzzTotal,   41751.145260,   529
+    4,   JZ,  ***tr1zzzLL,   22838.061905,   489
+    4,   JZ,  ***tr1zzzSP,       4.960000,     1
+    4,   JZ,  tr1zzzTotal,   22843.021905,   490
+    4,   JZ,  ***tr2zzzLL,   18908.123355,    39
+    4,   JZ,  tr2zzzTotal,   18908.123355,    39
+    4,   KZ,TotalzzzTotal,   28739.159900,   821
+    4,   KZ,  ***tr1zzzLL,   26421.024400,   784
+    4,   KZ,  ***tr1zzzPA,       0.896700,     4
+    4,   KZ,  ***tr1zzzSP,      61.347200,    24
+    4,   KZ,  tr1zzzTotal,   26483.268300,   812
+    4,   KZ,  ***tr2zzzLL,    2255.891600,     8
+    4,   KZ,  ***tr2zzzSP,       0.000000,     1
+    4,   KZ,  tr2zzzTotal,    2255.891600,     9
+    4,   LZ,TotalzzzTotal,  384994.817008,  1052
+    4,   LZ,  ***tr1zzzLL,   59727.775958,  1022
+    4,   LZ,  ***tr1zzzSP,     225.422100,    21
+    4,   LZ,  tr1zzzTotal,   59953.198058,  1043
+    4,   LZ,  ***tr2zzzLL,  325041.618950,    10
+    4,   LZ,  tr2zzzTotal,  325041.618950,    10
+    4,   MN,TotalzzzTotal,  160472.575909,  4869
+    4,   MN,  ***tr1zzzLL,   59783.941864,  4682
+    4,   MN,  ***tr1zzzPA,       0.000000,     1
+    4,   MN,  ***tr1zzzSP,     275.834964,    59
+    4,   MN,  tr1zzzTotal,   60059.776828,  4741
+    4,   MN,  ***tr2zzzLL,   59983.747181,   123
+    4,   MN,  tr2zzzTotal,   59983.747181,   123
+    4,   MN,  ***tr3zzzLL,   40429.051900,     5
+    4,   MN,  tr3zzzTotal,   40429.051900,     5
+    4,   OQ,TotalzzzTotal,   38733.087044,  2818
+    4,   OQ,  ***tr1zzzLL,   23891.247344,  2678
+    4,   OQ,  ***tr1zzzPA,       6.320300,     4
+    4,   OQ,  ***tr1zzzSP,     194.086000,    88
+    4,   OQ,  tr1zzzTotal,   24091.653644,  2770
+    4,   OQ,  ***tr2zzzLL,   14605.491200,    44
+    4,   OQ,  ***tr2zzzSP,      35.942200,     4
+    4,   OQ,  tr2zzzTotal,   14641.433400,    48
+    4,   RU,TotalzzzTotal,   25394.211027,  3252
+    4,   RU,  ***tr1zzzLL,   21020.586827,  3196
+    4,   RU,  ***tr1zzzPA,      23.393300,     5
+    4,   RU,  ***tr1zzzSP,     289.681200,    44
+    4,   RU,  tr1zzzTotal,   21333.661327,  3245
+    4,   RU,  ***tr2zzzLL,    4060.549700,     7
+    4,   RU,  tr2zzzTotal,    4060.549700,     7
+    4,Total,TotalzzzTotal, 1905265.871073, 22016
+    4,Total,  ***tr1zzzLL,  471435.779451, 20983
+    4,Total,  ***tr1zzzPA,    2808.301000,    20
+    4,Total,  ***tr1zzzSP,    2197.665120,   313
+    4,Total,  tr1zzzTotal,  476441.745571, 21315
+    4,Total,  ***tr2zzzLL,  893300.298778,   665
+    4,Total,  ***tr2zzzSP,    4425.313024,    22
+    4,Total,  tr2zzzTotal,  897725.611802,   687
+    4,Total,  ***tr3zzzLL,  462325.428600,    13
+    4,Total,  ***tr3zzzSP,   68773.085100,     1
+    4,Total,  tr3zzzTotal,  531098.513700,    14
+Total,   AZ,TotalzzzTotal,   17345.235782,   408
+Total,   AZ,  ***tr1zzzLL,    6191.730573,   245
+Total,   AZ,  ***tr1zzzSP,    3067.856113,   158
+Total,   AZ,  tr1zzzTotal,    9259.586686,   402
+Total,   AZ,  ***tr2zzzLL,    8085.649096,     7
+Total,   AZ,  tr2zzzTotal,    8085.649096,     7
+Total,   BE,TotalzzzTotal, 6320525.810712, 13478
+Total,   BE,  ***tr1zzzLL,  399106.477991,  6115
+Total,   BE,  ***tr1zzzPA,    6911.061620,    30
+Total,   BE,  ***tr1zzzSP,  318631.351023,  5882
+Total,   BE,  tr1zzzTotal,  724648.890634, 12026
+Total,   BE,  ***tr2zzzLL, 1425820.731475,   811
+Total,   BE,  ***tr2zzzPA,      92.737000,     1
+Total,   BE,  ***tr2zzzSP, 1037073.341703,   572
+Total,   BE,  tr2zzzTotal, 2462986.810178,  1384
+Total,   BE,  ***tr3zzzLL,  905236.163000,    30
+Total,   BE,  ***tr3zzzSP, 2227653.946900,    39
+Total,   BE,  tr3zzzTotal, 3132890.109900,    69
+Total,   FZ,TotalzzzTotal,  804373.641676, 29869
+Total,   FZ,  ***tr1zzzLL,  141567.578173, 13094
+Total,   FZ,  ***tr1zzzPA,     463.442200,   857
+Total,   FZ,  ***tr1zzzSP,  164157.877462, 14779
+Total,   FZ,  tr1zzzTotal,  306188.897835, 28729
+Total,   FZ,  ***tr2zzzLL,  238570.996584,   579
+Total,   FZ,  ***tr2zzzSP,  122452.848557,   552
+Total,   FZ,  tr2zzzTotal,  361023.845141,  1131
+Total,   FZ,  ***tr3zzzLL,   21021.205700,     5
+Total,   FZ,  ***tr3zzzSP,  116139.693000,     5
+Total,   FZ,  tr3zzzTotal,  137160.898700,    10
+Total,   GI,TotalzzzTotal, 4105453.457175, 64610
+Total,   GI,  ***tr1zzzLL,  841191.172284, 33640
+Total,   GI,  ***tr1zzzPA,     701.824222,   187
+Total,   GI,  ***tr1zzzSP,  895249.529558, 28016
+Total,   GI,  tr1zzzTotal, 1737142.526064, 61842
+Total,   GI,  ***tr2zzzLL,  935925.274534,  1492
+Total,   GI,  ***tr2zzzPA,     349.268000,     2
+Total,   GI,  ***tr2zzzSP,  542011.843713,  1208
+Total,   GI,  tr2zzzTotal, 1478286.386247,  2702
+Total,   GI,  ***tr3zzzLL,  392446.064664,    41
+Total,   GI,  ***tr3zzzSP,  497578.480200,    26
+Total,   GI,  tr3zzzTotal,  890024.544864,    67
+Total,   JZ,TotalzzzTotal, 1688239.955382,  8506
+Total,   JZ,  ***tr1zzzLL,  137870.621247,  4829
+Total,   JZ,  ***tr1zzzPA,      59.348900,     8
+Total,   JZ,  ***tr1zzzSP,   90474.072491,  3416
+Total,   JZ,  tr1zzzTotal,  228404.042638,  8252
+Total,   JZ,  ***tr2zzzLL,  352619.053151,   152
+Total,   JZ,  ***tr2zzzPA,       0.696400,     1
+Total,   JZ,  ***tr2zzzSP,  127396.842793,    85
+Total,   JZ,  tr2zzzTotal,  480016.592344,   237
+Total,   JZ,  ***tr3zzzLL,   64331.110800,     7
+Total,   JZ,  ***tr3zzzSP,  915488.209600,    10
+Total,   JZ,  tr3zzzTotal,  979819.320400,    17
+Total,   KZ,TotalzzzTotal,  633021.637202,  8569
+Total,   KZ,  ***tr1zzzLL,  279471.028102,  4585
+Total,   KZ,  ***tr1zzzPA,    1270.415600,    19
+Total,   KZ,  ***tr1zzzSP,  275789.029600,  3847
+Total,   KZ,  tr1zzzTotal,  556530.473302,  8450
+Total,   KZ,  ***tr2zzzLL,   20947.978200,    66
+Total,   KZ,  ***tr2zzzPA,       0.000000,     1
+Total,   KZ,  ***tr2zzzSP,   25785.380700,    50
+Total,   KZ,  tr2zzzTotal,   46733.358900,   117
+Total,   KZ,  ***tr3zzzLL,     998.015400,     1
+Total,   KZ,  ***tr3zzzSP,   28759.789600,     1
+Total,   KZ,  tr3zzzTotal,   29757.805000,     2
+Total,   LZ,TotalzzzTotal, 2501205.315549, 12564
+Total,   LZ,  ***tr1zzzLL,  472043.289321,  6707
+Total,   LZ,  ***tr1zzzPA,     480.643600,    19
+Total,   LZ,  ***tr1zzzSP,  343245.928727,  5725
+Total,   LZ,  tr1zzzTotal,  815769.861648, 12451
+Total,   LZ,  ***tr2zzzLL,  569579.424930,    55
+Total,   LZ,  ***tr2zzzSP,  274685.322871,    55
+Total,   LZ,  tr2zzzTotal,  844264.747801,   110
+Total,   LZ,  ***tr3zzzLL,  840069.533600,     3
+Total,   LZ,  ***tr3zzzSP,    1101.172500,     1
+Total,   LZ,  tr3zzzTotal,  841170.706100,     4
+Total,   MN,TotalzzzTotal, 2107896.858388, 42624
+Total,   MN,  ***tr1zzzLL,  788743.158363, 23744
+Total,   MN,  ***tr1zzzPA,    1951.489048,    95
+Total,   MN,  ***tr1zzzSP,  289303.176906, 17211
+Total,   MN,  tr1zzzTotal, 1079997.824317, 41049
+Total,   MN,  ***tr2zzzLL,  385760.257125,   768
+Total,   MN,  ***tr2zzzPA,      82.905800,     1
+Total,   MN,  ***tr2zzzSP,  195960.266646,   763
+Total,   MN,  tr2zzzTotal,  581803.429571,  1531
+Total,   MN,  ***tr3zzzLL,  261080.396100,    27
+Total,   MN,  ***tr3zzzSP,  185015.208400,    17
+Total,   MN,  tr3zzzTotal,  446095.604500,    44
+Total,   OQ,TotalzzzTotal,  693131.254414, 28235
+Total,   OQ,  ***tr1zzzLL,   96674.558444, 14811
+Total,   OQ,  ***tr1zzzPA,     143.879700,    64
+Total,   OQ,  ***tr1zzzSP,  102668.525070, 12938
+Total,   OQ,  tr1zzzTotal,  199486.963214, 27812
+Total,   OQ,  ***tr2zzzLL,   89931.851800,   220
+Total,   OQ,  ***tr2zzzSP,   73468.055100,   191
+Total,   OQ,  tr2zzzTotal,  163399.906900,   411
+Total,   OQ,  ***tr3zzzLL,  315337.908900,     7
+Total,   OQ,  ***tr3zzzSP,   14906.475400,     6
+Total,   OQ,  tr3zzzTotal,  330244.384300,    13
+Total,   RU,TotalzzzTotal,  363024.055296, 26264
+Total,   RU,  ***tr1zzzLL,  118229.969753, 13804
+Total,   RU,  ***tr1zzzPA,    2620.478770,   161
+Total,   RU,  ***tr1zzzSP,  122658.253463, 12121
+Total,   RU,  tr1zzzTotal,  243508.701986, 26084
+Total,   RU,  ***tr2zzzLL,   60076.512252,    70
+Total,   RU,  ***tr2zzzSP,   51742.832158,   109
+Total,   RU,  tr2zzzTotal,  111819.344410,   178
+Total,   RU,  ***tr3zzzSP,    7696.008900,     2
+Total,   RU,  tr3zzzTotal,    7696.008900,     2
+Total,Total,TotalzzzTotal,19234217.221576,235125
+Total,Total,  ***tr1zzzLL, 3281089.584251,121568
+Total,Total,  ***tr1zzzPA,   14602.583660,  1438
+Total,Total,  ***tr1zzzSP, 2605245.600413,104089
+Total,Total,  tr1zzzTotal, 5900937.768324,227094
+Total,Total,  ***tr2zzzLL, 4087317.729147,  4216
+Total,Total,  ***tr2zzzPA,     525.607200,     6
+Total,Total,  ***tr2zzzSP, 2450576.734241,  3582
+Total,Total,  tr2zzzTotal, 6538420.070588,  7804
+Total,Total,  ***tr3zzzLL, 2800520.398164,   121
+Total,Total,  ***tr3zzzSP, 3994338.984500,   107
+Total,Total,  tr3zzzTotal, 6794859.382664,   228

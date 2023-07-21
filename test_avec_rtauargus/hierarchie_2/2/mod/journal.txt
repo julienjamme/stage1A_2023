@@ -1,0 +1,13 @@
+Start time: 2023-07-20  16:50:20
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for primary secret cells: 10
+Nb of tables to treat:  2
+-----------------------------------------
+Tables to treat: pizza1 pizza2
+-----------------------------------------
+All explanatory variables: ACTIVITY NUTS23 treff_cj
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------

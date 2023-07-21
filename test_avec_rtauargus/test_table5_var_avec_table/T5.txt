@@ -1,0 +1,34 @@
+13-juil.-2023 15:58:01 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.arb
+13-juil.-2023 15:58:02 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.tab"
+13-juil.-2023 15:58:02 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.rda"
+13-juil.-2023 15:58:02 : <SPECIFYTABLE> "treff""cj""A10""type_distrib""nuts1"|"pizzas_tot"||
+13-juil.-2023 15:58:02 : <SAFETYRULE> MAN(10)
+13-juil.-2023 15:58:02 : <READTABLE> 1
+13-juil.-2023 15:58:03 : Tables have been read
+13-juil.-2023 15:58:03 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.hst",1,",",0,0
+13-juil.-2023 15:58:03 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.hst has been applied
+                       to table: treff x cj x A10 x type_distrib x nuts1 | pizzas_tot
+13-juil.-2023 15:58:03 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.hst has been read
+13-juil.-2023 15:58:03 : <SUPPRESS> GH(1,100)
+13-juil.-2023 15:58:03 : Start of the hypercube protection for table treff x cj x A10 x type_distrib x nuts1 | pizzas_tot
+13-juil.-2023 15:58:09 : The hypercube could not be applied
+                       See file PROTO002
+13-juil.-2023 15:58:09 : Error in batch file
+13-juil.-2023 15:58:09 : End of TauArgus run
+17-juil.-2023 13:15:05 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.arb
+17-juil.-2023 13:15:05 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.tab"
+17-juil.-2023 13:15:05 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.rda"
+17-juil.-2023 13:15:05 : <SPECIFYTABLE> "treff""cj""A10""type_distrib""nuts1"|"pizzas_tot"||
+17-juil.-2023 13:15:05 : <SAFETYRULE> MAN(10)
+17-juil.-2023 13:15:05 : <READTABLE> 1
+17-juil.-2023 13:15:06 : Tables have been read
+17-juil.-2023 13:15:06 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.hst",1,",",0,0
+17-juil.-2023 13:15:06 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.hst has been applied
+                       to table: treff x cj x A10 x type_distrib x nuts1 | pizzas_tot
+17-juil.-2023 13:15:06 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_table5_var\T5.hst has been read
+17-juil.-2023 13:15:06 : <SUPPRESS> GH(1,100)
+17-juil.-2023 13:15:06 : Start of the hypercube protection for table treff x cj x A10 x type_distrib x nuts1 | pizzas_tot
+17-juil.-2023 13:15:09 : The hypercube could not be applied
+                       See file PROTO002
+17-juil.-2023 13:15:09 : Error in batch file
+17-juil.-2023 13:15:09 : End of TauArgus run

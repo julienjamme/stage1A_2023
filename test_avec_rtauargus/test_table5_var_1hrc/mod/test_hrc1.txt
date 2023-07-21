@@ -1,0 +1,15 @@
+17-juil.-2023 17:56:10 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe\test_hrc1.arb
+17-juil.-2023 17:56:11 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe\test_hrc1.tab"
+17-juil.-2023 17:56:11 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe\test_hrc1.rda"
+17-juil.-2023 17:56:11 : <SPECIFYTABLE> "ACTIVITY""type_distrib+++NUTS""treff+++cj"|"pizzas_tot"||
+17-juil.-2023 17:56:11 : <SAFETYRULE> MAN(10)
+17-juil.-2023 17:56:11 : <READTABLE> 1
+17-juil.-2023 17:56:12 : Cell has been filled already
+                        Codes:*11,**1+++FR3,,
+17-juil.-2023 17:56:12 : Error in file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe\test_hrc1.tab on line 2478.
+                       Line = *11,    **1+++FR3,Total+++Total,   13615,     1
+                       Cell has been filled already
+                        Codes:*11,**1+++FR3,,
+17-juil.-2023 17:56:12 : Something wrong in readTablesBatch()
+17-juil.-2023 17:56:12 : Error in batch file
+17-juil.-2023 17:56:12 : End of TauArgus run

@@ -100,3 +100,16 @@
 13-juil.-2023 14:04:33 : Table: treff_cj x A10 x type_distrib_nuts1 | pizzas_tot has been written
                        Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.csv
 13-juil.-2023 14:04:33 : End of TauArgus run
+17-juil.-2023 11:28:09 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.arb
+17-juil.-2023 11:28:09 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.tab"
+17-juil.-2023 11:28:09 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.rda"
+17-juil.-2023 11:28:09 : <SPECIFYTABLE> "treff_cj""A10""type_distrib_nuts1"|"pizzas_tot"||
+17-juil.-2023 11:28:09 : <SAFETYRULE> MAN(10)
+17-juil.-2023 11:28:09 : <READTABLE> 1
+17-juil.-2023 11:28:10 : Tables have been read
+17-juil.-2023 11:28:10 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.hst",1,",",0,0
+17-juil.-2023 11:28:10 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.hst has been applied
+                       to table: treff_cj x A10 x type_distrib_nuts1 | pizzas_tot
+17-juil.-2023 11:28:10 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test-table5_var\var1.hst has been read
+17-juil.-2023 11:28:10 : <SUPPRESS> MOD(1,5,1,0,0)
+17-juil.-2023 11:28:10 : Start of the modular protection for table treff_cj x A10 x type_distrib_nuts1 | pizzas_tot

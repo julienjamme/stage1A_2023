@@ -1,0 +1,13 @@
+Start time: 2023-07-20  10:55:58
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for primary secret cells: 10
+Nb of tables to treat:  2
+-----------------------------------------
+Tables to treat: table_test_0_hrc1 table_test_0_hrc2
+-----------------------------------------
+All explanatory variables: type_distrib A10 treff_cj
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------

@@ -1,0 +1,21 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+dep
+  <RECODEABLE>
+  <TOTCODE> "Total"
+A10
+  <RECODEABLE>
+  <TOTCODE> "Total"
+treff___cj
+  <RECODEABLE>
+  <TOTCODE> "Total___Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_test_grand_treff_unif.hrc"
+  <HIERLEADSTRING> "@"
+pizzas_tot
+  <NUMERIC>
+  <DECIMALS> 16
+nb_obs
+  <FREQUENCY>

@@ -1,0 +1,24 @@
+Start time: 2023-07-17  16:02:20
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for first iteration: 10
+Interval Protection Level for other iterations: 0
+Nb of tables to treat:  40
+-----------------------------------------
+Tables to treat: table_test_3_hrc1 table_test_3_hrc2 table_test_3_hrc3 
+table_test_3_hrc4 table_test_3_hrc5 table_test_3_hrc6 table_test_3_hrc7 
+table_test_3_hrc8 table_test_3_hrc9 table_test_3_hrc10 table_test_3_hrc11 
+table_test_3_hrc12 table_test_3_hrc13 table_test_3_hrc14 table_test_3_hrc15 
+table_test_3_hrc16 table_test_3_hrc17 table_test_3_hrc18 table_test_3_hrc19 
+table_test_3_hrc20 table_test_3_hrc21 table_test_3_hrc22 table_test_3_hrc23 
+table_test_3_hrc24 table_test_3_hrc25 table_test_3_hrc26 table_test_3_hrc27 
+table_test_3_hrc28 table_test_3_hrc29 table_test_3_hrc30 table_test_3_hrc31 
+table_test_3_hrc32 table_test_3_hrc33 table_test_3_hrc34 table_test_3_hrc35 
+table_test_3_hrc36 table_test_3_hrc37 table_test_3_hrc38 table_test_3_hrc39 
+table_test_3_hrc40
+-----------------------------------------
+All explanatory variables: treff cj NUTS+++PAYS
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------

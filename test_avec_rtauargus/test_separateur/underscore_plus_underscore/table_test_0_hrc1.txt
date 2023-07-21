@@ -1,0 +1,57 @@
+20-juil.-2023 10:35:44 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.arb
+20-juil.-2023 10:35:44 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.tab"
+20-juil.-2023 10:35:44 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.rda"
+20-juil.-2023 10:35:44 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:35:44 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:35:44 : <READTABLE> 1
+20-juil.-2023 10:35:45 : Tables have been read
+20-juil.-2023 10:35:45 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:35:45 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff___cj | pizzas_tot
+20-juil.-2023 10:35:45 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst has been read
+20-juil.-2023 10:35:45 : <SUPPRESS> MOD(1,5,1,0,0)
+20-juil.-2023 10:35:45 : Start of the modular protection for table type_distrib x A10 x treff___cj | pizzas_tot
+20-juil.-2023 10:35:50 : End of modular protection. Time used 5 seconds
+                       Number of suppressions: 134
+20-juil.-2023 10:35:50 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.csv")
+20-juil.-2023 10:35:50 : Table: type_distrib x A10 x treff___cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.csv
+20-juil.-2023 10:35:50 : End of TauArgus run
+20-juil.-2023 10:36:37 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.arb
+20-juil.-2023 10:36:37 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.tab"
+20-juil.-2023 10:36:37 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.rda"
+20-juil.-2023 10:36:37 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:36:37 : <SAFETYRULE> MAN(0)
+20-juil.-2023 10:36:37 : <READTABLE> 1
+20-juil.-2023 10:36:37 : Tables have been read
+20-juil.-2023 10:36:37 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:36:37 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff___cj | pizzas_tot
+20-juil.-2023 10:36:37 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst has been read
+20-juil.-2023 10:36:37 : <SUPPRESS> MOD(1,5,0,0,0)
+20-juil.-2023 10:36:37 : Start of the modular protection for table type_distrib x A10 x treff___cj | pizzas_tot
+20-juil.-2023 10:36:37 : End of modular protection. Time used 0 seconds
+                       Number of suppressions: 14
+20-juil.-2023 10:36:37 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.csv")
+20-juil.-2023 10:36:37 : Table: type_distrib x A10 x treff___cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.csv
+20-juil.-2023 10:36:37 : End of TauArgus run
+20-juil.-2023 10:37:22 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.arb
+20-juil.-2023 10:37:22 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.tab"
+20-juil.-2023 10:37:22 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.rda"
+20-juil.-2023 10:37:22 : <SPECIFYTABLE> "type_distrib""A10""treff___cj"|"pizzas_tot"||
+20-juil.-2023 10:37:22 : <SAFETYRULE> MAN(0)
+20-juil.-2023 10:37:22 : <READTABLE> 1
+20-juil.-2023 10:37:22 : Tables have been read
+20-juil.-2023 10:37:22 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst",1,",",0,0
+20-juil.-2023 10:37:22 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst has been applied
+                       to table: type_distrib x A10 x treff___cj | pizzas_tot
+20-juil.-2023 10:37:22 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.hst has been read
+20-juil.-2023 10:37:22 : <SUPPRESS> MOD(1,5,0,0,0)
+20-juil.-2023 10:37:22 : Start of the modular protection for table type_distrib x A10 x treff___cj | pizzas_tot
+20-juil.-2023 10:37:22 : End of modular protection. Time used 0 seconds
+                       Number of suppressions: 0
+20-juil.-2023 10:37:22 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.csv")
+20-juil.-2023 10:37:22 : Table: type_distrib x A10 x treff___cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\plus_interrogation\table_test_0_hrc1.csv
+20-juil.-2023 10:37:22 : End of TauArgus run
