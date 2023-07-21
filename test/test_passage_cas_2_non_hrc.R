@@ -33,7 +33,7 @@ nom_dfs <- "nom_data_frame"
 totcode <- tot_code
 hrcfiles <- hrc_files
 
-dir_name <- "output"
+dir_name <- "prout"
 
 # Test 1 ------------------------------------------------------------------
 

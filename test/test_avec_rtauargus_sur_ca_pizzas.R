@@ -8,7 +8,9 @@
 ####################
 
 
-
+source("R/passage_4_3_cas_2_non_hrc.R")
+source("R/fonction_general_choisit_sep_et_reduit_dim.R")
+source("R/choisir_sep.R")
 source("R/function_passer_3_4.R")
 source("R/format.R")
 #source("brouillon/tauargus_4_3.R")
@@ -38,12 +40,9 @@ totcode<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
 
 nom_dfs<-"pizza"
 
+# a le format utilisé pour rtauargus
 
-res<-passer_de_4_a_3_var(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE)
-
-#On a le format utilisé pour rtauargus
-
-list_res<-tabs_5_4_to_3(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,"output")
+list_res<-gen_tabs_5_4_to_3(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,"output",liste_sep = c("\\_"))
 
 list_tab<-list_res$tabs
 list_vars<-list(
@@ -231,22 +230,140 @@ exemple_masq3 <- tab_rtauargus(
 #######################################
 
 
-data <- read.csv("data/table_test.csv")
+source("R/fonction_general_choisit_sep_et_reduit_dim.R")
+source("R/choisir_sep.R")
+source("R/passage_4_3_cas_1_non_hrc.R")
+source("R/passage_4_3_cas_0_non_hrc.R")
+source("test/test_nbs_tabs.R")
+source("R/passage_4_3_cas_2_non_hrc.R")
 
 
-hrc_files = c(ACTIVITY = "hrc/corresp_activity.hrc", NUMBER_EMPL = "hrc/hrc_nb_empl.hrc",GEO="hrc/corresp_geo.hrc")
+source("R/function_passer_3_4.R")
+source("R/format.R")
+#source("brouillon/tauargus_4_3.R")
+load("data/ca_pizzas_4vars.RData")
+source("R/cas_gen_4_3.R")
+library("purrr")
+library("dplyr")
+library("rtauargus")
+library(tidyverse)
+loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
+options(rtauargus.tauargus_exe = loc_tauargus)
+
+hrc_activity <- rtauargus::write_hrc2(
+  corr_act, 
+  "hrc/activity_2_niv.hrc", 
+  adjust_unique_roots = TRUE
+)
+
+hrc_nuts <- rtauargus::write_hrc2(
+  corr_nuts,
+  "hrc/nuts23.hrc", 
+  adjust_unique_roots = TRUE
+)
+
+hrcfiles<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+
+totcode<-c(ACTIVITY="TOTAL",NUTS23="Total",treff="Total",cj="Total")
+
+nom_dfs<-"pizza"
+
+# 
+# list<-gen_tabs_5_4_to_3(dfs = ca_pizzas_4vars,nom_dfs = nom_dfs,totcode = totcode,hrcfiles = hrcfiles,sep_dir = TRUE,
+#                         hrc_dir = "output",select_hier = TRUE)
+# gen_tabs_5_4_to_3()
+# 
+# list<-passage_4_3_cas_0_non_hr(ca_pizzas_4vars,"pizz","NUTS23","ACTIVITY",totcode,hrcfiles,"output",sep = "_")
+
+list<-passage_4_3_cas_1_non_hr(ca_pizzas_4vars,"pizz","cj","ACTIVITY",totcode,hrcfiles,"output",sep = "_")
+
+list<-format(list,nom_dfs,sep="_")
+liste_secret<- purrr::map(
+  list$tabs,
+  function(tab){
+    tab %>% 
+      mutate(
+        is_secret_freq = nb_obs > 0 & nb_obs < 3,
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+      ) %>% 
+      mutate(
+        is_secret_prim = is_secret_freq | is_secret_dom,
+        nb_obs = ceiling(nb_obs)
+      )})
 
 
-totcode<-c(ACTIVITY="Total",NUMBER_EMPL="Total", GEO="Total",PERS="Total")
+freq<-"nb_obs"
+value<-"pizzas_tot"
 
-# pour execution ligne à ligne
-dfs <- data
-nom_dfs <- "nom_data_frame"
+totcode<-c(NUTS23="Total",cj_ACTIVITY="Total_Total", treff="Total")
 
-hrcfiles <- hrc_files
-passer_de_4_a_3_var(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir = FALSE, hrc_dir = "hrc_alt")
-list_res2<-tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir,hrc_dir)
 
-list_tab2<-list_res2$tabs
+#On récupère les variables des différentes tables
+
+var_cross<-paste(list$vars[1],list$vars[2],sep="_")
+d<- intersect(names(list$tabs$pizza1), names(totcode))
+
+n<-length(list$tabs)
+list_vars<-replicate(n,d,simplify=FALSE)
+names(list_vars)<- c(paste0(nom_dfs,1:n,sep=""))
+
+
+masq <- tab_multi_manager(
+  list_tables = liste_secret,
+  list_explanatory_vars = list_vars ,
+  dir_name = "test_avec_rtauargus/hierarchie_2/mod",
+  totcode = totcode,
+  alt_hrc = list$hrcs,
+  alt_totcode = list$alt_tot,
+  value = value,
+  freq = freq,
+  secret_var = "is_secret_prim")
+
+# Fonctione avec modular 
+knitr::opts_chunk$set(echo = TRUE)
+knitr::opts_knit$set(dir.root = getwd())
+
+load("data/test_nbs_tabs_max.RData")
+library(dplyr)
+library(rtauargus)
+loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
+options(rtauargus.tauargus_exe = loc_tauargus)
+
+
+totcode<-c(treff="TOTAL",dep="Total",a732="Total")
+
+
+tab_secret<-test_nbs_tabs_max %>% 
+  mutate(
+    is_secret_freq = nb_obs > 0 & nb_obs < 3,
+    is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+  ) %>% 
+  mutate(
+    is_secret_prim = is_secret_freq | is_secret_dom,
+    nb_obs = ceiling(nb_obs)
+  )
+
+#tauargus ne fonctionne pas à plus de 35000
+
+masq_table<- tab_rtauargus(
+  tab_secret,
+  dir_name = "test_avec_rtauargus/table_38413",
+  files_name = "test_grande_table",
+  explanatory_vars = c("treff","dep","a732"),
+  secret_var = "is_secret_prim",
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  totcode =totcode,
+  verbose = FALSE ,
+  suppress="GH(1,100")
+# Error in file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\table_38413\test_grande_table.tab on line 4.
+# Line = Total,  *75,Total, 2671901.2723730001598597, 19467
+# Code does not exist
+# Something wrong in readTablesBatch()
+# Error in batch file
+# Error in file(file, "rt") : cannot open the connection
+# In addition: Warning message:
+#   In file(file, "rt") :
+#   cannot open file 'test_avec_rtauargus/table_38413/test_grande_table.csv': No such file or directory
 
 

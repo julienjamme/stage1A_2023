@@ -213,7 +213,7 @@ tic()
 masq2 <- tab_multi_manager(
   list_tables = liste_tabs_exemple2,
   list_explanatory_vars = test_5_1_hrc$vars ,
-  dir_name = "test_avec_rtauargus/test-table5_var/hypercurbe",
+  dir_name = "test_avec_rtauargus/test_table5_var_1hrc/mod",
   totcode = test_5_1_hrc$totcode,
   alt_hrc = test_5_1_hrc$hrcs,
   alt_totcode = test_5_1_hrc$alt_tot,
@@ -287,3 +287,6 @@ p_compt %>%
 # 2 B              1201  41303216      6.84        4.47
 # 3 D              8354 294485122     47.6        31.9 
 # 4 V              4468 552913453     25.5        59.9
+
+# Cela avait été fait avec la version 1.1.1 de rtauargus donc sans les intervalles de confiance
+# Ce qui peut expliquer une pplus grand secret 
