@@ -7,7 +7,7 @@ library(stringr)
 source("R/function_passer_3_4.R")
 
 load("data/ca_pizzas_4vars.RData")
-source("R/cas_gen_4_3.R")
+source("R/passage_4_3.R")
 source("R/format.R")
 library("dplyr")
 

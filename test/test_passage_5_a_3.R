@@ -6,7 +6,7 @@ source(file = "R/passage_5_3.R", encoding = "UTF-8")
 source("R/passage_4_3_cas_0_non_hrc.R", encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R", encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R", encoding = "UTF-8")
-source("R/cas_gen_4_3.R", encoding = "UTF-8")
+source("R/passage_4_3.R", encoding = "UTF-8")
 source("R/format.R", encoding = "UTF-8")
 source("test/test_nbs_tabs.R", encoding = "UTF-8")
 
