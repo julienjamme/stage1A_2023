@@ -1,0 +1,21 @@
+19-juil.-2023 15:43:15 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.arb
+19-juil.-2023 15:43:16 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.tab"
+19-juil.-2023 15:43:16 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.rda"
+19-juil.-2023 15:43:16 : <SPECIFYTABLE> "treff""cj""ACTIVITY""nuts1"|"pizzas_tot"||
+19-juil.-2023 15:43:16 : <SAFETYRULE> MAN(10)
+19-juil.-2023 15:43:16 : <READTABLE> 1
+19-juil.-2023 15:43:17 : Tables have been read
+19-juil.-2023 15:43:17 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.hst",1,",",0,0
+19-juil.-2023 15:43:17 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.hst has been applied
+                       to table: treff x cj x ACTIVITY x nuts1 | pizzas_tot
+19-juil.-2023 15:43:17 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.hst has been read
+19-juil.-2023 15:43:17 : <SUPPRESS> GH(1,100)
+19-juil.-2023 15:43:17 : Start of the hypercube protection for table treff x cj x ACTIVITY x nuts1 | pizzas_tot
+19-juil.-2023 15:43:31 : End of hypercube protection. Time used 13 seconds
+                       Number of suppressions: 1166
+19-juil.-2023 15:43:31 : The hypercube procedure has been applied
+                       1166 cells have been suppressed
+19-juil.-2023 15:43:31 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.csv")
+19-juil.-2023 15:43:31 : Table: treff x cj x ACTIVITY x nuts1 | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\hypercube\table\Tables.csv
+19-juil.-2023 15:43:31 : End of TauArgus run

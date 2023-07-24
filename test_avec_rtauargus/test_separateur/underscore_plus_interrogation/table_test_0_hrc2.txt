@@ -1,0 +1,38 @@
+20-juil.-2023 10:43:27 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.arb
+20-juil.-2023 10:43:27 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.tab"
+20-juil.-2023 10:43:27 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.rda"
+20-juil.-2023 10:43:27 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 10:43:27 : <SAFETYRULE> MAN(10)
+20-juil.-2023 10:43:27 : <READTABLE> 1
+20-juil.-2023 10:43:27 : Tables have been read
+20-juil.-2023 10:43:27 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.hst",1,",",0,0
+20-juil.-2023 10:43:27 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:43:27 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.hst has been read
+20-juil.-2023 10:43:27 : <SUPPRESS> MOD(1,5,1,0,0)
+20-juil.-2023 10:43:27 : Start of the modular protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:43:31 : End of modular protection. Time used 3 seconds
+                       Number of suppressions: 97
+20-juil.-2023 10:43:31 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.csv")
+20-juil.-2023 10:43:31 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.csv
+20-juil.-2023 10:43:31 : End of TauArgus run
+20-juil.-2023 10:44:15 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.arb
+20-juil.-2023 10:44:15 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.tab"
+20-juil.-2023 10:44:15 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.rda"
+20-juil.-2023 10:44:15 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 10:44:15 : <SAFETYRULE> MAN(0)
+20-juil.-2023 10:44:15 : <READTABLE> 1
+20-juil.-2023 10:44:15 : Tables have been read
+20-juil.-2023 10:44:15 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.hst",1,",",0,0
+20-juil.-2023 10:44:15 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:44:15 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.hst has been read
+20-juil.-2023 10:44:15 : <SUPPRESS> MOD(1,5,0,0,0)
+20-juil.-2023 10:44:15 : Start of the modular protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 10:44:16 : End of modular protection. Time used 0 seconds
+                       Number of suppressions: 5
+20-juil.-2023 10:44:16 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.csv")
+20-juil.-2023 10:44:16 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\test_separateur\underscore_plus_interrogation\table_test_0_hrc2.csv
+20-juil.-2023 10:44:16 : End of TauArgus run

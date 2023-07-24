@@ -1,0 +1,24 @@
+Start time: 2023-07-20  21:13:10
+-----------------------------------------
+Function called to protect the tables: tab_rtauargus2
+Interval Protection Level for first iteration: 10
+Interval Protection Level for other iterations: 0
+Nb of tables to treat:  2
+-----------------------------------------
+Tables to treat: test_grand1 test_grand2
+-----------------------------------------
+All explanatory variables: dep A10 treff_cj
+-----------------------------------------
+Initialisation work completed
+-----------------------------------------
+-----------------------------------------
+1 -Treatment of table test_grand1
+-----------------------------------------
+New cells status counts: 
+- apriori (primary) secret: 2092 ( 28.9 %)
+- secondary secret: 1485 ( 20.5 %)
+- valid cells: 3655 ( 50.5 %)
+-----------------------------------------
+Nb of new common cells hit by the secret: 932
+-----------------------------------------
+-----------------------------------------

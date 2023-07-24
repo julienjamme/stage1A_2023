@@ -1,0 +1,535 @@
+    1,   AZ,Total_Total,    8447,   115
+    1,   AZ,  ***tr1_LL,     769,    89
+    1,   AZ,  ***tr1_SP,    1301,    21
+    1,   AZ,  tr1_Total,     533,   110
+    1,   AZ,  ***tr2_LL,    7915,     6
+    1,   AZ,  tr2_Total,    7915,     6
+    1,   BE,Total_Total, 3783383,  6236
+    1,   BE,  ***tr1_LL,  112461,  1166
+    1,   BE,  ***tr1_PA,    3747,    16
+    1,   BE,  ***tr1_SP,  269584,  4389
+    1,   BE,  tr1_Total,  385791,  5570
+    1,   BE,  ***tr2_LL,  344046,   277
+    1,   BE,  ***tr2_PA,      93,     1
+    1,   BE,  ***tr2_SP,  760516,   347
+    1,   BE,  tr2_Total, 1104655,   625
+    1,   BE,  ***tr3_LL,  312047,    10
+    1,   BE,  ***tr3_SP, 1980891,    31
+    1,   BE,  tr3_Total, 2292938,    41
+    1,   FZ,Total_Total,  397814, 14946
+    1,   FZ,  ***tr1_LL,   53504,  4717
+    1,   FZ,  ***tr1_PA,     439,   849
+    1,   FZ,  ***tr1_SP,  109240,  8914
+    1,   FZ,  tr1_Total,  163181, 14479
+    1,   FZ,  ***tr2_LL,   34403,    62
+    1,   FZ,  ***tr2_SP,   84091,   399
+    1,   FZ,  tr2_Total,  118494,   461
+    1,   FZ,  ***tr3_LL,       0,     2
+    1,   FZ,  ***tr3_SP,  116140,     5
+    1,   FZ,  tr3_Total,  116140,     7
+    1,   GI,Total_Total, 1634170, 31429
+    1,   GI,  ***tr1_LL,  290778, 12062
+    1,   GI,  ***tr1_PA,     611,    41
+    1,   GI,  ***tr1_SP,  320324, 17924
+    1,   GI,  tr1_Total,  611712, 30026
+    1,   GI,  ***tr2_LL,  252499,   642
+    1,   GI,  ***tr2_PA,      97,     1
+    1,   GI,  ***tr2_SP,  351451,   737
+    1,   GI,  tr2_Total,  604047,  1380
+    1,   GI,  ***tr3_LL,  118030,    12
+    1,   GI,  ***tr3_SP,  300381,    12
+    1,   GI,  tr3_Total,  418411,    24
+    1,   JZ,Total_Total,  535003,  3797
+    1,   JZ,  ***tr1_LL,   26950,  1379
+    1,   JZ,  ***tr1_PA,      45,     6
+    1,   JZ,  ***tr1_SP,   65459,  2300
+    1,   JZ,  tr1_Total,   92453,  3684
+    1,   JZ,  ***tr2_LL,  280173,    39
+    1,   JZ,  ***tr2_PA,       1,     1
+    1,   JZ,  ***tr2_SP,   86974,    66
+    1,   JZ,  tr2_Total,  367147,   106
+    1,   JZ,  ***tr3_LL,   19703,     2
+    1,   JZ,  ***tr3_SP,   55701,     6
+    1,   JZ,  tr3_Total,   75404,     8
+    1,   KZ,Total_Total,  273411,  3845
+    1,   KZ,  ***tr1_LL,   99365,  1338
+    1,   KZ,  ***tr1_PA,    1269,    12
+    1,   KZ,  ***tr1_SP,  110756,  2436
+    1,   KZ,  tr1_Total,  211389,  3785
+    1,   KZ,  ***tr2_LL,    9699,    21
+    1,   KZ,  ***tr2_PA,       0,     1
+    1,   KZ,  ***tr2_SP,   22565,    36
+    1,   KZ,  tr2_Total,   32264,    58
+    1,   KZ,  ***tr3_LL,     999,     1
+    1,   KZ,  ***tr3_SP,   28760,     1
+    1,   KZ,  tr3_Total,   29758,     2
+    1,   LZ,Total_Total, 1450715,  5684
+    1,   LZ,  ***tr1_LL,  136924,  2032
+    1,   LZ,  ***tr1_PA,     472,    17
+    1,   LZ,  ***tr1_SP,  219688,  3562
+    1,   LZ,  tr1_Total,  357083,  5611
+    1,   LZ,  ***tr2_LL,  182685,    35
+    1,   LZ,  ***tr2_SP,  175446,    37
+    1,   LZ,  tr2_Total,  358131,    71
+    1,   LZ,  ***tr3_LL,  735503,     2
+    1,   LZ,  tr3_Total,  735503,     2
+    1,   MN,Total_Total,  835640, 20617
+    1,   MN,  ***tr1_LL,  279421,  7643
+    1,   MN,  ***tr1_PA,     139,    57
+    1,   MN,  ***tr1_SP,  203332, 12220
+    1,   MN,  tr1_Total,  482892, 19919
+    1,   MN,  ***tr2_LL,   70773,   272
+    1,   MN,  ***tr2_PA,      83,     1
+    1,   MN,  ***tr2_SP,  149424,   403
+    1,   MN,  tr2_Total,  220280,   676
+    1,   MN,  ***tr3_LL,   27360,     8
+    1,   MN,  ***tr3_SP,  105110,    14
+    1,   MN,  tr3_Total,  132469,    22
+    1,   OQ,Total_Total,  183093, 12808
+    1,   OQ,  ***tr1_LL,   27388,  4202
+    1,   OQ,  ***tr1_PA,     114,    51
+    1,   OQ,  ***tr1_SP,   89210,  8374
+    1,   OQ,  tr1_Total,  116711, 12627
+    1,   OQ,  ***tr2_LL,   15076,    58
+    1,   OQ,  ***tr2_SP,   49068,   121
+    1,   OQ,  tr2_Total,   64144,   179
+    1,   OQ,  ***tr3_SP,    2240,     2
+    1,   OQ,  tr3_Total,    2240,     2
+    1,   RU,Total_Total,  179263, 10932
+    1,   RU,  ***tr1_LL,   34666,  3375
+    1,   RU,  ***tr1_PA,    2577,   150
+    1,   RU,  ***tr1_SP,   73000,  7345
+    1,   RU,  tr1_Total,  110243, 10868
+    1,   RU,  ***tr2_LL,   46396,    30
+    1,   RU,  ***tr2_SP,   14929,    32
+    1,   RU,  tr2_Total,   61325,    62
+    1,   RU,  ***tr3_SP,    7697,     2
+    1,   RU,  tr3_Total,    7697,     2
+    1,Total,Total_Total, 9280935,110405
+    1,Total,  ***tr1_LL, 1060684, 37999
+    1,Total,  ***tr1_PA,    9410,  1196
+    1,Total,  ***tr1_SP, 1461890, 67480
+    1,Total,  tr1_Total, 2531983,106675
+    1,Total,  ***tr2_LL, 1243663,  1440
+    1,Total,  ***tr2_PA,     274,     5
+    1,Total,  ***tr2_SP, 1694462,  2176
+    1,Total,  tr2_Total, 2938397,  3620
+    1,Total,  ***tr3_LL, 1213639,    37
+    1,Total,  ***tr3_SP, 2596917,    73
+    1,Total,  tr3_Total, 3810555,   110
+    2,   AZ,Total_Total,    7720,   199
+    2,   AZ,  ***tr1_LL,    5958,    64
+    2,   AZ,  ***tr1_SP,    1763,   136
+    2,   AZ,  tr1_Total,    7720,   199
+    2,   BE,Total_Total, 1444056,  4313
+    2,   BE,  ***tr1_LL,  135780,  2812
+    2,   BE,  ***tr1_PA,     400,    11
+    2,   BE,  ***tr1_SP,   42420,  1034
+    2,   BE,  tr1_Total,  178599,  3856
+    2,   BE,  ***tr2_LL,  696999,   238
+    2,   BE,  ***tr2_SP,  257574,   203
+    2,   BE,  tr2_Total,  954572,   440
+    2,   BE,  ***tr3_LL,  132895,    11
+    2,   BE,  ***tr3_SP,  177991,     7
+    2,   BE,  tr3_Total,  310886,    18
+    2,   FZ,Total_Total,  182970,  9917
+    2,   FZ,  ***tr1_LL,   35487,  4616
+    2,   FZ,  ***tr1_PA,      17,     5
+    2,   FZ,  ***tr1_SP,   46424,  4981
+    2,   FZ,  tr1_Total,   81927,  9602
+    2,   FZ,  ***tr2_LL,   60501,   169
+    2,   FZ,  ***tr2_SP,   36815,   146
+    2,   FZ,  tr2_Total,   97316,   315
+    2,   FZ,  ***tr3_LL,    3729,     1
+    2,   FZ,  tr3_Total,    3729,     1
+    2,   GI,Total_Total, 1822693, 19709
+    2,   GI,  ***tr1_LL,  264785, 11235
+    2,   GI,  ***tr1_PA,      49,   141
+    2,   GI,  ***tr1_SP,  542425,  7409
+    2,   GI,  tr1_Total,  807258, 18784
+    2,   GI,  ***tr2_LL,  472090,   485
+    2,   GI,  ***tr2_PA,     253,     1
+    2,   GI,  ***tr2_SP,  134813,   407
+    2,   GI,  tr2_Total,  607155,   893
+    2,   GI,  ***tr3_LL,  211084,    19
+    2,   GI,  ***tr3_SP,  197198,    14
+    2,   GI,  tr3_Total,  408281,    33
+    2,   JZ,Total_Total, 1073951,  3386
+    2,   JZ,  ***tr1_LL,   64988,  2288
+    2,   JZ,  ***tr1_PA,      15,     2
+    2,   JZ,  ***tr1_SP,   23976,  1029
+    2,   JZ,  tr1_Total,   88977,  3318
+    2,   JZ,  ***tr2_LL,   41175,    44
+    2,   JZ,  ***tr2_SP,   39384,    16
+    2,   JZ,  tr2_Total,   80559,    60
+    2,   JZ,  ***tr3_LL,   44629,     4
+    2,   JZ,  ***tr3_SP,  859788,     4
+    2,   JZ,  tr3_Total,  904416,     8
+    2,   KZ,Total_Total,  226891,  2996
+    2,   KZ,  ***tr1_LL,  128768,  1748
+    2,   KZ,  ***tr1_PA,       1,     3
+    2,   KZ,  ***tr1_SP,   87241,  1212
+    2,   KZ,  tr1_Total,  216008,  2963
+    2,   KZ,  ***tr2_LL,    7752,    21
+    2,   KZ,  ***tr2_SP,    3132,    12
+    2,   KZ,  tr2_Total,   10883,    33
+    2,   LZ,Total_Total,  549509,  4442
+    2,   LZ,  ***tr1_LL,  236483,  2560
+    2,   LZ,  ***tr1_PA,       9,     2
+    2,   LZ,  ***tr1_SP,  108230,  1854
+    2,   LZ,  tr1_Total,  344721,  4415
+    2,   LZ,  ***tr2_LL,     994,     9
+    2,   LZ,  ***tr2_SP,   99228,    18
+    2,   LZ,  tr2_Total,  100221,    27
+    2,   LZ,  ***tr3_LL,  104568,     1
+    2,   LZ,  tr3_Total,  104568,     1
+    2,   MN,Total_Total,  812633, 13723
+    2,   MN,  ***tr1_LL,  391031,  8550
+    2,   MN,  ***tr1_PA,    1808,    37
+    2,   MN,  ***tr1_SP,   76235,  4548
+    2,   MN,  tr1_Total,  469073, 13134
+    2,   MN,  ***tr2_LL,   63570,   243
+    2,   MN,  ***tr2_SP,   35800,   336
+    2,   MN,  tr2_Total,   99369,   578
+    2,   MN,  ***tr3_LL,  164286,     9
+    2,   MN,  ***tr3_SP,   79906,     3
+    2,   MN,  tr3_Total,  244192,    12
+    2,   OQ,Total_Total,  437002,  9442
+    2,   OQ,  ***tr1_LL,   31214,  5515
+    2,   OQ,  ***tr1_PA,      24,     7
+    2,   OQ,  ***tr1_SP,   11702,  3777
+    2,   OQ,  tr1_Total,   42939,  9299
+    2,   OQ,  ***tr2_LL,   49323,    80
+    2,   OQ,  ***tr2_SP,   23163,    53
+    2,   OQ,  tr2_Total,   72486,   133
+    2,   OQ,  ***tr3_LL,  315338,     7
+    2,   OQ,  ***tr3_SP,    6240,     3
+    2,   OQ,  tr3_Total,  321578,    10
+    2,   RU,Total_Total,  135347,  9613
+    2,   RU,  ***tr1_LL,   48388,  5072
+    2,   RU,  ***tr1_PA,      20,     5
+    2,   RU,  ***tr1_SP,   45919,  4442
+    2,   RU,  tr1_Total,   94325,  9518
+    2,   RU,  ***tr2_LL,    4233,    20
+    2,   RU,  ***tr2_SP,   36790,    76
+    2,   RU,  tr2_Total,   41022,    96
+    2,Total,Total_Total, 6692768, 77736
+    2,Total,  ***tr1_LL, 1342876, 44457
+    2,Total,  ***tr1_PA,    2341,   212
+    2,Total,  ***tr1_SP,  986328, 30417
+    2,Total,  tr1_Total, 2331544, 75084
+    2,Total,  ***tr2_LL, 1396632,  1306
+    2,Total,  ***tr2_PA,     253,     1
+    2,Total,  ***tr2_SP,  666695,  1264
+    2,Total,  tr2_Total, 2063579,  2570
+    2,Total,  ***tr3_LL,  976526,    52
+    2,Total,  ***tr3_SP, 1321121,    31
+    2,Total,  tr3_Total, 2297646,    83
+    3,   AZ,Total_Total,     924,    89
+    3,   AZ,  ***tr1_LL,     748,    86
+    3,   AZ,  ***tr1_SP,       5,     2
+    3,   AZ,  tr1_Total,     753,    88
+    3,   AZ,  ***tr2_LL,     171,     1
+    3,   AZ,  tr2_Total,     171,     1
+    3,   BE,Total_Total,  298648,  1492
+    3,   BE,  ***tr1_LL,   77482,   878
+    3,   BE,  ***tr1_PA,      10,     3
+    3,   BE,  ***tr1_SP,    5955,   439
+    3,   BE,  tr1_Total,   83446,  1319
+    3,   BE,  ***tr2_LL,  143535,   153
+    3,   BE,  ***tr2_SP,   17993,    20
+    3,   BE,  tr2_Total,  161528,   172
+    3,   BE,  ***tr3_LL,   53675,     2
+    3,   BE,  tr3_Total,   53675,     2
+    3,   FZ,Total_Total,   83263,  3573
+    3,   FZ,  ***tr1_LL,   35496,  2430
+    3,   FZ,  ***tr1_PA,       2,     1
+    3,   FZ,  ***tr1_SP,    8453,   872
+    3,   FZ,  tr1_Total,   43951,  3302
+    3,   FZ,  ***tr2_LL,   35830,   264
+    3,   FZ,  ***tr2_SP,    1467,     6
+    3,   FZ,  tr2_Total,   37296,   270
+    3,   FZ,  ***tr3_LL,    2017,     1
+    3,   FZ,  tr3_Total,    2017,     1
+    3,   GI,Total_Total,  358436,  7674
+    3,   GI,  ***tr1_LL,  118598,  4808
+    3,   GI,  ***tr1_PA,      29,     3
+    3,   GI,  ***tr1_SP,   32072,  2643
+    3,   GI,  tr1_Total,  150698,  7453
+    3,   GI,  ***tr2_LL,   91974,   160
+    3,   GI,  ***tr2_SP,   52432,    52
+    3,   GI,  tr2_Total,  144405,   212
+    3,   GI,  ***tr3_LL,   63333,    10
+    3,   GI,  tr3_Total,   63333,    10
+    3,   JZ,Total_Total,   37536,   796
+    3,   JZ,  ***tr1_LL,   23096,   674
+    3,   JZ,  ***tr1_SP,    1036,    88
+    3,   JZ,  tr1_Total,   24132,   762
+    3,   JZ,  ***tr2_LL,   12364,    30
+    3,   JZ,  ***tr2_SP,    1041,     3
+    3,   JZ,  tr2_Total,   13404,    33
+    3,   JZ,  ***tr3_LL,       0,     1
+    3,   JZ,  tr3_Total,       0,     1
+    3,   KZ,Total_Total,  103982,   907
+    3,   KZ,  ***tr1_LL,   24919,   715
+    3,   KZ,  ***tr1_SP,   77733,   175
+    3,   KZ,  tr1_Total,  102651,   890
+    3,   KZ,  ***tr2_LL,    1243,    16
+    3,   KZ,  ***tr2_SP,      90,     1
+    3,   KZ,  tr2_Total,    1332,    17
+    3,   LZ,Total_Total,  115987,  1388
+    3,   LZ,  ***tr1_LL,   38911,  1095
+    3,   LZ,  ***tr1_SP,   15104,   289
+    3,   LZ,  tr1_Total,   54014,  1383
+    3,   LZ,  ***tr2_LL,   60861,     3
+    3,   LZ,  ***tr2_SP,      13,     1
+    3,   LZ,  tr2_Total,   60873,     4
+    3,   LZ,  ***tr3_SP,    1102,     1
+    3,   LZ,  tr3_Total,    1102,     1
+    3,   MN,Total_Total,  299153,  3417
+    3,   MN,  ***tr1_LL,   58509,  2871
+    3,   MN,  ***tr1_PA,       5,     1
+    3,   MN,  ***tr1_SP,    9462,   385
+    3,   MN,  tr1_Total,   67975,  3257
+    3,   MN,  ***tr2_LL,  191435,   131
+    3,   MN,  ***tr2_SP,   10737,    25
+    3,   MN,  tr2_Total,  202172,   156
+    3,   MN,  ***tr3_LL,   29007,     5
+    3,   MN,  tr3_Total,   29007,     5
+    3,   OQ,Total_Total,   34305,  3168
+    3,   OQ,  ***tr1_LL,   14183,  2416
+    3,   OQ,  ***tr1_PA,       0,     2
+    3,   OQ,  ***tr1_SP,    1564,   699
+    3,   OQ,  tr1_Total,   15747,  3117
+    3,   OQ,  ***tr2_LL,   10928,    38
+    3,   OQ,  ***tr2_SP,    1203,    13
+    3,   OQ,  tr2_Total,   12130,    51
+    3,   OQ,  ***tr3_SP,    6429,     1
+    3,   OQ,  tr3_Total,    6429,     1
+    3,   RU,Total_Total,   23022,  2469
+    3,   RU,  ***tr1_LL,   14157,  2163
+    3,   RU,  ***tr1_PA,       1,     1
+    3,   RU,  ***tr1_SP,    3451,   291
+    3,   RU,  tr1_Total,   17608,  2455
+    3,   RU,  ***tr2_LL,    5389,    13
+    3,   RU,  ***tr2_SP,      25,     1
+    3,   RU,  tr2_Total,    5414,    14
+    3,Total,Total_Total, 1355250, 24969
+    3,Total,  ***tr1_LL,  406095, 18131
+    3,Total,  ***tr1_PA,      45,    11
+    3,Total,  ***tr1_SP,  154831,  5880
+    3,Total,  tr1_Total,  560970, 24021
+    3,Total,  ***tr2_LL,  553725,   807
+    3,Total,  ***tr2_SP,   84996,   120
+    3,Total,  tr2_Total,  638720,   927
+    3,Total,  ***tr3_LL,  148031,    19
+    3,Total,  ***tr3_SP,    7530,     2
+    3,Total,  tr3_Total,  155561,    21
+    4,   AZ,Total_Total,     256,     6
+    4,   AZ,  ***tr1_LL,     256,     6
+    4,   AZ,  tr1_Total,     256,     6
+    4,   BE,Total_Total,  794441,  1438
+    4,   BE,  ***tr1_LL,   73385,  1260
+    4,   BE,  ***tr1_PA,    2757,     1
+    4,   BE,  ***tr1_SP,     674,    21
+    4,   BE,  tr1_Total,   76814,  1282
+    4,   BE,  ***tr2_LL,  241243,   145
+    4,   BE,  ***tr2_SP,     992,     3
+    4,   BE,  tr2_Total,  242234,   148
+    4,   BE,  ***tr3_LL,  406620,     7
+    4,   BE,  ***tr3_SP,   68774,     1
+    4,   BE,  tr3_Total,  475393,     8
+    4,   FZ,Total_Total,  140329,  1435
+    4,   FZ,  ***tr1_LL,   17082,  1332
+    4,   FZ,  ***tr1_PA,       7,     2
+    4,   FZ,  ***tr1_SP,      44,    14
+    4,   FZ,  tr1_Total,   17133,  1348
+    4,   FZ,  ***tr2_LL,  107839,    85
+    4,   FZ,  ***tr2_SP,      82,     1
+    4,   FZ,  tr2_Total,  107920,    86
+    4,   FZ,  ***tr3_LL,   15277,     1
+    4,   FZ,  tr3_Total,   15277,     1
+    4,   GI,Total_Total,  290157,  5799
+    4,   GI,  ***tr1_LL,  167032,  5537
+    4,   GI,  ***tr1_PA,      15,     3
+    4,   GI,  ***tr1_SP,     430,    41
+    4,   GI,  tr1_Total,  167476,  5581
+    4,   GI,  ***tr2_LL,  119365,   206
+    4,   GI,  ***tr2_SP,    3317,    13
+    4,   GI,  tr2_Total,  122682,   219
+    4,   JZ,Total_Total,   41752,   529
+    4,   JZ,  ***tr1_LL,   22839,   489
+    4,   JZ,  ***tr1_SP,       5,     1
+    4,   JZ,  tr1_Total,   22844,   490
+    4,   JZ,  ***tr2_LL,   18909,    39
+    4,   JZ,  tr2_Total,   18909,    39
+    4,   KZ,Total_Total,   28740,   821
+    4,   KZ,  ***tr1_LL,   26422,   784
+    4,   KZ,  ***tr1_PA,       1,     4
+    4,   KZ,  ***tr1_SP,      62,    24
+    4,   KZ,  tr1_Total,   26484,   812
+    4,   KZ,  ***tr2_LL,    2256,     8
+    4,   KZ,  ***tr2_SP,       0,     1
+    4,   KZ,  tr2_Total,    2256,     9
+    4,   LZ,Total_Total,  384995,  1052
+    4,   LZ,  ***tr1_LL,   59728,  1022
+    4,   LZ,  ***tr1_SP,     226,    21
+    4,   LZ,  tr1_Total,   59954,  1043
+    4,   LZ,  ***tr2_LL,  325042,    10
+    4,   LZ,  tr2_Total,  325042,    10
+    4,   MN,Total_Total,  160473,  4869
+    4,   MN,  ***tr1_LL,   59784,  4682
+    4,   MN,  ***tr1_PA,       0,     1
+    4,   MN,  ***tr1_SP,     276,    59
+    4,   MN,  tr1_Total,   60060,  4741
+    4,   MN,  ***tr2_LL,   59984,   123
+    4,   MN,  tr2_Total,   59984,   123
+    4,   MN,  ***tr3_LL,   40430,     5
+    4,   MN,  tr3_Total,   40430,     5
+    4,   OQ,Total_Total,   38734,  2818
+    4,   OQ,  ***tr1_LL,   23892,  2678
+    4,   OQ,  ***tr1_PA,       7,     4
+    4,   OQ,  ***tr1_SP,     195,    88
+    4,   OQ,  tr1_Total,   24092,  2770
+    4,   OQ,  ***tr2_LL,   14606,    44
+    4,   OQ,  ***tr2_SP,      36,     4
+    4,   OQ,  tr2_Total,   14642,    48
+    4,   RU,Total_Total,   25395,  3252
+    4,   RU,  ***tr1_LL,   21021,  3196
+    4,   RU,  ***tr1_PA,      24,     5
+    4,   RU,  ***tr1_SP,     290,    44
+    4,   RU,  tr1_Total,   21334,  3245
+    4,   RU,  ***tr2_LL,    4061,     7
+    4,   RU,  tr2_Total,    4061,     7
+    4,Total,Total_Total, 1905266, 22016
+    4,Total,  ***tr1_LL,  471436, 20983
+    4,Total,  ***tr1_PA,    2809,    20
+    4,Total,  ***tr1_SP,    2198,   313
+    4,Total,  tr1_Total,  476442, 21315
+    4,Total,  ***tr2_LL,  893301,   665
+    4,Total,  ***tr2_SP,    4426,    22
+    4,Total,  tr2_Total,  897726,   687
+    4,Total,  ***tr3_LL,  462326,    13
+    4,Total,  ***tr3_SP,   68774,     1
+    4,Total,  tr3_Total,  531099,    14
+Total,   AZ,Total_Total,   17346,   408
+Total,   AZ,  ***tr1_LL,    6192,   245
+Total,   AZ,  ***tr1_SP,    3068,   158
+Total,   AZ,  tr1_Total,    9260,   402
+Total,   AZ,  ***tr2_LL,    8086,     7
+Total,   AZ,  tr2_Total,    8086,     7
+Total,   BE,Total_Total, 6320526, 13478
+Total,   BE,  ***tr1_LL,  399107,  6115
+Total,   BE,  ***tr1_PA,    6912,    30
+Total,   BE,  ***tr1_SP,  318632,  5882
+Total,   BE,  tr1_Total,  724649, 12026
+Total,   BE,  ***tr2_LL, 1425821,   811
+Total,   BE,  ***tr2_PA,      93,     1
+Total,   BE,  ***tr2_SP, 1037074,   572
+Total,   BE,  tr2_Total, 2462987,  1384
+Total,   BE,  ***tr3_LL,  905237,    30
+Total,   BE,  ***tr3_SP, 2227654,    39
+Total,   BE,  tr3_Total, 3132891,    69
+Total,   FZ,Total_Total,  804374, 29869
+Total,   FZ,  ***tr1_LL,  141568, 13094
+Total,   FZ,  ***tr1_PA,     464,   857
+Total,   FZ,  ***tr1_SP,  164158, 14779
+Total,   FZ,  tr1_Total,  306189, 28729
+Total,   FZ,  ***tr2_LL,  238571,   579
+Total,   FZ,  ***tr2_SP,  122453,   552
+Total,   FZ,  tr2_Total,  361024,  1131
+Total,   FZ,  ***tr3_LL,   21022,     5
+Total,   FZ,  ***tr3_SP,  116140,     5
+Total,   FZ,  tr3_Total,  137161,    10
+Total,   GI,Total_Total, 4105454, 64610
+Total,   GI,  ***tr1_LL,  841192, 33640
+Total,   GI,  ***tr1_PA,     702,   187
+Total,   GI,  ***tr1_SP,  895250, 28016
+Total,   GI,  tr1_Total, 1737143, 61842
+Total,   GI,  ***tr2_LL,  935926,  1492
+Total,   GI,  ***tr2_PA,     350,     2
+Total,   GI,  ***tr2_SP,  542012,  1208
+Total,   GI,  tr2_Total, 1478287,  2702
+Total,   GI,  ***tr3_LL,  392447,    41
+Total,   GI,  ***tr3_SP,  497579,    26
+Total,   GI,  tr3_Total,  890025,    67
+Total,   JZ,Total_Total, 1688240,  8506
+Total,   JZ,  ***tr1_LL,  137871,  4829
+Total,   JZ,  ***tr1_PA,      60,     8
+Total,   JZ,  ***tr1_SP,   90475,  3416
+Total,   JZ,  tr1_Total,  228405,  8252
+Total,   JZ,  ***tr2_LL,  352620,   152
+Total,   JZ,  ***tr2_PA,       1,     1
+Total,   JZ,  ***tr2_SP,  127397,    85
+Total,   JZ,  tr2_Total,  480017,   237
+Total,   JZ,  ***tr3_LL,   64332,     7
+Total,   JZ,  ***tr3_SP,  915489,    10
+Total,   JZ,  tr3_Total,  979820,    17
+Total,   KZ,Total_Total,  633022,  8569
+Total,   KZ,  ***tr1_LL,  279472,  4585
+Total,   KZ,  ***tr1_PA,    1271,    19
+Total,   KZ,  ***tr1_SP,  275790,  3847
+Total,   KZ,  tr1_Total,  556531,  8450
+Total,   KZ,  ***tr2_LL,   20948,    66
+Total,   KZ,  ***tr2_PA,       0,     1
+Total,   KZ,  ***tr2_SP,   25786,    50
+Total,   KZ,  tr2_Total,   46734,   117
+Total,   KZ,  ***tr3_LL,     999,     1
+Total,   KZ,  ***tr3_SP,   28760,     1
+Total,   KZ,  tr3_Total,   29758,     2
+Total,   LZ,Total_Total, 2501206, 12564
+Total,   LZ,  ***tr1_LL,  472044,  6707
+Total,   LZ,  ***tr1_PA,     481,    19
+Total,   LZ,  ***tr1_SP,  343246,  5725
+Total,   LZ,  tr1_Total,  815770, 12451
+Total,   LZ,  ***tr2_LL,  569580,    55
+Total,   LZ,  ***tr2_SP,  274686,    55
+Total,   LZ,  tr2_Total,  844265,   110
+Total,   LZ,  ***tr3_LL,  840070,     3
+Total,   LZ,  ***tr3_SP,    1102,     1
+Total,   LZ,  tr3_Total,  841171,     4
+Total,   MN,Total_Total, 2107897, 42624
+Total,   MN,  ***tr1_LL,  788744, 23744
+Total,   MN,  ***tr1_PA,    1952,    95
+Total,   MN,  ***tr1_SP,  289304, 17211
+Total,   MN,  tr1_Total, 1079998, 41049
+Total,   MN,  ***tr2_LL,  385761,   768
+Total,   MN,  ***tr2_PA,      83,     1
+Total,   MN,  ***tr2_SP,  195961,   763
+Total,   MN,  tr2_Total,  581804,  1531
+Total,   MN,  ***tr3_LL,  261081,    27
+Total,   MN,  ***tr3_SP,  185016,    17
+Total,   MN,  tr3_Total,  446096,    44
+Total,   OQ,Total_Total,  693132, 28235
+Total,   OQ,  ***tr1_LL,   96675, 14811
+Total,   OQ,  ***tr1_PA,     144,    64
+Total,   OQ,  ***tr1_SP,  102669, 12938
+Total,   OQ,  tr1_Total,  199487, 27812
+Total,   OQ,  ***tr2_LL,   89932,   220
+Total,   OQ,  ***tr2_SP,   73469,   191
+Total,   OQ,  tr2_Total,  163400,   411
+Total,   OQ,  ***tr3_LL,  315338,     7
+Total,   OQ,  ***tr3_SP,   14907,     6
+Total,   OQ,  tr3_Total,  330245,    13
+Total,   RU,Total_Total,  363025, 26264
+Total,   RU,  ***tr1_LL,  118230, 13804
+Total,   RU,  ***tr1_PA,    2621,   161
+Total,   RU,  ***tr1_SP,  122659, 12121
+Total,   RU,  tr1_Total,  243509, 26084
+Total,   RU,  ***tr2_LL,   60077,    70
+Total,   RU,  ***tr2_SP,   51743,   109
+Total,   RU,  tr2_Total,  111820,   178
+Total,   RU,  ***tr3_SP,    7697,     2
+Total,   RU,  tr3_Total,    7697,     2
+Total,Total,Total_Total,19234218,235125
+Total,Total,  ***tr1_LL, 3281090,121568
+Total,Total,  ***tr1_PA,   14603,  1438
+Total,Total,  ***tr1_SP, 2605246,104089
+Total,Total,  tr1_Total, 5900938,227094
+Total,Total,  ***tr2_LL, 4087318,  4216
+Total,Total,  ***tr2_PA,     526,     6
+Total,Total,  ***tr2_SP, 2450577,  3582
+Total,Total,  tr2_Total, 6538421,  7804
+Total,Total,  ***tr3_LL, 2800521,   121
+Total,Total,  ***tr3_SP, 3994339,   107
+Total,Total,  tr3_Total, 6794860,   228

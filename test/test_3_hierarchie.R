@@ -35,7 +35,7 @@ v2 <- "AGE"
 v1 <- "SEX"
 sep<-choisir_sep(data)
 res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep="+++")
-res1<-format(res,nom_dfs)
+res1<-format(res,nom_dfs,sep="+++")
 
 (read.table(hrcfiles[[v2]]))
 #On a bien 2 noeuds donc 2*2=4 tableaux

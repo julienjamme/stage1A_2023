@@ -1,0 +1,2056 @@
+ *FR1,   BE,    ***1_tr3_LL, 223854,  5
+ *FR1,   BE,    ***1_tr3_SP,  48159,  3
+ *FR1,   BE,    1_tr3_Total, 272013,  8
+ *FR1,   BE,    ***2_tr3_LL,   6293,  1
+ *FR1,   BE,    2_tr3_Total,   6293,  1
+ *FR1,   BE,    ***4_tr3_LL,  15016,  2
+ *FR1,   BE,    4_tr3_Total,  15016,  2
+ *FR1,   BE,Total_tr3_Total, 293320, 11
+ *FR1,   *C,    ***1_tr3_LL, 223854,  5
+ *FR1,   *C,    ***1_tr3_SP,  13952,  2
+ *FR1,   *C,    1_tr3_Total, 237806,  7
+ *FR1,   *C,    ***2_tr3_LL,   6293,  1
+ *FR1,   *C,    2_tr3_Total,   6293,  1
+ *FR1,   *C,    ***4_tr3_LL,  15016,  2
+ *FR1,   *C,    4_tr3_Total,  15016,  2
+ *FR1,   *C,Total_tr3_Total, 259113, 10
+ *FR1,   *E,    ***1_tr3_SP,  34208,  1
+ *FR1,   *E,    1_tr3_Total,  34208,  1
+ *FR1,   *E,Total_tr3_Total,  34208,  1
+ *FR1,   *F,    ***4_tr3_LL,  15277,  1
+ *FR1,   *F,    4_tr3_Total,  15277,  1
+ *FR1,   *F,Total_tr3_Total,  15277,  1
+ *FR1,   FZ,    ***4_tr3_LL,  15277,  1
+ *FR1,   FZ,    4_tr3_Total,  15277,  1
+ *FR1,   FZ,Total_tr3_Total,  15277,  1
+ *FR1,   *G,    ***1_tr3_LL,  77248,  4
+ *FR1,   *G,    1_tr3_Total,  77248,  4
+ *FR1,   *G,    ***2_tr3_LL,      0,  1
+ *FR1,   *G,    2_tr3_Total,      0,  1
+ *FR1,   *G,    ***3_tr3_LL,      0,  1
+ *FR1,   *G,    3_tr3_Total,      0,  1
+ *FR1,   *G,Total_tr3_Total,  77248,  6
+ *FR1,   GI,    ***1_tr3_LL,  79243,  5
+ *FR1,   GI,    ***1_tr3_SP, 235410,  1
+ *FR1,   GI,    1_tr3_Total, 314653,  6
+ *FR1,   GI,    ***2_tr3_LL,      0,  1
+ *FR1,   GI,    2_tr3_Total,      0,  1
+ *FR1,   GI,    ***3_tr3_LL,    396,  2
+ *FR1,   GI,    3_tr3_Total,    396,  2
+ *FR1,   GI,Total_tr3_Total, 315048,  9
+ *FR1,   *H,    ***1_tr3_LL,   1996,  1
+ *FR1,   *H,    ***1_tr3_SP, 235410,  1
+ *FR1,   *H,    1_tr3_Total, 237406,  2
+ *FR1,   *H,    ***3_tr3_LL,    396,  1
+ *FR1,   *H,    3_tr3_Total,    396,  1
+ *FR1,   *H,Total_tr3_Total, 237801,  3
+ *FR1,   *J,    ***1_tr3_LL,  18460,  1
+ *FR1,   *J,    1_tr3_Total,  18460,  1
+ *FR1,   *J,    ***2_tr3_LL,  16638,  1
+ *FR1,   *J,    ***2_tr3_SP,   1635,  1
+ *FR1,   *J,    2_tr3_Total,  18272,  2
+ *FR1,   *J,Total_tr3_Total,  36732,  3
+ *FR1,   JZ,    ***1_tr3_LL,  18460,  1
+ *FR1,   JZ,    1_tr3_Total,  18460,  1
+ *FR1,   JZ,    ***2_tr3_LL,  16638,  1
+ *FR1,   JZ,    ***2_tr3_SP,   1635,  1
+ *FR1,   JZ,    2_tr3_Total,  18272,  2
+ *FR1,   JZ,Total_tr3_Total,  36732,  3
+ *FR1,   *L,    ***1_tr3_LL, 735503,  2
+ *FR1,   *L,    1_tr3_Total, 735503,  2
+ *FR1,   *L,    ***2_tr3_LL, 104568,  1
+ *FR1,   *L,    2_tr3_Total, 104568,  1
+ *FR1,   *L,Total_tr3_Total, 840070,  3
+ *FR1,   LZ,    ***1_tr3_LL, 735503,  2
+ *FR1,   LZ,    1_tr3_Total, 735503,  2
+ *FR1,   LZ,    ***2_tr3_LL, 104568,  1
+ *FR1,   LZ,    2_tr3_Total, 104568,  1
+ *FR1,   LZ,Total_tr3_Total, 840070,  3
+ *FR1,   *M,    ***1_tr3_LL,    310,  1
+ *FR1,   *M,    ***1_tr3_SP,   1123,  1
+ *FR1,   *M,    1_tr3_Total,   1433,  2
+ *FR1,   *M,    ***2_tr3_LL, 100887,  1
+ *FR1,   *M,    2_tr3_Total, 100887,  1
+ *FR1,   *M,Total_tr3_Total, 102319,  3
+ *FR1,   MN,    ***1_tr3_LL,  12385,  4
+ *FR1,   MN,    ***1_tr3_SP,   4566,  2
+ *FR1,   MN,    1_tr3_Total,  16951,  6
+ *FR1,   MN,    ***2_tr3_LL, 100887,  2
+ *FR1,   MN,    2_tr3_Total, 100887,  2
+ *FR1,   MN,    ***4_tr3_LL,    137,  1
+ *FR1,   MN,    4_tr3_Total,    137,  1
+ *FR1,   MN,Total_tr3_Total, 117973,  9
+ *FR1,   *N,    ***1_tr3_LL,  12075,  3
+ *FR1,   *N,    ***1_tr3_SP,   3444,  1
+ *FR1,   *N,    1_tr3_Total,  15519,  4
+ *FR1,   *N,    ***2_tr3_LL,      0,  1
+ *FR1,   *N,    2_tr3_Total,      0,  1
+ *FR1,   *N,    ***4_tr3_LL,    137,  1
+ *FR1,   *N,    4_tr3_Total,    137,  1
+ *FR1,   *N,Total_tr3_Total,  15655,  6
+ *FR1,   OQ,    ***1_tr3_SP,    504,  1
+ *FR1,   OQ,    1_tr3_Total,    504,  1
+ *FR1,   OQ,Total_tr3_Total,    504,  1
+ *FR1,   *Q,    ***1_tr3_SP,    504,  1
+ *FR1,   *Q,    1_tr3_Total,    504,  1
+ *FR1,   *Q,Total_tr3_Total,    504,  1
+ *FR1,Total,    ***1_tr3_LL,1069443, 17
+ *FR1,Total,    ***1_tr3_SP, 288639,  7
+ *FR1,Total,    1_tr3_Total,1358081, 24
+ *FR1,Total,    ***2_tr3_LL, 228383,  6
+ *FR1,Total,    ***2_tr3_SP,   1635,  1
+ *FR1,Total,    2_tr3_Total, 230018,  7
+ *FR1,Total,    ***3_tr3_LL,    396,  2
+ *FR1,Total,    3_tr3_Total,    396,  2
+ *FR1,Total,    ***4_tr3_LL,  30429,  4
+ *FR1,Total,    4_tr3_Total,  30429,  4
+ *FR1,Total,Total_tr3_Total,1618922, 37
+ FR10,   BE,    ***1_tr3_LL, 223854,  5
+ FR10,   BE,    ***1_tr3_SP,  48159,  3
+ FR10,   BE,    1_tr3_Total, 272013,  8
+ FR10,   BE,    ***2_tr3_LL,   6293,  1
+ FR10,   BE,    2_tr3_Total,   6293,  1
+ FR10,   BE,    ***4_tr3_LL,  15016,  2
+ FR10,   BE,    4_tr3_Total,  15016,  2
+ FR10,   BE,Total_tr3_Total, 293320, 11
+ FR10,   *C,    ***1_tr3_LL, 223854,  5
+ FR10,   *C,    ***1_tr3_SP,  13952,  2
+ FR10,   *C,    1_tr3_Total, 237806,  7
+ FR10,   *C,    ***2_tr3_LL,   6293,  1
+ FR10,   *C,    2_tr3_Total,   6293,  1
+ FR10,   *C,    ***4_tr3_LL,  15016,  2
+ FR10,   *C,    4_tr3_Total,  15016,  2
+ FR10,   *C,Total_tr3_Total, 259113, 10
+ FR10,   *E,    ***1_tr3_SP,  34208,  1
+ FR10,   *E,    1_tr3_Total,  34208,  1
+ FR10,   *E,Total_tr3_Total,  34208,  1
+ FR10,   *F,    ***4_tr3_LL,  15277,  1
+ FR10,   *F,    4_tr3_Total,  15277,  1
+ FR10,   *F,Total_tr3_Total,  15277,  1
+ FR10,   FZ,    ***4_tr3_LL,  15277,  1
+ FR10,   FZ,    4_tr3_Total,  15277,  1
+ FR10,   FZ,Total_tr3_Total,  15277,  1
+ FR10,   *G,    ***1_tr3_LL,  77248,  4
+ FR10,   *G,    1_tr3_Total,  77248,  4
+ FR10,   *G,    ***2_tr3_LL,      0,  1
+ FR10,   *G,    2_tr3_Total,      0,  1
+ FR10,   *G,    ***3_tr3_LL,      0,  1
+ FR10,   *G,    3_tr3_Total,      0,  1
+ FR10,   *G,Total_tr3_Total,  77248,  6
+ FR10,   GI,    ***1_tr3_LL,  79243,  5
+ FR10,   GI,    ***1_tr3_SP, 235410,  1
+ FR10,   GI,    1_tr3_Total, 314653,  6
+ FR10,   GI,    ***2_tr3_LL,      0,  1
+ FR10,   GI,    2_tr3_Total,      0,  1
+ FR10,   GI,    ***3_tr3_LL,    396,  2
+ FR10,   GI,    3_tr3_Total,    396,  2
+ FR10,   GI,Total_tr3_Total, 315048,  9
+ FR10,   *H,    ***1_tr3_LL,   1996,  1
+ FR10,   *H,    ***1_tr3_SP, 235410,  1
+ FR10,   *H,    1_tr3_Total, 237406,  2
+ FR10,   *H,    ***3_tr3_LL,    396,  1
+ FR10,   *H,    3_tr3_Total,    396,  1
+ FR10,   *H,Total_tr3_Total, 237801,  3
+ FR10,   *J,    ***1_tr3_LL,  18460,  1
+ FR10,   *J,    1_tr3_Total,  18460,  1
+ FR10,   *J,    ***2_tr3_LL,  16638,  1
+ FR10,   *J,    ***2_tr3_SP,   1635,  1
+ FR10,   *J,    2_tr3_Total,  18272,  2
+ FR10,   *J,Total_tr3_Total,  36732,  3
+ FR10,   JZ,    ***1_tr3_LL,  18460,  1
+ FR10,   JZ,    1_tr3_Total,  18460,  1
+ FR10,   JZ,    ***2_tr3_LL,  16638,  1
+ FR10,   JZ,    ***2_tr3_SP,   1635,  1
+ FR10,   JZ,    2_tr3_Total,  18272,  2
+ FR10,   JZ,Total_tr3_Total,  36732,  3
+ FR10,   *L,    ***1_tr3_LL, 735503,  2
+ FR10,   *L,    1_tr3_Total, 735503,  2
+ FR10,   *L,    ***2_tr3_LL, 104568,  1
+ FR10,   *L,    2_tr3_Total, 104568,  1
+ FR10,   *L,Total_tr3_Total, 840070,  3
+ FR10,   LZ,    ***1_tr3_LL, 735503,  2
+ FR10,   LZ,    1_tr3_Total, 735503,  2
+ FR10,   LZ,    ***2_tr3_LL, 104568,  1
+ FR10,   LZ,    2_tr3_Total, 104568,  1
+ FR10,   LZ,Total_tr3_Total, 840070,  3
+ FR10,   *M,    ***1_tr3_LL,    310,  1
+ FR10,   *M,    ***1_tr3_SP,   1123,  1
+ FR10,   *M,    1_tr3_Total,   1433,  2
+ FR10,   *M,    ***2_tr3_LL, 100887,  1
+ FR10,   *M,    2_tr3_Total, 100887,  1
+ FR10,   *M,Total_tr3_Total, 102319,  3
+ FR10,   MN,    ***1_tr3_LL,  12385,  4
+ FR10,   MN,    ***1_tr3_SP,   4566,  2
+ FR10,   MN,    1_tr3_Total,  16951,  6
+ FR10,   MN,    ***2_tr3_LL, 100887,  2
+ FR10,   MN,    2_tr3_Total, 100887,  2
+ FR10,   MN,    ***4_tr3_LL,    137,  1
+ FR10,   MN,    4_tr3_Total,    137,  1
+ FR10,   MN,Total_tr3_Total, 117973,  9
+ FR10,   *N,    ***1_tr3_LL,  12075,  3
+ FR10,   *N,    ***1_tr3_SP,   3444,  1
+ FR10,   *N,    1_tr3_Total,  15519,  4
+ FR10,   *N,    ***2_tr3_LL,      0,  1
+ FR10,   *N,    2_tr3_Total,      0,  1
+ FR10,   *N,    ***4_tr3_LL,    137,  1
+ FR10,   *N,    4_tr3_Total,    137,  1
+ FR10,   *N,Total_tr3_Total,  15655,  6
+ FR10,   OQ,    ***1_tr3_SP,    504,  1
+ FR10,   OQ,    1_tr3_Total,    504,  1
+ FR10,   OQ,Total_tr3_Total,    504,  1
+ FR10,   *Q,    ***1_tr3_SP,    504,  1
+ FR10,   *Q,    1_tr3_Total,    504,  1
+ FR10,   *Q,Total_tr3_Total,    504,  1
+ FR10,Total,    ***1_tr3_LL,1069443, 17
+ FR10,Total,    ***1_tr3_SP, 288639,  7
+ FR10,Total,    1_tr3_Total,1358081, 24
+ FR10,Total,    ***2_tr3_LL, 228383,  6
+ FR10,Total,    ***2_tr3_SP,   1635,  1
+ FR10,Total,    2_tr3_Total, 230018,  7
+ FR10,Total,    ***3_tr3_LL,    396,  2
+ FR10,Total,    3_tr3_Total,    396,  2
+ FR10,Total,    ***4_tr3_LL,  30429,  4
+ FR10,Total,    4_tr3_Total,  30429,  4
+ FR10,Total,Total_tr3_Total,1618922, 37
+ *FR2,   BE,    ***1_tr3_SP, 262711,  4
+ *FR2,   BE,    1_tr3_Total, 262711,  4
+ *FR2,   BE,    ***2_tr3_LL,   7824,  1
+ *FR2,   BE,    2_tr3_Total,   7824,  1
+ *FR2,   BE,    ***4_tr3_LL, 111625,  1
+ *FR2,   BE,    4_tr3_Total, 111625,  1
+ *FR2,   BE,Total_tr3_Total, 382159,  6
+ *FR2,   *C,    ***1_tr3_SP, 262711,  4
+ *FR2,   *C,    1_tr3_Total, 262711,  4
+ *FR2,   *C,    ***2_tr3_LL,   7824,  1
+ *FR2,   *C,    2_tr3_Total,   7824,  1
+ *FR2,   *C,Total_tr3_Total, 270535,  5
+ *FR2,   *E,    ***4_tr3_LL, 111625,  1
+ *FR2,   *E,    4_tr3_Total, 111625,  1
+ *FR2,   *E,Total_tr3_Total, 111625,  1
+ *FR2,   *F,    ***1_tr3_LL,      0,  1
+ *FR2,   *F,    ***1_tr3_SP,  20878,  2
+ *FR2,   *F,    1_tr3_Total,  20878,  3
+ *FR2,   *F,Total_tr3_Total,  20878,  3
+ *FR2,   FZ,    ***1_tr3_LL,      0,  1
+ *FR2,   FZ,    ***1_tr3_SP,  20878,  2
+ *FR2,   FZ,    1_tr3_Total,  20878,  3
+ *FR2,   FZ,Total_tr3_Total,  20878,  3
+ *FR2,   *G,    ***1_tr3_LL,    161,  1
+ *FR2,   *G,    1_tr3_Total,    161,  1
+ *FR2,   *G,    ***2_tr3_LL,   6110,  1
+ *FR2,   *G,    ***2_tr3_SP,   8078,  4
+ *FR2,   *G,    2_tr3_Total,  14187,  5
+ *FR2,   *G,    ***3_tr3_LL,  17321,  1
+ *FR2,   *G,    3_tr3_Total,  17321,  1
+ *FR2,   *G,Total_tr3_Total,  31669,  7
+ *FR2,   GI,    ***1_tr3_LL,    161,  1
+ *FR2,   GI,    ***1_tr3_SP,   5698,  1
+ *FR2,   GI,    1_tr3_Total,   5859,  2
+ *FR2,   GI,    ***2_tr3_LL,   7388,  2
+ *FR2,   GI,    ***2_tr3_SP,   9551,  5
+ *FR2,   GI,    2_tr3_Total,  16939,  7
+ *FR2,   GI,    ***3_tr3_LL,  17661,  2
+ *FR2,   GI,    3_tr3_Total,  17661,  2
+ *FR2,   GI,Total_tr3_Total,  40458, 11
+ *FR2,   *H,    ***1_tr3_SP,   5698,  1
+ *FR2,   *H,    1_tr3_Total,   5698,  1
+ *FR2,   *H,    ***2_tr3_LL,   1279,  1
+ *FR2,   *H,    ***2_tr3_SP,   1473,  1
+ *FR2,   *H,    2_tr3_Total,   2752,  2
+ *FR2,   *H,Total_tr3_Total,   8449,  3
+ *FR2,   *I,    ***3_tr3_LL,    340,  1
+ *FR2,   *I,    3_tr3_Total,    340,  1
+ *FR2,   *I,Total_tr3_Total,    340,  1
+ *FR2,   *J,    ***1_tr3_LL,   1243,  1
+ *FR2,   *J,    ***1_tr3_SP,    100,  1
+ *FR2,   *J,    1_tr3_Total,   1343,  2
+ *FR2,   *J,Total_tr3_Total,   1343,  2
+ *FR2,   JZ,    ***1_tr3_LL,   1243,  1
+ *FR2,   JZ,    ***1_tr3_SP,    100,  1
+ *FR2,   JZ,    1_tr3_Total,   1343,  2
+ *FR2,   JZ,Total_tr3_Total,   1343,  2
+ *FR2,   *K,    ***1_tr3_LL,    999,  1
+ *FR2,   *K,    1_tr3_Total,    999,  1
+ *FR2,   *K,Total_tr3_Total,    999,  1
+ *FR2,   KZ,    ***1_tr3_LL,    999,  1
+ *FR2,   KZ,    1_tr3_Total,    999,  1
+ *FR2,   KZ,Total_tr3_Total,    999,  1
+ *FR2,   *M,    ***1_tr3_SP,  19869,  2
+ *FR2,   *M,    1_tr3_Total,  19869,  2
+ *FR2,   *M,    ***2_tr3_LL,  48799,  2
+ *FR2,   *M,    ***2_tr3_SP,   1414,  1
+ *FR2,   *M,    2_tr3_Total,  50213,  3
+ *FR2,   *M,Total_tr3_Total,  70082,  5
+ *FR2,   MN,    ***1_tr3_SP,  19869,  2
+ *FR2,   MN,    1_tr3_Total,  19869,  2
+ *FR2,   MN,    ***2_tr3_LL,  48982,  3
+ *FR2,   MN,    ***2_tr3_SP,  79906,  3
+ *FR2,   MN,    2_tr3_Total, 128888,  6
+ *FR2,   MN,Total_tr3_Total, 148757,  8
+ *FR2,   *N,    ***2_tr3_LL,    184,  1
+ *FR2,   *N,    ***2_tr3_SP,  78493,  2
+ *FR2,   *N,    2_tr3_Total,  78676,  3
+ *FR2,   *N,Total_tr3_Total,  78676,  3
+ *FR2,   OQ,    ***2_tr3_LL,      0,  1
+ *FR2,   OQ,    2_tr3_Total,      0,  1
+ *FR2,   OQ,    ***3_tr3_SP,   6429,  1
+ *FR2,   OQ,    3_tr3_Total,   6429,  1
+ *FR2,   OQ,Total_tr3_Total,   6429,  2
+ *FR2,   *Q,    ***2_tr3_LL,      0,  1
+ *FR2,   *Q,    2_tr3_Total,      0,  1
+ *FR2,   *Q,    ***3_tr3_SP,   6429,  1
+ *FR2,   *Q,    3_tr3_Total,   6429,  1
+ *FR2,   *Q,Total_tr3_Total,   6429,  2
+ *FR2,Total,    ***1_tr3_LL,   2402,  4
+ *FR2,Total,    ***1_tr3_SP, 309254, 10
+ *FR2,Total,    1_tr3_Total, 311656, 14
+ *FR2,Total,    ***2_tr3_LL,  64194,  7
+ *FR2,Total,    ***2_tr3_SP,  89457,  8
+ *FR2,Total,    2_tr3_Total, 153650, 15
+ *FR2,Total,    ***3_tr3_LL,  17661,  2
+ *FR2,Total,    ***3_tr3_SP,   6429,  1
+ *FR2,Total,    3_tr3_Total,  24089,  3
+ *FR2,Total,    ***4_tr3_LL, 111625,  1
+ *FR2,Total,    4_tr3_Total, 111625,  1
+ *FR2,Total,Total_tr3_Total, 601019, 33
+ FR21,   BE,    ***1_tr3_SP,  57425,  1
+ FR21,   BE,    1_tr3_Total,  57425,  1
+ FR21,   BE,Total_tr3_Total,  57425,  1
+ FR21,   *C,    ***1_tr3_SP,  57425,  1
+ FR21,   *C,    1_tr3_Total,  57425,  1
+ FR21,   *C,Total_tr3_Total,  57425,  1
+ FR21,   *F,    ***1_tr3_LL,      0,  1
+ FR21,   *F,    1_tr3_Total,      0,  1
+ FR21,   *F,Total_tr3_Total,      0,  1
+ FR21,   FZ,    ***1_tr3_LL,      0,  1
+ FR21,   FZ,    1_tr3_Total,      0,  1
+ FR21,   FZ,Total_tr3_Total,      0,  1
+ FR21,   *J,    ***1_tr3_SP,    100,  1
+ FR21,   *J,    1_tr3_Total,    100,  1
+ FR21,   *J,Total_tr3_Total,    100,  1
+ FR21,   JZ,    ***1_tr3_SP,    100,  1
+ FR21,   JZ,    1_tr3_Total,    100,  1
+ FR21,   JZ,Total_tr3_Total,    100,  1
+ FR21,   *M,    ***2_tr3_LL,      0,  1
+ FR21,   *M,    2_tr3_Total,      0,  1
+ FR21,   *M,Total_tr3_Total,      0,  1
+ FR21,   MN,    ***2_tr3_LL,      0,  1
+ FR21,   MN,    ***2_tr3_SP,  63637,  1
+ FR21,   MN,    2_tr3_Total,  63637,  2
+ FR21,   MN,Total_tr3_Total,  63637,  2
+ FR21,   *N,    ***2_tr3_SP,  63637,  1
+ FR21,   *N,    2_tr3_Total,  63637,  1
+ FR21,   *N,Total_tr3_Total,  63637,  1
+ FR21,Total,    ***1_tr3_LL,      0,  1
+ FR21,Total,    ***1_tr3_SP,  57525,  2
+ FR21,Total,    1_tr3_Total,  57525,  3
+ FR21,Total,    ***2_tr3_LL,      0,  1
+ FR21,Total,    ***2_tr3_SP,  63637,  1
+ FR21,Total,    2_tr3_Total,  63637,  2
+ FR21,Total,Total_tr3_Total, 121161,  5
+ FR22,   *J,    ***1_tr3_LL,   1243,  1
+ FR22,   *J,    1_tr3_Total,   1243,  1
+ FR22,   *J,Total_tr3_Total,   1243,  1
+ FR22,   JZ,    ***1_tr3_LL,   1243,  1
+ FR22,   JZ,    1_tr3_Total,   1243,  1
+ FR22,   JZ,Total_tr3_Total,   1243,  1
+ FR22,Total,    ***1_tr3_LL,   1243,  1
+ FR22,Total,    1_tr3_Total,   1243,  1
+ FR22,Total,Total_tr3_Total,   1243,  1
+ FR23,   *G,    ***1_tr3_LL,    161,  1
+ FR23,   *G,    1_tr3_Total,    161,  1
+ FR23,   *G,    ***2_tr3_SP,   4075,  1
+ FR23,   *G,    2_tr3_Total,   4075,  1
+ FR23,   *G,Total_tr3_Total,   4236,  2
+ FR23,   GI,    ***1_tr3_LL,    161,  1
+ FR23,   GI,    1_tr3_Total,    161,  1
+ FR23,   GI,    ***2_tr3_LL,   1279,  1
+ FR23,   GI,    ***2_tr3_SP,   4075,  1
+ FR23,   GI,    2_tr3_Total,   5354,  2
+ FR23,   GI,    ***3_tr3_LL,    340,  1
+ FR23,   GI,    3_tr3_Total,    340,  1
+ FR23,   GI,Total_tr3_Total,   5855,  4
+ FR23,   *H,    ***2_tr3_LL,   1279,  1
+ FR23,   *H,    2_tr3_Total,   1279,  1
+ FR23,   *H,Total_tr3_Total,   1279,  1
+ FR23,   *I,    ***3_tr3_LL,    340,  1
+ FR23,   *I,    3_tr3_Total,    340,  1
+ FR23,   *I,Total_tr3_Total,    340,  1
+ FR23,   *M,    ***1_tr3_SP,  19869,  1
+ FR23,   *M,    1_tr3_Total,  19869,  1
+ FR23,   *M,    ***2_tr3_LL,  48799,  1
+ FR23,   *M,    2_tr3_Total,  48799,  1
+ FR23,   *M,Total_tr3_Total,  68668,  2
+ FR23,   MN,    ***1_tr3_SP,  19869,  1
+ FR23,   MN,    1_tr3_Total,  19869,  1
+ FR23,   MN,    ***2_tr3_LL,  48799,  1
+ FR23,   MN,    ***2_tr3_SP,  14856,  1
+ FR23,   MN,    2_tr3_Total,  63655,  2
+ FR23,   MN,Total_tr3_Total,  83524,  3
+ FR23,   *N,    ***2_tr3_SP,  14856,  1
+ FR23,   *N,    2_tr3_Total,  14856,  1
+ FR23,   *N,Total_tr3_Total,  14856,  1
+ FR23,   OQ,    ***2_tr3_LL,      0,  1
+ FR23,   OQ,    2_tr3_Total,      0,  1
+ FR23,   OQ,Total_tr3_Total,      0,  1
+ FR23,   *Q,    ***2_tr3_LL,      0,  1
+ FR23,   *Q,    2_tr3_Total,      0,  1
+ FR23,   *Q,Total_tr3_Total,      0,  1
+ FR23,Total,    ***1_tr3_LL,    161,  1
+ FR23,Total,    ***1_tr3_SP,  19869,  1
+ FR23,Total,    1_tr3_Total,  20030,  2
+ FR23,Total,    ***2_tr3_LL,  50078,  3
+ FR23,Total,    ***2_tr3_SP,  18931,  2
+ FR23,Total,    2_tr3_Total,  69009,  5
+ FR23,Total,    ***3_tr3_LL,    340,  1
+ FR23,Total,    3_tr3_Total,    340,  1
+ FR23,Total,Total_tr3_Total,  89378,  8
+ FR24,   BE,    ***1_tr3_SP,   2161,  1
+ FR24,   BE,    1_tr3_Total,   2161,  1
+ FR24,   BE,    ***4_tr3_LL, 111625,  1
+ FR24,   BE,    4_tr3_Total, 111625,  1
+ FR24,   BE,Total_tr3_Total, 113785,  2
+ FR24,   *C,    ***1_tr3_SP,   2161,  1
+ FR24,   *C,    1_tr3_Total,   2161,  1
+ FR24,   *C,Total_tr3_Total,   2161,  1
+ FR24,   *E,    ***4_tr3_LL, 111625,  1
+ FR24,   *E,    4_tr3_Total, 111625,  1
+ FR24,   *E,Total_tr3_Total, 111625,  1
+ FR24,   *F,    ***1_tr3_SP,  19686,  1
+ FR24,   *F,    1_tr3_Total,  19686,  1
+ FR24,   *F,Total_tr3_Total,  19686,  1
+ FR24,   FZ,    ***1_tr3_SP,  19686,  1
+ FR24,   FZ,    1_tr3_Total,  19686,  1
+ FR24,   FZ,Total_tr3_Total,  19686,  1
+ FR24,   GI,    ***1_tr3_SP,   5698,  1
+ FR24,   GI,    1_tr3_Total,   5698,  1
+ FR24,   GI,Total_tr3_Total,   5698,  1
+ FR24,   *H,    ***1_tr3_SP,   5698,  1
+ FR24,   *H,    1_tr3_Total,   5698,  1
+ FR24,   *H,Total_tr3_Total,   5698,  1
+ FR24,   *M,    ***1_tr3_SP,      0,  1
+ FR24,   *M,    1_tr3_Total,      0,  1
+ FR24,   *M,    ***2_tr3_SP,   1414,  1
+ FR24,   *M,    2_tr3_Total,   1414,  1
+ FR24,   *M,Total_tr3_Total,   1414,  2
+ FR24,   MN,    ***1_tr3_SP,      0,  1
+ FR24,   MN,    1_tr3_Total,      0,  1
+ FR24,   MN,    ***2_tr3_SP,   1414,  1
+ FR24,   MN,    2_tr3_Total,   1414,  1
+ FR24,   MN,Total_tr3_Total,   1414,  2
+ FR24,Total,    ***1_tr3_SP,  27543,  4
+ FR24,Total,    1_tr3_Total,  27543,  4
+ FR24,Total,    ***2_tr3_SP,   1414,  1
+ FR24,Total,    2_tr3_Total,   1414,  1
+ FR24,Total,    ***4_tr3_LL, 111625,  1
+ FR24,Total,    4_tr3_Total, 111625,  1
+ FR24,Total,Total_tr3_Total, 140581,  6
+ FR25,   BE,    ***1_tr3_SP,  26937,  1
+ FR25,   BE,    1_tr3_Total,  26937,  1
+ FR25,   BE,Total_tr3_Total,  26937,  1
+ FR25,   *C,    ***1_tr3_SP,  26937,  1
+ FR25,   *C,    1_tr3_Total,  26937,  1
+ FR25,   *C,Total_tr3_Total,  26937,  1
+ FR25,   *F,    ***1_tr3_SP,   1193,  1
+ FR25,   *F,    1_tr3_Total,   1193,  1
+ FR25,   *F,Total_tr3_Total,   1193,  1
+ FR25,   FZ,    ***1_tr3_SP,   1193,  1
+ FR25,   FZ,    1_tr3_Total,   1193,  1
+ FR25,   FZ,Total_tr3_Total,   1193,  1
+ FR25,   *G,    ***2_tr3_LL,   6110,  1
+ FR25,   *G,    ***2_tr3_SP,   3886,  1
+ FR25,   *G,    2_tr3_Total,   9995,  2
+ FR25,   *G,Total_tr3_Total,   9995,  2
+ FR25,   GI,    ***2_tr3_LL,   6110,  1
+ FR25,   GI,    ***2_tr3_SP,   5359,  2
+ FR25,   GI,    2_tr3_Total,  11468,  3
+ FR25,   GI,Total_tr3_Total,  11468,  3
+ FR25,   *H,    ***2_tr3_SP,   1473,  1
+ FR25,   *H,    2_tr3_Total,   1473,  1
+ FR25,   *H,Total_tr3_Total,   1473,  1
+ FR25,   MN,    ***2_tr3_LL,    184,  1
+ FR25,   MN,    2_tr3_Total,    184,  1
+ FR25,   MN,Total_tr3_Total,    184,  1
+ FR25,   *N,    ***2_tr3_LL,    184,  1
+ FR25,   *N,    2_tr3_Total,    184,  1
+ FR25,   *N,Total_tr3_Total,    184,  1
+ FR25,   OQ,    ***3_tr3_SP,   6429,  1
+ FR25,   OQ,    3_tr3_Total,   6429,  1
+ FR25,   OQ,Total_tr3_Total,   6429,  1
+ FR25,   *Q,    ***3_tr3_SP,   6429,  1
+ FR25,   *Q,    3_tr3_Total,   6429,  1
+ FR25,   *Q,Total_tr3_Total,   6429,  1
+ FR25,Total,    ***1_tr3_SP,  28129,  2
+ FR25,Total,    1_tr3_Total,  28129,  2
+ FR25,Total,    ***2_tr3_LL,   6293,  2
+ FR25,Total,    ***2_tr3_SP,   5359,  2
+ FR25,Total,    2_tr3_Total,  11651,  4
+ FR25,Total,    ***3_tr3_SP,   6429,  1
+ FR25,Total,    3_tr3_Total,   6429,  1
+ FR25,Total,Total_tr3_Total,  46208,  7
+ FR26,   BE,    ***1_tr3_SP, 176190,  1
+ FR26,   BE,    1_tr3_Total, 176190,  1
+ FR26,   BE,    ***2_tr3_LL,   7824,  1
+ FR26,   BE,    2_tr3_Total,   7824,  1
+ FR26,   BE,Total_tr3_Total, 184014,  2
+ FR26,   *C,    ***1_tr3_SP, 176190,  1
+ FR26,   *C,    1_tr3_Total, 176190,  1
+ FR26,   *C,    ***2_tr3_LL,   7824,  1
+ FR26,   *C,    2_tr3_Total,   7824,  1
+ FR26,   *C,Total_tr3_Total, 184014,  2
+ FR26,   *G,    ***2_tr3_SP,    118,  2
+ FR26,   *G,    2_tr3_Total,    118,  2
+ FR26,   *G,    ***3_tr3_LL,  17321,  1
+ FR26,   *G,    3_tr3_Total,  17321,  1
+ FR26,   *G,Total_tr3_Total,  17439,  3
+ FR26,   GI,    ***2_tr3_SP,    118,  2
+ FR26,   GI,    2_tr3_Total,    118,  2
+ FR26,   GI,    ***3_tr3_LL,  17321,  1
+ FR26,   GI,    3_tr3_Total,  17321,  1
+ FR26,   GI,Total_tr3_Total,  17439,  3
+ FR26,   *K,    ***1_tr3_LL,    999,  1
+ FR26,   *K,    1_tr3_Total,    999,  1
+ FR26,   *K,Total_tr3_Total,    999,  1
+ FR26,   KZ,    ***1_tr3_LL,    999,  1
+ FR26,   KZ,    1_tr3_Total,    999,  1
+ FR26,   KZ,Total_tr3_Total,    999,  1
+ FR26,Total,    ***1_tr3_LL,    999,  1
+ FR26,Total,    ***1_tr3_SP, 176190,  1
+ FR26,Total,    1_tr3_Total, 177188,  2
+ FR26,Total,    ***2_tr3_LL,   7824,  1
+ FR26,Total,    ***2_tr3_SP,    118,  2
+ FR26,Total,    2_tr3_Total,   7942,  3
+ FR26,Total,    ***3_tr3_LL,  17321,  1
+ FR26,Total,    3_tr3_Total,  17321,  1
+ FR26,Total,Total_tr3_Total, 202450,  6
+ *FR3,   BE,    ***4_tr3_LL,  20874,  1
+ *FR3,   BE,    4_tr3_Total,  20874,  1
+ *FR3,   BE,Total_tr3_Total,  20874,  1
+ *FR3,   *E,    ***4_tr3_LL,  20874,  1
+ *FR3,   *E,    4_tr3_Total,  20874,  1
+ *FR3,   *E,Total_tr3_Total,  20874,  1
+ *FR3,   *G,    ***1_tr3_SP,   1910,  1
+ *FR3,   *G,    1_tr3_Total,   1910,  1
+ *FR3,   *G,    ***2_tr3_LL,   4163,  1
+ *FR3,   *G,    2_tr3_Total,   4163,  1
+ *FR3,   *G,Total_tr3_Total,   6072,  2
+ *FR3,   GI,    ***1_tr3_SP,   1910,  1
+ *FR3,   GI,    1_tr3_Total,   1910,  1
+ *FR3,   GI,    ***2_tr3_LL,   4163,  1
+ *FR3,   GI,    2_tr3_Total,   4163,  1
+ *FR3,   GI,Total_tr3_Total,   6072,  2
+ *FR3,   OQ,    ***1_tr3_SP,   1736,  1
+ *FR3,   OQ,    1_tr3_Total,   1736,  1
+ *FR3,   OQ,    ***2_tr3_LL,  63609,  1
+ *FR3,   OQ,    ***2_tr3_SP,     64,  1
+ *FR3,   OQ,    2_tr3_Total,  63672,  2
+ *FR3,   OQ,Total_tr3_Total,  65407,  3
+ *FR3,   *Q,    ***1_tr3_SP,   1736,  1
+ *FR3,   *Q,    1_tr3_Total,   1736,  1
+ *FR3,   *Q,    ***2_tr3_LL,  63609,  1
+ *FR3,   *Q,    ***2_tr3_SP,     64,  1
+ *FR3,   *Q,    2_tr3_Total,  63672,  2
+ *FR3,   *Q,Total_tr3_Total,  65407,  3
+ *FR3,Total,    ***1_tr3_SP,   3645,  2
+ *FR3,Total,    1_tr3_Total,   3645,  2
+ *FR3,Total,    ***2_tr3_LL,  67771,  2
+ *FR3,Total,    ***2_tr3_SP,     64,  1
+ *FR3,Total,    2_tr3_Total,  67835,  3
+ *FR3,Total,    ***4_tr3_LL,  20874,  1
+ *FR3,Total,    4_tr3_Total,  20874,  1
+ *FR3,Total,Total_tr3_Total,  92352,  6
+ FR30,   BE,    ***4_tr3_LL,  20874,  1
+ FR30,   BE,    4_tr3_Total,  20874,  1
+ FR30,   BE,Total_tr3_Total,  20874,  1
+ FR30,   *E,    ***4_tr3_LL,  20874,  1
+ FR30,   *E,    4_tr3_Total,  20874,  1
+ FR30,   *E,Total_tr3_Total,  20874,  1
+ FR30,   *G,    ***1_tr3_SP,   1910,  1
+ FR30,   *G,    1_tr3_Total,   1910,  1
+ FR30,   *G,    ***2_tr3_LL,   4163,  1
+ FR30,   *G,    2_tr3_Total,   4163,  1
+ FR30,   *G,Total_tr3_Total,   6072,  2
+ FR30,   GI,    ***1_tr3_SP,   1910,  1
+ FR30,   GI,    1_tr3_Total,   1910,  1
+ FR30,   GI,    ***2_tr3_LL,   4163,  1
+ FR30,   GI,    2_tr3_Total,   4163,  1
+ FR30,   GI,Total_tr3_Total,   6072,  2
+ FR30,   OQ,    ***1_tr3_SP,   1736,  1
+ FR30,   OQ,    1_tr3_Total,   1736,  1
+ FR30,   OQ,    ***2_tr3_LL,  63609,  1
+ FR30,   OQ,    ***2_tr3_SP,     64,  1
+ FR30,   OQ,    2_tr3_Total,  63672,  2
+ FR30,   OQ,Total_tr3_Total,  65407,  3
+ FR30,   *Q,    ***1_tr3_SP,   1736,  1
+ FR30,   *Q,    1_tr3_Total,   1736,  1
+ FR30,   *Q,    ***2_tr3_LL,  63609,  1
+ FR30,   *Q,    ***2_tr3_SP,     64,  1
+ FR30,   *Q,    2_tr3_Total,  63672,  2
+ FR30,   *Q,Total_tr3_Total,  65407,  3
+ FR30,Total,    ***1_tr3_SP,   3645,  2
+ FR30,Total,    1_tr3_Total,   3645,  2
+ FR30,Total,    ***2_tr3_LL,  67771,  2
+ FR30,Total,    ***2_tr3_SP,     64,  1
+ FR30,Total,    2_tr3_Total,  67835,  3
+ FR30,Total,    ***4_tr3_LL,  20874,  1
+ FR30,Total,    4_tr3_Total,  20874,  1
+ FR30,Total,Total_tr3_Total,  92352,  6
+ *FR4,   BE,    ***1_tr3_LL,  10249,  1
+ *FR4,   BE,    ***1_tr3_SP, 388954,  6
+ *FR4,   BE,    1_tr3_Total, 399202,  7
+ *FR4,   BE,    ***2_tr3_SP,   6250,  1
+ *FR4,   BE,    2_tr3_Total,   6250,  1
+ *FR4,   BE,    ***4_tr3_SP,  68774,  1
+ *FR4,   BE,    4_tr3_Total,  68774,  1
+ *FR4,   BE,Total_tr3_Total, 474225,  9
+ *FR4,   *C,    ***1_tr3_LL,  10249,  1
+ *FR4,   *C,    ***1_tr3_SP, 368109,  5
+ *FR4,   *C,    1_tr3_Total, 378358,  6
+ *FR4,   *C,    ***2_tr3_SP,   6250,  1
+ *FR4,   *C,    2_tr3_Total,   6250,  1
+ *FR4,   *C,    ***4_tr3_SP,  68774,  1
+ *FR4,   *C,    4_tr3_Total,  68774,  1
+ *FR4,   *C,Total_tr3_Total, 453381,  8
+ *FR4,   *E,    ***1_tr3_SP,  20845,  1
+ *FR4,   *E,    1_tr3_Total,  20845,  1
+ *FR4,   *E,Total_tr3_Total,  20845,  1
+ *FR4,   *F,    ***1_tr3_SP,  69855,  1
+ *FR4,   *F,    1_tr3_Total,  69855,  1
+ *FR4,   *F,Total_tr3_Total,  69855,  1
+ *FR4,   FZ,    ***1_tr3_SP,  69855,  1
+ *FR4,   FZ,    1_tr3_Total,  69855,  1
+ *FR4,   FZ,Total_tr3_Total,  69855,  1
+ *FR4,   *G,    ***2_tr3_LL,  10786,  1
+ *FR4,   *G,    2_tr3_Total,  10786,  1
+ *FR4,   *G,    ***3_tr3_LL,  22219,  2
+ *FR4,   *G,    3_tr3_Total,  22219,  2
+ *FR4,   *G,Total_tr3_Total,  33005,  3
+ *FR4,   GI,    ***1_tr3_SP,      0,  1
+ *FR4,   GI,    1_tr3_Total,      0,  1
+ *FR4,   GI,    ***2_tr3_LL,  10786,  1
+ *FR4,   GI,    2_tr3_Total,  10786,  1
+ *FR4,   GI,    ***3_tr3_LL,  30184,  4
+ *FR4,   GI,    3_tr3_Total,  30184,  4
+ *FR4,   GI,Total_tr3_Total,  40970,  6
+ *FR4,   *I,    ***1_tr3_SP,      0,  1
+ *FR4,   *I,    1_tr3_Total,      0,  1
+ *FR4,   *I,    ***3_tr3_LL,   7965,  2
+ *FR4,   *I,    3_tr3_Total,   7965,  2
+ *FR4,   *I,Total_tr3_Total,   7965,  3
+ *FR4,   *J,    ***1_tr3_SP,  25646,  1
+ *FR4,   *J,    1_tr3_Total,  25646,  1
+ *FR4,   *J,    ***2_tr3_LL,   5979,  1
+ *FR4,   *J,    2_tr3_Total,   5979,  1
+ *FR4,   *J,    ***3_tr3_LL,      0,  1
+ *FR4,   *J,    3_tr3_Total,      0,  1
+ *FR4,   *J,Total_tr3_Total,  31624,  3
+ *FR4,   JZ,    ***1_tr3_SP,  25646,  1
+ *FR4,   JZ,    1_tr3_Total,  25646,  1
+ *FR4,   JZ,    ***2_tr3_LL,   5979,  1
+ *FR4,   JZ,    2_tr3_Total,   5979,  1
+ *FR4,   JZ,    ***3_tr3_LL,      0,  1
+ *FR4,   JZ,    3_tr3_Total,      0,  1
+ *FR4,   JZ,Total_tr3_Total,  31624,  3
+ *FR4,   *M,    ***1_tr3_SP,   5111,  1
+ *FR4,   *M,    1_tr3_Total,   5111,  1
+ *FR4,   *M,    ***4_tr3_LL,   1102,  1
+ *FR4,   *M,    4_tr3_Total,   1102,  1
+ *FR4,   *M,Total_tr3_Total,   6213,  2
+ *FR4,   MN,    ***1_tr3_SP,   5863,  2
+ *FR4,   MN,    1_tr3_Total,   5863,  2
+ *FR4,   MN,    ***2_tr3_LL,   2062,  1
+ *FR4,   MN,    2_tr3_Total,   2062,  1
+ *FR4,   MN,    ***4_tr3_LL,   1102,  1
+ *FR4,   MN,    4_tr3_Total,   1102,  1
+ *FR4,   MN,Total_tr3_Total,   9027,  4
+ *FR4,   *N,    ***1_tr3_SP,    753,  1
+ *FR4,   *N,    1_tr3_Total,    753,  1
+ *FR4,   *N,    ***2_tr3_LL,   2062,  1
+ *FR4,   *N,    2_tr3_Total,   2062,  1
+ *FR4,   *N,Total_tr3_Total,   2814,  2
+ *FR4,   OQ,    ***2_tr3_LL, 249319,  2
+ *FR4,   OQ,    ***2_tr3_SP,     44,  1
+ *FR4,   OQ,    2_tr3_Total, 249362,  3
+ *FR4,   OQ,Total_tr3_Total, 249362,  3
+ *FR4,   *P,    ***2_tr3_LL, 240973,  1
+ *FR4,   *P,    2_tr3_Total, 240973,  1
+ *FR4,   *P,Total_tr3_Total, 240973,  1
+ *FR4,   *Q,    ***2_tr3_LL,   8346,  1
+ *FR4,   *Q,    ***2_tr3_SP,     44,  1
+ *FR4,   *Q,    2_tr3_Total,   8389,  2
+ *FR4,   *Q,Total_tr3_Total,   8389,  2
+ *FR4,Total,    ***1_tr3_LL,  10249,  1
+ *FR4,Total,    ***1_tr3_SP, 490316, 11
+ *FR4,Total,    1_tr3_Total, 500565, 12
+ *FR4,Total,    ***2_tr3_LL, 268145,  5
+ *FR4,Total,    ***2_tr3_SP,   6293,  2
+ *FR4,Total,    2_tr3_Total, 274437,  7
+ *FR4,Total,    ***3_tr3_LL,  30184,  5
+ *FR4,Total,    3_tr3_Total,  30184,  5
+ *FR4,Total,    ***4_tr3_LL,   1102,  1
+ *FR4,Total,    ***4_tr3_SP,  68774,  1
+ *FR4,Total,    4_tr3_Total,  69875,  2
+ *FR4,Total,Total_tr3_Total, 875060, 26
+ FR41,   BE,    ***1_tr3_LL,  10249,  1
+ FR41,   BE,    ***1_tr3_SP,  20845,  1
+ FR41,   BE,    1_tr3_Total,  31093,  2
+ FR41,   BE,Total_tr3_Total,  31093,  2
+ FR41,   *C,    ***1_tr3_LL,  10249,  1
+ FR41,   *C,    1_tr3_Total,  10249,  1
+ FR41,   *C,Total_tr3_Total,  10249,  1
+ FR41,   *E,    ***1_tr3_SP,  20845,  1
+ FR41,   *E,    1_tr3_Total,  20845,  1
+ FR41,   *E,Total_tr3_Total,  20845,  1
+ FR41,   *G,    ***3_tr3_LL,  13292,  1
+ FR41,   *G,    3_tr3_Total,  13292,  1
+ FR41,   *G,Total_tr3_Total,  13292,  1
+ FR41,   GI,    ***3_tr3_LL,  13292,  1
+ FR41,   GI,    3_tr3_Total,  13292,  1
+ FR41,   GI,Total_tr3_Total,  13292,  1
+ FR41,   *J,    ***2_tr3_LL,   5979,  1
+ FR41,   *J,    2_tr3_Total,   5979,  1
+ FR41,   *J,Total_tr3_Total,   5979,  1
+ FR41,   JZ,    ***2_tr3_LL,   5979,  1
+ FR41,   JZ,    2_tr3_Total,   5979,  1
+ FR41,   JZ,Total_tr3_Total,   5979,  1
+ FR41,   *M,    ***1_tr3_SP,   5111,  1
+ FR41,   *M,    1_tr3_Total,   5111,  1
+ FR41,   *M,Total_tr3_Total,   5111,  1
+ FR41,   MN,    ***1_tr3_SP,   5863,  2
+ FR41,   MN,    1_tr3_Total,   5863,  2
+ FR41,   MN,Total_tr3_Total,   5863,  2
+ FR41,   *N,    ***1_tr3_SP,    753,  1
+ FR41,   *N,    1_tr3_Total,    753,  1
+ FR41,   *N,Total_tr3_Total,    753,  1
+ FR41,   OQ,    ***2_tr3_SP,     44,  1
+ FR41,   OQ,    2_tr3_Total,     44,  1
+ FR41,   OQ,Total_tr3_Total,     44,  1
+ FR41,   *Q,    ***2_tr3_SP,     44,  1
+ FR41,   *Q,    2_tr3_Total,     44,  1
+ FR41,   *Q,Total_tr3_Total,     44,  1
+ FR41,Total,    ***1_tr3_LL,  10249,  1
+ FR41,Total,    ***1_tr3_SP,  26708,  3
+ FR41,Total,    1_tr3_Total,  36956,  4
+ FR41,Total,    ***2_tr3_LL,   5979,  1
+ FR41,Total,    ***2_tr3_SP,     44,  1
+ FR41,Total,    2_tr3_Total,   6022,  2
+ FR41,Total,    ***3_tr3_LL,  13292,  1
+ FR41,Total,    3_tr3_Total,  13292,  1
+ FR41,Total,Total_tr3_Total,  56270,  7
+ FR42,   BE,    ***1_tr3_SP, 260727,  3
+ FR42,   BE,    1_tr3_Total, 260727,  3
+ FR42,   BE,Total_tr3_Total, 260727,  3
+ FR42,   *C,    ***1_tr3_SP, 260727,  3
+ FR42,   *C,    1_tr3_Total, 260727,  3
+ FR42,   *C,Total_tr3_Total, 260727,  3
+ FR42,   *F,    ***1_tr3_SP,  69855,  1
+ FR42,   *F,    1_tr3_Total,  69855,  1
+ FR42,   *F,Total_tr3_Total,  69855,  1
+ FR42,   FZ,    ***1_tr3_SP,  69855,  1
+ FR42,   FZ,    1_tr3_Total,  69855,  1
+ FR42,   FZ,Total_tr3_Total,  69855,  1
+ FR42,   *G,    ***2_tr3_LL,  10786,  1
+ FR42,   *G,    2_tr3_Total,  10786,  1
+ FR42,   *G,Total_tr3_Total,  10786,  1
+ FR42,   GI,    ***1_tr3_SP,      0,  1
+ FR42,   GI,    1_tr3_Total,      0,  1
+ FR42,   GI,    ***2_tr3_LL,  10786,  1
+ FR42,   GI,    2_tr3_Total,  10786,  1
+ FR42,   GI,    ***3_tr3_LL,   7965,  2
+ FR42,   GI,    3_tr3_Total,   7965,  2
+ FR42,   GI,Total_tr3_Total,  18751,  4
+ FR42,   *I,    ***1_tr3_SP,      0,  1
+ FR42,   *I,    1_tr3_Total,      0,  1
+ FR42,   *I,    ***3_tr3_LL,   7965,  2
+ FR42,   *I,    3_tr3_Total,   7965,  2
+ FR42,   *I,Total_tr3_Total,   7965,  3
+ FR42,   *J,    ***1_tr3_SP,  25646,  1
+ FR42,   *J,    1_tr3_Total,  25646,  1
+ FR42,   *J,    ***3_tr3_LL,      0,  1
+ FR42,   *J,    3_tr3_Total,      0,  1
+ FR42,   *J,Total_tr3_Total,  25646,  2
+ FR42,   JZ,    ***1_tr3_SP,  25646,  1
+ FR42,   JZ,    1_tr3_Total,  25646,  1
+ FR42,   JZ,    ***3_tr3_LL,      0,  1
+ FR42,   JZ,    3_tr3_Total,      0,  1
+ FR42,   JZ,Total_tr3_Total,  25646,  2
+ FR42,   MN,    ***2_tr3_LL,   2062,  1
+ FR42,   MN,    2_tr3_Total,   2062,  1
+ FR42,   MN,Total_tr3_Total,   2062,  1
+ FR42,   *N,    ***2_tr3_LL,   2062,  1
+ FR42,   *N,    2_tr3_Total,   2062,  1
+ FR42,   *N,Total_tr3_Total,   2062,  1
+ FR42,Total,    ***1_tr3_SP, 356227,  6
+ FR42,Total,    1_tr3_Total, 356227,  6
+ FR42,Total,    ***2_tr3_LL,  12848,  2
+ FR42,Total,    2_tr3_Total,  12848,  2
+ FR42,Total,    ***3_tr3_LL,   7965,  3
+ FR42,Total,    3_tr3_Total,   7965,  3
+ FR42,Total,Total_tr3_Total, 377040, 11
+ FR43,   BE,    ***1_tr3_SP, 107383,  2
+ FR43,   BE,    1_tr3_Total, 107383,  2
+ FR43,   BE,    ***2_tr3_SP,   6250,  1
+ FR43,   BE,    2_tr3_Total,   6250,  1
+ FR43,   BE,    ***4_tr3_SP,  68774,  1
+ FR43,   BE,    4_tr3_Total,  68774,  1
+ FR43,   BE,Total_tr3_Total, 182405,  4
+ FR43,   *C,    ***1_tr3_SP, 107383,  2
+ FR43,   *C,    1_tr3_Total, 107383,  2
+ FR43,   *C,    ***2_tr3_SP,   6250,  1
+ FR43,   *C,    2_tr3_Total,   6250,  1
+ FR43,   *C,    ***4_tr3_SP,  68774,  1
+ FR43,   *C,    4_tr3_Total,  68774,  1
+ FR43,   *C,Total_tr3_Total, 182405,  4
+ FR43,   *G,    ***3_tr3_LL,   8927,  1
+ FR43,   *G,    3_tr3_Total,   8927,  1
+ FR43,   *G,Total_tr3_Total,   8927,  1
+ FR43,   GI,    ***3_tr3_LL,   8927,  1
+ FR43,   GI,    3_tr3_Total,   8927,  1
+ FR43,   GI,Total_tr3_Total,   8927,  1
+ FR43,   *M,    ***4_tr3_LL,   1102,  1
+ FR43,   *M,    4_tr3_Total,   1102,  1
+ FR43,   *M,Total_tr3_Total,   1102,  1
+ FR43,   MN,    ***4_tr3_LL,   1102,  1
+ FR43,   MN,    4_tr3_Total,   1102,  1
+ FR43,   MN,Total_tr3_Total,   1102,  1
+ FR43,   OQ,    ***2_tr3_LL, 249319,  2
+ FR43,   OQ,    2_tr3_Total, 249319,  2
+ FR43,   OQ,Total_tr3_Total, 249319,  2
+ FR43,   *P,    ***2_tr3_LL, 240973,  1
+ FR43,   *P,    2_tr3_Total, 240973,  1
+ FR43,   *P,Total_tr3_Total, 240973,  1
+ FR43,   *Q,    ***2_tr3_LL,   8346,  1
+ FR43,   *Q,    2_tr3_Total,   8346,  1
+ FR43,   *Q,Total_tr3_Total,   8346,  1
+ FR43,Total,    ***1_tr3_SP, 107383,  2
+ FR43,Total,    1_tr3_Total, 107383,  2
+ FR43,Total,    ***2_tr3_LL, 249319,  2
+ FR43,Total,    ***2_tr3_SP,   6250,  1
+ FR43,Total,    2_tr3_Total, 255568,  3
+ FR43,Total,    ***3_tr3_LL,   8927,  1
+ FR43,Total,    3_tr3_Total,   8927,  1
+ FR43,Total,    ***4_tr3_LL,   1102,  1
+ FR43,Total,    ***4_tr3_SP,  68774,  1
+ FR43,Total,    4_tr3_Total,  69875,  2
+ FR43,Total,Total_tr3_Total, 441752,  8
+ *FR5,   BE,    ***1_tr3_SP, 154478,  3
+ *FR5,   BE,    1_tr3_Total, 154478,  3
+ *FR5,   BE,    ***2_tr3_LL,  21641,  3
+ *FR5,   BE,    ***2_tr3_SP,  11363,  1
+ *FR5,   BE,    2_tr3_Total,  33004,  4
+ *FR5,   BE,    ***3_tr3_LL,  53146,  1
+ *FR5,   BE,    3_tr3_Total,  53146,  1
+ *FR5,   BE,    ***4_tr3_LL, 123295,  1
+ *FR5,   BE,    4_tr3_Total, 123295,  1
+ *FR5,   BE,Total_tr3_Total, 363922,  9
+ *FR5,   *C,    ***1_tr3_SP, 133306,  2
+ *FR5,   *C,    1_tr3_Total, 133306,  2
+ *FR5,   *C,    ***2_tr3_LL,  21641,  3
+ *FR5,   *C,    ***2_tr3_SP,  11363,  1
+ *FR5,   *C,    2_tr3_Total,  33004,  4
+ *FR5,   *C,    ***3_tr3_LL,  53146,  1
+ *FR5,   *C,    3_tr3_Total,  53146,  1
+ *FR5,   *C,    ***4_tr3_LL, 123295,  1
+ *FR5,   *C,    4_tr3_Total, 123295,  1
+ *FR5,   *C,Total_tr3_Total, 342749,  8
+ *FR5,   *D,    ***1_tr3_SP,  21173,  1
+ *FR5,   *D,    1_tr3_Total,  21173,  1
+ *FR5,   *D,Total_tr3_Total,  21173,  1
+ *FR5,   *F,    ***1_tr3_SP,  25407,  2
+ *FR5,   *F,    1_tr3_Total,  25407,  2
+ *FR5,   *F,Total_tr3_Total,  25407,  2
+ *FR5,   FZ,    ***1_tr3_SP,  25407,  2
+ *FR5,   FZ,    1_tr3_Total,  25407,  2
+ *FR5,   FZ,Total_tr3_Total,  25407,  2
+ *FR5,   *G,    ***1_tr3_SP,      0,  1
+ *FR5,   *G,    1_tr3_Total,      0,  1
+ *FR5,   *G,    ***2_tr3_LL,  64903,  2
+ *FR5,   *G,    ***2_tr3_SP,    898,  2
+ *FR5,   *G,    2_tr3_Total,  65800,  4
+ *FR5,   *G,Total_tr3_Total,  65800,  5
+ *FR5,   GI,    ***1_tr3_SP,      0,  1
+ *FR5,   GI,    1_tr3_Total,      0,  1
+ *FR5,   GI,    ***2_tr3_LL,  64903,  3
+ *FR5,   GI,    ***2_tr3_SP,  19083,  5
+ *FR5,   GI,    2_tr3_Total,  83985,  8
+ *FR5,   GI,Total_tr3_Total,  83985,  9
+ *FR5,   *H,    ***2_tr3_SP,  18185,  3
+ *FR5,   *H,    2_tr3_Total,  18185,  3
+ *FR5,   *H,Total_tr3_Total,  18185,  3
+ *FR5,   *I,    ***2_tr3_LL,      0,  1
+ *FR5,   *I,    2_tr3_Total,      0,  1
+ *FR5,   *I,Total_tr3_Total,      0,  1
+ *FR5,   *J,    ***2_tr3_LL,   9341,  1
+ *FR5,   *J,    ***2_tr3_SP, 858153,  2
+ *FR5,   *J,    2_tr3_Total, 867494,  3
+ *FR5,   *J,Total_tr3_Total, 867494,  3
+ *FR5,   JZ,    ***2_tr3_LL,   9341,  1
+ *FR5,   JZ,    ***2_tr3_SP, 858153,  2
+ *FR5,   JZ,    2_tr3_Total, 867494,  3
+ *FR5,   JZ,Total_tr3_Total, 867494,  3
+ *FR5,   *L,    ***3_tr3_SP,   1102,  1
+ *FR5,   *L,    3_tr3_Total,   1102,  1
+ *FR5,   *L,Total_tr3_Total,   1102,  1
+ *FR5,   LZ,    ***3_tr3_SP,   1102,  1
+ *FR5,   LZ,    3_tr3_Total,   1102,  1
+ *FR5,   LZ,Total_tr3_Total,   1102,  1
+ *FR5,   *M,    ***1_tr3_SP,  54232,  3
+ *FR5,   *M,    1_tr3_Total,  54232,  3
+ *FR5,   *M,    ***4_tr3_LL,  39102,  1
+ *FR5,   *M,    4_tr3_Total,  39102,  1
+ *FR5,   *M,Total_tr3_Total,  93334,  4
+ *FR5,   MN,    ***1_tr3_SP,  54232,  3
+ *FR5,   MN,    1_tr3_Total,  54232,  3
+ *FR5,   MN,    ***2_tr3_LL,   8013,  1
+ *FR5,   MN,    2_tr3_Total,   8013,  1
+ *FR5,   MN,    ***3_tr3_LL,    290,  1
+ *FR5,   MN,    3_tr3_Total,    290,  1
+ *FR5,   MN,    ***4_tr3_LL,  39102,  1
+ *FR5,   MN,    4_tr3_Total,  39102,  1
+ *FR5,   MN,Total_tr3_Total, 101636,  6
+ *FR5,   *N,    ***2_tr3_LL,   8013,  1
+ *FR5,   *N,    2_tr3_Total,   8013,  1
+ *FR5,   *N,    ***3_tr3_LL,    290,  1
+ *FR5,   *N,    3_tr3_Total,    290,  1
+ *FR5,   *N,Total_tr3_Total,   8303,  2
+ *FR5,   OQ,    ***2_tr3_LL,    873,  1
+ *FR5,   OQ,    2_tr3_Total,    873,  1
+ *FR5,   OQ,Total_tr3_Total,    873,  1
+ *FR5,   *Q,    ***2_tr3_LL,    873,  1
+ *FR5,   *Q,    2_tr3_Total,    873,  1
+ *FR5,   *Q,Total_tr3_Total,    873,  1
+ *FR5,Total,    ***1_tr3_SP, 234117,  9
+ *FR5,Total,    1_tr3_Total, 234117,  9
+ *FR5,Total,    ***2_tr3_LL, 104770,  9
+ *FR5,Total,    ***2_tr3_SP, 888598,  8
+ *FR5,Total,    2_tr3_Total, 993367, 17
+ *FR5,Total,    ***3_tr3_LL,  53436,  2
+ *FR5,Total,    ***3_tr3_SP,   1102,  1
+ *FR5,Total,    3_tr3_Total,  54537,  3
+ *FR5,Total,    ***4_tr3_LL, 162397,  2
+ *FR5,Total,    4_tr3_Total, 162397,  2
+ *FR5,Total,Total_tr3_Total,1444416, 31
+ FR51,   BE,    ***1_tr3_SP, 154478,  3
+ FR51,   BE,    1_tr3_Total, 154478,  3
+ FR51,   BE,    ***2_tr3_LL,    192,  2
+ FR51,   BE,    2_tr3_Total,    192,  2
+ FR51,   BE,    ***4_tr3_LL, 123295,  1
+ FR51,   BE,    4_tr3_Total, 123295,  1
+ FR51,   BE,Total_tr3_Total, 277965,  6
+ FR51,   *C,    ***1_tr3_SP, 133306,  2
+ FR51,   *C,    1_tr3_Total, 133306,  2
+ FR51,   *C,    ***2_tr3_LL,    192,  2
+ FR51,   *C,    2_tr3_Total,    192,  2
+ FR51,   *C,    ***4_tr3_LL, 123295,  1
+ FR51,   *C,    4_tr3_Total, 123295,  1
+ FR51,   *C,Total_tr3_Total, 256792,  5
+ FR51,   *D,    ***1_tr3_SP,  21173,  1
+ FR51,   *D,    1_tr3_Total,  21173,  1
+ FR51,   *D,Total_tr3_Total,  21173,  1
+ FR51,   *G,    ***2_tr3_LL,   7704,  1
+ FR51,   *G,    ***2_tr3_SP,    898,  1
+ FR51,   *G,    2_tr3_Total,   8601,  2
+ FR51,   *G,Total_tr3_Total,   8601,  2
+ FR51,   GI,    ***2_tr3_LL,   7704,  1
+ FR51,   GI,    ***2_tr3_SP,   5850,  2
+ FR51,   GI,    2_tr3_Total,  13554,  3
+ FR51,   GI,Total_tr3_Total,  13554,  3
+ FR51,   *H,    ***2_tr3_SP,   4953,  1
+ FR51,   *H,    2_tr3_Total,   4953,  1
+ FR51,   *H,Total_tr3_Total,   4953,  1
+ FR51,   *J,    ***2_tr3_SP,   5405,  1
+ FR51,   *J,    2_tr3_Total,   5405,  1
+ FR51,   *J,Total_tr3_Total,   5405,  1
+ FR51,   JZ,    ***2_tr3_SP,   5405,  1
+ FR51,   JZ,    2_tr3_Total,   5405,  1
+ FR51,   JZ,Total_tr3_Total,   5405,  1
+ FR51,   *L,    ***3_tr3_SP,   1102,  1
+ FR51,   *L,    3_tr3_Total,   1102,  1
+ FR51,   *L,Total_tr3_Total,   1102,  1
+ FR51,   LZ,    ***3_tr3_SP,   1102,  1
+ FR51,   LZ,    3_tr3_Total,   1102,  1
+ FR51,   LZ,Total_tr3_Total,   1102,  1
+ FR51,   *M,    ***1_tr3_SP,   3681,  1
+ FR51,   *M,    1_tr3_Total,   3681,  1
+ FR51,   *M,    ***4_tr3_LL,  39102,  1
+ FR51,   *M,    4_tr3_Total,  39102,  1
+ FR51,   *M,Total_tr3_Total,  42782,  2
+ FR51,   MN,    ***1_tr3_SP,   3681,  1
+ FR51,   MN,    1_tr3_Total,   3681,  1
+ FR51,   MN,    ***3_tr3_LL,    290,  1
+ FR51,   MN,    3_tr3_Total,    290,  1
+ FR51,   MN,    ***4_tr3_LL,  39102,  1
+ FR51,   MN,    4_tr3_Total,  39102,  1
+ FR51,   MN,Total_tr3_Total,  43072,  3
+ FR51,   *N,    ***3_tr3_LL,    290,  1
+ FR51,   *N,    3_tr3_Total,    290,  1
+ FR51,   *N,Total_tr3_Total,    290,  1
+ FR51,Total,    ***1_tr3_SP, 158159,  4
+ FR51,Total,    1_tr3_Total, 158159,  4
+ FR51,Total,    ***2_tr3_LL,   7896,  3
+ FR51,Total,    ***2_tr3_SP,  11254,  3
+ FR51,Total,    2_tr3_Total,  19150,  6
+ FR51,Total,    ***3_tr3_LL,    290,  1
+ FR51,Total,    ***3_tr3_SP,   1102,  1
+ FR51,Total,    3_tr3_Total,   1391,  2
+ FR51,Total,    ***4_tr3_LL, 162397,  2
+ FR51,Total,    4_tr3_Total, 162397,  2
+ FR51,Total,Total_tr3_Total, 341095, 14
+ FR52,   BE,    ***2_tr3_LL,  21449,  1
+ FR52,   BE,    ***2_tr3_SP,  11363,  1
+ FR52,   BE,    2_tr3_Total,  32812,  2
+ FR52,   BE,    ***3_tr3_LL,  53146,  1
+ FR52,   BE,    3_tr3_Total,  53146,  1
+ FR52,   BE,Total_tr3_Total,  85958,  3
+ FR52,   *C,    ***2_tr3_LL,  21449,  1
+ FR52,   *C,    ***2_tr3_SP,  11363,  1
+ FR52,   *C,    2_tr3_Total,  32812,  2
+ FR52,   *C,    ***3_tr3_LL,  53146,  1
+ FR52,   *C,    3_tr3_Total,  53146,  1
+ FR52,   *C,Total_tr3_Total,  85958,  3
+ FR52,   *G,    ***1_tr3_SP,      0,  1
+ FR52,   *G,    1_tr3_Total,      0,  1
+ FR52,   *G,    ***2_tr3_SP,      0,  1
+ FR52,   *G,    2_tr3_Total,      0,  1
+ FR52,   *G,Total_tr3_Total,      0,  2
+ FR52,   GI,    ***1_tr3_SP,      0,  1
+ FR52,   GI,    1_tr3_Total,      0,  1
+ FR52,   GI,    ***2_tr3_SP,  10847,  2
+ FR52,   GI,    2_tr3_Total,  10847,  2
+ FR52,   GI,Total_tr3_Total,  10847,  3
+ FR52,   *H,    ***2_tr3_SP,  10847,  1
+ FR52,   *H,    2_tr3_Total,  10847,  1
+ FR52,   *H,Total_tr3_Total,  10847,  1
+ FR52,   *M,    ***1_tr3_SP,  50552,  2
+ FR52,   *M,    1_tr3_Total,  50552,  2
+ FR52,   *M,Total_tr3_Total,  50552,  2
+ FR52,   MN,    ***1_tr3_SP,  50552,  2
+ FR52,   MN,    1_tr3_Total,  50552,  2
+ FR52,   MN,Total_tr3_Total,  50552,  2
+ FR52,   OQ,    ***2_tr3_LL,    873,  1
+ FR52,   OQ,    2_tr3_Total,    873,  1
+ FR52,   OQ,Total_tr3_Total,    873,  1
+ FR52,   *Q,    ***2_tr3_LL,    873,  1
+ FR52,   *Q,    2_tr3_Total,    873,  1
+ FR52,   *Q,Total_tr3_Total,    873,  1
+ FR52,Total,    ***1_tr3_SP,  50552,  3
+ FR52,Total,    1_tr3_Total,  50552,  3
+ FR52,Total,    ***2_tr3_LL,  22322,  2
+ FR52,Total,    ***2_tr3_SP,  22209,  3
+ FR52,Total,    2_tr3_Total,  44531,  5
+ FR52,Total,    ***3_tr3_LL,  53146,  1
+ FR52,Total,    3_tr3_Total,  53146,  1
+ FR52,Total,Total_tr3_Total, 148228,  9
+ FR53,   *F,    ***1_tr3_SP,  25407,  2
+ FR53,   *F,    1_tr3_Total,  25407,  2
+ FR53,   *F,Total_tr3_Total,  25407,  2
+ FR53,   FZ,    ***1_tr3_SP,  25407,  2
+ FR53,   FZ,    1_tr3_Total,  25407,  2
+ FR53,   FZ,Total_tr3_Total,  25407,  2
+ FR53,   *G,    ***2_tr3_LL,  57199,  1
+ FR53,   *G,    2_tr3_Total,  57199,  1
+ FR53,   *G,Total_tr3_Total,  57199,  1
+ FR53,   GI,    ***2_tr3_LL,  57199,  2
+ FR53,   GI,    ***2_tr3_SP,   2387,  1
+ FR53,   GI,    2_tr3_Total,  59586,  3
+ FR53,   GI,Total_tr3_Total,  59586,  3
+ FR53,   *H,    ***2_tr3_SP,   2387,  1
+ FR53,   *H,    2_tr3_Total,   2387,  1
+ FR53,   *H,Total_tr3_Total,   2387,  1
+ FR53,   *I,    ***2_tr3_LL,      0,  1
+ FR53,   *I,    2_tr3_Total,      0,  1
+ FR53,   *I,Total_tr3_Total,      0,  1
+ FR53,   *J,    ***2_tr3_LL,   9341,  1
+ FR53,   *J,    ***2_tr3_SP, 852749,  1
+ FR53,   *J,    2_tr3_Total, 862090,  2
+ FR53,   *J,Total_tr3_Total, 862090,  2
+ FR53,   JZ,    ***2_tr3_LL,   9341,  1
+ FR53,   JZ,    ***2_tr3_SP, 852749,  1
+ FR53,   JZ,    2_tr3_Total, 862090,  2
+ FR53,   JZ,Total_tr3_Total, 862090,  2
+ FR53,   MN,    ***2_tr3_LL,   8013,  1
+ FR53,   MN,    2_tr3_Total,   8013,  1
+ FR53,   MN,Total_tr3_Total,   8013,  1
+ FR53,   *N,    ***2_tr3_LL,   8013,  1
+ FR53,   *N,    2_tr3_Total,   8013,  1
+ FR53,   *N,Total_tr3_Total,   8013,  1
+ FR53,Total,    ***1_tr3_SP,  25407,  2
+ FR53,Total,    1_tr3_Total,  25407,  2
+ FR53,Total,    ***2_tr3_LL,  74553,  4
+ FR53,Total,    ***2_tr3_SP, 855135,  2
+ FR53,Total,    2_tr3_Total, 929687,  6
+ FR53,Total,Total_tr3_Total, 955094,  8
+ *FR6,   BE,    ***1_tr3_LL,  29222,  2
+ *FR6,   BE,    ***1_tr3_SP, 116090,  4
+ *FR6,   BE,    1_tr3_Total, 145312,  6
+ *FR6,   BE,    ***2_tr3_SP,      0,  1
+ *FR6,   BE,    2_tr3_Total,      0,  1
+ *FR6,   BE,    ***3_tr3_LL,    530,  1
+ *FR6,   BE,    3_tr3_Total,    530,  1
+ *FR6,   BE,    ***4_tr3_LL,   7518,  1
+ *FR6,   BE,    4_tr3_Total,   7518,  1
+ *FR6,   BE,Total_tr3_Total, 153358,  9
+ *FR6,   *C,    ***1_tr3_LL,  29222,  2
+ *FR6,   *C,    ***1_tr3_SP, 116090,  4
+ *FR6,   *C,    1_tr3_Total, 145312,  6
+ *FR6,   *C,    ***2_tr3_SP,      0,  1
+ *FR6,   *C,    2_tr3_Total,      0,  1
+ *FR6,   *C,    ***3_tr3_LL,    530,  1
+ *FR6,   *C,    3_tr3_Total,    530,  1
+ *FR6,   *C,    ***4_tr3_LL,   7518,  1
+ *FR6,   *C,    4_tr3_Total,   7518,  1
+ *FR6,   *C,Total_tr3_Total, 153358,  9
+ *FR6,   *G,    ***1_tr3_SP,  25528,  2
+ *FR6,   *G,    1_tr3_Total,  25528,  2
+ *FR6,   *G,    ***2_tr3_SP,  79208,  2
+ *FR6,   *G,    2_tr3_Total,  79208,  2
+ *FR6,   *G,Total_tr3_Total, 104735,  4
+ *FR6,   GI,    ***1_tr3_SP,  31618,  4
+ *FR6,   GI,    1_tr3_Total,  31618,  4
+ *FR6,   GI,    ***2_tr3_SP,  79208,  2
+ *FR6,   GI,    2_tr3_Total,  79208,  2
+ *FR6,   GI,    ***3_tr3_LL,  13855,  1
+ *FR6,   GI,    3_tr3_Total,  13855,  1
+ *FR6,   GI,Total_tr3_Total, 124680,  7
+ *FR6,   *H,    ***1_tr3_SP,   3077,  1
+ *FR6,   *H,    1_tr3_Total,   3077,  1
+ *FR6,   *H,    ***3_tr3_LL,  13855,  1
+ *FR6,   *H,    3_tr3_Total,  13855,  1
+ *FR6,   *H,Total_tr3_Total,  16931,  2
+ *FR6,   *I,    ***1_tr3_SP,   3015,  1
+ *FR6,   *I,    1_tr3_Total,   3015,  1
+ *FR6,   *I,Total_tr3_Total,   3015,  1
+ *FR6,   *J,    ***1_tr3_SP,    724,  2
+ *FR6,   *J,    1_tr3_Total,    724,  2
+ *FR6,   *J,    ***2_tr3_SP,      0,  1
+ *FR6,   *J,    2_tr3_Total,      0,  1
+ *FR6,   *J,Total_tr3_Total,    724,  3
+ *FR6,   JZ,    ***1_tr3_SP,    724,  2
+ *FR6,   JZ,    1_tr3_Total,    724,  2
+ *FR6,   JZ,    ***2_tr3_SP,      0,  1
+ *FR6,   JZ,    2_tr3_Total,      0,  1
+ *FR6,   JZ,Total_tr3_Total,    724,  3
+ *FR6,   *M,    ***1_tr3_LL,   4813,  1
+ *FR6,   *M,    1_tr3_Total,   4813,  1
+ *FR6,   *M,Total_tr3_Total,   4813,  1
+ *FR6,   MN,    ***1_tr3_LL,   4813,  1
+ *FR6,   MN,    1_tr3_Total,   4813,  1
+ *FR6,   MN,    ***2_tr3_LL,    510,  1
+ *FR6,   MN,    2_tr3_Total,    510,  1
+ *FR6,   MN,Total_tr3_Total,   5322,  2
+ *FR6,   *N,    ***2_tr3_LL,    510,  1
+ *FR6,   *N,    2_tr3_Total,    510,  1
+ *FR6,   *N,Total_tr3_Total,    510,  1
+ *FR6,   OQ,    ***2_tr3_LL,     18,  1
+ *FR6,   OQ,    ***2_tr3_SP,   6133,  1
+ *FR6,   OQ,    2_tr3_Total,   6151,  2
+ *FR6,   OQ,Total_tr3_Total,   6151,  2
+ *FR6,   *Q,    ***2_tr3_LL,     18,  1
+ *FR6,   *Q,    ***2_tr3_SP,   6133,  1
+ *FR6,   *Q,    2_tr3_Total,   6151,  2
+ *FR6,   *Q,Total_tr3_Total,   6151,  2
+ *FR6,   RU,    ***1_tr3_SP,    436,  1
+ *FR6,   RU,    1_tr3_Total,    436,  1
+ *FR6,   RU,Total_tr3_Total,    436,  1
+ *FR6,   *S,    ***1_tr3_SP,    436,  1
+ *FR6,   *S,    1_tr3_Total,    436,  1
+ *FR6,   *S,Total_tr3_Total,    436,  1
+ *FR6,Total,    ***1_tr3_LL,  34034,  3
+ *FR6,Total,    ***1_tr3_SP, 148867, 11
+ *FR6,Total,    1_tr3_Total, 182900, 14
+ *FR6,Total,    ***2_tr3_LL,    528,  2
+ *FR6,Total,    ***2_tr3_SP,  85341,  5
+ *FR6,Total,    2_tr3_Total,  85869,  7
+ *FR6,Total,    ***3_tr3_LL,  14385,  2
+ *FR6,Total,    3_tr3_Total,  14385,  2
+ *FR6,Total,    ***4_tr3_LL,   7518,  1
+ *FR6,Total,    4_tr3_Total,   7518,  1
+ *FR6,Total,Total_tr3_Total, 290670, 24
+ FR61,   BE,    ***1_tr3_LL,  29222,  2
+ FR61,   BE,    ***1_tr3_SP,  70715,  3
+ FR61,   BE,    1_tr3_Total,  99937,  5
+ FR61,   BE,Total_tr3_Total,  99937,  5
+ FR61,   *C,    ***1_tr3_LL,  29222,  2
+ FR61,   *C,    ***1_tr3_SP,  70715,  3
+ FR61,   *C,    1_tr3_Total,  99937,  5
+ FR61,   *C,Total_tr3_Total,  99937,  5
+ FR61,   *G,    ***1_tr3_SP,  15151,  1
+ FR61,   *G,    1_tr3_Total,  15151,  1
+ FR61,   *G,    ***2_tr3_SP,  62318,  1
+ FR61,   *G,    2_tr3_Total,  62318,  1
+ FR61,   *G,Total_tr3_Total,  77469,  2
+ FR61,   GI,    ***1_tr3_SP,  15151,  1
+ FR61,   GI,    1_tr3_Total,  15151,  1
+ FR61,   GI,    ***2_tr3_SP,  62318,  1
+ FR61,   GI,    2_tr3_Total,  62318,  1
+ FR61,   GI,    ***3_tr3_LL,  13855,  1
+ FR61,   GI,    3_tr3_Total,  13855,  1
+ FR61,   GI,Total_tr3_Total,  91323,  3
+ FR61,   *H,    ***3_tr3_LL,  13855,  1
+ FR61,   *H,    3_tr3_Total,  13855,  1
+ FR61,   *H,Total_tr3_Total,  13855,  1
+ FR61,   *J,    ***1_tr3_SP,    724,  2
+ FR61,   *J,    1_tr3_Total,    724,  2
+ FR61,   *J,Total_tr3_Total,    724,  2
+ FR61,   JZ,    ***1_tr3_SP,    724,  2
+ FR61,   JZ,    1_tr3_Total,    724,  2
+ FR61,   JZ,Total_tr3_Total,    724,  2
+ FR61,   MN,    ***2_tr3_LL,    510,  1
+ FR61,   MN,    2_tr3_Total,    510,  1
+ FR61,   MN,Total_tr3_Total,    510,  1
+ FR61,   *N,    ***2_tr3_LL,    510,  1
+ FR61,   *N,    2_tr3_Total,    510,  1
+ FR61,   *N,Total_tr3_Total,    510,  1
+ FR61,   OQ,    ***2_tr3_LL,     18,  1
+ FR61,   OQ,    2_tr3_Total,     18,  1
+ FR61,   OQ,Total_tr3_Total,     18,  1
+ FR61,   *Q,    ***2_tr3_LL,     18,  1
+ FR61,   *Q,    2_tr3_Total,     18,  1
+ FR61,   *Q,Total_tr3_Total,     18,  1
+ FR61,Total,    ***1_tr3_LL,  29222,  2
+ FR61,Total,    ***1_tr3_SP,  86589,  6
+ FR61,Total,    1_tr3_Total, 115811,  8
+ FR61,Total,    ***2_tr3_LL,    528,  2
+ FR61,Total,    ***2_tr3_SP,  62318,  1
+ FR61,Total,    2_tr3_Total,  62846,  3
+ FR61,Total,    ***3_tr3_LL,  13855,  1
+ FR61,Total,    3_tr3_Total,  13855,  1
+ FR61,Total,Total_tr3_Total, 192511, 12
+ FR62,   BE,    ***3_tr3_LL,    530,  1
+ FR62,   BE,    3_tr3_Total,    530,  1
+ FR62,   BE,    ***4_tr3_LL,   7518,  1
+ FR62,   BE,    4_tr3_Total,   7518,  1
+ FR62,   BE,Total_tr3_Total,   8047,  2
+ FR62,   *C,    ***3_tr3_LL,    530,  1
+ FR62,   *C,    3_tr3_Total,    530,  1
+ FR62,   *C,    ***4_tr3_LL,   7518,  1
+ FR62,   *C,    4_tr3_Total,   7518,  1
+ FR62,   *C,Total_tr3_Total,   8047,  2
+ FR62,   *G,    ***1_tr3_SP,  10377,  1
+ FR62,   *G,    1_tr3_Total,  10377,  1
+ FR62,   *G,    ***2_tr3_SP,  16890,  1
+ FR62,   *G,    2_tr3_Total,  16890,  1
+ FR62,   *G,Total_tr3_Total,  27267,  2
+ FR62,   GI,    ***1_tr3_SP,  16468,  3
+ FR62,   GI,    1_tr3_Total,  16468,  3
+ FR62,   GI,    ***2_tr3_SP,  16890,  1
+ FR62,   GI,    2_tr3_Total,  16890,  1
+ FR62,   GI,Total_tr3_Total,  33357,  4
+ FR62,   *H,    ***1_tr3_SP,   3077,  1
+ FR62,   *H,    1_tr3_Total,   3077,  1
+ FR62,   *H,Total_tr3_Total,   3077,  1
+ FR62,   *I,    ***1_tr3_SP,   3015,  1
+ FR62,   *I,    1_tr3_Total,   3015,  1
+ FR62,   *I,Total_tr3_Total,   3015,  1
+ FR62,   *J,    ***2_tr3_SP,      0,  1
+ FR62,   *J,    2_tr3_Total,      0,  1
+ FR62,   *J,Total_tr3_Total,      0,  1
+ FR62,   JZ,    ***2_tr3_SP,      0,  1
+ FR62,   JZ,    2_tr3_Total,      0,  1
+ FR62,   JZ,Total_tr3_Total,      0,  1
+ FR62,   *M,    ***1_tr3_LL,   4813,  1
+ FR62,   *M,    1_tr3_Total,   4813,  1
+ FR62,   *M,Total_tr3_Total,   4813,  1
+ FR62,   MN,    ***1_tr3_LL,   4813,  1
+ FR62,   MN,    1_tr3_Total,   4813,  1
+ FR62,   MN,Total_tr3_Total,   4813,  1
+ FR62,   OQ,    ***2_tr3_SP,   6133,  1
+ FR62,   OQ,    2_tr3_Total,   6133,  1
+ FR62,   OQ,Total_tr3_Total,   6133,  1
+ FR62,   *Q,    ***2_tr3_SP,   6133,  1
+ FR62,   *Q,    2_tr3_Total,   6133,  1
+ FR62,   *Q,Total_tr3_Total,   6133,  1
+ FR62,Total,    ***1_tr3_LL,   4813,  1
+ FR62,Total,    ***1_tr3_SP,  16468,  3
+ FR62,Total,    1_tr3_Total,  21280,  4
+ FR62,Total,    ***2_tr3_SP,  23023,  3
+ FR62,Total,    2_tr3_Total,  23023,  3
+ FR62,Total,    ***3_tr3_LL,    530,  1
+ FR62,Total,    3_tr3_Total,    530,  1
+ FR62,Total,    ***4_tr3_LL,   7518,  1
+ FR62,Total,    4_tr3_Total,   7518,  1
+ FR62,Total,Total_tr3_Total,  52349,  9
+ FR63,   BE,    ***1_tr3_SP,  45375,  1
+ FR63,   BE,    1_tr3_Total,  45375,  1
+ FR63,   BE,    ***2_tr3_SP,      0,  1
+ FR63,   BE,    2_tr3_Total,      0,  1
+ FR63,   BE,Total_tr3_Total,  45375,  2
+ FR63,   *C,    ***1_tr3_SP,  45375,  1
+ FR63,   *C,    1_tr3_Total,  45375,  1
+ FR63,   *C,    ***2_tr3_SP,      0,  1
+ FR63,   *C,    2_tr3_Total,      0,  1
+ FR63,   *C,Total_tr3_Total,  45375,  2
+ FR63,   RU,    ***1_tr3_SP,    436,  1
+ FR63,   RU,    1_tr3_Total,    436,  1
+ FR63,   RU,Total_tr3_Total,    436,  1
+ FR63,   *S,    ***1_tr3_SP,    436,  1
+ FR63,   *S,    1_tr3_Total,    436,  1
+ FR63,   *S,Total_tr3_Total,    436,  1
+ FR63,Total,    ***1_tr3_SP,  45811,  2
+ FR63,Total,    1_tr3_Total,  45811,  2
+ FR63,Total,    ***2_tr3_SP,      0,  1
+ FR63,Total,    2_tr3_Total,      0,  1
+ FR63,Total,Total_tr3_Total,  45811,  3
+ *FR7,   BE,    ***1_tr3_SP, 762433,  5
+ *FR7,   BE,    1_tr3_Total, 762433,  5
+ *FR7,   BE,    ***2_tr3_LL,      0,  1
+ *FR7,   BE,    ***2_tr3_SP,  35957,  1
+ *FR7,   BE,    2_tr3_Total,  35957,  2
+ *FR7,   BE,    ***4_tr3_LL, 128295,  1
+ *FR7,   BE,    4_tr3_Total, 128295,  1
+ *FR7,   BE,Total_tr3_Total, 926685,  8
+ *FR7,   *C,    ***1_tr3_SP, 717025,  4
+ *FR7,   *C,    1_tr3_Total, 717025,  4
+ *FR7,   *C,    ***2_tr3_LL,      0,  1
+ *FR7,   *C,    ***2_tr3_SP,  35957,  1
+ *FR7,   *C,    2_tr3_Total,  35957,  2
+ *FR7,   *C,    ***4_tr3_LL, 128295,  1
+ *FR7,   *C,    4_tr3_Total, 128295,  1
+ *FR7,   *C,Total_tr3_Total, 881276,  7
+ *FR7,   *E,    ***1_tr3_SP,  45409,  1
+ *FR7,   *E,    1_tr3_Total,  45409,  1
+ *FR7,   *E,Total_tr3_Total,  45409,  1
+ *FR7,   *F,    ***2_tr3_LL,   3729,  1
+ *FR7,   *F,    2_tr3_Total,   3729,  1
+ *FR7,   *F,Total_tr3_Total,   3729,  1
+ *FR7,   FZ,    ***2_tr3_LL,   3729,  1
+ *FR7,   FZ,    2_tr3_Total,   3729,  1
+ *FR7,   FZ,Total_tr3_Total,   3729,  1
+ *FR7,   *G,    ***1_tr3_LL,  12205,  2
+ *FR7,   *G,    ***1_tr3_SP,   6119,  1
+ *FR7,   *G,    1_tr3_Total,  18324,  3
+ *FR7,   *G,    ***2_tr3_LL,   5950,  1
+ *FR7,   *G,    ***2_tr3_SP,  89358,  2
+ *FR7,   *G,    2_tr3_Total,  95308,  3
+ *FR7,   *G,Total_tr3_Total, 113631,  6
+ *FR7,   GI,    ***1_tr3_LL,  17069,  3
+ *FR7,   GI,    ***1_tr3_SP,   6119,  1
+ *FR7,   GI,    1_tr3_Total,  23187,  4
+ *FR7,   GI,    ***2_tr3_LL,  77853,  3
+ *FR7,   GI,    ***2_tr3_SP,  89358,  2
+ *FR7,   GI,    2_tr3_Total, 167211,  5
+ *FR7,   GI,    ***3_tr3_LL,   1239,  1
+ *FR7,   GI,    3_tr3_Total,   1239,  1
+ *FR7,   GI,Total_tr3_Total, 191636, 10
+ *FR7,   *H,    ***1_tr3_LL,   4864,  1
+ *FR7,   *H,    1_tr3_Total,   4864,  1
+ *FR7,   *H,    ***2_tr3_LL,  71904,  2
+ *FR7,   *H,    2_tr3_Total,  71904,  2
+ *FR7,   *H,    ***3_tr3_LL,   1239,  1
+ *FR7,   *H,    3_tr3_Total,   1239,  1
+ *FR7,   *H,Total_tr3_Total,  78006,  4
+ *FR7,   *J,    ***1_tr3_SP,  28669,  1
+ *FR7,   *J,    1_tr3_Total,  28669,  1
+ *FR7,   *J,Total_tr3_Total,  28669,  1
+ *FR7,   JZ,    ***1_tr3_SP,  28669,  1
+ *FR7,   JZ,    1_tr3_Total,  28669,  1
+ *FR7,   JZ,Total_tr3_Total,  28669,  1
+ *FR7,   *M,    ***1_tr3_SP,  13574,  1
+ *FR7,   *M,    1_tr3_Total,  13574,  1
+ *FR7,   *M,    ***3_tr3_LL,   9491,  2
+ *FR7,   *M,    3_tr3_Total,   9491,  2
+ *FR7,   *M,Total_tr3_Total,  23064,  3
+ *FR7,   MN,    ***1_tr3_SP,  17002,  3
+ *FR7,   MN,    1_tr3_Total,  17002,  3
+ *FR7,   MN,    ***3_tr3_LL,   9491,  2
+ *FR7,   MN,    3_tr3_Total,   9491,  2
+ *FR7,   MN,Total_tr3_Total,  26492,  5
+ *FR7,   *N,    ***1_tr3_SP,   3428,  2
+ *FR7,   *N,    1_tr3_Total,   3428,  2
+ *FR7,   *N,Total_tr3_Total,   3428,  2
+ *FR7,   OQ,    ***2_tr3_LL,   1521,  1
+ *FR7,   OQ,    2_tr3_Total,   1521,  1
+ *FR7,   OQ,Total_tr3_Total,   1521,  1
+ *FR7,   *P,    ***2_tr3_LL,   1521,  1
+ *FR7,   *P,    2_tr3_Total,   1521,  1
+ *FR7,   *P,Total_tr3_Total,   1521,  1
+ *FR7,Total,    ***1_tr3_LL,  17069,  3
+ *FR7,Total,    ***1_tr3_SP, 814222, 10
+ *FR7,Total,    1_tr3_Total, 831290, 13
+ *FR7,Total,    ***2_tr3_LL,  83102,  6
+ *FR7,Total,    ***2_tr3_SP, 125315,  3
+ *FR7,Total,    2_tr3_Total, 208417,  9
+ *FR7,Total,    ***3_tr3_LL,  10729,  3
+ *FR7,Total,    3_tr3_Total,  10729,  3
+ *FR7,Total,    ***4_tr3_LL, 128295,  1
+ *FR7,Total,    4_tr3_Total, 128295,  1
+ *FR7,Total,Total_tr3_Total,1178730, 26
+ FR71,   BE,    ***1_tr3_SP, 738507,  4
+ FR71,   BE,    1_tr3_Total, 738507,  4
+ FR71,   BE,    ***2_tr3_LL,      0,  1
+ FR71,   BE,    ***2_tr3_SP,  35957,  1
+ FR71,   BE,    2_tr3_Total,  35957,  2
+ FR71,   BE,    ***4_tr3_LL, 128295,  1
+ FR71,   BE,    4_tr3_Total, 128295,  1
+ FR71,   BE,Total_tr3_Total, 902758,  7
+ FR71,   *C,    ***1_tr3_SP, 693099,  3
+ FR71,   *C,    1_tr3_Total, 693099,  3
+ FR71,   *C,    ***2_tr3_LL,      0,  1
+ FR71,   *C,    ***2_tr3_SP,  35957,  1
+ FR71,   *C,    2_tr3_Total,  35957,  2
+ FR71,   *C,    ***4_tr3_LL, 128295,  1
+ FR71,   *C,    4_tr3_Total, 128295,  1
+ FR71,   *C,Total_tr3_Total, 857350,  6
+ FR71,   *E,    ***1_tr3_SP,  45409,  1
+ FR71,   *E,    1_tr3_Total,  45409,  1
+ FR71,   *E,Total_tr3_Total,  45409,  1
+ FR71,   *G,    ***1_tr3_LL,  12205,  2
+ FR71,   *G,    ***1_tr3_SP,   6119,  1
+ FR71,   *G,    1_tr3_Total,  18324,  3
+ FR71,   *G,    ***2_tr3_LL,   5950,  1
+ FR71,   *G,    ***2_tr3_SP,  84978,  1
+ FR71,   *G,    2_tr3_Total,  90927,  2
+ FR71,   *G,Total_tr3_Total, 109250,  5
+ FR71,   GI,    ***1_tr3_LL,  17069,  3
+ FR71,   GI,    ***1_tr3_SP,   6119,  1
+ FR71,   GI,    1_tr3_Total,  23187,  4
+ FR71,   GI,    ***2_tr3_LL,  77853,  3
+ FR71,   GI,    ***2_tr3_SP,  84978,  1
+ FR71,   GI,    2_tr3_Total, 162831,  4
+ FR71,   GI,    ***3_tr3_LL,   1239,  1
+ FR71,   GI,    3_tr3_Total,   1239,  1
+ FR71,   GI,Total_tr3_Total, 187256,  9
+ FR71,   *H,    ***1_tr3_LL,   4864,  1
+ FR71,   *H,    1_tr3_Total,   4864,  1
+ FR71,   *H,    ***2_tr3_LL,  71904,  2
+ FR71,   *H,    2_tr3_Total,  71904,  2
+ FR71,   *H,    ***3_tr3_LL,   1239,  1
+ FR71,   *H,    3_tr3_Total,   1239,  1
+ FR71,   *H,Total_tr3_Total,  78006,  4
+ FR71,   *J,    ***1_tr3_SP,  28669,  1
+ FR71,   *J,    1_tr3_Total,  28669,  1
+ FR71,   *J,Total_tr3_Total,  28669,  1
+ FR71,   JZ,    ***1_tr3_SP,  28669,  1
+ FR71,   JZ,    1_tr3_Total,  28669,  1
+ FR71,   JZ,Total_tr3_Total,  28669,  1
+ FR71,   *M,    ***1_tr3_SP,  13574,  1
+ FR71,   *M,    1_tr3_Total,  13574,  1
+ FR71,   *M,    ***3_tr3_LL,   6764,  1
+ FR71,   *M,    3_tr3_Total,   6764,  1
+ FR71,   *M,Total_tr3_Total,  20337,  2
+ FR71,   MN,    ***1_tr3_SP,  17002,  3
+ FR71,   MN,    1_tr3_Total,  17002,  3
+ FR71,   MN,    ***3_tr3_LL,   6764,  1
+ FR71,   MN,    3_tr3_Total,   6764,  1
+ FR71,   MN,Total_tr3_Total,  23765,  4
+ FR71,   *N,    ***1_tr3_SP,   3428,  2
+ FR71,   *N,    1_tr3_Total,   3428,  2
+ FR71,   *N,Total_tr3_Total,   3428,  2
+ FR71,   OQ,    ***2_tr3_LL,   1521,  1
+ FR71,   OQ,    2_tr3_Total,   1521,  1
+ FR71,   OQ,Total_tr3_Total,   1521,  1
+ FR71,   *P,    ***2_tr3_LL,   1521,  1
+ FR71,   *P,    2_tr3_Total,   1521,  1
+ FR71,   *P,Total_tr3_Total,   1521,  1
+ FR71,Total,    ***1_tr3_LL,  17069,  3
+ FR71,Total,    ***1_tr3_SP, 790296,  9
+ FR71,Total,    1_tr3_Total, 807364, 12
+ FR71,Total,    ***2_tr3_LL,  79374,  5
+ FR71,Total,    ***2_tr3_SP, 120934,  2
+ FR71,Total,    2_tr3_Total, 200308,  7
+ FR71,Total,    ***3_tr3_LL,   8003,  2
+ FR71,Total,    3_tr3_Total,   8003,  2
+ FR71,Total,    ***4_tr3_LL, 128295,  1
+ FR71,Total,    4_tr3_Total, 128295,  1
+ FR71,Total,Total_tr3_Total,1143968, 22
+ FR72,   BE,    ***1_tr3_SP,  23927,  1
+ FR72,   BE,    1_tr3_Total,  23927,  1
+ FR72,   BE,Total_tr3_Total,  23927,  1
+ FR72,   *C,    ***1_tr3_SP,  23927,  1
+ FR72,   *C,    1_tr3_Total,  23927,  1
+ FR72,   *C,Total_tr3_Total,  23927,  1
+ FR72,   *F,    ***2_tr3_LL,   3729,  1
+ FR72,   *F,    2_tr3_Total,   3729,  1
+ FR72,   *F,Total_tr3_Total,   3729,  1
+ FR72,   FZ,    ***2_tr3_LL,   3729,  1
+ FR72,   FZ,    2_tr3_Total,   3729,  1
+ FR72,   FZ,Total_tr3_Total,   3729,  1
+ FR72,   *G,    ***2_tr3_SP,   4381,  1
+ FR72,   *G,    2_tr3_Total,   4381,  1
+ FR72,   *G,Total_tr3_Total,   4381,  1
+ FR72,   GI,    ***2_tr3_SP,   4381,  1
+ FR72,   GI,    2_tr3_Total,   4381,  1
+ FR72,   GI,Total_tr3_Total,   4381,  1
+ FR72,   *M,    ***3_tr3_LL,   2727,  1
+ FR72,   *M,    3_tr3_Total,   2727,  1
+ FR72,   *M,Total_tr3_Total,   2727,  1
+ FR72,   MN,    ***3_tr3_LL,   2727,  1
+ FR72,   MN,    3_tr3_Total,   2727,  1
+ FR72,   MN,Total_tr3_Total,   2727,  1
+ FR72,Total,    ***1_tr3_SP,  23927,  1
+ FR72,Total,    1_tr3_Total,  23927,  1
+ FR72,Total,    ***2_tr3_LL,   3729,  1
+ FR72,Total,    ***2_tr3_SP,   4381,  1
+ FR72,Total,    2_tr3_Total,   8109,  2
+ FR72,Total,    ***3_tr3_LL,   2727,  1
+ FR72,Total,    3_tr3_Total,   2727,  1
+ FR72,Total,Total_tr3_Total,  34762,  4
+ *FR8,   BE,    ***1_tr3_LL,  36668,  1
+ *FR8,   BE,    ***1_tr3_SP, 195324,  5
+ *FR8,   BE,    1_tr3_Total, 231991,  6
+ *FR8,   BE,    ***2_tr3_LL,  66322,  3
+ *FR8,   BE,    ***2_tr3_SP, 124422,  3
+ *FR8,   BE,    2_tr3_Total, 190743,  6
+ *FR8,   BE,Total_tr3_Total, 422734, 12
+ *FR8,   *C,    ***1_tr3_LL,  36668,  1
+ *FR8,   *C,    ***1_tr3_SP, 195324,  5
+ *FR8,   *C,    1_tr3_Total, 231991,  6
+ *FR8,   *C,    ***2_tr3_LL,  66322,  3
+ *FR8,   *C,    ***2_tr3_SP, 124422,  3
+ *FR8,   *C,    2_tr3_Total, 190743,  6
+ *FR8,   *C,Total_tr3_Total, 422734, 12
+ *FR8,   *F,    ***3_tr3_LL,   2017,  1
+ *FR8,   *F,    3_tr3_Total,   2017,  1
+ *FR8,   *F,Total_tr3_Total,   2017,  1
+ *FR8,   FZ,    ***3_tr3_LL,   2017,  1
+ *FR8,   FZ,    3_tr3_Total,   2017,  1
+ *FR8,   FZ,Total_tr3_Total,   2017,  1
+ *FR8,   *G,    ***1_tr3_SP,   6669,  1
+ *FR8,   *G,    1_tr3_Total,   6669,  1
+ *FR8,   *G,    ***2_tr3_LL,  15600,  5
+ *FR8,   *G,    2_tr3_Total,  15600,  5
+ *FR8,   *G,Total_tr3_Total,  22269,  6
+ *FR8,   GI,    ***1_tr3_SP,   6669,  1
+ *FR8,   GI,    1_tr3_Total,   6669,  1
+ *FR8,   GI,    ***2_tr3_LL,  25531,  6
+ *FR8,   GI,    2_tr3_Total,  25531,  6
+ *FR8,   GI,Total_tr3_Total,  32199,  7
+ *FR8,   *I,    ***2_tr3_LL,   9931,  1
+ *FR8,   *I,    2_tr3_Total,   9931,  1
+ *FR8,   *I,Total_tr3_Total,   9931,  1
+ *FR8,   *J,    ***2_tr3_LL,  12673,  1
+ *FR8,   *J,    2_tr3_Total,  12673,  1
+ *FR8,   *J,Total_tr3_Total,  12673,  1
+ *FR8,   JZ,    ***2_tr3_LL,  12673,  1
+ *FR8,   JZ,    2_tr3_Total,  12673,  1
+ *FR8,   JZ,Total_tr3_Total,  12673,  1
+ *FR8,   *K,    ***1_tr3_SP,  28760,  1
+ *FR8,   *K,    1_tr3_Total,  28760,  1
+ *FR8,   *K,Total_tr3_Total,  28760,  1
+ *FR8,   KZ,    ***1_tr3_SP,  28760,  1
+ *FR8,   KZ,    1_tr3_Total,  28760,  1
+ *FR8,   KZ,Total_tr3_Total,  28760,  1
+ *FR8,   *M,    ***1_tr3_LL,   4782,  1
+ *FR8,   *M,    ***1_tr3_SP,   1152,  1
+ *FR8,   *M,    1_tr3_Total,   5934,  2
+ *FR8,   *M,    ***2_tr3_LL,   3834,  1
+ *FR8,   *M,    2_tr3_Total,   3834,  1
+ *FR8,   *M,    ***3_tr3_LL,  16680,  1
+ *FR8,   *M,    3_tr3_Total,  16680,  1
+ *FR8,   *M,Total_tr3_Total,  26446,  4
+ *FR8,   MN,    ***1_tr3_LL,   7894,  2
+ *FR8,   MN,    ***1_tr3_SP,   1152,  1
+ *FR8,   MN,    1_tr3_Total,   9045,  3
+ *FR8,   MN,    ***2_tr3_LL,   3834,  1
+ *FR8,   MN,    2_tr3_Total,   3834,  1
+ *FR8,   MN,    ***3_tr3_LL,  16680,  1
+ *FR8,   MN,    3_tr3_Total,  16680,  1
+ *FR8,   MN,    ***4_tr3_LL,     90,  2
+ *FR8,   MN,    4_tr3_Total,     90,  2
+ *FR8,   MN,Total_tr3_Total,  29647,  7
+ *FR8,   *N,    ***1_tr3_LL,   3112,  1
+ *FR8,   *N,    1_tr3_Total,   3112,  1
+ *FR8,   *N,    ***4_tr3_LL,     90,  2
+ *FR8,   *N,    4_tr3_Total,     90,  2
+ *FR8,   *N,Total_tr3_Total,   3202,  3
+ *FR8,   RU,    ***1_tr3_SP,   7261,  1
+ *FR8,   RU,    1_tr3_Total,   7261,  1
+ *FR8,   RU,Total_tr3_Total,   7261,  1
+ *FR8,   *S,    ***1_tr3_SP,   7261,  1
+ *FR8,   *S,    1_tr3_Total,   7261,  1
+ *FR8,   *S,Total_tr3_Total,   7261,  1
+ *FR8,Total,    ***1_tr3_LL,  44561,  3
+ *FR8,Total,    ***1_tr3_SP, 239164,  9
+ *FR8,Total,    1_tr3_Total, 283725, 12
+ *FR8,Total,    ***2_tr3_LL, 108357, 11
+ *FR8,Total,    ***2_tr3_SP, 124422,  3
+ *FR8,Total,    2_tr3_Total, 232779, 14
+ *FR8,Total,    ***3_tr3_LL,  18696,  2
+ *FR8,Total,    3_tr3_Total,  18696,  2
+ *FR8,Total,    ***4_tr3_LL,     90,  2
+ *FR8,Total,    4_tr3_Total,     90,  2
+ *FR8,Total,Total_tr3_Total, 535288, 30
+ FR81,   BE,    ***1_tr3_SP,  21585,  1
+ FR81,   BE,    1_tr3_Total,  21585,  1
+ FR81,   BE,    ***2_tr3_LL,  26443,  1
+ FR81,   BE,    ***2_tr3_SP,  94408,  2
+ FR81,   BE,    2_tr3_Total, 120851,  3
+ FR81,   BE,Total_tr3_Total, 142436,  4
+ FR81,   *C,    ***1_tr3_SP,  21585,  1
+ FR81,   *C,    1_tr3_Total,  21585,  1
+ FR81,   *C,    ***2_tr3_LL,  26443,  1
+ FR81,   *C,    ***2_tr3_SP,  94408,  2
+ FR81,   *C,    2_tr3_Total, 120851,  3
+ FR81,   *C,Total_tr3_Total, 142436,  4
+ FR81,   GI,    ***2_tr3_LL,   9931,  1
+ FR81,   GI,    2_tr3_Total,   9931,  1
+ FR81,   GI,Total_tr3_Total,   9931,  1
+ FR81,   *I,    ***2_tr3_LL,   9931,  1
+ FR81,   *I,    2_tr3_Total,   9931,  1
+ FR81,   *I,Total_tr3_Total,   9931,  1
+ FR81,   *J,    ***2_tr3_LL,  12673,  1
+ FR81,   *J,    2_tr3_Total,  12673,  1
+ FR81,   *J,Total_tr3_Total,  12673,  1
+ FR81,   JZ,    ***2_tr3_LL,  12673,  1
+ FR81,   JZ,    2_tr3_Total,  12673,  1
+ FR81,   JZ,Total_tr3_Total,  12673,  1
+ FR81,   *M,    ***1_tr3_LL,   4782,  1
+ FR81,   *M,    ***1_tr3_SP,   1152,  1
+ FR81,   *M,    1_tr3_Total,   5934,  2
+ FR81,   *M,Total_tr3_Total,   5934,  2
+ FR81,   MN,    ***1_tr3_LL,   4782,  1
+ FR81,   MN,    ***1_tr3_SP,   1152,  1
+ FR81,   MN,    1_tr3_Total,   5934,  2
+ FR81,   MN,    ***4_tr3_LL,     90,  1
+ FR81,   MN,    4_tr3_Total,     90,  1
+ FR81,   MN,Total_tr3_Total,   6023,  3
+ FR81,   *N,    ***4_tr3_LL,     90,  1
+ FR81,   *N,    4_tr3_Total,     90,  1
+ FR81,   *N,Total_tr3_Total,     90,  1
+ FR81,Total,    ***1_tr3_LL,   4782,  1
+ FR81,Total,    ***1_tr3_SP,  22736,  2
+ FR81,Total,    1_tr3_Total,  27518,  3
+ FR81,Total,    ***2_tr3_LL,  49046,  3
+ FR81,Total,    ***2_tr3_SP,  94408,  2
+ FR81,Total,    2_tr3_Total, 143454,  5
+ FR81,Total,    ***4_tr3_LL,     90,  1
+ FR81,Total,    4_tr3_Total,     90,  1
+ FR81,Total,Total_tr3_Total, 171061,  9
+ FR82,   BE,    ***1_tr3_LL,  36668,  1
+ FR82,   BE,    ***1_tr3_SP, 173739,  4
+ FR82,   BE,    1_tr3_Total, 210407,  5
+ FR82,   BE,    ***2_tr3_LL,  28832,  1
+ FR82,   BE,    2_tr3_Total,  28832,  1
+ FR82,   BE,Total_tr3_Total, 239238,  6
+ FR82,   *C,    ***1_tr3_LL,  36668,  1
+ FR82,   *C,    ***1_tr3_SP, 173739,  4
+ FR82,   *C,    1_tr3_Total, 210407,  5
+ FR82,   *C,    ***2_tr3_LL,  28832,  1
+ FR82,   *C,    2_tr3_Total,  28832,  1
+ FR82,   *C,Total_tr3_Total, 239238,  6
+ FR82,   *F,    ***3_tr3_LL,   2017,  1
+ FR82,   *F,    3_tr3_Total,   2017,  1
+ FR82,   *F,Total_tr3_Total,   2017,  1
+ FR82,   FZ,    ***3_tr3_LL,   2017,  1
+ FR82,   FZ,    3_tr3_Total,   2017,  1
+ FR82,   FZ,Total_tr3_Total,   2017,  1
+ FR82,   *G,    ***1_tr3_SP,   6669,  1
+ FR82,   *G,    1_tr3_Total,   6669,  1
+ FR82,   *G,    ***2_tr3_LL,  15600,  5
+ FR82,   *G,    2_tr3_Total,  15600,  5
+ FR82,   *G,Total_tr3_Total,  22269,  6
+ FR82,   GI,    ***1_tr3_SP,   6669,  1
+ FR82,   GI,    1_tr3_Total,   6669,  1
+ FR82,   GI,    ***2_tr3_LL,  15600,  5
+ FR82,   GI,    2_tr3_Total,  15600,  5
+ FR82,   GI,Total_tr3_Total,  22269,  6
+ FR82,   *K,    ***1_tr3_SP,  28760,  1
+ FR82,   *K,    1_tr3_Total,  28760,  1
+ FR82,   *K,Total_tr3_Total,  28760,  1
+ FR82,   KZ,    ***1_tr3_SP,  28760,  1
+ FR82,   KZ,    1_tr3_Total,  28760,  1
+ FR82,   KZ,Total_tr3_Total,  28760,  1
+ FR82,   *M,    ***2_tr3_LL,   3834,  1
+ FR82,   *M,    2_tr3_Total,   3834,  1
+ FR82,   *M,    ***3_tr3_LL,  16680,  1
+ FR82,   *M,    3_tr3_Total,  16680,  1
+ FR82,   *M,Total_tr3_Total,  20513,  2
+ FR82,   MN,    ***1_tr3_LL,   3112,  1
+ FR82,   MN,    1_tr3_Total,   3112,  1
+ FR82,   MN,    ***2_tr3_LL,   3834,  1
+ FR82,   MN,    2_tr3_Total,   3834,  1
+ FR82,   MN,    ***3_tr3_LL,  16680,  1
+ FR82,   MN,    3_tr3_Total,  16680,  1
+ FR82,   MN,    ***4_tr3_LL,      0,  1
+ FR82,   MN,    4_tr3_Total,      0,  1
+ FR82,   MN,Total_tr3_Total,  23625,  4
+ FR82,   *N,    ***1_tr3_LL,   3112,  1
+ FR82,   *N,    1_tr3_Total,   3112,  1
+ FR82,   *N,    ***4_tr3_LL,      0,  1
+ FR82,   *N,    4_tr3_Total,      0,  1
+ FR82,   *N,Total_tr3_Total,   3112,  2
+ FR82,   RU,    ***1_tr3_SP,   7261,  1
+ FR82,   RU,    1_tr3_Total,   7261,  1
+ FR82,   RU,Total_tr3_Total,   7261,  1
+ FR82,   *S,    ***1_tr3_SP,   7261,  1
+ FR82,   *S,    1_tr3_Total,   7261,  1
+ FR82,   *S,Total_tr3_Total,   7261,  1
+ FR82,Total,    ***1_tr3_LL,  39779,  2
+ FR82,Total,    ***1_tr3_SP, 216428,  7
+ FR82,Total,    1_tr3_Total, 256207,  9
+ FR82,Total,    ***2_tr3_LL,  48265,  7
+ FR82,Total,    2_tr3_Total,  48265,  7
+ FR82,Total,    ***3_tr3_LL,  18696,  2
+ FR82,Total,    3_tr3_Total,  18696,  2
+ FR82,Total,    ***4_tr3_LL,      0,  1
+ FR82,Total,    4_tr3_Total,      0,  1
+ FR82,Total,Total_tr3_Total, 323168, 19
+ FR83,   BE,    ***2_tr3_LL,  11047,  1
+ FR83,   BE,    ***2_tr3_SP,  30014,  1
+ FR83,   BE,    2_tr3_Total,  41061,  2
+ FR83,   BE,Total_tr3_Total,  41061,  2
+ FR83,   *C,    ***2_tr3_LL,  11047,  1
+ FR83,   *C,    ***2_tr3_SP,  30014,  1
+ FR83,   *C,    2_tr3_Total,  41061,  2
+ FR83,   *C,Total_tr3_Total,  41061,  2
+ FR83,Total,    ***2_tr3_LL,  11047,  1
+ FR83,Total,    ***2_tr3_SP,  30014,  1
+ FR83,Total,    2_tr3_Total,  41061,  2
+ FR83,Total,Total_tr3_Total,  41061,  2
+ *FRA,   BE,    ***1_tr3_LL,  12056,  1
+ *FRA,   BE,    ***1_tr3_SP,  52746,  1
+ *FRA,   BE,    1_tr3_Total,  64801,  2
+ *FRA,   BE,    ***2_tr3_LL,  30817,  2
+ *FRA,   BE,    2_tr3_Total,  30817,  2
+ *FRA,   BE,Total_tr3_Total,  95618,  4
+ *FRA,   *C,    ***1_tr3_LL,  12056,  1
+ *FRA,   *C,    ***1_tr3_SP,  52746,  1
+ *FRA,   *C,    1_tr3_Total,  64801,  2
+ *FRA,   *C,    ***2_tr3_LL,  30817,  2
+ *FRA,   *C,    2_tr3_Total,  30817,  2
+ *FRA,   *C,Total_tr3_Total,  95618,  4
+ *FRA,   *F,    ***1_tr3_LL,      0,  1
+ *FRA,   *F,    1_tr3_Total,      0,  1
+ *FRA,   *F,Total_tr3_Total,      0,  1
+ *FRA,   FZ,    ***1_tr3_LL,      0,  1
+ *FRA,   FZ,    1_tr3_Total,      0,  1
+ *FRA,   FZ,Total_tr3_Total,      0,  1
+ *FRA,   *G,    ***1_tr3_LL,   2892,  1
+ *FRA,   *G,    ***1_tr3_SP,  12960,  1
+ *FRA,   *G,    1_tr3_Total,  15851,  2
+ *FRA,   *G,    ***2_tr3_LL,  20462,  2
+ *FRA,   *G,    2_tr3_Total,  20462,  2
+ *FRA,   *G,Total_tr3_Total,  36313,  4
+ *FRA,   GI,    ***1_tr3_LL,  21559,  3
+ *FRA,   GI,    ***1_tr3_SP,  12960,  1
+ *FRA,   GI,    1_tr3_Total,  34518,  4
+ *FRA,   GI,    ***2_tr3_LL,  20462,  2
+ *FRA,   GI,    2_tr3_Total,  20462,  2
+ *FRA,   GI,Total_tr3_Total,  54980,  6
+ *FRA,   *H,    ***1_tr3_LL,  15817,  1
+ *FRA,   *H,    1_tr3_Total,  15817,  1
+ *FRA,   *H,Total_tr3_Total,  15817,  1
+ *FRA,   *I,    ***1_tr3_LL,   2851,  1
+ *FRA,   *I,    1_tr3_Total,   2851,  1
+ *FRA,   *I,Total_tr3_Total,   2851,  1
+ *FRA,   *J,    ***1_tr3_SP,    564,  1
+ *FRA,   *J,    1_tr3_Total,    564,  1
+ *FRA,   *J,Total_tr3_Total,    564,  1
+ *FRA,   JZ,    ***1_tr3_SP,    564,  1
+ *FRA,   JZ,    1_tr3_Total,    564,  1
+ *FRA,   JZ,Total_tr3_Total,    564,  1
+ *FRA,   *M,    ***1_tr3_LL,   2270,  1
+ *FRA,   *M,    ***1_tr3_SP,   2428,  1
+ *FRA,   *M,    1_tr3_Total,   4698,  2
+ *FRA,   *M,Total_tr3_Total,   4698,  2
+ *FRA,   MN,    ***1_tr3_LL,   2270,  1
+ *FRA,   MN,    ***1_tr3_SP,   2428,  1
+ *FRA,   MN,    1_tr3_Total,   4698,  2
+ *FRA,   MN,    ***3_tr3_LL,   2548,  1
+ *FRA,   MN,    3_tr3_Total,   2548,  1
+ *FRA,   MN,Total_tr3_Total,   7245,  3
+ *FRA,   *N,    ***3_tr3_LL,   2548,  1
+ *FRA,   *N,    3_tr3_Total,   2548,  1
+ *FRA,   *N,Total_tr3_Total,   2548,  1
+ *FRA,Total,    ***1_tr3_LL,  35884,  6
+ *FRA,Total,    ***1_tr3_SP,  68696,  4
+ *FRA,Total,    1_tr3_Total, 104580, 10
+ *FRA,Total,    ***2_tr3_LL,  51279,  4
+ *FRA,Total,    2_tr3_Total,  51279,  4
+ *FRA,Total,    ***3_tr3_LL,   2548,  1
+ *FRA,Total,    3_tr3_Total,   2548,  1
+ *FRA,Total,Total_tr3_Total, 158406, 15
+ FRA1,   *F,    ***1_tr3_LL,      0,  1
+ FRA1,   *F,    1_tr3_Total,      0,  1
+ FRA1,   *F,Total_tr3_Total,      0,  1
+ FRA1,   FZ,    ***1_tr3_LL,      0,  1
+ FRA1,   FZ,    1_tr3_Total,      0,  1
+ FRA1,   FZ,Total_tr3_Total,      0,  1
+ FRA1,   *G,    ***1_tr3_SP,  12960,  1
+ FRA1,   *G,    1_tr3_Total,  12960,  1
+ FRA1,   *G,Total_tr3_Total,  12960,  1
+ FRA1,   GI,    ***1_tr3_LL,  15817,  1
+ FRA1,   GI,    ***1_tr3_SP,  12960,  1
+ FRA1,   GI,    1_tr3_Total,  28777,  2
+ FRA1,   GI,Total_tr3_Total,  28777,  2
+ FRA1,   *H,    ***1_tr3_LL,  15817,  1
+ FRA1,   *H,    1_tr3_Total,  15817,  1
+ FRA1,   *H,Total_tr3_Total,  15817,  1
+ FRA1,   *M,    ***1_tr3_LL,   2270,  1
+ FRA1,   *M,    ***1_tr3_SP,   2428,  1
+ FRA1,   *M,    1_tr3_Total,   4698,  2
+ FRA1,   *M,Total_tr3_Total,   4698,  2
+ FRA1,   MN,    ***1_tr3_LL,   2270,  1
+ FRA1,   MN,    ***1_tr3_SP,   2428,  1
+ FRA1,   MN,    1_tr3_Total,   4698,  2
+ FRA1,   MN,Total_tr3_Total,   4698,  2
+ FRA1,Total,    ***1_tr3_LL,  18087,  3
+ FRA1,Total,    ***1_tr3_SP,  15388,  2
+ FRA1,Total,    1_tr3_Total,  33474,  5
+ FRA1,Total,Total_tr3_Total,  33474,  5
+ FRA2,   BE,    ***1_tr3_LL,  12056,  1
+ FRA2,   BE,    1_tr3_Total,  12056,  1
+ FRA2,   BE,Total_tr3_Total,  12056,  1
+ FRA2,   *C,    ***1_tr3_LL,  12056,  1
+ FRA2,   *C,    1_tr3_Total,  12056,  1
+ FRA2,   *C,Total_tr3_Total,  12056,  1
+ FRA2,   *G,    ***2_tr3_LL,   8378,  1
+ FRA2,   *G,    2_tr3_Total,   8378,  1
+ FRA2,   *G,Total_tr3_Total,   8378,  1
+ FRA2,   GI,    ***2_tr3_LL,   8378,  1
+ FRA2,   GI,    2_tr3_Total,   8378,  1
+ FRA2,   GI,Total_tr3_Total,   8378,  1
+ FRA2,   *J,    ***1_tr3_SP,    564,  1
+ FRA2,   *J,    1_tr3_Total,    564,  1
+ FRA2,   *J,Total_tr3_Total,    564,  1
+ FRA2,   JZ,    ***1_tr3_SP,    564,  1
+ FRA2,   JZ,    1_tr3_Total,    564,  1
+ FRA2,   JZ,Total_tr3_Total,    564,  1
+ FRA2,Total,    ***1_tr3_LL,  12056,  1
+ FRA2,Total,    ***1_tr3_SP,    564,  1
+ FRA2,Total,    1_tr3_Total,  12620,  2
+ FRA2,Total,    ***2_tr3_LL,   8378,  1
+ FRA2,Total,    2_tr3_Total,   8378,  1
+ FRA2,Total,Total_tr3_Total,  20997,  3
+ FRA3,   *G,    ***1_tr3_LL,   2892,  1
+ FRA3,   *G,    1_tr3_Total,   2892,  1
+ FRA3,   *G,Total_tr3_Total,   2892,  1
+ FRA3,   GI,    ***1_tr3_LL,   2892,  1
+ FRA3,   GI,    1_tr3_Total,   2892,  1
+ FRA3,   GI,Total_tr3_Total,   2892,  1
+ FRA3,   MN,    ***3_tr3_LL,   2548,  1
+ FRA3,   MN,    3_tr3_Total,   2548,  1
+ FRA3,   MN,Total_tr3_Total,   2548,  1
+ FRA3,   *N,    ***3_tr3_LL,   2548,  1
+ FRA3,   *N,    3_tr3_Total,   2548,  1
+ FRA3,   *N,Total_tr3_Total,   2548,  1
+ FRA3,Total,    ***1_tr3_LL,   2892,  1
+ FRA3,Total,    1_tr3_Total,   2892,  1
+ FRA3,Total,    ***3_tr3_LL,   2548,  1
+ FRA3,Total,    3_tr3_Total,   2548,  1
+ FRA3,Total,Total_tr3_Total,   5439,  2
+ FRA4,   BE,    ***1_tr3_SP,  52746,  1
+ FRA4,   BE,    1_tr3_Total,  52746,  1
+ FRA4,   BE,    ***2_tr3_LL,  30817,  2
+ FRA4,   BE,    2_tr3_Total,  30817,  2
+ FRA4,   BE,Total_tr3_Total,  83563,  3
+ FRA4,   *C,    ***1_tr3_SP,  52746,  1
+ FRA4,   *C,    1_tr3_Total,  52746,  1
+ FRA4,   *C,    ***2_tr3_LL,  30817,  2
+ FRA4,   *C,    2_tr3_Total,  30817,  2
+ FRA4,   *C,Total_tr3_Total,  83563,  3
+ FRA4,   *G,    ***2_tr3_LL,  12085,  1
+ FRA4,   *G,    2_tr3_Total,  12085,  1
+ FRA4,   *G,Total_tr3_Total,  12085,  1
+ FRA4,   GI,    ***1_tr3_LL,   2851,  1
+ FRA4,   GI,    1_tr3_Total,   2851,  1
+ FRA4,   GI,    ***2_tr3_LL,  12085,  1
+ FRA4,   GI,    2_tr3_Total,  12085,  1
+ FRA4,   GI,Total_tr3_Total,  14935,  2
+ FRA4,   *I,    ***1_tr3_LL,   2851,  1
+ FRA4,   *I,    1_tr3_Total,   2851,  1
+ FRA4,   *I,Total_tr3_Total,   2851,  1
+ FRA4,Total,    ***1_tr3_LL,   2851,  1
+ FRA4,Total,    ***1_tr3_SP,  52746,  1
+ FRA4,Total,    1_tr3_Total,  55596,  2
+ FRA4,Total,    ***2_tr3_LL,  42902,  3
+ FRA4,Total,    2_tr3_Total,  42902,  3
+ FRA4,Total,Total_tr3_Total,  98497,  5
+Total,   BE,    ***1_tr3_LL, 312047, 10
+Total,   BE,    ***1_tr3_SP,1980891, 31
+Total,   BE,    1_tr3_Total,2292938, 41
+Total,   BE,    ***2_tr3_LL, 132895, 11
+Total,   BE,    ***2_tr3_SP, 177991,  7
+Total,   BE,    2_tr3_Total, 310886, 18
+Total,   BE,    ***3_tr3_LL,  53675,  2
+Total,   BE,    3_tr3_Total,  53675,  2
+Total,   BE,    ***4_tr3_LL, 406620,  7
+Total,   BE,    ***4_tr3_SP,  68774,  1
+Total,   BE,    4_tr3_Total, 475393,  8
+Total,   BE,Total_tr3_Total,3132891, 69
+Total,   *C,    ***1_tr3_LL, 312047, 10
+Total,   *C,    ***1_tr3_SP,1859259, 27
+Total,   *C,    1_tr3_Total,2171306, 37
+Total,   *C,    ***2_tr3_LL, 132895, 11
+Total,   *C,    ***2_tr3_SP, 177991,  7
+Total,   *C,    2_tr3_Total, 310886, 18
+Total,   *C,    ***3_tr3_LL,  53675,  2
+Total,   *C,    3_tr3_Total,  53675,  2
+Total,   *C,    ***4_tr3_LL, 274122,  5
+Total,   *C,    ***4_tr3_SP,  68774,  1
+Total,   *C,    4_tr3_Total, 342896,  6
+Total,   *C,Total_tr3_Total,2878761, 63
+Total,   *D,    ***1_tr3_SP,  21173,  1
+Total,   *D,    1_tr3_Total,  21173,  1
+Total,   *D,Total_tr3_Total,  21173,  1
+Total,   *E,    ***1_tr3_SP, 100460,  3
+Total,   *E,    1_tr3_Total, 100460,  3
+Total,   *E,    ***4_tr3_LL, 132498,  2
+Total,   *E,    4_tr3_Total, 132498,  2
+Total,   *E,Total_tr3_Total, 232957,  5
+Total,   *F,    ***1_tr3_LL,      0,  2
+Total,   *F,    ***1_tr3_SP, 116140,  5
+Total,   *F,    1_tr3_Total, 116140,  7
+Total,   *F,    ***2_tr3_LL,   3729,  1
+Total,   *F,    2_tr3_Total,   3729,  1
+Total,   *F,    ***3_tr3_LL,   2017,  1
+Total,   *F,    3_tr3_Total,   2017,  1
+Total,   *F,    ***4_tr3_LL,  15277,  1
+Total,   *F,    4_tr3_Total,  15277,  1
+Total,   *F,Total_tr3_Total, 137161, 10
+Total,   FZ,    ***1_tr3_LL,      0,  2
+Total,   FZ,    ***1_tr3_SP, 116140,  5
+Total,   FZ,    1_tr3_Total, 116140,  7
+Total,   FZ,    ***2_tr3_LL,   3729,  1
+Total,   FZ,    2_tr3_Total,   3729,  1
+Total,   FZ,    ***3_tr3_LL,   2017,  1
+Total,   FZ,    3_tr3_Total,   2017,  1
+Total,   FZ,    ***4_tr3_LL,  15277,  1
+Total,   FZ,    4_tr3_Total,  15277,  1
+Total,   FZ,Total_tr3_Total, 137161, 10
+Total,   *G,    ***1_tr3_LL,  92504,  8
+Total,   *G,    ***1_tr3_SP,  53184,  7
+Total,   *G,    1_tr3_Total, 145688, 15
+Total,   *G,    ***2_tr3_LL, 127972, 14
+Total,   *G,    ***2_tr3_SP, 177540, 10
+Total,   *G,    2_tr3_Total, 305512, 24
+Total,   *G,    ***3_tr3_LL,  39540,  4
+Total,   *G,    3_tr3_Total,  39540,  4
+Total,   *G,Total_tr3_Total, 490738, 43
+Total,   GI,    ***1_tr3_LL, 118030, 12
+Total,   GI,    ***1_tr3_SP, 300381, 12
+Total,   GI,    1_tr3_Total, 418411, 24
+Total,   GI,    ***2_tr3_LL, 211084, 19
+Total,   GI,    ***2_tr3_SP, 197198, 14
+Total,   GI,    2_tr3_Total, 408281, 33
+Total,   GI,    ***3_tr3_LL,  63333, 10
+Total,   GI,    3_tr3_Total,  63333, 10
+Total,   GI,Total_tr3_Total, 890025, 67
+Total,   *H,    ***1_tr3_LL,  22676,  3
+Total,   *H,    ***1_tr3_SP, 244184,  3
+Total,   *H,    1_tr3_Total, 266860,  6
+Total,   *H,    ***2_tr3_LL,  73182,  3
+Total,   *H,    ***2_tr3_SP,  19658,  4
+Total,   *H,    2_tr3_Total,  92840,  7
+Total,   *H,    ***3_tr3_LL,  15489,  3
+Total,   *H,    3_tr3_Total,  15489,  3
+Total,   *H,Total_tr3_Total, 375187, 16
+Total,   *I,    ***1_tr3_LL,   2851,  1
+Total,   *I,    ***1_tr3_SP,   3015,  2
+Total,   *I,    1_tr3_Total,   5865,  3
+Total,   *I,    ***2_tr3_LL,   9931,  2
+Total,   *I,    2_tr3_Total,   9931,  2
+Total,   *I,    ***3_tr3_LL,   8305,  3
+Total,   *I,    3_tr3_Total,   8305,  3
+Total,   *I,Total_tr3_Total,  24101,  8
+Total,   *J,    ***1_tr3_LL,  19703,  2
+Total,   *J,    ***1_tr3_SP,  55701,  6
+Total,   *J,    1_tr3_Total,  75404,  8
+Total,   *J,    ***2_tr3_LL,  44629,  4
+Total,   *J,    ***2_tr3_SP, 859788,  4
+Total,   *J,    2_tr3_Total, 904416,  8
+Total,   *J,    ***3_tr3_LL,      0,  1
+Total,   *J,    3_tr3_Total,      0,  1
+Total,   *J,Total_tr3_Total, 979820, 17
+Total,   JZ,    ***1_tr3_LL,  19703,  2
+Total,   JZ,    ***1_tr3_SP,  55701,  6
+Total,   JZ,    1_tr3_Total,  75404,  8
+Total,   JZ,    ***2_tr3_LL,  44629,  4
+Total,   JZ,    ***2_tr3_SP, 859788,  4
+Total,   JZ,    2_tr3_Total, 904416,  8
+Total,   JZ,    ***3_tr3_LL,      0,  1
+Total,   JZ,    3_tr3_Total,      0,  1
+Total,   JZ,Total_tr3_Total, 979820, 17
+Total,   *K,    ***1_tr3_LL,    999,  1
+Total,   *K,    ***1_tr3_SP,  28760,  1
+Total,   *K,    1_tr3_Total,  29758,  2
+Total,   *K,Total_tr3_Total,  29758,  2
+Total,   KZ,    ***1_tr3_LL,    999,  1
+Total,   KZ,    ***1_tr3_SP,  28760,  1
+Total,   KZ,    1_tr3_Total,  29758,  2
+Total,   KZ,Total_tr3_Total,  29758,  2
+Total,   *L,    ***1_tr3_LL, 735503,  2
+Total,   *L,    1_tr3_Total, 735503,  2
+Total,   *L,    ***2_tr3_LL, 104568,  1
+Total,   *L,    2_tr3_Total, 104568,  1
+Total,   *L,    ***3_tr3_SP,   1102,  1
+Total,   *L,    3_tr3_Total,   1102,  1
+Total,   *L,Total_tr3_Total, 841171,  4
+Total,   LZ,    ***1_tr3_LL, 735503,  2
+Total,   LZ,    1_tr3_Total, 735503,  2
+Total,   LZ,    ***2_tr3_LL, 104568,  1
+Total,   LZ,    2_tr3_Total, 104568,  1
+Total,   LZ,    ***3_tr3_SP,   1102,  1
+Total,   LZ,    3_tr3_Total,   1102,  1
+Total,   LZ,Total_tr3_Total, 841171,  4
+Total,   *M,    ***1_tr3_LL,  12173,  4
+Total,   *M,    ***1_tr3_SP,  97487, 10
+Total,   *M,    1_tr3_Total, 109659, 14
+Total,   *M,    ***2_tr3_LL, 153519,  4
+Total,   *M,    ***2_tr3_SP,   1414,  1
+Total,   *M,    2_tr3_Total, 154932,  5
+Total,   *M,    ***3_tr3_LL,  26170,  3
+Total,   *M,    3_tr3_Total,  26170,  3
+Total,   *M,    ***4_tr3_LL,  40204,  2
+Total,   *M,    4_tr3_Total,  40204,  2
+Total,   *M,Total_tr3_Total, 330964, 24
+Total,   MN,    ***1_tr3_LL,  27360,  8
+Total,   MN,    ***1_tr3_SP, 105110, 14
+Total,   MN,    1_tr3_Total, 132469, 22
+Total,   MN,    ***2_tr3_LL, 164286,  9
+Total,   MN,    ***2_tr3_SP,  79906,  3
+Total,   MN,    2_tr3_Total, 244192, 12
+Total,   MN,    ***3_tr3_LL,  29007,  5
+Total,   MN,    3_tr3_Total,  29007,  5
+Total,   MN,    ***4_tr3_LL,  40430,  5
+Total,   MN,    4_tr3_Total,  40430,  5
+Total,   MN,Total_tr3_Total, 446096, 44
+Total,   *N,    ***1_tr3_LL,  15187,  4
+Total,   *N,    ***1_tr3_SP,   7624,  4
+Total,   *N,    1_tr3_Total,  22810,  8
+Total,   *N,    ***2_tr3_LL,  10768,  5
+Total,   *N,    ***2_tr3_SP,  78493,  2
+Total,   *N,    2_tr3_Total,  89260,  7
+Total,   *N,    ***3_tr3_LL,   2838,  2
+Total,   *N,    3_tr3_Total,   2838,  2
+Total,   *N,    ***4_tr3_LL,    226,  3
+Total,   *N,    4_tr3_Total,    226,  3
+Total,   *N,Total_tr3_Total, 115133, 20
+Total,   OQ,    ***1_tr3_SP,   2240,  2
+Total,   OQ,    1_tr3_Total,   2240,  2
+Total,   OQ,    ***2_tr3_LL, 315338,  7
+Total,   OQ,    ***2_tr3_SP,   6240,  3
+Total,   OQ,    2_tr3_Total, 321578, 10
+Total,   OQ,    ***3_tr3_SP,   6429,  1
+Total,   OQ,    3_tr3_Total,   6429,  1
+Total,   OQ,Total_tr3_Total, 330245, 13
+Total,   *P,    ***2_tr3_LL, 242494,  2
+Total,   *P,    2_tr3_Total, 242494,  2
+Total,   *P,Total_tr3_Total, 242494,  2
+Total,   *Q,    ***1_tr3_SP,   2240,  2
+Total,   *Q,    1_tr3_Total,   2240,  2
+Total,   *Q,    ***2_tr3_LL,  72845,  5
+Total,   *Q,    ***2_tr3_SP,   6240,  3
+Total,   *Q,    2_tr3_Total,  79084,  8
+Total,   *Q,    ***3_tr3_SP,   6429,  1
+Total,   *Q,    3_tr3_Total,   6429,  1
+Total,   *Q,Total_tr3_Total,  87751, 11
+Total,   RU,    ***1_tr3_SP,   7697,  2
+Total,   RU,    1_tr3_Total,   7697,  2
+Total,   RU,Total_tr3_Total,   7697,  2
+Total,   *S,    ***1_tr3_SP,   7697,  2
+Total,   *S,    1_tr3_Total,   7697,  2
+Total,   *S,Total_tr3_Total,   7697,  2
+Total,Total,    ***1_tr3_LL,1213639, 37
+Total,Total,    ***1_tr3_SP,2596917, 73
+Total,Total,    1_tr3_Total,3810555,110
+Total,Total,    ***2_tr3_LL, 976526, 52
+Total,Total,    ***2_tr3_SP,1321121, 31
+Total,Total,    2_tr3_Total,2297646, 83
+Total,Total,    ***3_tr3_LL, 148031, 19
+Total,Total,    ***3_tr3_SP,   7530,  2
+Total,Total,    3_tr3_Total, 155561, 21
+Total,Total,    ***4_tr3_LL, 462326, 13
+Total,Total,    ***4_tr3_SP,  68774,  1
+Total,Total,    4_tr3_Total, 531099, 14
+Total,Total,Total_tr3_Total,6794860,228

@@ -1,0 +1,28 @@
+20-juil.-2023 16:46:01 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.arb
+20-juil.-2023 16:46:01 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.tab"
+20-juil.-2023 16:46:01 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.rda"
+20-juil.-2023 16:46:01 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+20-juil.-2023 16:46:01 : <SAFETYRULE> MAN(10)
+20-juil.-2023 16:46:01 : <READTABLE> 1
+20-juil.-2023 16:46:02 : Something wrong
+20-juil.-2023 16:46:02 : Code does not exist
+20-juil.-2023 16:46:02 : Error in file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.tab on line 7898.
+                       Line = Total, *FR1,Total_Total, 4277534.470207, 38452
+                       Code does not exist
+20-juil.-2023 16:46:02 : Something wrong in readTablesBatch()
+20-juil.-2023 16:46:02 : Error in batch file
+20-juil.-2023 16:46:02 : End of TauArgus run
+20-juil.-2023 16:50:54 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.arb
+20-juil.-2023 16:50:55 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.tab"
+20-juil.-2023 16:50:55 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.rda"
+20-juil.-2023 16:50:55 : <SPECIFYTABLE> "ACTIVITY""NUTS23""treff_cj"|"pizzas_tot"||
+20-juil.-2023 16:50:55 : <SAFETYRULE> MAN(10)
+20-juil.-2023 16:50:55 : <READTABLE> 1
+20-juil.-2023 16:50:55 : Something wrong
+20-juil.-2023 16:50:55 : Code does not exist
+20-juil.-2023 16:50:55 : Error in file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.tab on line 7898.
+                       Line = Total, *FR1,Total_Total, 4277534.470207, 38452
+                       Code does not exist
+20-juil.-2023 16:50:55 : Something wrong in readTablesBatch()
+20-juil.-2023 16:50:55 : Error in batch file
+20-juil.-2023 16:50:55 : End of TauArgus run

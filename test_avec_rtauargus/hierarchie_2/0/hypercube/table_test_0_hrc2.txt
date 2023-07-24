@@ -1,0 +1,63 @@
+20-juil.-2023 17:02:42 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.arb
+20-juil.-2023 17:02:42 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.tab"
+20-juil.-2023 17:02:42 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.rda"
+20-juil.-2023 17:02:42 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 17:02:42 : <SAFETYRULE> MAN(10)
+20-juil.-2023 17:02:42 : <READTABLE> 1
+20-juil.-2023 17:02:42 : Tables have been read
+20-juil.-2023 17:02:42 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst",1,",",0,0
+20-juil.-2023 17:02:42 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 17:02:42 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst has been read
+20-juil.-2023 17:02:42 : <SUPPRESS> GH(1,100)
+20-juil.-2023 17:02:42 : Start of the hypercube protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 17:02:44 : End of hypercube protection. Time used 1 seconds
+                       Number of suppressions: 146
+20-juil.-2023 17:02:44 : The hypercube procedure has been applied
+                       146 cells have been suppressed
+20-juil.-2023 17:02:44 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.csv")
+20-juil.-2023 17:02:44 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.csv
+20-juil.-2023 17:02:44 : End of TauArgus run
+20-juil.-2023 17:03:36 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.arb
+20-juil.-2023 17:03:36 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.tab"
+20-juil.-2023 17:03:36 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.rda"
+20-juil.-2023 17:03:36 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 17:03:36 : <SAFETYRULE> MAN(0)
+20-juil.-2023 17:03:36 : <READTABLE> 1
+20-juil.-2023 17:03:36 : Tables have been read
+20-juil.-2023 17:03:36 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst",1,",",0,0
+20-juil.-2023 17:03:36 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 17:03:36 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst has been read
+20-juil.-2023 17:03:36 : <SUPPRESS> GH(1,100)
+20-juil.-2023 17:03:36 : Start of the hypercube protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 17:03:38 : End of hypercube protection. Time used 1 seconds
+                       Number of suppressions: 20
+20-juil.-2023 17:03:38 : The hypercube procedure has been applied
+                       20 cells have been suppressed
+20-juil.-2023 17:03:38 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.csv")
+20-juil.-2023 17:03:38 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.csv
+20-juil.-2023 17:03:38 : End of TauArgus run
+20-juil.-2023 17:04:37 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.arb
+20-juil.-2023 17:04:37 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.tab"
+20-juil.-2023 17:04:37 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.rda"
+20-juil.-2023 17:04:37 : <SPECIFYTABLE> "type_distrib""A10""treff_cj"|"pizzas_tot"||
+20-juil.-2023 17:04:37 : <SAFETYRULE> MAN(0)
+20-juil.-2023 17:04:37 : <READTABLE> 1
+20-juil.-2023 17:04:37 : Tables have been read
+20-juil.-2023 17:04:37 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst",1,",",0,0
+20-juil.-2023 17:04:37 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst has been applied
+                       to table: type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 17:04:37 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.hst has been read
+20-juil.-2023 17:04:37 : <SUPPRESS> GH(1,100)
+20-juil.-2023 17:04:37 : Start of the hypercube protection for table type_distrib x A10 x treff_cj | pizzas_tot
+20-juil.-2023 17:04:39 : End of hypercube protection. Time used 1 seconds
+                       Number of suppressions: 0
+20-juil.-2023 17:04:39 : The hypercube procedure has been applied
+                       0 cells have been suppressed
+20-juil.-2023 17:04:39 : <WRITETABLE> (1,4,,"C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.csv")
+20-juil.-2023 17:04:39 : Table: type_distrib x A10 x treff_cj | pizzas_tot has been written
+                       Output file name: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\0\hypercube\table_test_0_hrc2.csv
+20-juil.-2023 17:04:39 : End of TauArgus run

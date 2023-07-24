@@ -1,0 +1,21 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+type_distrib
+  <RECODEABLE>
+  <TOTCODE> "Total"
+A10
+  <RECODEABLE>
+  <TOTCODE> "Total"
+treff_cj
+  <RECODEABLE>
+  <TOTCODE> "Total_Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "C:\Users\ZOW2JK\Documents\stage1A_2023\output\hrc_table_test_30_cj_unif.hrc"
+  <HIERLEADSTRING> "@"
+pizzas_tot
+  <NUMERIC>
+  <DECIMALS> 6
+nb_obs
+  <FREQUENCY>

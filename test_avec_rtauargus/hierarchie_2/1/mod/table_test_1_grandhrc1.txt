@@ -1,0 +1,13 @@
+19-juil.-2023 16:04:41 : Start of batch procedure; file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_grandhrc1.arb
+19-juil.-2023 16:04:41 : <OPENTABLEDATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_grandhrc1.tab"
+19-juil.-2023 16:04:41 : <OPENMETADATA> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_grandhrc1.rda"
+19-juil.-2023 16:04:41 : <SPECIFYTABLE> "NUTS""A21""treff___cj"|"pizzas_tot"||
+19-juil.-2023 16:04:41 : <SAFETYRULE> MAN(10)
+19-juil.-2023 16:04:41 : <READTABLE> 1
+19-juil.-2023 16:04:42 : Tables have been read
+19-juil.-2023 16:04:42 : <APRIORI> "C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_grandhrc1.hst",1,",",0,0
+19-juil.-2023 16:04:42 : Apriory file: C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_grandhrc1.hst has been applied
+                       to table: NUTS x A21 x treff___cj | pizzas_tot
+19-juil.-2023 16:04:42 : Apriori file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\1\mod\table_test_1_grandhrc1.hst has been read
+19-juil.-2023 16:04:42 : <SUPPRESS> MOD(1,5,1,0,0)
+19-juil.-2023 16:04:42 : Start of the modular protection for table NUTS x A21 x treff___cj | pizzas_tot
