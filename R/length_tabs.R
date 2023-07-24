@@ -222,6 +222,7 @@ length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
     # Seul les différentes modalités de longueurs sont calculées
     # Mais on ne sait pas spécifiquement quelle longueur à la table i par exemple
     # Néanmoins ceci ne nous importe pas pour le moment
+    # Toutes les modalités apparaissent le bon nombre de fois... mais pas dans le bon ordre
     
     # Passage 5-> 4
     
@@ -257,14 +258,29 @@ length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
     
     
     nb_rows <- lapply(1:length(level_v1), function(i) {
+      
+      lapply(1:length(level_v3), function(k) {
+        
+        c( (length(level_v1[[i]]) - 1) * length(level_v3[[k]]) + 1,
+           length(level_v1[[i]]) * (length(level_v3[[k]]) - 1) + 1
+        )
+      })
+      
       lapply(1:length(level_v2), function(j) {
         lapply(1:length(level_v3), function(k) {
           
-          c( (length(level_v1[[i]]) - 1) * length(level_v3[[k]]) + 1,
-             length(level_v1[[i]]) * (length(level_v3[[k]]) - 1) + 1,
-             
-             (length(level_v2[[i]]) - 1) * length(level_v3[[k]]) + 1,
-             length(level_v2[[i]]) * (length(level_v3[[k]]) - 1) + 1
+          c(
+            rep(c((length(level_v2[[j]]) - 1) * length(level_v3[[k]]) + 1,
+                   length(level_v2[[j]]) * (length(level_v3[[k]]) - 1) + 1
+                 ),
+                times = length(level_v1[[i]])
+            ),
+          
+            rep(c((length(level_v1[[i]]) - 1) * length(level_v3[[k]]) + 1,
+                   length(level_v1[[i]]) * (length(level_v3[[k]]) - 1) + 1
+                ),
+                times = length(level_v2[[j]])
+            )
           )
         })
       })
@@ -305,28 +321,3 @@ length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
   
   return(nb_rows_tot)
 }
-
-#' 
-#' #' Vérifie si les tableaux générés auront tous une taille convenable
-#' #'
-#' #' @param dfs un data.frame
-#' #' 
-#' #' Variable dans le passage 5->4 ou 4->3
-#' #' @param v1 la première variable fusionnée
-#' #' @param v2 la seconde variable fusionnée
-#' #' 
-#' #' Variable dans le cas passage 4->3 dans le processus 4->3
-#' #' ne pas indiquer v1_v2 si trois variables fusionée en une
-#' #' @param v3 la troisième variable de départ fusionnée
-#' #' @param v4 la quatrième variable de départ fusionnée
-#' #' 
-#' #' @param hrcfiles vecteur nommé des fichiers hrc relatifs aux variables
-#' #' @param LIMIT seul limite de taille de table toléré
-#' #' 
-#' #' @return la liste des longeurs des tables créé lors de la réduction de dimension
-#' #' @export
-#' #'
-#' #' @examples
-#' length_tabs_ok_tauargus <- function(dfs,v1,v2,v3=NULL,v4=NULL,hrcfiles=NULL,LIMIT=15000){
-#'   return(!(max(unlist(length_tabs(dfs,v1,v2,v3=NULL,v4=NULL,hrcfiles=NULL))) > LIMIT))
-#' }
