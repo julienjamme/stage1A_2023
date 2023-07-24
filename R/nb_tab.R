@@ -14,17 +14,17 @@ import_hierarchy <- function(hrcfile) {
 #'
 #' @param v1 première variable fusionnée de 5 à 4
 #' @param v2 seconde variable fusionnéee de 5 à 4
-#' @param v3 variable qui est fusionnée avec v1_v2 de 4 à 3
+#' @param v3 troisième variable à fusionner (variable se fusionnant à v1 et v2 à défault si v4 non spécifié)
+#' @param v4 quatrième variable à fusionner (avec v3)
 #' @param hrcfiles liste nommée des fichiers hrc
-#' @param n_mod_v1 nombre de modalité de la variable 1
-#' @param n_mod_v2 nombre de modalité de la variable 2
+#' @param data data.frame
 #'
 #' @return
 #' @export
 #' 
-#' TODO : enlever n_mod_v1 v2 et le remplacer par data en argument
+#' TODO : généraliser e cas 3 variables en une ?
 #' @examples
-calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, n_mod_v1=NULL, n_mod_v2=NULL){
+calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
   
   # Cas dimension 5 : 2 couples créés
   if (!is.null(v4)){
@@ -63,12 +63,14 @@ calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, n_mod_v1=NUL
       # qui peut avoir deux hierarchies
       # totaux sur v1, ou totaux sur v2
       # le nombre de noeuds équivaut au nombre de modalité
-      nb_noeuds <- n_mod_v1 + n_mod_v2
+      nb_noeuds <- length(unique(data[[v1]])) + length(unique(data[[v2]]))
       
     # 1 variable hier et une non hier
     } else {
       var_hier = ifelse(v1 %in% names(hrcfiles),v1,v2)
-      mod_var_non_hier = ifelse(var_hier == v1,n_mod_v2,n_mod_v1)
+      mod_var_non_hier = ifelse(var_hier == v1,
+                                length(unique(data[[v2]])),
+                                length(unique(data[[v1]])))
       
       
       # analyse de la hierarchie de var_hier

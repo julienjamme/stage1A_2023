@@ -177,8 +177,7 @@ length(res$tabs) == calculer_nb_tab(v1="ACT",
                                     v2="GEO",
                                     v3="SEX",
                                     hrcfiles = NULL,
-                                    n_mod_v1=n_mod_v1,
-                                    n_mod_v2=n_mod_v2)
+                                    data=data)
 
 
 # test d'incohérences 1: ok
