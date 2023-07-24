@@ -18,16 +18,20 @@
 #' @param LIMIT nombre de ligne maximale autorisé dans le cas smart
 #' @param vec_sep vecteur des séparateurs candidats à utiliser
 #'
-#' @return liste(tabs, hrcs, alt_tot, vars, sep)
+#' @return liste(tabs, hrcs, alt_tot, vars, sep, totcode, hrcfiles, fus_vars)
 #' tab : liste nommée des dataframes à 3 dimensions
 #' doté de hiérarchies emboitées
 #' hrcs : liste nommée des hrc spécifiques aux variables créés
 #'            lors de la fusion pour passer en dimension 3
 #' alt_tot : liste nommée des totaux spécifiques aux variables créés
 #'              lors de la fusion pour passer en dimension 3
-#' vars : liste nommée de vecteur représentant les variables fusionnées
-#'            lors des deux étapes de réduction de dimensions
+#' vars : variable catégorielles des dataframes en sortie
 #' sep : séparateur utilisé pour lier les variables
+#' totcode : vecteur nommé des totaux pour toutes les variables catégorielles
+#' hrcfiles : liste nommée des hrc spécifiques aux variables créés
+#'              lors de la fusion pour passer en dimension 3
+#' fus_vars : liste nommée de vecteur représentant les variables fusionnées
+#'            lors des deux étapes de réduction de dimensions
 #' @export
 #'
 #' @examples
@@ -94,7 +98,6 @@ gen_tabs_5_4_to_3<-function(
     } else {
 
       if (nb_tab == 'smart'){
-        tic("Choix des variables")
         # Proposition de varibales
         choix_3_var <- choisir_var_a_fusionner_general(dfs=data,
                                                        totcode = totcode,
@@ -103,14 +106,12 @@ gen_tabs_5_4_to_3<-function(
                                                        LIMIT = LIMIT,
                                                        nb_tab = nb_tab)
         
-        print(choix_3_var)
         choix_4_var <- choisir_var_a_fusionner_general(dfs = data,
                                                        totcode = totcode,
                                                        hrcfiles = hrcfiles,
                                                        nb_var = 4,
                                                        LIMIT = LIMIT,
                                                        nb_tab = nb_tab)
-        print(choix_4_var)
         
         # Nombre de tableau généré par chaque proposition
         choix_3_var_nb_tab <- calculer_nb_tab(v1 = choix_3_var[[1]],
@@ -138,8 +139,6 @@ gen_tabs_5_4_to_3<-function(
           v3 <- choix_4_var[[3]]
           v4 <- choix_4_var[[4]]
         }
-        temps_choisir_var <- toc(log = TRUE)
-        print(temps_choisir_var$callback_msg)
       
       # Retour à l'implémentation primitive pour minimiser ou maximiser
       # le nombre de tableaux
@@ -154,7 +153,6 @@ gen_tabs_5_4_to_3<-function(
         select_hier <- if (nb_tab == 'max') TRUE else FALSE
       }
     }
-    tic("Passage de 5 à 3")
     res<-passer_de_5_a_3_var(dfs=dfs,
                              nom_dfs=nom_dfs,
                              totcode=totcode,
@@ -164,8 +162,6 @@ gen_tabs_5_4_to_3<-function(
                              v1=v1,v2=v2,v3=v3,v4=v4,
                              sep=sep,
                              select_hier = select_hier)
-    temps_reduc_dim <- toc()
-    print(temps_reduc_dim$callback_msg)
     
     return(format(res,nom_dfs,sep,totcode,hrcfiles))
     
@@ -181,7 +177,6 @@ gen_tabs_5_4_to_3<-function(
     } else {
       
       if (nb_tab == 'smart'){ 
-        tic("Choix des variables")
         choix_2_var <- choisir_var_a_fusionner_general(dfs=data,
                                                        totcode = totcode,
                                                        hrcfiles = hrcfiles,
@@ -190,8 +185,6 @@ gen_tabs_5_4_to_3<-function(
                                                        nb_tab = nb_tab)
         v1 <- choix_2_var[[1]]
         v2 <- choix_2_var[[2]]
-        temps_choisir_var <- toc(log = TRUE)
-        print(temps_choisir_var$callback_msg)
         
       # Retour à l'implémentation primitive pour minimiser ou maximiser
       # le nombre de tableaux
@@ -204,7 +197,7 @@ gen_tabs_5_4_to_3<-function(
         select_hier <- if (nb_tab == 'max') TRUE else FALSE
       }
     }
-    tic("Passage de 4 à 3")
+
     res<-passer_de_4_a_3_var(dfs=dfs,
                              nom_dfs=nom_dfs,
                              totcode=totcode,
@@ -214,9 +207,6 @@ gen_tabs_5_4_to_3<-function(
                              v1=v1,v2=v2,
                              sep=sep,
                              select_hier = select_hier)
-    temps_reduc_dim <- toc()
-    print(temps_reduc_dim$callback_msg)
-    
     
     return(format(res,nom_dfs,sep,totcode,hrcfiles))
   }

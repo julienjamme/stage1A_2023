@@ -58,30 +58,13 @@ length(res5_3$tabs)
 
 max(sapply(res5_3$tabs, nrow))
 
-# Avec ma nouvelle fonction
-# [1] "AGE" "ACT" "ECO"
-# [1] "ACT" "ECO" "AGE" "GEO"
-# Choix des variables: 10.66 sec elapsed
-# [1] "Choix des variables: 10.66 sec elapsed"
-# Passage de 5 à 3: 8.78 sec elapsed
-# [1] "Passage de 5 à 3: 8.78 sec elapsed"
-# > min_tab <- length(res5_3$tabs)
-# > 
-#   > max(sapply(res5_3$tabs, nrow))
-# [1] 1050
-# > min_tab
-# [1] 24
 
-# Avec l'ancienne
 # Passage de 5 à 3: 9.97 sec elapsed
-# [1] "Passage de 5 à 3: 9.97 sec elapsed"
 # > length(res5_3$tabs)
 # [1] 24
 # > 
-#   > max(sapply(res5_3$tabs, nrow))
+# > max(sapply(res5_3$tabs, nrow))
 # [1] 1050
-
-# -> On gagne ~12-1 = 11 s pour un résultat identique
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
                             sep_dir= TRUE,
@@ -92,33 +75,14 @@ length(res5_3$tabs)
 
 max(sapply(res5_3$tabs, nrow))
 
-# Avec ma nouvelle fonction
-# [1] "SEX" "GEO" "ACT"
-# [1] "ACT" "SEX" "AGE" "GEO"
-# Choix des variables: 11.82 sec elapsed
-# [1] "Choix des variables: 11.82 sec elapsed"
-# Passage de 5 à 3: 128.34 sec elapsed
-# [1] "Passage de 5 à 3: 128.34 sec elapsed"
-# 
-# > max_tab <- length(res5_3$tabs)
-# > 
-#   > max(sapply(res5_3$tabs, nrow))
-# [1] 297
-# > max_tab
-# [1] 360
 
-# Avec l'ancienne
-# Passage de 5 à 3: 130.2 sec elapsed
-# [1] "Passage de 5 à 3: 130.2 sec elapsed"
+# Passage de 5 à 3: 150.2 sec elapsed
 # > 
-#   > length(res5_3$tabs)
+# > length(res5_3$tabs)
 # [1] 360
 # > 
-#   > max(sapply(res5_3$tabs, nrow))
+# > max(sapply(res5_3$tabs, nrow))
 # [1] 297
-
-# On gagne cette fois ci ~12-2 = 10s
-
 
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
@@ -130,24 +94,20 @@ length(res5_3$tabs)
 
 max(sapply(res5_3$tabs, nrow))
 
-# [1] "AGE" "GEO" "ACT"
-# [1] "ACT" "SEX" "AGE" "GEO"
 # Choix des variables: 12.08 sec elapsed
-# [1] "Choix des variables: 12.08 sec elapsed"
 # Passage de 5 à 3: 26.51 sec elapsed
-# [1] "Passage de 5 à 3: 26.51 sec elapsed"
 # > smart_tab <- length(res5_3$tabs)
 # > 
-#   > max(sapply(res5_3$tabs, nrow))
+# > max(sapply(res5_3$tabs, nrow))
 # [1] 450
 # > smart_tab
 # [1] 72
 
 # On perd certe 12s pour choisir les variables, mais
-# passer de 5-> 3 prend maintenant 26 sec au lieu de 128
-# ainsi nous gagnons 128-26-12 = 90sec
+# passer de 5-> 3 prend maintenant 26 sec au lieu de 150
+# ainsi nous gagnons 150-26-12 = 136sec = 2.3min :
 
-# + tout le temps gagné en traitant moins de tableaux dans tauargus !
+# + tout le temps futur gagné en traitant moins de tableaux dans tauargus !
 
 
 
@@ -257,6 +217,14 @@ length(res4_3$tabs)
 
 max(sapply(res4_3$tabs, nrow))
 
+# Passage de 4 à 3: 1.32 sec elapsed
+# > length(res4_3$tabs)
+# [1] 4
+# > 
+# > max(sapply(res4_3$tabs, nrow))
+# [1] 1332
+
+
 res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
                            sep_dir = sep_dir,
                            hrc_dir = hrc_dir,
@@ -266,22 +234,6 @@ length(res4_3$tabs)
 
 max(sapply(res4_3$tabs, nrow))
 
-# > res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
-#                              +                            sep_dir = sep_dir,
-#                              +                            hrc_dir = hrc_dir,
-#                              +                            nb_tab = 'max')
-# Passage de 4 à 3: 1.32 sec elapsed
-# [1] "Passage de 4 à 3: 1.32 sec elapsed"
-# > length(res4_3$tabs)
-# [1] 4
-# > 
-#   > max(sapply(res4_3$tabs, nrow))
-# [1] 1332
-# > res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
-#                              +                            sep_dir = sep_dir,
-#                              +                            hrc_dir = hrc_dir,
-#                              +                            nb_tab = 'smart',
-#                              +                            LIMIT=1600)
 # Choix des variables: 1 sec elapsed
 # [1] "Choix des variables: 1 sec elapsed"
 # Passage de 4 à 3: 1.41 sec elapsed
@@ -289,7 +241,7 @@ max(sapply(res4_3$tabs, nrow))
 # > length(res4_3$tabs)
 # [1] 4
 # > 
-#   > max(sapply(res4_3$tabs, nrow))
+# > max(sapply(res4_3$tabs, nrow))
 # [1] 1260
 # La nouvelle implémentation peut permettre de trouver des tableaux moins grands
 # à nombre de tableaux généré égaux
