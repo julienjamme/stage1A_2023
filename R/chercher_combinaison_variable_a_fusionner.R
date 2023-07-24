@@ -33,12 +33,13 @@ choisir_var_a_fusionner_general <- function(dfs,totcode,hrcfiles=NULL, nb_var = 
   
   return(choisir_var_a_fusionner(dfs = dfs,
                                  result_comb = result_comb,
+                                 totcode = totcode,
                                  hrcfiles = hrcfiles,
                                  LIMIT = LIMIT,
                                  nb_tab = nb_tab))
 }
 
-choisir_var_a_fusionner <- function(dfs,result_comb,hrcfiles=NULL, LIMIT=150, nb_tab = "smart"){
+choisir_var_a_fusionner <- function(dfs,result_comb,totcode,hrcfiles=NULL, LIMIT=150, nb_tab = "smart"){
   
   res_func <- lapply(result_comb, function(x) length_tabs(
                                                      dfs=data,
@@ -46,6 +47,7 @@ choisir_var_a_fusionner <- function(dfs,result_comb,hrcfiles=NULL, LIMIT=150, nb
                                                      v2=x[2],
                                                      v3=x[3],
                                                      v4=x[4],
+                                                     totcode=totcode,
                                                      hrcfiles=hrcfiles))
   
   # Récupération du max de ligne et du nombre de tableau créé

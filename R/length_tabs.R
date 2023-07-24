@@ -18,7 +18,7 @@
 #' @export
 #'
 #' @examples
-length_tabs <- function(dfs,v1,v2,v3=NULL,v4=NULL,hrcfiles=NULL){
+length_tabs <- function(dfs,v1,v2,v3=NULL,v4=NULL,totcode,hrcfiles=NULL){
   
   # Pour généraliser la fonction à l'emploi de NA pour une fonction externe
   v3 <- if (!is.null(v3) && is.na(v3)) NULL else v3
@@ -29,24 +29,27 @@ length_tabs <- function(dfs,v1,v2,v3=NULL,v4=NULL,hrcfiles=NULL){
     return(length_tabs_5_4_var(dfs = dfs,
                                hrcfiles = hrcfiles,
                                v1 = v1,v2 = v2,
-                               v3 = v3,v4 = v4))
+                               v3 = v3,v4 = v4,
+                               totcode = totcode))
     
     # On a renseigné 3 variables -> cas 5 dimensions, un trio fusionné
   } else if (!is.null(v3)){
     return(length_tabs_5_3_var(dfs = dfs,
                                hrcfiles = hrcfiles,
-                               v1 = v1,v2 = v2,v3 = v3))
+                               v1 = v1,v2 = v2,v3 = v3,
+                               totcode = totcode))
     
     # On a renseigné 2 variables -> cas 4 dimension
   } else {
     return(length_tabs_4(dfs = dfs,
                          hrcfiles = hrcfiles,
-                         v1 = v1,v2 = v2))
+                         v1 = v1,v2 = v2,
+                         totcode = totcode))
   }
 }
 
 # cas 4 dimensions
-length_tabs_4 <- function(dfs,v1,v2,hrcfiles=NULL){
+length_tabs_4 <- function(dfs,v1,v2,totcode,hrcfiles=NULL){
   
   # Récupération des regroupements {noeuds + branche}
   # en fonction de si la variable est hierarchique ou non
@@ -102,7 +105,7 @@ length_tabs_4 <- function(dfs,v1,v2,hrcfiles=NULL){
 }
 
 # cas 5 dimensions, deux couples de variables fusionnés
-length_tabs_5_4_var <- function(dfs,v1,v2,v3,v4,hrcfiles=NULL){
+length_tabs_5_4_var <- function(dfs,v1,v2,v3,v4,totcode,hrcfiles=NULL){
   
   # Récupération des regroupements {noeuds + branche}
   # en fonction de si la variable est hierarchique ou non
@@ -212,7 +215,7 @@ length_tabs_5_4_var <- function(dfs,v1,v2,v3,v4,hrcfiles=NULL){
 }
 
 # cas 5 dimensions, trois variables fusionnées en une
-length_tabs_5_3_var <- function(dfs,v1,v2,v3,hrcfiles=NULL){
+length_tabs_5_3_var <- function(dfs,v1,v2,v3,totcode,hrcfiles=NULL){
   
   # Au moins une variable hiérarchique
   if (length(setdiff(names(hrcfiles),c(v1,v2,v3))) != length(hrcfiles)){
