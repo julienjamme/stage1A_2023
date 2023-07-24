@@ -6,6 +6,7 @@ source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
 source("test/nb_tab_5_a_3.R",encoding = "UTF-8")
+source("R/nb_tab.R")
 
 data <- expand.grid(
 ACT = c(

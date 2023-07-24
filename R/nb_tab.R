@@ -26,6 +26,8 @@ import_hierarchy <- function(hrcfile) {
 #' @examples
 calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
   
+  # print(c("les vars",v1,v2))
+  
   # Cas dimension 5 : 2 couples créés
   if (!is.null(v4)){
     return(4 * nb_noeuds(hrcfiles = hrcfiles, v=v1) * 
@@ -51,7 +53,7 @@ calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
       # pour chacun de ses tableaux, il y a deux hierarchies possibles
       # une avec les totaux de v1, l'autre avec les totaux de v2
       # le nombre de noeuds est égal à leur nombre de modalité
-      nb_noeuds <- sum(sapply(1:length(level_v1), function(i) {
+      nb_noeuds_var <- sum(sapply(1:length(level_v1), function(i) {
                         sum(sapply(1:length(level_v2), function(j) {
                             length(level_v1[[i]]) + length(level_v2[[j]])
                             }))
@@ -63,7 +65,7 @@ calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
       # qui peut avoir deux hierarchies
       # totaux sur v1, ou totaux sur v2
       # le nombre de noeuds équivaut au nombre de modalité
-      nb_noeuds <- length(unique(data[[v1]])) + length(unique(data[[v2]]))
+      nb_noeuds_var <- length(unique(data[[v1]])) + length(unique(data[[v2]]))
       
     # 1 variable hier et une non hier
     } else {
@@ -83,7 +85,7 @@ calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
       # pour chacun de ses tableaux, il y a deux hierarchies possibles
       # une avec les totaux de v1, l'autre avec les totaux de v2
       # le nombre de noeuds est égal à leur nombre de modalité
-      nb_noeuds <- sum(sapply(1:length(level_var_hier), function(i) {
+      nb_noeuds_var <- sum(sapply(1:length(level_var_hier), function(i) {
                       length(level_var_hier[[i]]) + mod_var_non_hier
                       }))
     }
@@ -94,10 +96,11 @@ calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
     # on on crée autant de table que sa hierarchie a de noeuds
     # enfin pour chaque table créé, deux hierarchies sont possibles
     # les totaux sur v1_v2 et les totaux sur v3
-    return(2 * nb_noeuds * nb_noeuds(hrcfiles, v=v3))
+    return(2 * nb_noeuds_var * nb_noeuds(hrcfiles, v=v3))
     
   # Cas dimension 4
   } else {
+    # print(c("et après :",v1,v2))
     return(2 * nb_noeuds(hrcfiles = hrcfiles, v=v1) * 
                nb_noeuds(hrcfiles = hrcfiles, v=v2))
   }

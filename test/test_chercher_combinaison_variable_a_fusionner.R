@@ -11,8 +11,8 @@ source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
 source("R/length_tabs.R")
-source("R/nb_tab_5_a_3.R")
-source("brouillon/chercher_combinaison_variable_a_fusionner.R")
+source("R/nb_tab.R")
+source("R/chercher_combinaison_variable_a_fusionner.R")
 
 
 # -------------------------------------------------------------------------
@@ -57,8 +57,23 @@ choisir_var_a_fusionner_general(dfs=data,
                         totcode,
                         hrcfiles,
                         LIMIT=150,
-                        nb_var = 4)
-  
+                        nb_var = 2,
+                        nb_tab = 'smart')
+
+# Cohérent : on choisit deux var hier
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'max')
+
+# Cohérent : on choisit deux var non hier
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'min')
+
 dfs=data
 totcode
 hrcfiles
