@@ -1,7 +1,7 @@
 
 
 library(dplyr)
-source("R/cas_gen_4_3.R",encoding = "UTF-8")
+source("R/passage_4_3.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R")
 library(tidyr)
 library(rtauargus)

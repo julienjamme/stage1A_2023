@@ -1,0 +1,24 @@
+   <SEPARATOR> ","
+   <SAFE> "s"
+   <UNSAFE> "u"
+   <PROTECT> "p"
+NUTS
+  <RECODEABLE>
+  <TOTCODE> "Total"
+type_distrib_A10
+  <RECODEABLE>
+  <TOTCODE> "Total_Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "Z:\stage1A_2023\output\hrc_var_treff_type_distrib_unif.hrc"
+  <HIERLEADSTRING> "@"
+treff_cj
+  <RECODEABLE>
+  <TOTCODE> "Total_Total"
+  <HIERARCHICAL>
+  <HIERCODELIST> "Z:\stage1A_2023\output\hrc_var_treff_unif.hrc"
+  <HIERLEADSTRING> "@"
+pizzas_tot
+  <NUMERIC>
+  <DECIMALS> 0
+nb_obs
+  <FREQUENCY>

@@ -8,10 +8,17 @@ source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/reduce_dims.R",encoding = "UTF-8")
+<<<<<<< HEAD:test/test_fonction_general/test_fonction_general_choisit_sep_et_reduit_dim.R
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
+=======
+source("R/passage_4_3.R",encoding = "UTF-8")
+>>>>>>> 1dc07ad6575fac8ed8af7f837e0a033230478eaf:test/test_fonction_general/test_reduce_dims.R
 source("R/choisir_sep.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
+source("R/length_tabs.R",encoding = "UTF-8")
+source("R/nb_tab.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
+source("R/chercher_combinaison_variable_a_fusionner.R",encoding = "UTF-8")
 library(tictoc)
 library("rtauargus")
 loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
@@ -49,7 +56,64 @@ sep_dir <- TRUE
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
                             sep_dir= TRUE,
-                            hrc_dir = "test/test_fonction_general/test1",vec_sep =  c("\\_+"))
+                            hrc_dir = "test/test_fonction_general/test1",vec_sep =  c("\\_+"),
+                            nb_tab = 'min')
+length(res5_3$tabs)
+
+max(sapply(res5_3$tabs, nrow))
+
+
+# Passage de 5 à 3: 9.97 sec elapsed
+# > length(res5_3$tabs)
+# [1] 24
+# > 
+# > max(sapply(res5_3$tabs, nrow))
+# [1] 1050
+
+res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
+                            sep_dir= TRUE,
+                            hrc_dir = "test/test_fonction_general/test1",vec_sep =  c("\\_+"),
+                            nb_tab = 'max')
+
+length(res5_3$tabs)
+
+max(sapply(res5_3$tabs, nrow))
+
+
+# Passage de 5 à 3: 150.2 sec elapsed
+# > 
+# > length(res5_3$tabs)
+# [1] 360
+# > 
+# > max(sapply(res5_3$tabs, nrow))
+# [1] 297
+
+
+res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles, 
+                            sep_dir= TRUE,
+                            hrc_dir = "test/test_fonction_general/test1",vec_sep =  c("\\_+"),
+                            nb_tab = 'smart',
+                            LIMIT = 600)
+length(res5_3$tabs)
+
+max(sapply(res5_3$tabs, nrow))
+
+# Choix des variables: 12.08 sec elapsed
+# Passage de 5 à 3: 26.51 sec elapsed
+# > smart_tab <- length(res5_3$tabs)
+# > 
+# > max(sapply(res5_3$tabs, nrow))
+# [1] 450
+# > smart_tab
+# [1] 72
+
+# On perd certe 12s pour choisir les variables, mais
+# passer de 5-> 3 prend maintenant 26 sec au lieu de 150
+# ainsi nous gagnons 150-26-12 = 136sec = 2.3min :
+
+# + tout le temps futur gagné en traitant moins de tableaux dans tauargus !
+
+
 
 choisir_sep(data, liste_sep=c("\\_+"))
 
@@ -68,9 +132,9 @@ purrr::map2(names(res5_3$tabs), 1:length(res5_3$tabs),
 
 # Le séparateur est bien +++
 
-
-var_fusionnes <- c(paste(res5_3$vars[[1]][1],res5_3$vars[[1]][2],sep="\\_+?"),
-                   paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="\\_+?"))
+sep <- res5_3$sep
+var_fusionnes <- c(paste(res5_3$fus_vars[[1]][1],res5_3$fus_vars[[1]][2],sep=sep),
+                   paste(res5_3$fus_vars[[2]][1],res5_3$fus_vars[[2]][2],sep=sep))
 
 
 # les totaux sont bien de la forme c(v1_v2 = tot_v1_v2, ...)
@@ -143,7 +207,49 @@ hrc_dir = "test/test_fonction_general/test2"
 
 res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
                            sep_dir = sep_dir,
-                           hrc_dir = hrc_dir)
+                           hrc_dir = hrc_dir,
+                           nb_tab = 'min')
+length(res4_3$tabs)
+
+max(sapply(res4_3$tabs, nrow))
+
+res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
+                           sep_dir = sep_dir,
+                           hrc_dir = hrc_dir,
+                           nb_tab = 'max')
+length(res4_3$tabs)
+
+max(sapply(res4_3$tabs, nrow))
+
+# Passage de 4 à 3: 1.32 sec elapsed
+# > length(res4_3$tabs)
+# [1] 4
+# > 
+# > max(sapply(res4_3$tabs, nrow))
+# [1] 1332
+
+
+res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
+                           sep_dir = sep_dir,
+                           hrc_dir = hrc_dir,
+                           nb_tab = 'smart',
+                           LIMIT = 1400)
+length(res4_3$tabs)
+
+max(sapply(res4_3$tabs, nrow))
+
+# Choix des variables: 1 sec elapsed
+# [1] "Choix des variables: 1 sec elapsed"
+# Passage de 4 à 3: 1.41 sec elapsed
+# [1] "Passage de 4 à 3: 1.41 sec elapsed"
+# > length(res4_3$tabs)
+# [1] 4
+# > 
+# > max(sapply(res4_3$tabs, nrow))
+# [1] 1260
+# La nouvelle implémentation peut permettre de trouver des tableaux moins grands
+# à nombre de tableaux généré égaux
+
 str(res4_3)
 
 
@@ -162,8 +268,8 @@ purrr::map2(names(res4_3$tabs), 1:length(res4_3$tabs),
 
 # Le séparateur est bien +++
 
-
-var_fusionnes <- c(paste(res4_3$vars[1],res4_3$vars[2],sep="+++"))
+sep <- res4_3$sep
+var_fusionnes <- c(paste(res4_3$fus_vars[1],res4_3$fus_vars[2],sep=sep))
 
 
 # les totaux sont bien de la forme c(v1_v2 = tot_v1_v2, ...)
@@ -233,7 +339,7 @@ v3 = NULL
 v4 = "AGE+++ECO"
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,
-                            v1=v1,v2=v2,v3=v3,v4=v4,
+                            vars_a_fusionner = c("AGE","ECO","ACT"),
                             sep_dir = sep_dir,
                             hrc_dir = hrc_dir)
 
@@ -251,9 +357,10 @@ purrr::map2(names(res5_3$tabs), 1:length(res5_3$tabs),
   all()
 
 # Les infos relatifs aux variables fusionnés à chaque étape sont présentes
-length(res5_3$vars) == 2
+length(res5_3$fus_vars) == 2
 
-var_fusionnes <- c(paste(res5_3$vars[[2]][1],res5_3$vars[[2]][2],sep="+++"))
+sep <- res5_3$sep
+var_fusionnes <- c(paste(res5_3$fus_var[[1]],res5_3$fus_var[[2]],sep=sep))
 
 
 # les totaux sont bien de la forme c(v1_v2 = tot_v1_v2, ...)
@@ -325,7 +432,7 @@ liste_tabs_exemple <- purrr::map(
     tab %>% 
       mutate(
         is_secret_freq = nb_obs > 0 & nb_obs < 3,
-        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85 * pizzas_tot)
       ) %>% 
       mutate(
         is_secret_prim = is_secret_freq | is_secret_dom,

@@ -1,15 +1,18 @@
 library(dplyr)
 
+# Vider l'environnement global
+rm(list = ls())
+
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-source("R/cas_gen_4_3.R",encoding = "UTF-8")
+source("R/passage_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
 source("R/length_tabs.R")
-source("R/nb_tab_5_a_3.R")
-source("brouillon/chercher_combinaison_variable_a_fusionner.R")
+source("R/nb_tab.R")
+source("R/chercher_combinaison_variable_a_fusionner.R")
 
 
 # -------------------------------------------------------------------------
@@ -50,12 +53,42 @@ totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
 hrcfiles <- c(ACT = hrc_act, GEO = hrc_geo)
 
-choisir_var_a_fusionner(dfs=data,
+choisir_var_a_fusionner_general(dfs=data,
                         totcode,
                         hrcfiles,
-                        LIMIT=150)
-  
+                        LIMIT=150,
+                        nb_var = 2,
+                        nb_tab = 'smart')
 
+# Cohérent : on choisit deux var hier
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'max')
+
+# Cohérent : on choisit deux var non hier
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'min')
+
+dfs=data
+totcode
+hrcfiles
+LIMIT=150
+nb_var = 3
+v3=NULL
+V4=NULL
+
+length_tabs(dfs = data,v1 = "ACT",v2="GEO")
+
+
+dfs=dfs
+result_comb=result_comb
+hrcfiles=hrcfiles
+LIMIT=LIMIT
 # -------------------------------------------------------------------------
 
 data <- expand.grid(

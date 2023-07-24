@@ -1,0 +1,63 @@
+18-juil.-2023 09:56:46 : Start of batch procedure; file: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.arb
+18-juil.-2023 09:56:46 : <OPENTABLEDATA> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.tab"
+18-juil.-2023 09:56:46 : <OPENMETADATA> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.rda"
+18-juil.-2023 09:56:46 : <SPECIFYTABLE> "NUTS""type_distrib_A10""treff_cj"|"pizzas_tot"||
+18-juil.-2023 09:56:46 : <SAFETYRULE> MAN(10)
+18-juil.-2023 09:56:46 : <READTABLE> 1
+18-juil.-2023 09:56:47 : Tables have been read
+18-juil.-2023 09:56:47 : <APRIORI> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst",1,",",0,0
+18-juil.-2023 09:56:47 : Apriory file: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst has been applied
+                       to table: NUTS x type_distrib_A10 x treff_cj | pizzas_tot
+18-juil.-2023 09:56:47 : Apriori file Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst has been read
+18-juil.-2023 09:56:47 : <SUPPRESS> GH(1,100)
+18-juil.-2023 09:56:47 : Start of the hypercube protection for table NUTS x type_distrib_A10 x treff_cj | pizzas_tot
+18-juil.-2023 09:57:04 : End of hypercube protection. Time used 16 seconds
+                       Number of suppressions: 1439
+18-juil.-2023 09:57:04 : The hypercube procedure has been applied
+                       1439 cells have been suppressed
+18-juil.-2023 09:57:04 : <WRITETABLE> (1,4,,"Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.csv")
+18-juil.-2023 09:57:05 : Table: NUTS x type_distrib_A10 x treff_cj | pizzas_tot has been written
+                       Output file name: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.csv
+18-juil.-2023 09:57:06 : End of TauArgus run
+18-juil.-2023 10:00:11 : Start of batch procedure; file: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.arb
+18-juil.-2023 10:00:11 : <OPENTABLEDATA> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.tab"
+18-juil.-2023 10:00:11 : <OPENMETADATA> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.rda"
+18-juil.-2023 10:00:11 : <SPECIFYTABLE> "NUTS""type_distrib_A10""treff_cj"|"pizzas_tot"||
+18-juil.-2023 10:00:11 : <SAFETYRULE> MAN(0)
+18-juil.-2023 10:00:11 : <READTABLE> 1
+18-juil.-2023 10:00:12 : Tables have been read
+18-juil.-2023 10:00:12 : <APRIORI> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst",1,",",0,0
+18-juil.-2023 10:00:12 : Apriory file: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst has been applied
+                       to table: NUTS x type_distrib_A10 x treff_cj | pizzas_tot
+18-juil.-2023 10:00:12 : Apriori file Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst has been read
+18-juil.-2023 10:00:12 : <SUPPRESS> GH(1,100)
+18-juil.-2023 10:00:12 : Start of the hypercube protection for table NUTS x type_distrib_A10 x treff_cj | pizzas_tot
+18-juil.-2023 10:00:20 : End of hypercube protection. Time used 7 seconds
+                       Number of suppressions: 3
+18-juil.-2023 10:00:20 : The hypercube procedure has been applied
+                       3 cells have been suppressed
+18-juil.-2023 10:00:20 : <WRITETABLE> (1,4,,"Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.csv")
+18-juil.-2023 10:00:21 : Table: NUTS x type_distrib_A10 x treff_cj | pizzas_tot has been written
+                       Output file name: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.csv
+18-juil.-2023 10:00:22 : End of TauArgus run
+18-juil.-2023 10:03:07 : Start of batch procedure; file: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.arb
+18-juil.-2023 10:03:07 : <OPENTABLEDATA> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.tab"
+18-juil.-2023 10:03:07 : <OPENMETADATA> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.rda"
+18-juil.-2023 10:03:07 : <SPECIFYTABLE> "NUTS""type_distrib_A10""treff_cj"|"pizzas_tot"||
+18-juil.-2023 10:03:07 : <SAFETYRULE> MAN(0)
+18-juil.-2023 10:03:07 : <READTABLE> 1
+18-juil.-2023 10:03:08 : Tables have been read
+18-juil.-2023 10:03:08 : <APRIORI> "Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst",1,",",0,0
+18-juil.-2023 10:03:08 : Apriory file: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst has been applied
+                       to table: NUTS x type_distrib_A10 x treff_cj | pizzas_tot
+18-juil.-2023 10:03:08 : Apriori file Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.hst has been read
+18-juil.-2023 10:03:08 : <SUPPRESS> GH(1,100)
+18-juil.-2023 10:03:08 : Start of the hypercube protection for table NUTS x type_distrib_A10 x treff_cj | pizzas_tot
+18-juil.-2023 10:03:15 : End of hypercube protection. Time used 6 seconds
+                       Number of suppressions: 0
+18-juil.-2023 10:03:15 : The hypercube procedure has been applied
+                       0 cells have been suppressed
+18-juil.-2023 10:03:15 : <WRITETABLE> (1,4,,"Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.csv")
+18-juil.-2023 10:03:16 : Table: NUTS x type_distrib_A10 x treff_cj | pizzas_tot has been written
+                       Output file name: Z:\stage1A_2023\test_avec_rtauargus\test-table5_var\hypercurbe_1\var4.csv
+18-juil.-2023 10:03:17 : End of TauArgus run

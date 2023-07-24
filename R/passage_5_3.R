@@ -87,6 +87,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
   # Mise à jour des totaux
   totcode2 <- totcode
   totcode2 <- totcode2[!(names(totcode2) %in% c(v1f, v2f))]
+  # totcode2[[new_var]] <- 1
   
   # Mise à jour des fichiers hrc
   hrcfiles2 <- hrcfiles
@@ -99,12 +100,6 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     setdiff(names(dfs), names(hrcfiles2)),
     var_cat
   )
-  
-  # Nombre de noeud moyen de la nouvelle variable puisque
-  # elle a un fichier hrc différent par tableau !
-  nb_noeuds_new_var <- lapply(names(res_5_4$hrcs),
-                              function(x) nb_noeuds(res_5_4$hrcs, x))
-  nb_noeuds_moyen_new_var <- sum(unlist(nb_noeuds_new_var)) / length(res_5_4$hrcs)
   
   # Choix des variables pour le passage 4 -> 3 et vérification de celles renseignées en argument
   # On choisit dès maintenant v3 et v4 pour être sûr que la même variable
@@ -127,11 +122,11 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v=v3)
     if (!is.null(v4)){
       # Nous devons faire deux if différents sinon NULL != new_var fait planter !
-      if (v4 != new_var & nb_noeuds_v3 > nb_noeuds_moyen_new_var){
+      if (v4 != new_var & select_hier == TRUE){
         v3 <- new_var
       }
       # Si v4 = NULL pas besoin de comparer v4 != new_var
-    } else if (nb_noeuds_v3 > nb_noeuds_moyen_new_var){
+    } else if (select_hier == TRUE){
       v3 <- new_var
     }
   }
@@ -156,7 +151,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
     # On regarde si la variable fusionnée à moins de noeuds que la variable selectionnée
     nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v=v4)
     # Rq : v3 ne peut pas être NULL
-    if (v3 != new_var & nb_noeuds_v4 > nb_noeuds_moyen_new_var){
+    if (v3 != new_var & select_hier == TRUE){
       v4 <- new_var
     }
   }

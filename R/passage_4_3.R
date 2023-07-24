@@ -1,8 +1,9 @@
 # Renvoie la variable hierarchique avec le moins de noeuds (= sous totaux)
-plus_petit_hrc <- function(hrcfiles, totcode) {
+plus_petit_hrc <- function(hrcfiles) {
   v <- list()
   for (i in 1:length(hrcfiles)) {
-    v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
+    # v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
+    v <- append(v, nb_noeuds(hrcfiles, names(hrcfiles[i])))
   }
   indice_petit_hrc <- which.min(v)
   nom_plus_petit_hrc <- names(hrcfiles)[indice_petit_hrc]
@@ -47,15 +48,16 @@ choisir_var_priorite_non_hierarchique <- function(dfs,totcode,hrcfiles){
   }
   # Sinon on choisit la variable hierarchique avec le moins de sous totaux
   else {
-    return (plus_petit_hrc(hrcfiles,totcode))
+    return (plus_petit_hrc(hrcfiles))
   }
 }
 
 # Renvoie la variable hiérarchique avec le plus de noeuds
-plus_grand_hrc <- function(hrcfiles, totcode) {
+plus_grand_hrc <- function(hrcfiles) {
   v <- list()
   for (i in 1:length(hrcfiles)) {
-    v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
+    # v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
+    v <- append(v, nb_noeuds(hrcfiles, names(hrcfiles[i])))
   }
   indice_grand_hrc <- which.max(v)
   nom_plus_grand_hrc <- names(hrcfiles)[indice_grand_hrc]
@@ -84,7 +86,7 @@ choisir_var_priorite_hierarchique <- function(dfs, totcode, hrcfiles) {
     return(plus_grand_mod(dfs[names(dfs) %in% names(totcode)]))
   # Sinon, choisir la variable hiérarchique avec le plus de sous-totaux
   } else {
-    return(plus_grand_hrc(hrcfiles, totcode))
+    return(plus_grand_hrc(hrcfiles))
   }
 }
 
