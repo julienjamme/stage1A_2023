@@ -7,7 +7,7 @@ source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
-source("test/nb_tab_5_a_3.R",encoding = "UTF-8")
+source("R/nb_tab.R",encoding = "UTF-8")
 
 
 # test 1 : table avec 5 var non hier : 2 couples de variables créés --------
@@ -46,6 +46,8 @@ length(res$tabs) == 4 * nb_noeuds(hrcfiles = NULL, v="ACT") *
                         nb_noeuds(hrcfiles = NULL, v="GEO") * 
                         nb_noeuds(hrcfiles = NULL, v="SEX") * 
                         nb_noeuds(hrcfiles = NULL, v="AGE")
+
+length(res$tabs) == calculer_nb_tab("ACT","GEO","SEX","AGE",hrcfiles=NULL)
     
 # test d'incohérences 1: ok
 purrr::map(
@@ -230,9 +232,6 @@ do.call("rbind",res$tabs) %>%
   sum() %>% 
   `==`(0)
 
-# to do : vérifier HRC créés ???
-
-
 # test 3 : fusion de deux couples composé de 2 var hier chacun --------
 
 data <- expand.grid(
@@ -309,11 +308,13 @@ res <- passer_de_5_a_3_var(
 
 #Les variables ACt et GEO ont été fusionnées
 # On vérifie le nombre de tableau 
-# (ici nous n'avons pas 3 var fusionnées sont c'est la formule simple)
+# (ici nous n'avons pas 3 var fusionnées donc c'est la formule simple)
 length(res$tabs) == 4 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * 
                         nb_noeuds(hrcfiles = hrcfiles, v="GEO") * 
                         nb_noeuds(hrcfiles = hrcfiles, v="SEX") * 
                         nb_noeuds(hrcfiles = hrcfiles, v="AGE")
+
+length(res$tabs) == calculer_nb_tab("ACT","GEO","SEX","AGE",hrcfiles=hrcfiles)
 
 # test d'incohérences 1: ok
 purrr::map(

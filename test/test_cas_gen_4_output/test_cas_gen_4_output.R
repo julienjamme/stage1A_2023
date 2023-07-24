@@ -6,8 +6,8 @@ source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/cas_gen_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R",encoding = "UTF-8")
-
+source("test/test_nbs_tabs.R",encoding = "UTF-8") # à enlever un jour
+source("R/nb_tab.R",encoding = "UTF-8")
 
 # Test 1 data avec aucune var hier -----------------------------
 
@@ -32,16 +32,14 @@ res <- passer_de_4_a_3_var(
   totcode = totcode, 
   hrcfiles = NULL,
   sep_dir = TRUE,
-  hrc_dir = "test/test_cas_gen_4_output/test1" 
+  hrc_dir = "test/test_cas_gen_4_output/test1",
+  v1 = "SEX",
+  v2 = "AGE"
 )
 
 #Les variables ACt et GEO ont été fusionnées
 # On vérifie le nombre de tableau (ici les variables non hier ont 1 seul noeud)
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = NULL, v="ACT") * nb_noeuds(hrcfiles = NULL, v="GEO")
-
-# On a bien toutes les var non hier avec le même nombre de modalité
-# Donc les deux premières sont choisi
-all(sort(res$vars) == sort(unlist(list("ACT","GEO"))))
 
 # Test sur les valeurs
 # Reappariement avec les données de départ pour vérifier 
@@ -417,6 +415,8 @@ res <- passer_de_4_a_3_var(
 # On vérifie le nombre de tableau (ici les variables non hier ont 1 seul noeud)
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = NULL, v="SEX") * nb_noeuds(hrcfiles = NULL, v="AGE")
 
+length(res$tabs) == calculer_nb_tab("SEX","AGE",hrcfiles=NULL)
+
 # Maintenant ACT est hier donc on ne le choisi pas en priorité
 # GEO,SEX etAGe ont sont non hier et ont le même nombre de modalité
 # donc on prend les deux premiers
@@ -454,7 +454,8 @@ res$tabs$tab_SEX %>%
   rename(VALUE_bis = VALUE) %>% 
   left_join(data, by = c("SEX","AGE","ACT","GEO")) %>% 
   is.na() %>% 
-  sum() # Attendu = 0 pour aucune valeur manquante aprs fusion
+  sum() %>% 
+  `==`(0) # Attendu = 0 pour aucune valeur manquante aprs fusion
 # => toutes les cellules dans tab_SEX sont dans data
 
 res$tabs$tab_AGE %>% 
@@ -462,7 +463,8 @@ res$tabs$tab_AGE %>%
   rename(VALUE_bis = VALUE) %>% 
   left_join(data, by = c("SEX","AGE","ACT","GEO")) %>% 
   is.na() %>% 
-  sum() #Attendu = 0 => toutes les valeurs de TAB_AGE sont dans data
+  sum() %>% 
+  `==`(0) #Attendu = 0 => toutes les valeurs de TAB_AGE sont dans data
 
 res$tabs$tab_AGE %>% 
   bind_rows(res$tabs$tab_SEX) %>% 
@@ -490,7 +492,8 @@ res$tabs$tab_AGE %>%
   rename(VALUE_bis = VALUE) %>% 
   full_join(data, by = c("SEX","AGE","ACT","GEO")) %>%
   is.na() %>% 
-  sum() # Attendu 0 pour aucune présence de valeurs manquantes
+  sum() %>% 
+  `==`(0) # Attendu 0 pour aucune présence de valeurs manquantes
 
 # Tests de composition: ok pour les cellules
 
@@ -505,14 +508,15 @@ res_attendu_1 <- data %>%
 res_attendu_1 %>% 
   full_join(res$tabs$tab_AGE, by = c("SEX_AGE","ACT","GEO")) %>% 
   is.na() %>% 
-  sum() # Attendu = 0 pour aucune valeur manquante
+  sum() %>% 
+  `==`(0)# Attendu = 0 pour aucune valeur manquante
 #cad aucun pb d'appariement
 
 res_attendu_1 %>% 
   full_join(res$tabs$tab_AGE, by = c("SEX_AGE","ACT","GEO")) %>% 
   summarise(nb_incoherences = sum(VALUE != VALUE_bis)) %>% 
   pull(nb_incoherences) %>% 
-  `==`(0) #Attendu 0
+  `==`(0)  #Attendu 0
 
 identical(
   res_attendu_1 %>% rename(VALUE = VALUE_bis) %>% arrange(SEX_AGE, ACT, GEO),
@@ -633,6 +637,8 @@ all(sort(res$vars) == sort(unlist(list("SEX","ACT"))))
 # Vérification du nombre de tableaux
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="SEX") * nb_noeuds(hrcfiles = hrcfiles, v="ACT")
 
+length(res$tabs) == calculer_nb_tab("SEX","ACT",hrcfiles=hrcfiles)
+
 names(res)
 res$vars
 names(res$tabs) # pb1: les noms des tables sont à revoir pour être plus explicite
@@ -720,6 +726,7 @@ purrr::map(
 
 # Test 5: quatre variables hiérarchiques -------------------------------
 
+
 data <- expand.grid(
   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
   GEO = c("Total", "GA", "GB", "GA1", "GA2", "GB1", "GB2"),
@@ -799,6 +806,7 @@ all(sort(res$vars) == sort(unlist(list("ACT","GEO"))))
 
 # Vérification du nombre de tableaux
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="GEO") * nb_noeuds(hrcfiles = hrcfiles, v="ACT")
+length(res$tabs) == calculer_nb_tab("GEO","ACT",hrcfiles=hrcfiles)
 
 names(res)
 res$vars
@@ -881,7 +889,6 @@ purrr::map(
 ) %>% 
   unlist() %>% 
   all()
-
 
 # Test 6: Fusion d'une variable hiérarchique de profondeur 4 avec var non hier------------
 
