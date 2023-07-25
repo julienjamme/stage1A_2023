@@ -405,6 +405,39 @@ all(sapply(res5_3$tabs,
                                            ))))))
 
 
+# * -----------------------------------------------------------------------
+
+data <- expand.grid(
+  ACT = c("KEBAB",read.table("hrc/hrc2.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  SEX = c("Total",read.table("hrc/hrc3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  GEO = c("Pays",read.table("hrc/hrc_REG_deep_3.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),
+  AGE = c("Ensemble","adulte","enfant"),
+  ECO = c("PIB","riche","pauvre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+data <- data %>% mutate(VALUE = runif(nrow(data)))
+hrc_files = c(ACT = "hrc/hrc2.hrc", GEO = "hrc/hrc_REG_deep_3.hrc", SEX = "hrc/hrc3.hrc" )
+
+tot_code<-c(SEX="Total",AGE="Ensemble", GEO="Pays", ACT="KEBAB", ECO = "PIB")
+
+# pour execution ligne à ligne
+dfs <- data
+nom_dfs <- "nom_data_frame"
+
+totcode <- tot_code
+hrcfiles <- hrc_files
+
+dir_name <- "test/test_fonction_general/test3"
+hrc_dir <- dir_name
+sep_dir <- TRUE
+
+res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs = "1",totcode ,hrcfiles,
+                            vars_a_fusionner = NULL,
+                            sep_dir = 1,
+                            hrc_dir = hrc_dir)
+
 # separateur --------------------------------------------------------------
 
 

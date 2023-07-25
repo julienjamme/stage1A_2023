@@ -154,7 +154,7 @@ gen_tabs_5_4_to_3<-function(
     nom_dfs,
     totcode,
     hrcfiles = NULL,
-    sep_dir=FALSE, 
+    sep_dir = FALSE, 
     hrc_dir="hrc_alt",
     vars_a_fusionner = NULL,
     vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
@@ -164,8 +164,8 @@ gen_tabs_5_4_to_3<-function(
   
   dfs <- as.data.frame(dfs)
   
-  if (any(!names(hrcfiles) %in% names(dfs))){
-    stop("Au moins une modalité de hrcfiles n'est pas présent dans dfs !")
+  if (!is.character(nom_dfs)){
+    stop("nom_dfs doit être une chaine de caractère")
   }
   
   if (any(!names(totcode) %in% names(dfs))){
@@ -184,9 +184,30 @@ gen_tabs_5_4_to_3<-function(
     stop("Dans le cas à 5 dimensions, veuillez spécifier 2 ou 3 variables ou bien laisser vars_a_fusionner à NULL !")
   }
   
+  if (any(!names(hrcfiles) %in% names(dfs))){
+    stop("Au moins une modalité de hrcfiles n'est pas présent dans dfs !")
+  }
+  
+  if (!is.logical(sep_dir)){
+    stop("sep_dir doit être logique")
+  }
+  
+  if (!is.character(hrc_dir)){
+    stop("hrc_dir doit être une chaine de caractère")
+  }
+
   if (!nb_tab %in% c('min','max','smart')){
     stop("nb_tab doit être égale à 'min', 'max' ou 'smart' !")
   }
+  
+  if (!is.null(vars_a_fusionner)){
+    if (any(!vars_a_fusionner %in% names(totcode))){
+      stop("vars_a_fusionner contient au moins une variable n'étant pas dans totcode !")
+    }
+  }
+  
+  LIMIT <- as.numeric(LIMIT)
+  
   
   # Choix du séparateur
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
