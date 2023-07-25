@@ -9,7 +9,6 @@ source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R",encoding = "UTF-8")
 source("R/length_tabs.R")
 source("R/nb_tab.R")
 source("R/chercher_combinaison_variable_a_fusionner.R")
@@ -56,7 +55,7 @@ hrcfiles <- c(ACT = hrc_act, GEO = hrc_geo)
 choisir_var_a_fusionner_general(dfs=data,
                         totcode,
                         hrcfiles,
-                        LIMIT=150,
+                        LIMIT=1,
                         nb_var = 2,
                         nb_tab = 'smart')
 

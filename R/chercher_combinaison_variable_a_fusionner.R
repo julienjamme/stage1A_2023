@@ -100,12 +100,12 @@ choisir_var_a_fusionner <- function(dfs,result_comb,totcode,hrcfiles=NULL, LIMIT
       return(result_comb[[i]])
       
     } else {
-      # warning("Pas de résultat en dessous de la limite spécifiée :
-      #        Nous renvoyons la solution la plus proche de celle voulue.")
-      
       # on renvoie le résultat ayant le moins de tableau parmis ceux
       # ayant les tableaux les moins longs
       min_res_max <- min(df$res_max)
+      warning(c("Le seuil de ",LIMIT," n'a pas été atteint.
+  Le plus gros tableau a ",min_res_max," lignes."))
+      
       filtered_df <- df[df$res_max == min_res_max, ]
       
       # indice du tableau filtré
