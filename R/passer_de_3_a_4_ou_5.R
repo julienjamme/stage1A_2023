@@ -54,14 +54,15 @@
 
 
 #Fonction permettant la séparation de la variable fusionnées v1_v2_v3 en v1,v2,v3
-separer5_3 <- function(df, v1, v2, v3, sep_regex) {
-    splits <- strsplit(df[[v1_v2_v3]], split = sep_regex)
-    df[[v3]] <- sapply(splits, `[`, 1)
-    df[[v1]] <- sapply(splits, `[`, 2)
-    df[[v2]] <- sapply(splits, `[`, 3)
-    df[[v1_v2_v3]] <- NULL
+separer5_3 <- function(df, v1, v2, v3,v3_v4, sep_regex) {
+  splits <- strsplit(df[[v3_v4]], split = sep_regex)
+  df[[v3]] <- sapply(splits, `[`, 1)
+  df[[v1]] <- sapply(splits, `[`, 2)
+  df[[v2]] <- sapply(splits, `[`, 3)
+  df[[v3_v4]] <- NULL
   df
 }
+
 
 #Fonction permettant la séparation de la variable fusionnées v1_v2 en V1 et v2 
 separer4_3 <- function(df, v1, v2, v1_v2, sep_regex) {
@@ -109,16 +110,15 @@ if (!(v1_v2 == v3 | v1_v2 == v4)) {
   
 } else {
   # Cas de fusion avec une variable déjà fusionnée
-  v1_v2_v3 <- paste(v1, v2, v3, sep = sep)  
+  v3_v4 <- paste(v3, v4, sep = sep)  
   
-  function_sep <- ifelse(v1_v2 == v3,
-                         function(df) {
-                           separer5_3(df, v2, v4,v1, sep_regex)  
-                         },
-                         function(df) {
-                           separer5_3(df, v1, v2, v3, sep_regex)
-                         })
-  result<<-function_sep(masq_liste_empilee)
+   if(v1_v2 == v3){
+     result<-separer5_3(masq_liste_empilee, v1,v2, v4, v3_v4, sep_regex)
+  }else{
+    result<-separer5_3(masq_liste_empilee, v1,v2,v3, v3_v4, sep_regex)
+
+  }
+                       
 }
 
 return(result)

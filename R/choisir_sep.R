@@ -28,7 +28,7 @@
 #' choisir_sep(data,liste_sep = liste_sep)
 #' 
 #' choisir_sep(data)
-choisir_sep <- function(data, liste_sep = c("\\_+_", "\\_!_", "\\_?_")){
+choisir_sep <- function(data, liste_sep = c("\\_+_", "\\_!_", "\\_?_","___","_z_z_z_z")){
   require(stringr)
   
   liste_var<-names(data)

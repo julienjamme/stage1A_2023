@@ -96,7 +96,7 @@ format4 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
     ),
     paste(nom_dfs, seq_along(res$tabs), sep = "")
   )
-  
+  if (lenght(hrcfiles)==0){res2<-NULL}
   #Noms des sous_totaux
   res3 <- setNames(
     lapply(
@@ -149,7 +149,7 @@ format5 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
       res2 <- format(res2, nom_dfs, sep, totcode, hrcfiles)
       
       # On garde l'information des variables fusionnés à chaque étape
-      
+      res2$fus_vars<-res$vars
       return(res2)
     }
     
@@ -178,6 +178,8 @@ format5 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
       c(list1, list2)
     }),
     paste(nom_dfs, seq_along(res$tabs), sep = ""))
+    if (lenght(hrcfiles)==0){res2<-NULL}
+    
     #Noms des sous_totaux
     
     res3 <- setNames(lapply(seq_along(res$tabs), function(i) {
