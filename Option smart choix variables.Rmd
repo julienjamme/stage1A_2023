@@ -10,9 +10,10 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Initialisation
 
-```{r}
+```{r, echo=TRUE, results='hide'}
 library(dplyr)
 library(stringr)
+library(tictoc)
 
 source("R/reduce_dims.R")
 source("R/passage_5_3.R",encoding = "UTF-8")
@@ -224,15 +225,18 @@ toc()
 Conclusion :
 
 Tableau en entré :
+
 1,051,008 lignes
+
 2 hiérarchies
 
 Sortie:
+
 | Méthode         | nombre de tableau | nombre de ligne maximale | Temps de réduction | 
 |-----------------|-------------------|--------------------------|--------------------|
-| Min             | 2                 | 985,320                  | 2.34 sec           |    
-| Max             | 492               | 5,328                    | 119.52 sec         |  
-| Smart (50,000)  | 82                | 27,328                   | 40.09 sec          |
+| Min             | 2                 | 985,320                  | 2.5 sec            |    
+| Max             | 492               | 5,328                    | 142.34 sec         |  
+| Smart (50,000)  | 82                | 27,328                   | 55.87 sec          |
 
 | Méthode         | nombre de variables hiérarchiques | 
 |-----------------|-----------------------------------|
@@ -288,10 +292,13 @@ print(c("Nombre max de ligne : ",max(sapply(res$tabs, nrow))))
 print(c("Nombre de tableau :",length(res$tabs)))
 ```
 Conclusion : 
+
 L'option smart est principalement utile dans le cas d'un gros tableau
 à plusieurs variables hiérarchiques (2+).
+
 Dans ce cas-ci l'option min pourrait avoir une sortie non utilisable 
 avec rtauargus (tableaux trop grands)
+
 Et l'option max ferait trop de tableaux ce qui ne serait pas convenable.
 
 L'option smart permet ainsi de trouver un compromis.
@@ -299,8 +306,8 @@ L'option smart permet ainsi de trouver un compromis.
 Dans le cas de la dimension 5, l'option smart est plus utile puisque l'écart
 entre l'option min et max est encore plus important.
 
-L'option "smart" est plus rapide dans la réduction de dimension lorsqu'elle
-permet d'éviter au moins 40 ou 50 tableaux par rapport au max.
+Il est à noté que l'option smart à un coût d'entré du fait du temps nécéssaire
+pour calculer les variables à fusionner
 
 # Second exemple
 
@@ -430,7 +437,7 @@ toc()
 ### Maximisation
 
 ```{r eval=FALSE, echo=FALSE}
-# Si l'on veut minimiser le nombre de tableau
+# Si l'on veut maximiser le nombre de tableau
 choisir_var_a_fusionner_general(dfs=data,
                                 totcode,
                                 hrcfiles,
@@ -466,7 +473,7 @@ toc()
 
 ### Smart
 
-```{r}
+```{r eval=FALSE, echo=FALSE}
 # Si l'on veut minimiser le nombre de tableau, 
 # tout en gardant une taille maximale de 50 000
 choisir_var_a_fusionner_general(dfs=data,
@@ -474,17 +481,17 @@ choisir_var_a_fusionner_general(dfs=data,
                                 hrcfiles,
                                 nb_var = 2,
                                 nb_tab = 'smart',
-                                LIMIT = 50000)
+                                LIMIT = 250000)
 ```
 
-```{r}
+```{r eval=FALSE, echo=FALSE}
 calculer_nb_tab(v1 = "GEO",
                 v2 = "AGE",
                 hrcfiles = hrcfiles,
                 data = data)
 ```
 
-```{r}
+```{r eval=FALSE, echo=FALSE}
 max(unlist(length_tabs(dfs = data,
             v1 = "GEO",
             v2 = "AGE",
@@ -509,14 +516,17 @@ print(c("Nombre de tableau :",length(res$tabs)))
 Conclusion :
 
 Tableau en entré :
+
 17,667,936 lignes
+
 2 hiérarchies
 
 Sortie:
+
 | Méthode         | nombre de tableau | nombre de ligne maximale | Temps de réduction   | 
 |-----------------|-------------------|--------------------------|----------------------|
-| Min             | 2                 | 16,563,690               | 19.31 sec            |  
-| Max             | 1404              | 30,288                   | > 20min (estimation) |  
+| Min             | 2                 | 16,563,690               | 25.5 sec             |  
+| Max             | 1404              | 30,288                   | 853.22 sec = 14.2min |  
 | Smart (250,000) | 82                | 244,036                  | 342.83 sec = 5.7min  |
 
 | Méthode         | nombre de variables hiérarchiques | 
@@ -524,11 +534,3 @@ Sortie:
 | Min             | 3                                 |    
 | Max             | 1                                 | 
 | Smart (250,000) | 2                                 |
-
-Pour l'estimation : 
-le cas min a pris environ 9min par tableau;
-le cas smart a pris 4 min par tableau; 
-(tableaux 65 fois moins long au maximum et réduction par 2 du temps par tableau)
-
-dans en étant optimiste (1sec par tableau), le cas max prendrait 23min.
-(tableau 8 fois moins long au maximum par rapport au cas "smart")
