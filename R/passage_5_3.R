@@ -183,7 +183,7 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
   vars1 <- res_5_4$vars
   vars2 <- res_5_3[[1]]$vars # les variables fusionnées sont toujours les mêmes
   vars_tot <- list(vars1,vars2)
-  names(vars_tot) <- c("Passage 5 à 4","Passage 4 à 3")
+  names(vars_tot) <- c("five_to_three","four_to_three")
   
   # Mémorisation de res5_4
   

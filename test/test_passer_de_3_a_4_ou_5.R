@@ -9,7 +9,7 @@ source("R/passage_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("R/passer_de_3_a_4_ou_5.R",encoding = "UTF-8")
-source("R/fonction_general_choisit_sep_et_reduit_dim.R",encoding = "UTF-8")
+source("R/reduce_dims.R",encoding = "UTF-8")
 source("R/choisir_sep.R",encoding = "UTF-8")
 source("test/test_nbs_tabs.R",encoding = "UTF-8")
 
@@ -36,18 +36,17 @@ nom_dfs <- "nom_data_frame"
 sep_dir = TRUE
 hrc_dir = "hrc_alt"
 
-res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles)
+res4_3 <-gen_tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles,vec_sep = c("\\_"))
+res4_3$fus_vars
 
 # res3_4 <- passer_a_4_ou_5(res4_3)
-res3_4_r_base <- passer_a_4_ou_5_r_base(res4_3)
+data_fusion <- passer_a_4_ou_5(masq=res4_3$tabs,res=res4_3)
 
-# on ajoute les lignes de tous les tableaux
-data_fusion <- unique(do.call("rbind",res3_4_r_base))
 
 # 0 ligne différente
 dim(setdiff(data_fusion,data))[1] == 0
 
-
+str(data_fusion)
 # Test dimension 5 - 2 couples créés --------------------------------------
 
 data <- expand.grid(

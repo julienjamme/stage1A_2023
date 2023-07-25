@@ -6,7 +6,6 @@ source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R",encoding = "UTF-8")
 source("R/length_tabs.R")
 source("R/nb_tab.R")
 
@@ -538,90 +537,6 @@ all(mapply(function(x, y) x == y, gen_predict, l_predict))
 
 data <- expand.grid(
   ACT = c("Total_A","A1","A2","A3","A11","A12","A13"),
-  GEO = c("Total_G","G1","G2","G3","G11","G12","G21","G22","G31","G32"),
-  SEX = c("Total_S","S1","S2","S3","S11","S12","S21","S22"),
-  AGE = c("Total_0"),
-  ECO = c("PIB"),
-  stringsAsFactors = FALSE
-) %>% 
-  as.data.frame()
-
-data <- data %>% mutate(VALUE = 1)
-
-dfs <- data
-
-hrc_act <- "output/hrc_ACT.hrc"
-sdcHierarchies::hier_create(root = "Total_A", nodes = c("A1","A2","A3")) %>% 
-  sdcHierarchies::hier_add(root = "A1", nodes = c("A11","A12","A13")) %>% 
-  sdcHierarchies::hier_convert(as = "argus") %>%
-  slice(-1) %>% 
-  mutate(levels = substring(paste0(level,name),3)) %>% 
-  select(levels) %>% 
-  write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
-
-hrc_geo <- "output/hrc_GEO.hrc"
-sdcHierarchies::hier_create(root = "Total_G", nodes = c("G1","G2","G3")) %>% 
-  sdcHierarchies::hier_add(root = "G1", nodes = c("G11","G12")) %>% 
-  sdcHierarchies::hier_add(root = "G2", nodes = c("G21","G22")) %>% 
-  sdcHierarchies::hier_add(root = "G3", nodes = c("G31","G32")) %>% 
-  sdcHierarchies::hier_convert(as = "argus") %>%
-  slice(-1) %>% 
-  mutate(levels = substring(paste0(level,name),3)) %>% 
-  select(levels) %>% 
-  write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
-
-hrc_sex <- "output/hrc_SEX.hrc"
-sdcHierarchies::hier_create(root = "Total_S", nodes = c("S1","S2","S3")) %>% 
-  sdcHierarchies::hier_add(root = "S1", nodes = c("S11","S12")) %>% 
-  sdcHierarchies::hier_add(root = "S2", nodes = c("S21","S22")) %>% 
-  sdcHierarchies::hier_convert(as = "argus") %>%
-  slice(-1) %>% 
-  mutate(levels = substring(paste0(level,name),3)) %>% 
-  select(levels) %>% 
-  write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
-
-hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, AGE = hrc_age, SEX = hrc_sex)
-
-totcode <- c(SEX="Total_S",AGE="Total_0", GEO="Total_G", ACT="Total_A", ECO = "PIB")
-
-# Résultat de la fonction
-res <- passer_de_5_a_3_var(
-  dfs = data,
-  nom_dfs = "tab",
-  totcode = totcode, 
-  hrcfiles = hrcfiles,
-  sep_dir = TRUE,
-  hrc_dir = "output",
-  v1 = "ACT",
-  v2 = "GEO",
-  v3 = "ACT_GEO",
-  v4 = "SEX"
-)
-
-length(res$tabs)
-l_reel <- lapply(res$tabs, nrow)
-
-dfs = data
-v1 = "ACT"
-v2 = "GEO"
-v3 = "SEX"
-hrcfiles = hrcfiles
-
-l_predict <- length_tabs_5_3_var(dfs = data,
-                                 v1 = v1,v2 = v2,v3 = v3,
-                                 hrcfiles = hrcfiles)
-
-all(sort(unlist(unique(l_reel))) == sort(unlist(unique(l_predict))))
-
-all(mapply(function(x, y) x == y, l_reel, l_predict))
-
-# On a bien les bonnes modalités... mais pas au bonne endroit !
-table(sort(unlist(l_reel))) == table(sort(unlist(l_predict)))
-
-# cas 8 : dimension 5 - 3 var hier fusionnées v1_v2_v3 ------------------
-
-data <- expand.grid(
-  ACT = c("Total_A","A1","A2","A3","A11","A12","A13"),
   GEO = c("Total_G","G1","G2","G3","G11","G12","G21","G22","G31","G32","G23",'G4'),
   SEX = c("Total_S","S1","S2","S3","S11","S12","S21","S22","S23"),
   AGE = c("Total_0"),
@@ -633,6 +548,24 @@ data <- expand.grid(
 data <- data %>% mutate(VALUE = 1)
 
 dfs <- data
+
+totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
+
+hrcfiles = NULL
+v1 = "SEX"
+v2 = "AGE"
+
+gen_tab <- length_tabs(dfs=data,
+                       hrcfiles = NULL,
+                       v1 = "SEX",
+                       v2 = "AGE")
+
+# Tous les tableaux sont en dessous du seuil limite
+length_tabs_ok_tauargus(dfs = data,hrcfiles = NULL,v1 = "SEX", v2 = "AGE")
+
+# Au moins un tableau est au dessus du seuil limite
+length_tabs_ok_tauargus(dfs = data,hrcfiles = NULL,v1 = "SEX", v2 = "AGE", LIMIT = 840) == FALSE
+
 
 hrc_act <- "output/hrc_ACT.hrc"
 sdcHierarchies::hier_create(root = "Total_A", nodes = c("A1","A2","A3")) %>% 
@@ -701,4 +634,3 @@ all(mapply(function(x, y) x == y, l_reel, l_predict))
 
 # On a bien les bonnes modalités... mais pas au bonne endroit !
 table(sort(unlist(l_reel))) == table(sort(unlist(l_predict)))
-
