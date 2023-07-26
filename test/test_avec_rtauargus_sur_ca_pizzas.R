@@ -9,9 +9,9 @@
 
 
 source("R/passage_4_3_cas_2_non_hrc.R")
-source("R/fonction_general_choisit_sep_et_reduit_dim.R")
+source("R/reduce_dims.R")
 source("R/choisir_sep.R")
-source("R/function_passer_3_4.R")
+source("R/passer_de_3_a_4_ou_5.R")
 source("R/format.R")
 #source("brouillon/tauargus_4_3.R")
 load("data/ca_pizzas_4vars.RData")
@@ -42,7 +42,7 @@ nom_dfs<-"pizza"
 
 # a le format utilisé pour rtauargus
 
-list_res<-gen_tabs_5_4_to_3(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,"output",liste_sep = c("\\_"))
+list_res<-gen_tabs_5_4_to_3(ca_pizzas_4vars,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,"output",vec_sep = c("\\_"))
 
 list_tab<-list_res$tabs
 list_vars<-list(
@@ -75,7 +75,7 @@ exemple_masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
   list_explanatory_vars = list(pizza1=c("ACTIVITY","NUTS23","treff_cj"),
                                pizza2=c("ACTIVITY","NUTS23","treff_cj")) ,
-  dir_name = "test_avec_rtauargus/hierarchie_2/3/mod",
+  dir_name = "test_argus/hierarchie_2/2/mod",
   totcode = c(ACTIVITY="Total",NUTS23="Total",treff_cj="Total_Total"),
   hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts),
   alt_hrc = list_res$hrcs,
