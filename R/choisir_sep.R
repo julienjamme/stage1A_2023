@@ -11,6 +11,10 @@
 #' 
 #' @examples
 #' library(dplyr)
+#' ibrary(stringr)
+#' 
+#' source("R/choisir_sep.R")
+#' 
 #' data <- expand.grid(
 #'   AGE = c("+","ça va ?","Mais non, Pas possible !!!"),
 #'   ECO = c("ça fait 5€"),
@@ -18,13 +22,9 @@
 #' ) %>%
 #'   as.data.frame()
 #' 
-#' liste_sep = c("\\+", "\\!", "\\?","\\$","\\£",
-#'               "\\€","\\:","\\;","\\~","\\&",
-#'               "\\#")
-#' choisir_sep(data,liste_sep = liste_sep) == "$"
-#' 
-#' 
 #' liste_sep = c("\\+", "\\!", "\\?")
+#' 
+#' # Tous les séparateurs aparaissent
 #' choisir_sep(data,liste_sep = liste_sep)
 #' 
 #' choisir_sep(data)

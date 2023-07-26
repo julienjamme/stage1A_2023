@@ -35,10 +35,17 @@
 #'            lors de la réduction de dimension
 #' @export
 #'
-#' TODO: split : split les tableaux s'ils dépassent LIMIT
+#' TODO: 
+#' argument boolen split : split les tableaux s'ils dépassent LIMIT
+#' 
+#' pour gagner du temps : paralléliser le lapply pour le choix des variables
+#'                                     le lapply pour le passer de 4 à 3 
+#'                                        pour la dimension 5
 #' 
 #' @examples
 #' library(dplyr)
+#' library(stringr)
+#' 
 #' source("R/reduce_dims.R")
 #' source("R/passage_5_3.R",encoding = "UTF-8")
 #' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
@@ -166,7 +173,7 @@
 #'   LIMIT = 10000,
 #'   verbose = TRUE
 #' )
-gen_tabs_5_4_to_3<-function(
+gen_tabs_5_4_to_3 <- function(
     dfs,
     nom_dfs,
     totcode,
@@ -229,6 +236,10 @@ gen_tabs_5_4_to_3<-function(
   }
   
   LIMIT <- as.numeric(LIMIT)
+  
+  if (verbose){
+    tictoc::tic("Réduction de dimension")
+  }
   
   
   # Choix du séparateur
@@ -332,7 +343,7 @@ gen_tabs_5_4_to_3<-function(
     
     if (verbose){
       print(paste(length(res$tabs),"tables créés"))
-      print("Format...")
+      tictoc::toc()
     }
     
     return(format(res,nom_dfs,sep,totcode,hrcfiles))
@@ -391,7 +402,7 @@ gen_tabs_5_4_to_3<-function(
     
     if (verbose){
       print(paste(length(res$tabs),"tables créés"))
-      print("Format...")
+      tictoc::toc()
     }
     
     return(format(res,nom_dfs,sep,totcode,hrcfiles))

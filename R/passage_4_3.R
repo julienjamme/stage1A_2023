@@ -1,3 +1,5 @@
+# Petites fonctions pour utilisations dans passer_de_4_a_3_var()
+
 # Renvoie la variable hierarchique avec le moins de noeuds (= sous totaux)
 plus_petit_hrc <- function(hrcfiles) {
   v <- list()
@@ -129,6 +131,57 @@ choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
 #' @export
 #'
 #' @examples
+#' 
+#' library(dplyr)
+#' 
+#' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3.R",encoding = "UTF-8")
+#' source("R/passage_5_3.R",encoding = "UTF-8")
+#' 
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
+#'   GEO = c("Total", "G1", "G2"),
+#'   SEX = c("Total", "F", "M"),
+#'   AGE = c("Total", "AGE1", "AGE2"),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1)
+#' 
+#' hrc_act <- "ouput/hrc_ACT.hrc"
+#' 
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' # Résultats de la fonction
+#' res1 <- passer_de_4_a_3_var(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"), 
+#'   hrcfiles = c(ACT = hrc_act),
+#'   sep_dir = TRUE,
+#'   hrc_dir = "output"
+#' )
+#' 
+#' # Maximiser le nombre de tableau
+#' res2 <- passer_de_4_a_3_var(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"), 
+#'   hrcfiles = c(ACT = hrc_act),
+#'   sep_dir = TRUE,
+#'   hrc_dir = "output",
+#'   select_hier = TRUE
+#' )
 passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,
                                 sep_dir = FALSE, hrc_dir = "hrc_alt",
                                 v1 = NULL,v2 = NULL, 

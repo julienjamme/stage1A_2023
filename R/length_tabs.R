@@ -16,8 +16,89 @@
 #' 
 #' @return la liste des longeurs des tables créé lors de la réduction de dimension
 #' @export
-#'
+#' 
+#' TODO: revoir le cas trio fusionné
+#' Vérifier si le cas 3 var dont au moins une var hier est bon
+#' a priori oui mais l'output n'est pas bien "trié"
+#' 
 #' @examples
+#' library(dplyr)
+#' 
+#' source("R/length_tabs.R")
+#' source("R/nb_tab.R")
+#' 
+#' # Dimension 4
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2","A3", "B1", "B2","B3","B4","C","D","E","F","G","B5"),
+#'   GEO = c("Total", "G1", "G2"),
+#'   SEX = c("Total", "F", "M"),
+#'   AGE = c("Total", "AGE1", "AGE2"),
+#'   stringsAsFactors = FALSE
+#' ) %>%
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1)
+#' 
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' 
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B","C","D","E","F","G")) %>%
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2","A3")) %>%
+#'   sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2","B3","B4","B5")) %>%
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>%
+#'   mutate(levels = substring(paste0(level,name),3)) %>%
+#'   select(levels) %>%
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' # Résultats de la fonction
+#' 
+#' res1 <- length_tabs(dfs = data,
+#'                     hrcfiles = c(ACT = hrc_act),
+#'                     totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"),
+#'                     v1 = "ACT",
+#'                     v2 = "GEO")
+#'                     
+#' # Dimension 5                   
+#' data <- expand.grid(
+#'   ACT = c("Total_A", paste0("A", seq(1,5),"_"),paste0("A1_", seq(1,7)),paste0("A2_", seq(1,9))),
+#'   GEO = c("Total_G", "GA", "GB", "GA1", "GA2", "GB1", "GB2","GA3","GB3","GB4"),
+#'   SEX = c("Total_S", "F", "M","F1","F2","M1","M2"),
+#'   AGE = c("Ensemble", "AGE1", "AGE2", "AGE11", "AGE12", "AGE21", "AGE22"),
+#'   ECO = c("PIB","Ménages","Entreprises"),
+#'   stringsAsFactors = FALSE,
+#'   KEEP.OUT.ATTRS = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1:n())
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' sdcHierarchies::hier_create(root = "Total_A", nodes = paste0("A", seq(1,5),"_")) %>% 
+#'   sdcHierarchies::hier_add(root = "A1_", nodes = paste0("A1_", seq(1,7))) %>% 
+#'   sdcHierarchies::hier_add(root = "A2_", nodes = paste0("A2_", seq(1,9))) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_geo <- "output/hrc_GEO.hrc"
+#' sdcHierarchies::hier_create(root = "Total_G", nodes = c("GA","GB")) %>% 
+#'   sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2","GA3")) %>% 
+#'   sdcHierarchies::hier_add(root = "GB", nodes = c("GB1","GB2","GB3","GB4")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+#' 
+#' res2 <- length_tabs(dfs = data,
+#'                     hrcfiles = c(ACT = hrc_act, GEO = hrc_geo),
+#'                     totcode = c(SEX="Total_S",AGE="Ensemble", GEO="Total_G",
+#'                                 ACT="Total_A", ECO = "PIB"),
+#'                     v1 = "ACT",v2 = "AGE",
+#'                     v3 = "GEO",v4 = "SEX")
 length_tabs <- function(dfs,v1,v2,v3=NULL,v4=NULL,totcode,hrcfiles=NULL){
   
   # Pour généraliser la fonction à l'emploi de NA pour une fonction externe

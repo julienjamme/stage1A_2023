@@ -16,6 +16,102 @@
 #' @export
 #'
 #' @examples
+#' library(dplyr)
+#' 
+#' source("R/chercher_combinaison_variable_a_fusionner.R")
+#' source("R/length_tabs.R")
+#' source("R/nb_tab.R")
+#' 
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
+#'   GEO = c("Total", "GA", "GB", "GA1", "GA2"),
+#'   SEX = c("Total", "F", "M"),
+#'   AGE = c("Total", "AGE1", "AGE2"),
+#'   stringsAsFactors = FALSE,
+#'   KEEP.OUT.ATTRS = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1:n())
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_geo <- "output/hrc_GEO.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>% 
+#'   sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+#' 
+#' totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
+#' 
+#' hrcfiles <- c(ACT = hrc_act, GEO = hrc_geo)
+#' 
+#' 
+#' # Cohérent : on choisit deux var hier
+#' res1 <- choisir_var_a_fusionner_general(dfs= data,
+#'                                         totcode = totcode,
+#'                                         hrcfiles = hrcfiles,
+#'                                         nb_var = 2,
+#'                                         nb_tab = 'max')
+#' res1                                        
+#' max(unlist(length_tabs(dfs = data,
+#'                        hrcfiles = hrcfiles,
+#'                        totcode = totcode,
+#'                        v1 = res1[1],v2 = res1[2])))
+#'                        
+#' # Cohérent : on choisit deux var non hier
+#' res2 <- choisir_var_a_fusionner_general(dfs= data,
+#'                                 totcode = totcode,
+#'                                 hrcfiles = hrcfiles,
+#'                                 nb_var = 2,
+#'                                 nb_tab = 'min')
+#' res2                                
+#' max(unlist(length_tabs(dfs = data,
+#'                        hrcfiles = hrcfiles,
+#'                        totcode = totcode,
+#'                        v1 = res2[1],v2 = res2[2])))
+#'                                                        
+#' res3 <- choisir_var_a_fusionner_general(dfs = data,
+#'                                 totcode = totcode,
+#'                                 hrcfiles = hrcfiles,
+#'                                 LIMIT= 200,
+#'                                 nb_var = 2,
+#'                                 nb_tab = 'smart')
+#' res3
+#' max(unlist(length_tabs(dfs = data,
+#'                        hrcfiles = hrcfiles,
+#'                        totcode = totcode,
+#'                        v1 = res3[1],v2 = res3[2])))
+#'                        
+#' # On obtient 147, ce qui est bien inférieur à 200
+#' 
+#' res4 <- choisir_var_a_fusionner_general(dfs = data,
+#'                                 totcode = totcode,
+#'                                 hrcfiles = hrcfiles,
+#'                                 LIMIT= 5,
+#'                                 nb_var = 2,
+#'                                 nb_tab = 'smart')
+#' res4
+#' max(unlist(length_tabs(dfs = data,
+#'                        hrcfiles = hrcfiles,
+#'                        totcode = totcode,
+#'                        v1 = res4[1],v2 = res4[2])))
+#'                        
+#' # On obtient un warning : impossible d'atteindre la valeur annoncée
+#' # On a bien 63 lignes (ce qui équivaut au max 
+#' # -> c'est ce qui réduit la taille des tableaux)
+#' # Et le warning annonce 63 lignes, c'est cohérent avec l'output
 choisir_var_a_fusionner_general <- function(dfs,totcode,hrcfiles=NULL, nb_var = 4, nb_tab = "min", LIMIT=150) {
   
   # Cas 2 couplese en dimension 5

@@ -8,25 +8,106 @@ import_hierarchy <- function(hrcfile) {
   return(levels)
 }
 
-
 #' Calcul le nombre de table généré lors de la fusion de 3 variables
 #' dans le passage de 5 à 3 dimensions
 #'
-#' @param v1 première variable fusionnée de 5 à 4
-#' @param v2 seconde variable fusionnéee de 5 à 4
+#' @param v1 première variable fusionnée
+#' @param v2 seconde variable fusionnéee
 #' @param v3 troisième variable à fusionner (variable se fusionnant à v1 et v2 à défault si v4 non spécifié)
 #' @param v4 quatrième variable à fusionner (avec v3)
 #' @param hrcfiles liste nommée des fichiers hrc
-#' @param data data.frame
+#' @param data data.frame (utilisé uniquement dans le cas où un trio est formé)
 #'
-#' @return
+#' @return un entier représentant le nombre de table généré
 #' @export
+#' TODO : généraliser le cas 3 variables en une ?
 #' 
-#' TODO : généraliser e cas 3 variables en une ?
 #' @examples
+#' library(dplyr)
+#' 
+#' source("R/passage_5_3.R",encoding = "UTF-8")
+#' source("R/nb_tab.R")
+#' 
+#' # Dimension 4
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
+#'   GEO = c("Total", "G1", "G2"),
+#'   SEX = c("Total", "F", "M"),
+#'   AGE = c("Total", "AGE1", "AGE2"),
+#'   stringsAsFactors = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1)
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' 
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' # 1 couple créés                
+#' calculer_nb_tab(v1 = "ACT",v2 = "GEO",
+#'                 hrcfiles = c(ACT = hrc_act)) 
+#' 
+#' # Dimension 5
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
+#'   GEO = c("Total", "GA", "GB", "GA1", "GA2", "GB1", "GB2"),
+#'   SEX = c("Total", "F", "M","F1","F2","M1","M2"),
+#'   AGE = c("Total", "AGE1", "AGE2", "AGE11", "AGE12", "AGE21", "AGE22"),
+#'   ECO = c("PIB","Ménages","Entreprises"),
+#'   stringsAsFactors = FALSE,
+#'   KEEP.OUT.ATTRS = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1:n())
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_geo <- "output/hrc_GEO.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>% 
+#'   sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2")) %>% 
+#'   sdcHierarchies::hier_add(root = "GB", nodes = c("GB1","GB2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_sex <- "output/hrc_SEX.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("F","M")) %>% 
+#'   sdcHierarchies::hier_add(root = "F", nodes = c("F1","F2")) %>% 
+#'   sdcHierarchies::hier_add(root = "M", nodes = c("M1","M2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
+#'
+#' # Trio fusionné
+#' calculer_nb_tab(data = data,
+#'                 v1 = "ACT",v2 = "GEO",v3 = "SEX",
+#'                 hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, SEX = hrc_sex))
+#' 
+#' # 2 couples créés                
+#' calculer_nb_tab(v1 = "ACT",v2 = "GEO",
+#'                 v3 = "SEX",v4 = "EXO",
+#'                 hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, SEX = hrc_sex))               
 calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
-  
-  # print(c("les vars",v1,v2))
   
   # Cas dimension 5 : 2 couples créés
   if (!is.null(v4)){
@@ -100,7 +181,6 @@ calculer_nb_tab <- function(v1,v2,v3 = NULL, v4=NULL,hrcfiles=NULL, data=NULL){
     
   # Cas dimension 4
   } else {
-    # print(c("et après :",v1,v2))
     return(2 * nb_noeuds(hrcfiles = hrcfiles, v=v1) * 
                nb_noeuds(hrcfiles = hrcfiles, v=v2))
   }

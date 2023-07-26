@@ -48,7 +48,8 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 #' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
 #' pour créer le moins de tableau
 #' @param verbose print les différentes étapes de la fonction pour avertir
-#' l'utilisateur de l'avancement
+#' l'utilisateur de l'avancement principalement pour la fonction générale
+#' gen_tabs_5_4_to_3()
 #' 
 #' @return liste(tabs, hrcs5_4,hrcs4_3, alt_tot5_4,alt_tot4_3, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
@@ -65,6 +66,79 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 #'
 #' @examples
 #' 
+#' library(dplyr)
+#' 
+#' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3.R",encoding = "UTF-8")
+#' source("R/passage_5_3.R",encoding = "UTF-8")
+#' 
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
+#'   GEO = c("Total", "GA", "GB", "GA1", "GA2", "GB1", "GB2"),
+#'   SEX = c("Total", "F", "M","F1","F2","M1","M2"),
+#'   AGE = c("Total", "AGE1", "AGE2", "AGE11", "AGE12", "AGE21", "AGE22"),
+#'   ECO = c("PIB","Ménages","Entreprises"),
+#'   stringsAsFactors = FALSE,
+#'   KEEP.OUT.ATTRS = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1:n())
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_geo <- "output/hrc_GEO.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>% 
+#'   sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2")) %>% 
+#'   sdcHierarchies::hier_add(root = "GB", nodes = c("GB1","GB2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_sex <- "output/hrc_SEX.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("F","M")) %>% 
+#'   sdcHierarchies::hier_add(root = "F", nodes = c("F1","F2")) %>% 
+#'   sdcHierarchies::hier_add(root = "M", nodes = c("M1","M2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
+#' 
+#' # Résultats de la fonction
+#' res1 <- passer_de_5_a_3_var(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total", ECO = "PIB"), 
+#'   hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, SEX = hrc_sex),
+#'   sep_dir = TRUE,
+#'   hrc_dir = "output",
+#'   v1 = "ACT",
+#'   v2 = "AGE",
+#'   v3 = "SEX",
+#'   v4 = "ECO"
+#' )
+#' 
+#' res2 <- passer_de_5_a_3_var(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total", ECO = "PIB"), 
+#'   hrcfiles = c(ACT = hrc_act, GEO = hrc_geo, SEX = hrc_sex),
+#'   sep_dir = TRUE,
+#'   hrc_dir = "output",
+#'   verbose = TRUE
+#' )
 passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, 
                                 sep_dir = FALSE, hrc_dir = "hrc_alt",
                                 v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL, 

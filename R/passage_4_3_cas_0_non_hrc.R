@@ -21,6 +21,50 @@
 #' @export
 #'
 #' @examples
+#' library(dplyr)
+#' 
+#' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+#' 
+#' data <- expand.grid(
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
+#'   SEX = c("Total", "F", "M","F1","F2","M1","M2"),
+#'   AGE = c("Total", "AGE1", "AGE2", "AGE11", "AGE12", "AGE21", "AGE22"),
+#'   ECO = c("PIB","Ménages","Entreprises"),
+#'   stringsAsFactors = FALSE,
+#'   KEEP.OUT.ATTRS = FALSE
+#' ) %>% 
+#'   as.data.frame()
+#' 
+#' data <- data %>% mutate(VALUE = 1:n())
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' hrc_sex <- "output/hrc_SEX.hrc"
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("F","M")) %>% 
+#'   sdcHierarchies::hier_add(root = "F", nodes = c("F1","F2")) %>% 
+#'   sdcHierarchies::hier_add(root = "M", nodes = c("M1","M2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_sex, row.names = F, col.names = F, quote = F)
+#' 
+#' res <- passage_4_3_cas_0_non_hr(dfs = data,
+#'                                 nom_dfs = "nom_dfs",
+#'                                 v1 = "ACT",v2 = "SEX",
+#'                                 totcode = c(ACT = "Total",SEX = "Total",
+#'                                             AGE = "Total",ECO = "PIB"),
+#'                                 hrcfiles = c(ACT = hrc_act, SEX = hrc_sex),
+#'                                 dir_name = "output")
 passage_4_3_cas_0_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
   
   #############################
