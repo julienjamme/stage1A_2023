@@ -47,6 +47,8 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 #' mais de taille moins importante
 #' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
 #' pour créer le moins de tableau
+#' @param verbose print les différentes étapes de la fonction pour avertir
+#' l'utilisateur de l'avancement
 #' 
 #' @return liste(tabs, hrcs5_4,hrcs4_3, alt_tot5_4,alt_tot4_3, vars)
 #' tab : liste nommée des dataframes à 3 dimensions (n-2 dimensions dans le cas général)
@@ -66,7 +68,8 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL, 
                                 sep_dir = FALSE, hrc_dir = "hrc_alt",
                                 v1 = NULL,v2 = NULL,v3 = NULL,v4 = NULL, 
-                                sep = "_", select_hier = FALSE){
+                                sep = "_", select_hier = FALSE,
+                                verbose = FALSE){
   
   # Mise à jour du dossier en sortie contenant les hiérarchie
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -78,6 +81,10 @@ passer_de_5_a_3_var <- function(dfs, nom_dfs,totcode, hrcfiles = NULL,
   # On enlève une dimension à notre dataframe de départ
   res_5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, dir_name,
                                  v1 = v1, v2 = v2, sep = sep, select_hier = select_hier)
+  if (verbose){
+    print(paste(length(res_5_4$tabs),"tables créés"))
+    print(c("Réduction de 4 à 3..."))
+  }
   
   # Récupération des variables fusionnées
   v1f <- res_5_4$vars[[1]]

@@ -17,6 +17,8 @@
 #' smart : minimiser le nombre de table sous la contrainte de leur nombre de ligne
 #' @param LIMIT nombre de ligne maximale autorisé dans le cas smart
 #' @param vec_sep vecteur des séparateurs candidats à utiliser
+#' @param verbose print les différentes étapes de la fonction pour avertir
+#' l'utilisateur de l'avancement
 #'
 #' @return liste(tabs, hrcs, alt_tot, vars, sep, totcode, hrcfiles, fus_vars)
 #' tab : liste nommée des dataframes à 3 dimensions
@@ -28,14 +30,16 @@
 #' vars : variable catégorielles des dataframes en sortie
 #' sep : séparateur utilisé pour lier les variables
 #' totcode : vecteur nommé des totaux pour toutes les variables catégorielles
-#' hrcfiles : liste nommée des hrc spécifiques aux variables créés
-#'              lors de la fusion pour passer en dimension 3
-#' fus_vars : liste nommée de vecteur représentant les variables fusionnées
-#'            lors des deux étapes de réduction de dimensions
+#' hrcfiles : vecteur nommé des hrc des variables catégorielles (hors celle fusionnée)
+#' fus_vars : vecteur nommé de vecteur représentant les variables fusionnées
+#'            lors de la réduction de dimension
 #' @export
 #'
+#' TODO: split : split les tableaux s'ils dépassent LIMIT
+#' 
 #' @examples
 #' library(dplyr)
+#' source("R/reduce_dims.R")
 #' source("R/passage_5_3.R",encoding = "UTF-8")
 #' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 #' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
@@ -101,7 +105,7 @@
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   LIMIT = 1250,
+#'   LIMIT = 250,
 #'   nb_tab = "smart"
 #' )
 #' 
@@ -149,6 +153,19 @@
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output"
 #' )
+#' 
+#' # Résultat de la fonction
+#' res5 <- gen_tabs_5_4_to_3(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = c(SEX="Total_S",AGE="Ensemble", GEO="Total_G", ACT="Total_A", ECO = "PIB"), 
+#'   hrcfiles = c(ACT = hrc_act, GEO = hrc_geo),
+#'   sep_dir = TRUE,
+#'   hrc_dir = "output",
+#'   nb_tab = 'smart',
+#'   LIMIT = 10000,
+#'   verbose = TRUE
+#' )
 gen_tabs_5_4_to_3<-function(
     dfs,
     nom_dfs,
@@ -159,7 +176,8 @@ gen_tabs_5_4_to_3<-function(
     vars_a_fusionner = NULL,
     vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
     nb_tab = "min",
-    LIMIT = 15000
+    LIMIT = 15000,
+    verbose = FALSE
 ){
   
   dfs <- as.data.frame(dfs)
@@ -206,6 +224,10 @@ gen_tabs_5_4_to_3<-function(
     }
   }
   
+  if (!is.logical(verbose)){
+    stop("verbose doit être logique")
+  }
+  
   LIMIT <- as.numeric(LIMIT)
   
   
@@ -232,6 +254,11 @@ gen_tabs_5_4_to_3<-function(
     } else {
 
       if (nb_tab == 'smart'){
+        
+        if (verbose){
+          print("Choix des variables...")
+        }
+        
         # Proposition de varibales
         choix_3_var <- choisir_var_a_fusionner_general(dfs=data,
                                                        totcode = totcode,
@@ -287,6 +314,11 @@ gen_tabs_5_4_to_3<-function(
         select_hier <- if (nb_tab == 'max') TRUE else FALSE
       }
     }
+    
+    if (verbose){
+      print("Réduction de 5 à 4...")
+    }
+    
     res<-passer_de_5_a_3_var(dfs=dfs,
                              nom_dfs=nom_dfs,
                              totcode=totcode,
@@ -295,7 +327,13 @@ gen_tabs_5_4_to_3<-function(
                              hrc_dir=hrc_dir,
                              v1=v1,v2=v2,v3=v3,v4=v4,
                              sep=sep,
-                             select_hier = select_hier)
+                             select_hier = select_hier,
+                             verbose = verbose)
+    
+    if (verbose){
+      print(paste(length(res$tabs),"tables créés"))
+      print("Format...")
+    }
     
     return(format(res,nom_dfs,sep,totcode,hrcfiles))
     
@@ -310,7 +348,12 @@ gen_tabs_5_4_to_3<-function(
       # Nous devons les calculer
     } else {
       
-      if (nb_tab == 'smart'){ 
+      if (nb_tab == 'smart'){
+        
+        if (verbose){
+          print("Choix des variables...")
+        }
+        
         choix_2_var <- choisir_var_a_fusionner_general(dfs=data,
                                                        totcode = totcode,
                                                        hrcfiles = hrcfiles,
@@ -331,6 +374,10 @@ gen_tabs_5_4_to_3<-function(
         select_hier <- if (nb_tab == 'max') TRUE else FALSE
       }
     }
+    
+    if (verbose){
+      print("Réduction de 4 à 3...")
+    }
 
     res<-passer_de_4_a_3_var(dfs=dfs,
                              nom_dfs=nom_dfs,
@@ -341,6 +388,11 @@ gen_tabs_5_4_to_3<-function(
                              v1=v1,v2=v2,
                              sep=sep,
                              select_hier = select_hier)
+    
+    if (verbose){
+      print(paste(length(res$tabs),"tables créés"))
+      print("Format...")
+    }
     
     return(format(res,nom_dfs,sep,totcode,hrcfiles))
   }
