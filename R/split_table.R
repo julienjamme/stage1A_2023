@@ -50,8 +50,10 @@ split_tab<-function(res,var_fus, LIMIT){
     tabs2<-append(tabs2,tabs)
     all_tot_stock<-append(all_tot_stock,liste_alt_tot) 
     var<-replicate(n,list(res$vars[[1]]))
-    list_vars<-append(list_vars,replicate(n,list(res$vars[[1]])))
-    names(list_vars) <- noms
+    list_add<-replicate(n,list(res$vars[[1]]))
+    names(list_add) <- noms
+    list_vars<-append(list_vars,list_add)
+    
   }
   
   table <- names(res$tabs[!(names(res$tabs) %in% table_a_gerer)])
@@ -59,7 +61,11 @@ split_tab<-function(res,var_fus, LIMIT){
   tabs_tot<-append(res$tabs[table],tabs2)
   alt_tot<-append(all_tot_stock,res$alt_tot[table])
   vars<-append(res$vars[table],list_vars)
+  
   hrcs<-res$hrcs[table]
+  if (length(hrcs)==0){
+    hrcs<- NULL
+  }
   res=list(
     tabs=tabs_tot,
     vars=vars,

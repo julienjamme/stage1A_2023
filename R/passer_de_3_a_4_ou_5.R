@@ -1,10 +1,9 @@
-#' Fonction inverse du processus de réduction de dimension
-#'
-#' @param masq liste de data.frame sur lequel éventuellement le secret a été posé
-#' @param res resultat de la fonction de réduction de dimension (pour récupérer
-#' les variables fusionnées) et le sep
-#' 
-#' TODO: remplacer res par un argument vars (vecteur), et sep
+
+
+#' Function to reverse the process of dimension reduction
+#' @param masq a list of data.frames on which the secret has been applied
+#' @param res the result of the dimension reduction function (to retrieve
+#' the merged variables) and the separator (sep).
 #'
 #' @return
 #' @export
@@ -26,7 +25,7 @@
 #' source("R/chercher_combinaison_variable_a_fusionner.R",encoding = "UTF-8")
 #' source("R/passer_de_3_a_4_ou_5.R",encoding = "UTF-8")
 #' 
-#' # Exemples dimension 4
+#' # Examples with dimension 4
 #' 
 #' data <- expand.grid(
 #'   ACT = c("Total", "A", "B", "A1", "A2","A3", "B1", "B2","B3","B4","C","D","E","F","G","B5"),
@@ -50,7 +49,7 @@
 #'   select(levels) %>%
 #'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
 #' 
-#' # Résultat de la fonction en forc_ant des variabels à fusionner
+#' # Result of the function by forcing some variables to be merged
 #' res_red_dim <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
@@ -62,6 +61,10 @@
 #' )
 #' 
 #' res1 <- passer_a_4_ou_5(masq = res_red_dim$tabs, res = res_red_dim)
+#' dim(setdiff(res1,data))[1] == 0
+#' 
+#' # return TRUE 
+#' # We have exactly the sames cases in the datatable after splitting and unsplitting data
 #' 
 #' # Exemple dimension 5
 #' 
@@ -98,7 +101,8 @@
 #'   select(levels) %>% 
 #'   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
 #' 
-#' # Résultat de la fonction
+#' # function's result
+#' 
 #' res_red_dim <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
@@ -114,12 +118,17 @@ passer_a_4_ou_5 <- function(masq, res) {
   require(stringr)
   sep <- res$sep
   sep_regex <- gsub("([+])", "\\\\\\1", sep)
-  # Cas à 4 variables catégorielles
+  
+ 
+  
+  # Unique values from 'masq' (a list) are concatenated into a data frame
   
   masq_liste_empilee <- unique(do.call("rbind",  unname(masq)))
   
   if (class(res$fus_vars) == "character") {
-    # données
+    # Case with 4 categorical variables
+    # variable
+    
     v1 <- res$fus_vars[1]
     v2 <- res$fus_vars[2]
     
@@ -128,8 +137,8 @@ passer_a_4_ou_5 <- function(masq, res) {
     result <- separer4_3(masq_liste_empilee, v1, v2,v1_v2, sep_regex) 
     return(result)}
   
-  # Cas à 5 dimensions 
-  # Les variables 
+  # Case with 5 dimensions
+  # variable
   
   v1<-res$fus_vars$five_to_three[1]
   v2<-res$fus_vars$five_to_three[2]
@@ -138,19 +147,22 @@ passer_a_4_ou_5 <- function(masq, res) {
   v1_v2 <- paste(v1, v2, sep = sep)
   
   if (!(v1_v2 == v3 | v1_v2 == v4)) {
-    # Cas fusion entre 3 variables différentes
+    # Case of fusion between 3 different variables
     v3_v4 <- paste(v3, v4, sep = sep)
-    
+    # Split based on 'v1', 'v2', and 'v1_v2' using 'separer4_3' function
     split1 <- separer4_3(masq_liste_empilee, v1, v2, v1_v2, sep_regex)
+    # Further split based on 'v3', 'v4', and 'v3_v4'
     result <- separer4_3(split1, v3, v4, v3_v4, sep_regex)
     
   } else {
-    # Cas de fusion avec une variable déjà fusionnée
+    # Case of fusion with an already fused variable
     v3_v4 <- paste(v3, v4, sep = sep)  
     
     if(v1_v2 == v3){
+      # Split based on 'v1', 'v2', and 'v4' using 'separer5_3' function
       result<-separer5_3(masq_liste_empilee, v1,v2, v4, v3_v4, sep_regex)
     }else{
+      # Split based on 'v1', 'v2', and 'v3' using 'separer5_3' function
       result<-separer5_3(masq_liste_empilee, v1,v2,v3, v3_v4, sep_regex)
       
     }
@@ -162,7 +174,7 @@ passer_a_4_ou_5 <- function(masq, res) {
 
 
 
-#Fonction permettant la séparation de la variable fusionnées v1_v2_v3 en v1,v2,v3
+# Function for splitting the merged variable v1_v2_v3 into v1, v2, and v3
 separer5_3 <- function(df, v1, v2, v3,v3_v4, sep_regex) {
   splits <- strsplit(df[[v3_v4]], split = sep_regex)
   df[[v3]] <- sapply(splits, `[`, 1)
@@ -173,7 +185,7 @@ separer5_3 <- function(df, v1, v2, v3,v3_v4, sep_regex) {
 }
 
 
-#Fonction permettant la séparation de la variable fusionnées v1_v2 en v1 et v2 
+# Function for splitting the merged variable v1_v2 into v1 and v2 
 separer4_3 <- function(df, v1, v2, v1_v2, sep_regex) {
   splits <- strsplit(df[[v1_v2]], split = sep_regex)  
   df[[v1]] <- sapply(splits, `[`, 1)
