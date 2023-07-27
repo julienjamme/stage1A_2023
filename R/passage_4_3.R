@@ -1,10 +1,9 @@
-# Petites fonctions pour utilisations dans passer_de_4_a_3_var()
+# Small functions for use in passer_de_4_a_3_var()
 
-# Renvoie la variable hierarchique avec le moins de noeuds (= sous totaux)
+# Returns the hierarchical variable with the fewest nodes (= subtotals)
 plus_petit_hrc <- function(hrcfiles) {
   v <- list()
   for (i in 1:length(hrcfiles)) {
-    # v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
     v <- append(v, nb_noeuds(hrcfiles, names(hrcfiles[i])))
   }
   indice_petit_hrc <- which.min(v)
@@ -12,7 +11,7 @@ plus_petit_hrc <- function(hrcfiles) {
   return(nom_plus_petit_hrc) 
 }
 
-# Renvoie la variable  avec le moins de modalité
+# Returns the variable with the fewest modalities
 plus_petit_mod <- function(dfs) {
   v <- list()
   for (colonne in dfs) {
@@ -23,11 +22,11 @@ plus_petit_mod <- function(dfs) {
   return(nom_plus_petit_mod) 
 }
 
-# Choisir une variable catégorielle
-# De préférence celle non hierarchique avec le moins de modalité
-# A default la variable hierarchique avec le moins de noeuds
+# Choose a categorical variable
+# Preferably the non-hierarchical one with the fewest modalities
+# If not available, the hierarchical variable with the fewest nodes
 choisir_var_priorite_non_hierarchique <- function(dfs,totcode,hrcfiles){
-  # Les variables catégorielles sans hiérarchie
+  # The categorical variables without hierarchy
   var_cat <- names(totcode)
   
   var_sans_hier <- intersect(
@@ -37,10 +36,10 @@ choisir_var_priorite_non_hierarchique <- function(dfs,totcode,hrcfiles){
   
   n_vars_sans_hier<-length(var_sans_hier)
   
-  # Principe: choisir en priorité les variables non hiérarchiques
+  # Principle: preferably choose non-hierarchical variables
   
-  # si superieur à 1 on regarde les variables avec le moins de modalité
-  # pour créer le moins de dataframe par la suite
+  # If more than 1, look at the variables with the fewest modalities
+  # to create fewer dataframes later
   if (n_vars_sans_hier > 1){
     dfs_var_sans_hier <- subset(dfs,select = var_sans_hier)
     return (plus_petit_mod(dfs_var_sans_hier))
@@ -48,17 +47,16 @@ choisir_var_priorite_non_hierarchique <- function(dfs,totcode,hrcfiles){
   else if(n_vars_sans_hier == 1){
     return (var_sans_hier[1])
   }
-  # Sinon on choisit la variable hierarchique avec le moins de sous totaux
+  # Otherwise choose the hierarchical variable with the fewest subtotals
   else {
     return (plus_petit_hrc(hrcfiles))
   }
 }
 
-# Renvoie la variable hiérarchique avec le plus de noeuds
+# Returns the hierarchical variable with the most nodes
 plus_grand_hrc <- function(hrcfiles) {
   v <- list()
   for (i in 1:length(hrcfiles)) {
-    # v <- append(v, test_nb_tabs_3hrc(hrcfiles, names(hrcfiles[i]), totcode))
     v <- append(v, nb_noeuds(hrcfiles, names(hrcfiles[i])))
   }
   indice_grand_hrc <- which.max(v)
@@ -66,7 +64,7 @@ plus_grand_hrc <- function(hrcfiles) {
   return(nom_plus_grand_hrc)
 }
 
-# Renvoie la variable avec le plus de modalités
+# Returns the variable with the most modalities
 plus_grand_mod <- function(dfs) {
   v <- list()
   for (colonne in dfs) {
@@ -77,16 +75,16 @@ plus_grand_mod <- function(dfs) {
   return(nom_plus_grand_mod)
 }
 
-# Choisir une variable catégorielle
-# De préférence celle hiérarchique avec le plus de noeuds
-# A défaut la variable non hiérarchique avec le plus de modalités
+# Choose a categorical variable
+# Preferably the hierarchical one with the most nodes
+# If not available, the non-hierarchical variable with the most modalities
 choisir_var_priorite_hierarchique <- function(dfs, totcode, hrcfiles) {
-  # Principe: choisir en priorité les variables hiérarchiques
+  # Principle: preferably choose hierarchical variables
   
-  # Si aucune variable hiérarchique, choisir variable non hiérarchique avec le plus de modalités
+  # If no hierarchical variable, choose non-hierarchical variable with the most modalities
   if (length(hrcfiles) == 0) {
     return(plus_grand_mod(dfs[names(dfs) %in% names(totcode)]))
-  # Sinon, choisir la variable hiérarchique avec le plus de sous-totaux
+    # Otherwise, choose the hierarchical variable with the most subtotals
   } else {
     return(plus_grand_hrc(hrcfiles))
   }
@@ -100,45 +98,43 @@ choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
   }
 }
 
-#' Fonction passant de 4 à 3 variables catégorielles
+#' Function reducing from 4 to 3 categorical variables
 #'
-#' @param dfs data.frame à 4 variabls catégorielles (n >= 2 dans le cas général)
-#' @param nom_dfs nom du dataframe
-#' @param totcode vecteur normée des totaux pourles variables catégorielles
-#' @param hrcfiles vecteur normée des hrc pour les variables catégorielles hierarchiques
-#' @param sep_dir permet de forcer l'écriture des hrc dans un dossier séparé
-#' par défault à FALSE
-#' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
-#' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
-#' @param v1 permet de forcer la valeur de la première variable à fusionner, 
-#' non spéficié par défault (NULL)
-#' @param v2 permet de forcer la valeur de la seconde variable à fusionner
-#' non spéficié par défault (NULL)
-#' @param sep séparateur utilisé lors de la concaténation des variables
-#' @param select_hier précise si l'on préfère selectionner les variables hiérarchiques avec
-#' le plus de noeuds en priorité (hier=TRUE) ce qui génère plus de tableaux
-#' mais de taille moins importante
-#' ou bien les variables non hiérarchiques avec le moins de modalité (hier=FALSE)
-#' pour créer le moins de tableau
+#' @param dfs data.frame with 4 categorical variables (n >= 2 in the general case)
+#' @param nom_dfs name of the dataframe
+#' @param totcode named vector of totals for categorical variables
+#' @param hrcfiles named vector indicating the hrc files of hierarchical variables
+#' among the categorical variables of dfs
+#' @param sep_dir allows forcing the writing of hrc into a separate folder,
+#' default is FALSE
+#' @param hrc_dir folder to write hrc files if writing to a new folder is forced
+#' or if no folder is specified in hrcfiles
+#' @param v1 allows forcing the value of the first variable to merge, 
+#' not specified by default (NULL)
+#' @param v2 allows forcing the value of the second variable to merge,
+#' not specified by default (NULL)
+#' @param sep separator used during concatenation of variables
+#' @param select_hier specifies whether to prefer selecting hierarchical variables with
+#' the most nodes in priority (hier=TRUE), generating more tables but with smaller sizes,
+#' or non-hierarchical variables with the fewest modalities (hier=FALSE) to create fewer tables
 #'
-#' @return liste(tabs, hrcs, alt_tot, vars)
-#' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
-#' doté de hiérarchies emboitées
-#' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
-#' alt_tot : liste nommée des totaux
-#' vars : liste nommée de vecteur représentant les variables fusionnées
-#' lors des deux étapes de réduction de dimensions
-#' @export
+#' @return list(tabs, hrcs, alt_tot, vars)
+#' tab : named list of 3-dimensional dataframes (n-1 dimensions in the general case)
+#' with nested hierarchies
+#' hrc : named list of hrc specific to the variable created through merging
+#' alt_tot : named list of totals
+#' vars : named list of vectors representing the merged variables
+#' during the two stages of dimension reduction
 #'
 #' @examples
 #' 
 #' library(dplyr)
 #' 
-#' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
-#' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-#' source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-#' source("R/passage_4_3.R",encoding = "UTF-8")
-#' source("R/passage_5_3.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_0_non_hrc.R", encoding = "UTF-8")
+#' source("R/passage_4_3_cas_1_non_hrc.R", encoding = "UTF-8")
+#' source("R/passage_4_3_cas_2_non_hrc.R", encoding = "UTF-8")
+#' source("R/passage_4_3.R", encoding = "UTF-8")
+#' source("R/passage_5_3.R", encoding = "UTF-8")
 #' 
 #' data <- expand.grid(
 #'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
@@ -151,7 +147,7 @@ choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
 #' 
 #' data <- data %>% mutate(VALUE = 1)
 #' 
-#' hrc_act <- "ouput/hrc_ACT.hrc"
+#' hrc_act <- "output/hrc_ACT.hrc"
 #' 
 #' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
 #'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
@@ -162,58 +158,65 @@ choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
 #'   select(levels) %>% 
 #'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
 #' 
-#' # Résultats de la fonction
+#' # Results of the function
 #' res1 <- passer_de_4_a_3_var(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"), 
+#'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"), 
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output"
 #' )
 #' 
-#' # Maximiser le nombre de tableau
+#' # Maximize the number of tables
 #' res2 <- passer_de_4_a_3_var(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"), 
+#'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"), 
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
 #'   select_hier = TRUE
 #' )
-passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,
-                                sep_dir = FALSE, hrc_dir = "hrc_alt",
-                                v1 = NULL,v2 = NULL, 
-                                sep = "_", select_hier = FALSE){
-  
-  # Mise à jour du dossier en sortie contenant les hiérarchie
+passer_de_4_a_3_var <- function(
+  dfs,
+  nom_dfs,
+  totcode,
+  hrcfiles = NULL,
+  sep_dir = FALSE,
+  hrc_dir = "hrc_alt",
+  v1 = NULL,
+  v2 = NULL, 
+  sep = "_", 
+  select_hier = FALSE)
+{
+  # Update the output directory containing the hierarchies
   if( (length(hrcfiles) != 0) & !sep_dir){
     dir_name <- dirname(hrcfiles[[1]])
   } else {
     dir_name <- hrc_dir
   }
   
-  # Les variables catégorielles sans hiérarchie
+  # Categorical variables without hierarchy
   var_cat <- names(totcode)
   
   var_sans_hier <- intersect(
-                  setdiff(names(dfs), names(hrcfiles)),
-                  var_cat
+    setdiff(names(dfs), names(hrcfiles)),
+    var_cat
   )
   
-  # Choix des variables et vérification de celles renseignées en argument
+  # Choice of variables and verification of those given as arguments
   
-  n_vars_sans_hier <- 0 # Variable hierarchique selectionnée jusqu'à présent
-
-  # Première variable
+  n_vars_sans_hier <- 0 # Hierarchical variable selected so far
+  
+  # First variable
   if (!is.null(v1)){
     if (!(v1 %in% var_cat)){
-      stop(paste("v1 n'est pas une variable catégorielle, v1 = ", v1,
-           "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
+      stop(paste("v1 is not a categorical variable, v1 = ", v1,
+                 "Categorical variables are: ",paste(var_cat, collapse = ", ")), sep = "")
     }
   } else {
-    # on choisit une variable en évitant v2
+    # a variable is chosen, avoiding v2
     v1 <- choisir_var(dfs = dfs[setdiff(names(dfs),v2)],
                       totcode = totcode[setdiff(names(totcode),v2)],
                       hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)],
@@ -221,22 +224,22 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,
   }
   
   if (v1 %in% var_sans_hier){
-    # Mise à jour du nombre de variable hier selectionnée
+    # Update the number of selected hierarchical variables
     n_vars_sans_hier <- n_vars_sans_hier + 1
   }
   
-  # Seconde variable
+  # Second variable
   if (!is.null(v2)){
     if (!(v2 %in% var_cat)){
-      stop(paste("v2 n'est pas une variable catégorielle, v2 = ", v2,
-                 "Les variables catégorielles sont : ",paste(var_cat, collapse = ", ")), sep = "")
+      stop(paste("v2 is not a categorical variable, v2 = ", v2,
+                 "Categorical variables are: ",paste(var_cat, collapse = ", ")), sep = "")
     }
     if (v1 == v2){
-      stop("Erreur. Vous essayez de fusionner une variable avec elle-même")
+      stop("Error. You are trying to merge a variable with itself")
     }
-
+    
   } else {
-    # on choisit une variable en évitant v1
+    # a variable is chosen, avoiding v1
     v2 <- choisir_var(dfs = dfs[setdiff(names(dfs),v1)],
                       totcode = totcode[setdiff(names(totcode),v1)],
                       hrcfiles = hrcfiles[!(names(hrcfiles) == v1)],
@@ -244,29 +247,52 @@ passer_de_4_a_3_var <- function(dfs,nom_dfs,totcode,hrcfiles = NULL,
   }
   
   if (v2 %in% var_sans_hier){
-    # Mise à jour du nombre de variable hier selectionnée
+    # Update the number of selected hierarchical variables
     n_vars_sans_hier <- n_vars_sans_hier + 1
   }
   
-  # On appelle la fonction correspondante
+  # The corresponding function is called
   
-  # Cas 2 variables non hiérarchique
+  # Case 2 non-hierarchical variables
   if(n_vars_sans_hier == 2){
-    return(passage_4_3_cas_2_non_hr(dfs, nom_dfs,v1,v2,totcode,dir_name,sep = sep))
-  
-  # Cas 1 variable non hiérarchique
+    return(passage_4_3_cas_2_non_hr(dfs = dfs,
+                                    nom_dfs = nom_dfs,
+                                    v1 = v1,
+                                    v2 = v2,
+                                    totcode = totcode,
+                                    dir_name = dir_name,
+                                    sep = sep)
+           )
+    
+  # Case 1 non-hierarchical variable
   }else if(n_vars_sans_hier == 1){
-    # Il faut que v2 soit hierarchique, v1 non hierarchique
-    # Donc on met les variables dans le bon ordre
+    # v2 must be hierarchical, v1 non-hierarchical
+    # So the variables are put in the right order
     if (v2 %in% var_sans_hier){
       tmp <- v2
       v2 <- v1
       v1 <- tmp
     }
-    return(passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name,sep = sep))
+    return(passage_4_3_cas_1_non_hr(dfs = dfs,
+                                    nom_dfs = nom_dfs,
+                                    v1 = v1,
+                                    v2 = v2,
+                                    totcode = totcode,
+                                    hrcfiles = hrcfiles,
+                                    dir_name = dir_name,
+                                    sep = sep)
+           )
     
-  # Cas 0 variable non hiérarchique
+  # Case 0 non-hierarchical variable
   }else{
-    return(passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = sep))
+    return(passage_4_3_cas_0_non_hr(dfs = dfs,
+                                    nom_dfs = nom_dfs,
+                                    v1 = v1,
+                                    v2 = v2,
+                                    totcode = totcode,
+                                    hrcfiles = hrcfiles,
+                                    dir_name = dir_name,
+                                    sep = sep)
+           )
   }
 }

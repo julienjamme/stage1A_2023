@@ -1,64 +1,59 @@
-#' Fonction générale choissisant le bon séparateur
-#' puis appliquant la réduction de dimension
+#' General function that selects the appropriate separator and applies dimension reduction.
 #'
-#' @param dfs data.frame à 4 ou 5 variabls catégorielles
-#' @param nom_dfs nom du data.frame dans la liste fournie par l'utilisateur
-#' @param totcode vecteur normée des totaux pour les variables catégorielles
-#' @param hrcfiles vecteur normée des hrc pour les variables catégorielles hierarchiques
-#' @param sep_dir permet de forcer l'écriture des hrc dans un dossier séparé
-#' par défault à FALSE
-#' @param hrc_dir dossier où écrire les fichiers hrc si l'on force l'écriture
-#' dans un nouveau dossier ou si aucun dossier n'est spécifié dans hrcfiles
-#' @param vars_a_fusionner NULL ou vecteur des variables à fusionner :
-#' 2 en dimension 4 ; 3 ou 4 en dimension 5
-#' @param nb_tab stratégie à suivre pour choisir les variables automatiquement :
-#' min : minimiser le nombre de table;
-#' max : maximise le nombre de table;
-#' smart : minimiser le nombre de table sous la contrainte de leur nombre de ligne
-#' @param LIMIT nombre de ligne maximale autorisé dans le cas smart
-#' @param vec_sep vecteur des séparateurs candidats à utiliser
-#' @param verbose print les différentes étapes de la fonction pour avertir
-#' l'utilisateur de l'avancement
+#' @param dfs data.frame with 4 or 5 categorical variables
+#' @param nom_dfs name of the data.frame in the list provided by the user
+#' @param totcode named vector of totals for categorical variables
+#' @param hrcfiles named vector indicating the hrc files of hierarchical variables
+#' among the categorical variables of dfs
+#' @param sep_dir allows forcing the writing of hrc into a separate folder,
+#' default is FALSE
+#' @param hrc_dir folder to write hrc files if writing to a new folder is forced
+#' or if no folder is specified in hrcfiles
+#' @param vars_a_fusionner NULL or vector of variables to be merged:
+#' 2 in dimension 4; 3 or 4 in dimension 5
+#' @param nb_tab strategy to automatically choose variables:
+#' min: minimize the number of tables;
+#' max: maximize the number of tables;
+#' smart: minimize the number of tables under the constraint of their number of rows
+#' @param LIMIT maximum allowed number of rows in the smart case
+#' @param vec_sep vector of candidate separators to use
+#' @param verbose print the different steps of the function to inform the user of progress
 #'
-#' @return liste(tabs, hrcs, alt_tot, vars, sep, totcode, hrcfiles, fus_vars)
-#' tab : liste nommée des dataframes à 3 dimensions
-#' doté de hiérarchies emboitées
-#' hrcs : liste nommée des hrc spécifiques aux variables créés
-#'            lors de la fusion pour passer en dimension 3
-#' alt_tot : liste nommée des totaux spécifiques aux variables créés
-#'              lors de la fusion pour passer en dimension 3
-#' vars : variable catégorielles des dataframes en sortie
-#' sep : séparateur utilisé pour lier les variables
-#' totcode : vecteur nommé des totaux pour toutes les variables catégorielles
-#' hrcfiles : vecteur nommé des hrc des variables catégorielles (hors celle fusionnée)
-#' fus_vars : vecteur nommé de vecteur représentant les variables fusionnées
-#'            lors de la réduction de dimension
+#' @return list(tabs, hrcs, alt_tot, vars, sep, totcode, hrcfiles, fus_vars)
+#' tabs: named list of 3-dimensional dataframes with nested hierarchies
+#' hrcs: named list of hrc specific to the variables created during merging to go to dimension 3
+#' alt_tot: named list of totals specific to the variables created during merging to go to dimension 3
+#' vars: categorical variables of the output dataframes
+#' sep: separator used to link the variables
+#' totcode: named vector of totals for all categorical variables
+#' hrcfiles: named vector of hrc for categorical variables (except the merged one)
+#' fus_vars: named vector of vectors representing the merged variables during dimension reduction
 #' @export
 #'
 #' TODO: 
-#' argument boolen split : split les tableaux s'ils dépassent LIMIT
+#' boolean argument split: split the arrays if they exceed LIMIT
 #' 
-#' pour gagner du temps : paralléliser le lapply pour le choix des variables
-#'                                     le lapply pour le passer de 4 à 3 
-#'                                        pour la dimension 5
-#' 
+#' to save time: parallelize the lapply for variable selection
+#'                                     lapply for reducing from 4 to 3 dimensions
+#'                                     in the case of dimension 5
+#'                                     
 #' @examples
 #' library(dplyr)
 #' library(stringr)
 #' 
 #' source("R/reduce_dims.R")
-#' source("R/passage_5_3.R",encoding = "UTF-8")
-#' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
-#' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-#' source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-#' source("R/passage_4_3.R",encoding = "UTF-8")
-#' source("R/choisir_sep.R",encoding = "UTF-8")
-#' source("R/format.R",encoding = "UTF-8")
-#' source("R/length_tabs.R",encoding = "UTF-8")
-#' source("R/nb_tab.R",encoding = "UTF-8")
-#' source("R/chercher_combinaison_variable_a_fusionner.R",encoding = "UTF-8")
+#' source("R/passage_5_3.R", encoding = "UTF-8")
+#' source("R/passage_4_3_cas_0_non_hrc.R", encoding = "UTF-8")
+#' source("R/passage_4_3_cas_1_non_hrc.R", encoding = "UTF-8")
+#' source("R/passage_4_3_cas_2_non_hrc.R", encoding = "UTF-8")
+#' source("R/passage_4_3.R", encoding = "UTF-8")
+#' source("R/choisir_sep.R", encoding = "UTF-8")
+#' source("R/format.R", encoding = "UTF-8")
+#' source("R/length_tabs.R", encoding = "UTF-8")
+#' source("R/nb_tab.R", encoding = "UTF-8")
+#' source("R/chercher_combinaison_variable_a_fusionner.R", encoding = "UTF-8")
 #' 
-#' # Exemples dimension 4
+#' # Examples for dimension 4
 #' 
 #' data <- expand.grid(
 #'   ACT = c("Total", "A", "B", "A1", "A2","A3", "B1", "B2","B3","B4","C","D","E","F","G","B5"),
@@ -83,32 +78,32 @@
 #'   select(levels) %>%
 #'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
 #' 
-#' # Résultat de la fonction en forc_ant des variabels à fusionner
+#' # Result of the function forcing variables to be merged
 #' res1 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"),
+#'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"),
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   vars_a_fusionner = c("ACT","GEO")
+#'   vars_a_fusionner = c("ACT", "GEO")
 #' )
 #' 
-#' # Résultat de la fonction (minimise le nombre de tableau créé par défault)
+#' # Result of the function (minimizes the number of created tables by default)
 #' res2 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"),
+#'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"),
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output"
 #' )
 #' 
-#' # Résultat de la fonction (minimise le nombre de tableau créé par défault)
+#' # Result of the function (minimizes the number of created tables by default)
 #' res3 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total",AGE="Total", GEO="Total", ACT="Total"),
+#'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"),
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
@@ -116,7 +111,7 @@
 #'   nb_tab = "smart"
 #' )
 #' 
-#' # Exemple dimension 5
+#' # Example for dimension 5
 #' 
 #' data <- expand.grid(
 #'   ACT = c("Total_A", paste0("A", seq(1,5),"_"),paste0("A1_", seq(1,7)),paste0("A2_", seq(1,9))),
@@ -151,21 +146,21 @@
 #'   select(levels) %>% 
 #'   write.table(file = hrc_geo, row.names = F, col.names = F, quote = F)
 #' 
-#' # Résultat de la fonction
+#' # Result of the function
 #' res4 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total_S",AGE="Ensemble", GEO="Total_G", ACT="Total_A", ECO = "PIB"), 
+#'   totcode = c(SEX = "Total_S", AGE = "Ensemble", GEO = "Total_G", ACT = "Total_A", ECO = "PIB"), 
 #'   hrcfiles = c(ACT = hrc_act, GEO = hrc_geo),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output"
 #' )
 #' 
-#' # Résultat de la fonction
+#' # Result of the function
 #' res5 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = c(SEX="Total_S",AGE="Ensemble", GEO="Total_G", ACT="Total_A", ECO = "PIB"), 
+#'   totcode = c(SEX = "Total_S", AGE = "Ensemble", GEO = "Total_G", ACT = "Total_A", ECO = "PIB"), 
 #'   hrcfiles = c(ACT = hrc_act, GEO = hrc_geo),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
@@ -189,89 +184,100 @@ gen_tabs_5_4_to_3 <- function(
   
   dfs <- as.data.frame(dfs)
   
+  # Check if nom_dfs is a character string
   if (!is.character(nom_dfs)){
-    stop("nom_dfs doit être une chaine de caractère")
+    stop("nom_dfs must be a character string.")
   }
   
+  # Check if all modalities of totcode are present in dfs
   if (any(!names(totcode) %in% names(dfs))){
-    stop("Au moins une modalité de totcode n'est pas présent dans dfs !")
+    stop("At least one modality in totcode is not present in dfs!")
   }
   
+  # Check if the number of dimensions in totcode is either 4 or 5
   if (!(length(totcode) %in% c(4,5))){
-    stop("Veullez entrer un dataframe à 4 ou 5 variables catégorielles !")
+    stop("Please provide a dataframe with 4 or 5 categorical variables!")
   }
   
+  # Check if the number of variables to merge is valid for 4-dimensional data
   if (length(totcode) == 4 & !length(vars_a_fusionner) %in% c(0,2)){
-    stop("Dans le cas à 4 dimensions, veuillez spécifier 2 variables ou bien laisser vars_a_fusionner à NULL !")
+    stop("For 4-dimensional data, please specify 2 variables or leave vars_a_fusionner as NULL!")
   }
   
+  # Check if the number of variables to merge is valid for 5-dimensional data
   if (length(totcode) == 5 & !length(vars_a_fusionner) %in% c(0,3,4)){
-    stop("Dans le cas à 5 dimensions, veuillez spécifier 2 ou 3 variables ou bien laisser vars_a_fusionner à NULL !")
+    stop("For 5-dimensional data, please specify 2 or 3 variables or leave vars_a_fusionner as NULL!")
   }
   
+  # Check if all modalities of hrcfiles are present in dfs
   if (any(!names(hrcfiles) %in% names(dfs))){
-    stop("Au moins une modalité de hrcfiles n'est pas présent dans dfs !")
+    stop("At least one modality in hrcfiles is not present in dfs!")
   }
   
+  # Check if sep_dir is a logical value
   if (!is.logical(sep_dir)){
-    stop("sep_dir doit être logique")
+    stop("sep_dir must be a logical value.")
   }
   
+  # Check if hrc_dir is a character string
   if (!is.character(hrc_dir)){
-    stop("hrc_dir doit être une chaine de caractère")
-  }
-
-  if (!nb_tab %in% c('min','max','smart')){
-    stop("nb_tab doit être égale à 'min', 'max' ou 'smart' !")
+    stop("hrc_dir must be a character string.")
   }
   
+  # Check if nb_tab is one of the valid options
+  if (!nb_tab %in% c('min', 'max', 'smart')){
+    stop("nb_tab must be 'min', 'max', or 'smart'!")
+  }
+  
+  # If vars_a_fusionner is specified, check if all variables are present in totcode
   if (!is.null(vars_a_fusionner)){
     if (any(!vars_a_fusionner %in% names(totcode))){
-      stop("vars_a_fusionner contient au moins une variable n'étant pas dans totcode !")
+      stop("vars_a_fusionner contains at least one variable that is not in totcode!")
     }
   }
   
+  # Check if verbose is a logical value
   if (!is.logical(verbose)){
-    stop("verbose doit être logique")
+    stop("verbose must be a logical value.")
   }
   
+  # Convert LIMIT to numeric
   LIMIT <- as.numeric(LIMIT)
   
+  # Start timing if verbose is true
   if (verbose){
-    tictoc::tic("Réduction de dimension")
+    tictoc::tic("Dimension reduction")
   }
   
-  
-  # Choix du séparateur
+  # Choose the separator
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
-  sep <- choisir_sep(data_var_cat,vec_sep)
+  sep <- choisir_sep(data_var_cat, vec_sep)
   
-  if (length(totcode) == 5){
-    # L'utilisateur a spécifié les variables à fusionner
-    if (length(vars_a_fusionner) == 3){
+  if (length(totcode) == 5) {
+    # If the user specified the variables to merge
+    if (length(vars_a_fusionner) == 3) {
       v1 <- vars_a_fusionner[[1]]
       v2 <- vars_a_fusionner[[2]]
       v3 <- vars_a_fusionner[[3]]
-      v4 <- paste(v1,v2,sep=sep)
+      v4 <- paste(v1, v2, sep = sep)
       
-    } else if (length(vars_a_fusionner) == 4){
+    } else if (length(vars_a_fusionner) == 4) {
       v1 <- vars_a_fusionner[[1]]
       v2 <- vars_a_fusionner[[2]]
       v3 <- vars_a_fusionner[[3]]
       v4 <- vars_a_fusionner[[4]]
       
-      # L'utilisateur n'a pas spécifié les variables à fusionner
-      # Nous devons les calculer
     } else {
-
-      if (nb_tab == 'smart'){
+      # If the user did not specify the variables to merge, we need to calculate them
+      
+      if (nb_tab == 'smart') {
         
-        if (verbose){
-          print("Choix des variables...")
+        if (verbose) {
+          print("Choosing variables...")
         }
         
-        # Proposition de varibales
-        choix_3_var <- choisir_var_a_fusionner_general(dfs=data,
+        # Propose combinations of variables to merge
+        choix_3_var <- choisir_var_a_fusionner_general(dfs = data,
                                                        totcode = totcode,
                                                        hrcfiles = hrcfiles,
                                                        nb_var = 3,
@@ -285,38 +291,37 @@ gen_tabs_5_4_to_3 <- function(
                                                        LIMIT = LIMIT,
                                                        nb_tab = nb_tab)
         
-        # Nombre de tableau généré par chaque proposition
+        # Calculate the number of tables generated by each combination
         choix_3_var_nb_tab <- calculer_nb_tab(v1 = choix_3_var[[1]],
                                               v2 = choix_3_var[[2]],
                                               v3 = choix_3_var[[3]],
-                                              hrcfiles=hrcfiles,
-                                              data=dfs)
+                                              hrcfiles = hrcfiles,
+                                              data = dfs)
         
         choix_4_var_nb_tab <- calculer_nb_tab(v1 = choix_4_var[[1]],
                                               v2 = choix_4_var[[2]],
                                               v3 = choix_4_var[[3]],
                                               v4 = choix_4_var[[4]],
-                                              hrcfiles=hrcfiles,
-                                              data=dfs)
+                                              hrcfiles = hrcfiles,
+                                              data = dfs)
         
-        # On choisit la meilleure proposition
-        if (choix_3_var_nb_tab < choix_4_var_nb_tab){
+        # Choose the best combination
+        if (choix_3_var_nb_tab < choix_4_var_nb_tab) {
           v1 <- choix_3_var[[1]]
           v2 <- choix_3_var[[2]]
           v3 <- choix_3_var[[3]]
-          v4 <- paste(v1,v2,sep=sep)
+          v4 <- paste(v1, v2, sep = sep)
         } else {
           v1 <- choix_4_var[[1]]
           v2 <- choix_4_var[[2]]
           v3 <- choix_4_var[[3]]
           v4 <- choix_4_var[[4]]
         }
-      
-      # Retour à l'implémentation primitive pour minimiser ou maximiser
-      # le nombre de tableaux
-      # Puisque la vieille implémentation n'est pas si mauvaise et est
-      # plus rapide que de calculer la taille et le nombre de tableau généré
-      # ce qui prend ~10se
+        
+        # Return to the primitive implementation to minimize or maximize
+        # the number of tables since the old implementation is not bad and is
+        # faster than calculating the size and number of generated tables,
+        # which takes ~10 seconds.
       } else {
         v1 <- NULL
         v2 <- NULL
@@ -326,46 +331,51 @@ gen_tabs_5_4_to_3 <- function(
       }
     }
     
-    if (verbose){
-      print("Réduction de 5 à 4...")
+    if (verbose) {
+      print("Reducing from 5 to 4...")
     }
     
-    res<-passer_de_5_a_3_var(dfs=dfs,
-                             nom_dfs=nom_dfs,
-                             totcode=totcode,
-                             hrcfiles=hrcfiles,
-                             sep_dir=sep_dir, 
-                             hrc_dir=hrc_dir,
-                             v1=v1,v2=v2,v3=v3,v4=v4,
-                             sep=sep,
-                             select_hier = select_hier,
-                             verbose = verbose)
+    res <- passer_de_5_a_3_var(dfs = dfs,
+                               nom_dfs = nom_dfs,
+                               totcode = totcode,
+                               hrcfiles = hrcfiles,
+                               sep_dir = sep_dir,
+                               hrc_dir = hrc_dir,
+                               v1 = v1, v2 = v2,
+                               v3 = v3, v4 = v4,
+                               sep = sep,
+                               select_hier = select_hier,
+                               verbose = verbose)
     
-    if (verbose){
-      print(paste(length(res$tabs),"tables créés"))
+    if (verbose) {
+      print(paste(length(res$tabs), "tables created"))
       tictoc::toc()
     }
     
-    return(format(res,nom_dfs,sep,totcode,hrcfiles))
+    return(format(res = res,
+                  nom_dfs = nom_dfs,
+                  sep = sep,
+                  totcode = totcode,
+                  hrcfiles = hrcfiles)
+           )
     
-  } else if (length(totcode) == 4){
+  } else if (length(totcode) == 4) {
     
-    # L'utilisateur a spécifié les variables à fusionner
-    if (length(vars_a_fusionner) == 2){
+    # If the user specified the variables to merge
+    if (length(vars_a_fusionner) == 2) {
       v1 <- vars_a_fusionner[[1]]
       v2 <- vars_a_fusionner[[2]]
       
-      # L'utilisateur n'a pas spécifié les variables à fusionner
-      # Nous devons les calculer
     } else {
+      # If the user did not specify the variables to merge, we need to calculate them
       
-      if (nb_tab == 'smart'){
+      if (nb_tab == 'smart') {
         
-        if (verbose){
-          print("Choix des variables...")
+        if (verbose) {
+          print("Choosing variables...")
         }
         
-        choix_2_var <- choisir_var_a_fusionner_general(dfs=data,
+        choix_2_var <- choisir_var_a_fusionner_general(dfs = data,
                                                        totcode = totcode,
                                                        hrcfiles = hrcfiles,
                                                        nb_var = 2,
@@ -374,11 +384,10 @@ gen_tabs_5_4_to_3 <- function(
         v1 <- choix_2_var[[1]]
         v2 <- choix_2_var[[2]]
         
-      # Retour à l'implémentation primitive pour minimiser ou maximiser
-      # le nombre de tableaux
-      # Puisque la vieille implémentation n'est pas si mauvaise et est
-      # plus rapide que de calculer la taille et le nombre de tableau généré
-      # pour gagner quelques dixièmes
+        # Return to the primitive implementation to minimize or maximize
+        # the number of tables since the old implementation is not bad and is
+        # faster than calculating the size and number of generated tables
+        # to gain a few tenths of a second.
       } else {
         v1 <- NULL
         v2 <- NULL
@@ -386,25 +395,30 @@ gen_tabs_5_4_to_3 <- function(
       }
     }
     
-    if (verbose){
-      print("Réduction de 4 à 3...")
+    if (verbose) {
+      print("Reducing from 4 to 3...")
     }
-
-    res<-passer_de_4_a_3_var(dfs=dfs,
-                             nom_dfs=nom_dfs,
-                             totcode=totcode,
-                             hrcfiles=hrcfiles,
-                             sep_dir=sep_dir, 
-                             hrc_dir=hrc_dir,
-                             v1=v1,v2=v2,
-                             sep=sep,
-                             select_hier = select_hier)
     
-    if (verbose){
-      print(paste(length(res$tabs),"tables créés"))
+    res <- passer_de_4_a_3_var(dfs = dfs,
+                               nom_dfs = nom_dfs,
+                               totcode = totcode,
+                               hrcfiles = hrcfiles,
+                               sep_dir = sep_dir,
+                               hrc_dir = hrc_dir,
+                               v1 = v1, v2 = v2,
+                               sep = sep,
+                               select_hier = select_hier)
+    
+    if (verbose) {
+      print(paste(length(res$tabs), "tables created"))
       tictoc::toc()
     }
-    
-    return(format(res,nom_dfs,sep,totcode,hrcfiles))
   }
+  
+  return(format(res = res,
+                nom_dfs = nom_dfs,
+                sep = sep,
+                totcode = totcode,
+                hrcfiles = hrcfiles)
+  )
 }

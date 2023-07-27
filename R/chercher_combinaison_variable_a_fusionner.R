@@ -1,18 +1,19 @@
-#' Fonction général choisissant les variables à fusionner
-#' pour limiter le nombre de tableau généré tout en s'assurant de ne pas généré
-#' des tableaux trop grands
-#'
+#' General function to choose variables to merge,
+#' limiting the number of generated tables while ensuring not to generate
+#' tables that are too large.
+#' 
 #' @param dfs data.frame
-#' @param totcode vector nommé des totaux pour les variables catégorielles
-#' @param hrcfiles vector nommé des fichiers hrc pour les variables catégorielles
-#' @param nb_var nombre de variable à fusionner
-#' @param nb_tab stratégie à suivre pour choisir les variables automatiquement :
-#' min : minimiser le nombre de table;
-#' max : maximise le nombre de table;
-#' smart : minimise le nombre de table sous la contrainte de leur nombre de ligne
-#' @param LIMIT nombre de ligne maximale autorisé dans le cas smart
-#'
-#' @return
+#' @param totcode named vector of totals for categorical variables
+#' @param hrcfiles named vector of hrc files for categorical variables
+#' @param nb_var number of variables to merge
+#' @param nb_tab strategy to follow for choosing variables automatically:
+#'   - 'min': minimize the number of tables;
+#'   - 'max': maximize the number of tables;
+#'   - 'smart': minimize the number of tables under the constraint of their row count.
+#' @param LIMIT maximum allowed row count in the 'smart' case
+#' 
+#' @return A list of vectors representing the chosen variables to merge
+#' 
 #' @export
 #'
 #' @examples
@@ -57,72 +58,77 @@
 #' 
 #' hrcfiles <- c(ACT = hrc_act, GEO = hrc_geo)
 #' 
-#' 
-#' # Cohérent : on choisit deux var hier
-#' res1 <- choisir_var_a_fusionner_general(dfs= data,
+#' # Consistent: choose two hierarchical variables
+#' res1 <- choisir_var_a_fusionner_general(dfs = data,
 #'                                         totcode = totcode,
 #'                                         hrcfiles = hrcfiles,
 #'                                         nb_var = 2,
 #'                                         nb_tab = 'max')
-#' res1                                        
+#' res1
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res1[1],v2 = res1[2])))
-#'                        
-#' # Cohérent : on choisit deux var non hier
-#' res2 <- choisir_var_a_fusionner_general(dfs= data,
+#'                        v1 = res1[1], v2 = res1[2])))
+#' 
+#' # Consistent: choose two non-hierarchical variables
+#' res2 <- choisir_var_a_fusionner_general(dfs = data,
 #'                                 totcode = totcode,
 #'                                 hrcfiles = hrcfiles,
 #'                                 nb_var = 2,
 #'                                 nb_tab = 'min')
-#' res2                                
+#' res2
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res2[1],v2 = res2[2])))
-#'                                                        
+#'                        v1 = res2[1], v2 = res2[2])))
+#' 
 #' res3 <- choisir_var_a_fusionner_general(dfs = data,
 #'                                 totcode = totcode,
 #'                                 hrcfiles = hrcfiles,
-#'                                 LIMIT= 200,
+#'                                 LIMIT = 200,
 #'                                 nb_var = 2,
 #'                                 nb_tab = 'smart')
 #' res3
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res3[1],v2 = res3[2])))
-#'                        
-#' # On obtient 147, ce qui est bien inférieur à 200
+#'                        v1 = res3[1], v2 = res3[2])))
+#' 
+#' # Obtains 147, which is well below 200
 #' 
 #' res4 <- choisir_var_a_fusionner_general(dfs = data,
 #'                                 totcode = totcode,
 #'                                 hrcfiles = hrcfiles,
-#'                                 LIMIT= 5,
+#'                                 LIMIT = 5,
 #'                                 nb_var = 2,
 #'                                 nb_tab = 'smart')
 #' res4
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res4[1],v2 = res4[2])))
-#'                        
-#' # On obtient un warning : impossible d'atteindre la valeur annoncée
-#' # On a bien 63 lignes (ce qui équivaut au max 
-#' # -> c'est ce qui réduit la taille des tableaux)
-#' # Et le warning annonce 63 lignes, c'est cohérent avec l'output
-choisir_var_a_fusionner_general <- function(dfs,totcode,hrcfiles=NULL, nb_var = 4, nb_tab = "min", LIMIT=150) {
-  
-  # Cas 2 couplese en dimension 5
+#'                        v1 = res4[1], v2 = res4[2])))
+#' 
+#' # Receives a warning: unable to reach the announced value
+#' # There are 63 rows (equivalent to the max 
+#' # -> this is what reduces the table size)
+#' # And the warning announces 63 rows, which is consistent with the output
+choisir_var_a_fusionner_general <- function(
+    dfs,
+    totcode,
+    hrcfiles = NULL,
+    nb_var = 4,
+    nb_tab = "min",
+    LIMIT = 150)
+{
+  # Case of 2 pairs in dimension 5
   if (nb_var == 4){
     result_comb <- generer_deux_paires(totcode)
     
-    # Cas trio en dimension 5
+    # Case of a triplet in dimension 5
   } else if (nb_var == 3){
     result_comb <- generer_triplet(totcode)
     
-    # cas dimension 4
+    # Case of dimension 4
   } else {
     result_comb <- generer_une_paire(totcode)
   }
@@ -135,133 +141,141 @@ choisir_var_a_fusionner_general <- function(dfs,totcode,hrcfiles=NULL, nb_var = 
                                  nb_tab = nb_tab))
 }
 
-choisir_var_a_fusionner <- function(dfs,result_comb,totcode,hrcfiles=NULL, LIMIT=150, nb_tab = "smart"){
-  
+choisir_var_a_fusionner <- function(
+    dfs,
+    result_comb,
+    totcode,
+    hrcfiles = NULL,
+    LIMIT = 150,
+    nb_tab = "smart")
+{
+  # Calculate the number of tables and maximum rows for each combination of variables
   res_func <- lapply(result_comb, function(x) length_tabs(
-                                                     dfs=data,
-                                                     v1=x[1],
-                                                     v2=x[2],
-                                                     v3=x[3],
-                                                     v4=x[4],
-                                                     totcode=totcode,
-                                                     hrcfiles=hrcfiles))
+    dfs = data,
+    v1 = x[1],
+    v2 = x[2],
+    v3 = x[3],
+    v4 = x[4],
+    totcode = totcode,
+    hrcfiles = hrcfiles))
   
-  # Récupération du max de ligne et du nombre de tableau créé
+  # Get the maximum rows and number of created tables
   res_max <- sapply(res_func, function(x) max(unlist(x)))
   res_len <- sapply(res_func, function(x) length(unlist(x)))
   
-  # Créer un dataframe pour pouvoir mieux filtrer après
+  # Create a dataframe for better filtering
   df <- data.frame(res_max = res_max, res_len = res_len)
   
-  # On souvegarde le numéro de ligne enrajoutant une colonne
+  # Save the row number by adding a column
   df$original_index <- seq(nrow(df))
   
-  # Cas minimiser le nombre de tableau
+  # Case: minimize the number of tables
   if (nb_tab == "min"){
     min_nb_tab <-  min(df$res_len)
     filtered_df <- df[df$res_len == min_nb_tab, ]
     
-    # indice du tableau filtré
+    # Get the index of the filtered table
     min_index <- which.min(filtered_df$res_max)
-    # Imprimer l'indice original
+    # Print the original index
     i <- filtered_df$original_index[min_index]
     
     return(result_comb[[i]])
-  
-  # Cas maximiser le nombre de tableau
+    
+    # Case: maximize the number of tables
   } else if (nb_tab == "max"){
     max_nb_tab <-  max(df$res_len)
     filtered_df <- df[df$res_len == max_nb_tab, ]
     
-    # indice du tableau filtré
+    # Get the index of the filtered table
     min_index <- which.min(filtered_df$res_max)
-    # Imprimer l'indice original
+    # Print the original index
     i <- filtered_df$original_index[min_index]
     
     return(result_comb[[i]])
     
-  # Cas 'smart' : maximisation sous contrainte de limite de taille
+    # Case: 'smart' - maximize under the constraint of the size limit
   } else {
-    # On filtre sur la condition du max
+    # Filter based on the maximum rows condition
     filtered_df <- df[df$res_max < LIMIT, ]
     
-    # Si au moins un cas satisfait à cela
+    # If at least one case satisfies this condition
     if (nrow(filtered_df) > 0){
-      # indice du tableau filtré
+      # Get the index of the filtered table
       min_index <- which.min(filtered_df$res_len)
       
-      # Imprimer l'indice original
+      # Print the original index
       i <- filtered_df$original_index[min_index]
       
       return(result_comb[[i]])
       
     } else {
-      # on renvoie le résultat ayant le moins de tableau parmis ceux
-      # ayant les tableaux les moins longs
+      # Return the result with the fewest tables among those
+      # with the shortest tables
       min_res_max <- min(df$res_max)
-      warning(c("Le seuil de ",LIMIT," n'a pas été atteint.
-  Le plus gros tableau a ",min_res_max," lignes."))
+      warning(c("
+      The limit of ",LIMIT," cannot be achieved.
+      The largest table has ",min_res_max," rows."))
       
       filtered_df <- df[df$res_max == min_res_max, ]
       
-      # indice du tableau filtré
+      # Get the index of the filtered table
       min_index <- which.min(filtered_df$res_len)
       
-      # Imprimer l'indice original
+      # Print the original index
       i <- filtered_df$original_index[min_index]
       return(result_comb[[i]])
     }
   }
 }
 
-generer_une_paire <- function(totcode){
-  # Récupération des variables catégorielles du dataframe
+generer_une_paire <- function(totcode) {
+  # Retrieve the categorical variables from the dataframe
   var_cat <- names(totcode)
   
-  # Utiliser combn pour obtenir toutes les combinaisons de deux éléments
-  comb <- combn(var_cat,2)
+  # Use combn to get all combinations of two elements
+  comb <- combn(var_cat, 2)
   
-  # Transformer les résultats en une liste de vecteurs
+  # Transform the results into a list of vectors
   result <- split(t(comb), seq(ncol(comb)))
   
   return(result)
 }
 
 generer_deux_paires <- function(totcode) {
-  # Récupération des variables catégorielles du dataframe
+  # Retrieve the categorical variables from the dataframe
   var_cat <- names(totcode)
   
-  # Obtenir toutes les combinaisons de quatre éléments
+  # Get all combinations of four elements
   comb <- combn(var_cat, 4)
   
-  # Pour chaque combinaison, obtenir deux paires disjointes
+  # For each combination, obtain two disjoint pairs
   result <- lapply(seq(ncol(comb)), function(i) {
-    quad <- comb[,i]
+    quad <- comb[, i]
     pair_comb <- t(combn(quad, 2))
     
-    # Créer deux paires disjointes pour chaque combinaison
+    # Create two disjoint pairs for each combination
     pairs <- lapply(seq(nrow(pair_comb)), function(j) {
-      pair1 <- pair_comb[j,]
+      pair1 <- pair_comb[j, ]
       pair2 <- setdiff(quad, pair1)
       
-      # Convertir les paires en chaînes
+      # Convert the pairs to strings
       pair1_str <- paste(sort(pair1), collapse = ",")
       pair2_str <- paste(sort(pair2), collapse = ",")
       
-      # Créer une chaîne qui représente les deux paires
+      # Create a string representing both pairs
       both_pairs_str <- paste(sort(c(pair1_str, pair2_str)), collapse = ",")
       return(both_pairs_str)
     })
     return(pairs)
   })
   
-  # Aplatir le résultat
+  # Flatten the result
   result <- unlist(result, recursive = FALSE)
   
-  # Supprimer les doublons
+  # Remove duplicates
   unique_pairs <- unique(result)
   
-  # Convertir les chaînes en vecteurs
+  # Convert the strings back to vectors
   result <- lapply(unique_pairs, function(pair_str) {
     pairs <- strsplit(pair_str, ",")[[1]]
     return(pairs)
@@ -271,15 +285,14 @@ generer_deux_paires <- function(totcode) {
 }
 
 generer_triplet <- function(totcode) {
-  # Récupération des variables catégorielles du dataframe
+  # Retrieve the categorical variables from the dataframe
   var_cat <- names(totcode)
   
-  # Obtenir toutes les combinaisons de trois éléments
+  # Get all combinations of three elements
   comb <- combn(var_cat, 3)
   
-  # Transformer le résultat en une liste de vecteurs
+  # Transform the result into a list of vectors
   result <- split(t(comb), seq(ncol(comb)))
   
   return(result)
 }
-

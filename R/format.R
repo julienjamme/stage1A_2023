@@ -1,4 +1,5 @@
-#' Title
+#' Change le résultat de la réduction de dimension pour être utilisable directement
+#' dans rtauargus
 #'
 #' @param res resultat de la fusion de variable composéee d'une liste de liste de tableaux,
 #' une liste de fichiers hiérarchique, une liste de sous_totaux associées à ses fichiers,
@@ -11,41 +12,64 @@
 #' avec eb outre le nom de la variable associées aux sous_totaux , et la liste
 #' des variables fusionnées ou vecteur selon la taille du tableau d'entrée
 
-#' @examples library(dplyr)
-#'
-#' source("R/cas_gen_4_3.R",encoding = "UTF-8")
+#' @examples
+#' 
+#' library(dplyr)
+#' 
+#' source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
+#' source("R/passage_4_3.R",encoding = "UTF-8")
+#' source("R/passage_5_3.R",encoding = "UTF-8")
 #' source("R/format.R",encoding = "UTF-8")
-#'
-#'
-#' # Test 1 data avec aucune var hier -----------------------------
-#'
 #' data <- expand.grid(
-#'   ACT = c("Total", "A", "B"),
+#'   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
 #'   GEO = c("Total", "G1", "G2"),
 #'   SEX = c("Total", "F", "M"),
 #'   AGE = c("Total", "AGE1", "AGE2"),
 #'   stringsAsFactors = FALSE
-#' ) %>%
+#' ) %>% 
 #'   as.data.frame()
-#'
+#' 
 #' data <- data %>% mutate(VALUE = 1)
-#' nrow(data) #81 rows = 3^4
-#'
-#' totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
-#'
-#'
-#' res <- passer_de_4_a_3_var(
+#' 
+#' hrc_act <- "output/hrc_ACT.hrc"
+#' 
+#' sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>% 
+#'   sdcHierarchies::hier_add(root = "A", nodes = c("A1","A2")) %>% 
+#'   sdcHierarchies::hier_add(root = "B", nodes = c("B1","B2")) %>% 
+#'   sdcHierarchies::hier_convert(as = "argus") %>%
+#'   slice(-1) %>% 
+#'   mutate(levels = substring(paste0(level,name),3)) %>% 
+#'   select(levels) %>% 
+#'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
+#' 
+#' # Résultats de la fonction
+#' res1 <- passer_de_4_a_3_var(
 #'   dfs = data,
 #'   nom_dfs = "tab",
-#'   totcode = totcode,
-#'   hrcfiles = NULL,
+#'   totcode = c(SEX="Total",AGE="Total",
+#'               GEO="Total", ACT="Total"), 
+#'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
-#'   hrc_dir = "hrc_alt"
+#'   hrc_dir = "output",
+#'   sep = "_'
 #' )
-#' format(res,"nom_dfs"tab) #### A CORRIGER
-#'
-
-format <- function(res, nom_dfs, sep, totcode, hrcfiles) {
+#' 
+#' format(res1,
+#'        nom_dfs = "tab",
+#'        sep = "_",
+#'        totcode = c(SEX="Total",AGE="Total",
+#'                    GEO="Total", ACT="Total"),
+#'        hrcfiles = c(ACT = hrc_act)
+#'        )
+format <- function(
+  res,
+  nom_dfs,
+  sep,
+  totcode,
+  hrcfiles)
+{
   if (class(res$vars[1]) == "character") {
     return(format4(res, nom_dfs, sep, totcode, hrcfiles))
   }
@@ -55,7 +79,6 @@ format <- function(res, nom_dfs, sep, totcode, hrcfiles) {
 }
 
 #Format pour les tableaux à 4 variables
-
 format4 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
   #Données
   
@@ -123,7 +146,6 @@ format4 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
 }
 
 #Format pour les tableaux à 5 variables
-
 format5 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
   if (class(res$vars) == "list") {
     #On récupère les différentes variables

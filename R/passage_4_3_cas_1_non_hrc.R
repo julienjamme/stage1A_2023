@@ -1,25 +1,24 @@
-#' Passage de 4 à 3 variables via la fusion d'une variable hiérarchique
-#' et une non hiérarchique
+#' Transition from 4 to 3 variables by merging a hierarchical
+#' and a non-hierarchical variable
 #'
-#' @param dfs data.frame à 4 variables catégorielles (n >= 2 dans le cas général)
-#' @param nom_dfs nom du data.frame dans la liste fournie par l'utilisateur
-#' @param v1 variable catégorielle non hierarchique
-#' @param v2 variable catégorielle hierarchique
-#' @param totcode vecteur normée des totaux pour les variables catégorielles
-#' @param hrcfiles vecteur nommé indiquant les fichiers hrc des variables 
-#' hiérarchiques parmi les variables catégorielles de dfs
-#' @param dir_name dossier où écrire les fichiers hrc
-#' si aucun dossier n'est spécifié dans hrcfiles
-#' @param sep séparateur utilisé lors de la concaténation des variables
+#' @param dfs data.frame with 4 categorical variables (n >= 2 in the general case)
+#' @param nom_dfs name of the data.frame in the list provided by the user
+#' @param v1 non-hierarchical categorical variable
+#' @param v2 hierarchical categorical variable
+#' @param totcode named vector of totals for categorical variables
+#' @param hrcfiles named vector indicating the hrc files of hierarchical variables
+#' among the categorical variables of dfs
+#' @param dir_name directory where to write the hrc files
+#' if no folder is specified in hrcfiles
+#' @param sep separator used when concatenating variables
 #'
-#' @return liste(tabs, hrcs, alt_tot, vars)
-#' tab : liste nommée des dataframes à 3 dimensions (n-1 dimensions dans le cas général)
-#' doté de hiérarchies emboitées
-#' hrc : liste nommée des hrc spécifiques à la variable crée via la fusion
-#' alt_tot : liste nommée des totaux
-#' vars : liste nommée de vecteur représentant les variables fusionnées
-#' lors des deux étapes de réduction de dimensions
-#' @export
+#' @return list(tabs, hrcs, alt_tot, vars)
+#' tab: named list of 3-dimensional dataframes (n-1 dimensions in the general case)
+#' with nested hierarchies
+#' hrc: named list of hrc specific to the variable created by fusion
+#' alt_tot: named list of totals
+#' vars: named list of vectors representing the merged variables
+#' during the two stages of dimension reduction
 #'
 #' @examples
 #' library(dplyr)
@@ -65,9 +64,18 @@
 #'                                             AGE = "Total",ECO = "PIB"),
 #'                                 hrcfiles = c(ACT = hrc_act, SEX = hrc_sex),
 #'                                 dir_name = "output")
-passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name, sep = "_") {
+passage_4_3_cas_1_non_hr <- function(
+  dfs,
+  nom_dfs,
+  v1,
+  v2,
+  totcode,
+  hrcfiles,
+  dir_name,
+  sep = "_")
+{
   #############################
-  ## Création des code_split ##
+  ## Creation of code_split ##
   #############################
   hrc <- hrcfiles[[v2]]
   total <- totcode[[v2]]
@@ -75,15 +83,15 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
   res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
     sdcHierarchies::hier_convert(as = "sdc")
   
-  # Code split nous donne les hiérarchies ainsi que les niveaux de la hiérarchie
-  # Permet de selectionn un noeud de l'arbre et ses branches directes
+  # Code split gives us the hierarchies as well as the hierarchy levels
+  # Allows to select a node of the tree and its direct branches
   codes_split <- lapply(
     res_sdc$dims,
     names
   )
   
   ###########################
-  # Réduction de hierarchie #
+  # Reduction of hierarchy #
   ###########################
   
   liste_df_4_var_2_non_hr <- lapply(
@@ -93,18 +101,23 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
         filter(dfs[[v2]] %in% codes)
     }
   )
-  # Nous avons maintenant des data.frames avec 2 variables non hierarchiques
-  # nous pouvons donc appliquer la methode dédiée 
+  # We now have data.frames with 2 non-hierarchical variables
+  # therefore we can apply the dedicated method
   
-  # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
-  # ...
-  
-  # Mise à jour des arguments puis appel de la fonction cas_2_non_hrc
+  # Updating the arguments then call the function cas_2_non_hrc
   appel_4_3_non_hier <- function(dfs, i){
+    
     if (i <= length(codes_split)) {
       totcode[v2] <- codes_split[[i]][1]
       nom_dfs <- paste(nom_dfs, totcode[v2], sep = "_")
-      passage_4_3_cas_2_non_hr(dfs, nom_dfs, v1, v2, totcode, dir_name, sep = sep)
+      
+      passage_4_3_cas_2_non_hr(dfs = dfs,
+                               nom_dfs = nom_dfs,
+                               v1 = v1,
+                               v2 = v2,
+                               totcode = totcode,
+                               dir_name = dir_name,
+                               sep = sep)
     } 
     else {
       print(paste("Index", i, "is out of bounds for codes_split."))
@@ -112,22 +125,22 @@ passage_4_3_cas_1_non_hr <- function(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_nam
     }
   }
   
-  # On transforme tous nos tableaux de 4 var en 3 var
+  # We transform all our 4 var tables into 3 var
   res <- lapply(seq_along(liste_df_4_var_2_non_hr), function(i) {
     appel_4_3_non_hier(liste_df_4_var_2_non_hr[[i]], i)
   })
   
   
-  # On change l'objet pour qu'il soit le même que dans les autres cas
+  # We change the object so that it is the same as in the other cases
   tabs <- unlist(lapply(res, function(x) x$tabs), recursive = FALSE)
   hrcs <- unlist(lapply(res, function(x) x$hrcs), recursive = FALSE)
   alt_tot <- unlist(lapply(res, function(x) x$alt_tot), recursive = FALSE)
+  
   return(
     list(
       tabs = tabs,
       hrcs = hrcs,
-      alt_tot= alt_tot,
+      alt_tot = alt_tot,
       vars = c(v1, v2))
   )
 }
-
