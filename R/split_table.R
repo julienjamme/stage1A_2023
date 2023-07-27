@@ -1,6 +1,6 @@
-
-
-split_tab<-function(res,var_fus){
+split_tab<-function(res,var_fus, LIMIT){
+  
+  res$to_split <- sapply(res$tabs, function(x) nrow(x) > LIMIT)
   
   table_a_gerer <- names(res$to_split[res$to_split == TRUE]) # liste de true ou false
   all_tot_stock<-list()
