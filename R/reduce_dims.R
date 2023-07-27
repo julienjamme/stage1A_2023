@@ -337,8 +337,7 @@ gen_tabs_5_4_to_3 <- function(
         
         # Return to the primitive implementation to minimize or maximize
         # the number of tables since the old implementation is not bad and is
-        # faster than calculating the size and number of generated tables,
-        # which takes ~10 seconds.
+        # faster than calculating the size and number of generated tables
       } else {
         v1 <- NULL
         v2 <- NULL
@@ -392,7 +391,6 @@ gen_tabs_5_4_to_3 <- function(
         # Return to the primitive implementation to minimize or maximize
         # the number of tables since the old implementation is not bad and is
         # faster than calculating the size and number of generated tables
-        # to gain a few tenths of a second.
       } else {
         v1 <- NULL
         v2 <- NULL
