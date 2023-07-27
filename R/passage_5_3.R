@@ -43,9 +43,9 @@ nb_noeuds <- function(hrcfiles, v = NULL, hrc_name = TRUE) {
 #' @param v4 allows forcing the value of the second variable to merge
 #' when reducing from 4 to 3 dimensions, not specified by default (NULL)
 #' @param sep separator used during concatenation of variables
-#' @param select_hier specifies whether to prefer selecting hierarchical variables with
-#' the most nodes as a priority (hier=TRUE), which generates more tables
-#' but of smaller size, or non-hierarchical variables with the least modality (hier=FALSE)
+#' @param maximize_nb_tabs specifies whether to prefer selecting hierarchical variables with
+#' the most nodes as a priority (TRUE), which generates more tables
+#' but of smaller size, or non-hierarchical variables with the least modality (FALSE)
 #' to create fewer tables
 #' @param verbose prints the different steps of the function to notify
 #' the user of the progress, mainly for the general function gen_tabs_5_4_to_3()
@@ -149,7 +149,7 @@ passer_de_5_a_3_var <- function(
     v3 = NULL,
     v4 = NULL, 
     sep = "_",
-    select_hier = FALSE,
+    maximize_nb_tabs = FALSE,
     verbose = FALSE)
 {
   # Update the output folder containing the hierarchies
@@ -169,7 +169,7 @@ passer_de_5_a_3_var <- function(
                                  v1 = v1,
                                  v2 = v2,
                                  sep = sep,
-                                 select_hier = select_hier)
+                                 maximize_nb_tabs = maximize_nb_tabs)
   if (verbose){
     print(paste(length(res_5_4$tabs),"tables created"))
     print(c("Reducing from 4 to 3..."))
@@ -212,17 +212,17 @@ passer_de_5_a_3_var <- function(
     v3 <- choisir_var(dfs = dfs[setdiff(names(dfs),v4)],
                       totcode = totcode2[setdiff(names(totcode2),v4)],
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v4)],
-                      select_hier = select_hier)
+                      maximize_nb_tabs = maximize_nb_tabs)
     
     # We check if the merged variable has fewer nodes than the selected variable
     nb_noeuds_v3 <- nb_noeuds(hrcfiles2, v=v3)
     if (!is.null(v4)){
       # We need to do two different if statements otherwise NULL != new_var crashes!
-      if (v4 != new_var & select_hier == TRUE){
+      if (v4 != new_var & maximize_nb_tabs == TRUE){
         v3 <- new_var
       }
       # If v4 = NULL no need to compare v4 != new_var
-    } else if (select_hier == TRUE){
+    } else if (maximize_nb_tabs == TRUE){
       v3 <- new_var
     }
   }
@@ -242,12 +242,12 @@ passer_de_5_a_3_var <- function(
     v4 <- choisir_var(dfs = dfs[setdiff(names(dfs),v3)],
                       totcode = totcode2[setdiff(names(totcode2),v3)],
                       hrcfiles = hrcfiles2[setdiff(names(hrcfiles2),v3)],
-                      select_hier = select_hier)
+                      maximize_nb_tabs = maximize_nb_tabs)
     
     # We check if the merged variable has fewer nodes than the selected variable
     nb_noeuds_v4 <- nb_noeuds(hrcfiles2, v=v4)
     # Rq : v3 can not be NULL
-    if (v3 != new_var & select_hier == TRUE){
+    if (v3 != new_var & maximize_nb_tabs == TRUE){
       v4 <- new_var
     }
   }

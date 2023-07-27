@@ -15,7 +15,9 @@
 #' min: minimize the number of tables;
 #' max: maximize the number of tables;
 #' smart: minimize the number of tables under the constraint of their number of rows
-#' @param LIMIT maximum allowed number of rows in the smart case
+#' @param LIMIT maximum allowed number of rows in the smart or split case 
+#' @param split indicate if we split in several tables the table bigger than LIMIT at the end
+#' it decreases the number of hierarchy of these tables
 #' @param vec_sep vector of candidate separators to use
 #' @param verbose print the different steps of the function to inform the user of progress
 #'
@@ -52,6 +54,7 @@
 #' source("R/length_tabs.R", encoding = "UTF-8")
 #' source("R/nb_tab.R", encoding = "UTF-8")
 #' source("R/chercher_combinaison_variable_a_fusionner.R", encoding = "UTF-8")
+#' source("R/split_table.R",encoding = "UTF-8")
 #' 
 #' # Examples for dimension 4
 #' 
@@ -78,15 +81,29 @@
 #'   select(levels) %>%
 #'   write.table(file = hrc_act, row.names = F, col.names = F, quote = F)
 #' 
-#' # Result of the function forcing variables to be merged
+#' # Reduce dim by forcing variables to be merged
 #' res1 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
 #'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"),
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
+#'   vars_a_fusionner = c("ACT", "GEO"),
 #'   hrc_dir = "output",
-#'   vars_a_fusionner = c("ACT", "GEO")
+#' )
+#' 
+#' # Split the output in order to be under the limit & forcing variables to be merged
+#' res1b <- gen_tabs_5_4_to_3(
+#'   dfs = data,
+#'   nom_dfs = "tab",
+#'   totcode = c(SEX = "Total", AGE = "Total", GEO = "Total", ACT = "Total"),
+#'   hrcfiles = c(ACT = hrc_act),
+#'   sep_dir = TRUE,
+#'   hrc_dir = "output",
+#'   vars_a_fusionner = c("ACT", "GEO"),
+#'   split = TRUE,
+#'   LIMIT = 100,
+#'   verbose = TRUE
 #' )
 #' 
 #' # Result of the function (minimizes the number of created tables by default)
@@ -99,7 +116,7 @@
 #'   hrc_dir = "output"
 #' )
 #' 
-#' # Result of the function (minimizes the number of created tables by default)
+#' # Result of the function (maximize the number of created tables)
 #' res3 <- gen_tabs_5_4_to_3(
 #'   dfs = data,
 #'   nom_dfs = "tab",
@@ -107,8 +124,7 @@
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   LIMIT = 250,
-#'   nb_tab = "smart"
+#'   nb_tab = "max"
 #' )
 #' 
 #' # Example for dimension 5
@@ -176,9 +192,10 @@ gen_tabs_5_4_to_3 <- function(
     sep_dir = FALSE, 
     hrc_dir="hrc_alt",
     vars_a_fusionner = NULL,
-    vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
     nb_tab = "min",
     LIMIT = 15000,
+    split = FALSE,
+    vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
     verbose = FALSE
 ){
   
@@ -327,7 +344,7 @@ gen_tabs_5_4_to_3 <- function(
         v2 <- NULL
         v3 <- NULL
         v4 <- NULL
-        select_hier <- if (nb_tab == 'max') TRUE else FALSE
+        maximize_nb_tabs <- if (nb_tab == 'max') TRUE else FALSE
       }
     }
     
@@ -344,20 +361,8 @@ gen_tabs_5_4_to_3 <- function(
                                v1 = v1, v2 = v2,
                                v3 = v3, v4 = v4,
                                sep = sep,
-                               select_hier = select_hier,
+                               maximize_nb_tabs = maximize_nb_tabs,
                                verbose = verbose)
-    
-    if (verbose) {
-      print(paste(length(res$tabs), "tables created"))
-      tictoc::toc()
-    }
-    
-    return(format(res = res,
-                  nom_dfs = nom_dfs,
-                  sep = sep,
-                  totcode = totcode,
-                  hrcfiles = hrcfiles)
-           )
     
   } else if (length(totcode) == 4) {
     
@@ -391,7 +396,7 @@ gen_tabs_5_4_to_3 <- function(
       } else {
         v1 <- NULL
         v2 <- NULL
-        select_hier <- if (nb_tab == 'max') TRUE else FALSE
+        maximize_nb_tabs <- if (nb_tab == 'max') TRUE else FALSE
       }
     }
     
@@ -407,18 +412,51 @@ gen_tabs_5_4_to_3 <- function(
                                hrc_dir = hrc_dir,
                                v1 = v1, v2 = v2,
                                sep = sep,
-                               select_hier = select_hier)
-    
-    if (verbose) {
-      print(paste(length(res$tabs), "tables created"))
-      tictoc::toc()
-    }
+                               maximize_nb_tabs = maximize_nb_tabs)
   }
   
-  return(format(res = res,
+  if (verbose) {
+    print(paste(length(res$tabs), "tables created"))
+  }
+  
+  # Put a format usable by rtauargus
+  res <- format(res = res,
                 nom_dfs = nom_dfs,
                 sep = sep,
                 totcode = totcode,
                 hrcfiles = hrcfiles)
-  )
+  
+  # Split too big table
+  # for the moment only the case dim = 4 has been implemented
+  if (split & length(totcode) == 4) {
+    
+    if (verbose) {
+      print("Spliting...")
+    }
+    
+    res <- split_tab(res = res,
+                     LIMIT = LIMIT,
+                     var_fus = paste(res$fus_vars[1],
+                                     res$fus_vars[2],
+                                     sep = res$sep)
+                     )
+    
+    max_row <- max(sapply(res$tabs, nrow))
+    
+    if (max_row > LIMIT){
+      warning(c("
+      The limit of ",LIMIT," cannot be achieved.
+      The largest table has ",max_row," rows."))
+    }
+    
+    if (verbose) {
+      print(paste(length(res$tabs), "tables created"))
+    }
+  }
+  
+  if (verbose) {
+    tictoc::toc()
+  }
+  
+  return(res)
 }

@@ -90,8 +90,8 @@ choisir_var_priorite_hierarchique <- function(dfs, totcode, hrcfiles) {
   }
 }
 
-choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
-  if(select_hier){
+choisir_var <- function(dfs, totcode, hrcfiles, maximize_nb_tabs = FALSE) {
+  if(maximize_nb_tabs){
     return(choisir_var_priorite_hierarchique(dfs, totcode, hrcfiles))
   } else {
     return(choisir_var_priorite_non_hierarchique(dfs, totcode, hrcfiles))
@@ -114,9 +114,9 @@ choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
 #' @param v2 allows forcing the value of the second variable to merge,
 #' not specified by default (NULL)
 #' @param sep separator used during concatenation of variables
-#' @param select_hier specifies whether to prefer selecting hierarchical variables with
-#' the most nodes in priority (hier=TRUE), generating more tables but with smaller sizes,
-#' or non-hierarchical variables with the fewest modalities (hier=FALSE) to create fewer tables
+#' @param maximize_nb_tabs specifies whether to prefer selecting hierarchical variables with
+#' the most nodes in priority (TRUE), generating more tables but with smaller sizes,
+#' or non-hierarchical variables with the fewest modalities (FALSE) to create fewer tables
 #'
 #' @return list(tabs, hrcs, alt_tot, vars)
 #' tab : named list of 3-dimensional dataframes (n-1 dimensions in the general case)
@@ -176,7 +176,7 @@ choisir_var <- function(dfs, totcode, hrcfiles, select_hier = FALSE) {
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   select_hier = TRUE
+#'   maximize_nb_tabs = TRUE
 #' )
 passer_de_4_a_3_var <- function(
   dfs,
@@ -188,7 +188,7 @@ passer_de_4_a_3_var <- function(
   v1 = NULL,
   v2 = NULL, 
   sep = "_", 
-  select_hier = FALSE)
+  maximize_nb_tabs = FALSE)
 {
   # Update the output directory containing the hierarchies
   if( (length(hrcfiles) != 0) & !sep_dir){
@@ -220,7 +220,7 @@ passer_de_4_a_3_var <- function(
     v1 <- choisir_var(dfs = dfs[setdiff(names(dfs),v2)],
                       totcode = totcode[setdiff(names(totcode),v2)],
                       hrcfiles = hrcfiles[setdiff(names(hrcfiles),v2)],
-                      select_hier = select_hier)
+                      maximize_nb_tabs = maximize_nb_tabs)
   }
   
   if (v1 %in% var_sans_hier){
@@ -243,7 +243,7 @@ passer_de_4_a_3_var <- function(
     v2 <- choisir_var(dfs = dfs[setdiff(names(dfs),v1)],
                       totcode = totcode[setdiff(names(totcode),v1)],
                       hrcfiles = hrcfiles[!(names(hrcfiles) == v1)],
-                      select_hier = select_hier)
+                      maximize_nb_tabs = maximize_nb_tabs)
   }
   
   if (v2 %in% var_sans_hier){
