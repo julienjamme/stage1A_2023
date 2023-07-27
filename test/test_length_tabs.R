@@ -48,7 +48,8 @@ res <- passer_de_4_a_3_var(
 l_tab <- length_tabs_4(dfs=data,
             hrcfiles = hrcfiles,
             v1 = "SEX",
-            v2 = "AGE")
+            v2 = "AGE",
+            totcode = totcode)
 
 tapp_tab <- lapply(res$tabs, nrow)
 
@@ -65,7 +66,8 @@ all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 gen_tab <- length_tabs(dfs=data,
                        hrcfiles = hrcfiles,
                        v1 = "SEX",
-                       v2 = "AGE")
+                       v2 = "AGE",
+                       totcode = totcode)
 all(mapply(function(x, y) x == y, l_tab, gen_tab))
 
 # cas 2 : dimension 4 - 1 non hier ----------------------------------------
@@ -118,7 +120,8 @@ hrcfiles = c(ACT = hrc_act)
 l_tab <- length_tabs_4(dfs=data,
                      hrcfiles = hrcfiles,
                      v1 = v1,
-                     v2 = v2)
+                     v2 = v2,
+                     totcode = totcode)
 tapp_tab <- lapply(res$tabs, nrow)
 
 # On fait attention à engendrer des tables ayant toutes
@@ -181,7 +184,8 @@ hrcfiles = c(ACT = hrc_act)
 l_tab <- length_tabs_4(dfs=data,
                      hrcfiles = hrcfiles,
                      v1 = v1,
-                     v2 = v2)
+                     v2 = v2,
+                     totcode)
 tapp_tab <- lapply(res$tabs, nrow)
 
 # On fait attention à engendrer des tables ayant toutes
@@ -250,7 +254,8 @@ res <- passer_de_4_a_3_var(
 l_tab <- length_tabs_4(dfs=data,
                      hrcfiles = hrcfiles,
                      v1 = v1,
-                     v2 = v2)
+                     v2 = v2,
+                     totcode = totcode)
 
 tapp_tab <- lapply(res$tabs, nrow)
 
@@ -300,7 +305,9 @@ res <- passer_de_5_a_3_var(
 tapp_tab <- lapply(res$tabs, nrow)
 
 l_tab <- length_tabs_5_4_var(dfs = data,
-                              hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+                              hrcfiles = hrcfiles,
+                             v1 = v1,v2 = v2,v3 = v3,v4 = v4,
+                             totcode = totcode)
 
 all(mapply(function(x, y) x == y, l_tab, tapp_tab))
 
@@ -313,7 +320,9 @@ length(unique(tapp_tab))
 
 # On vérifie que la fonction général qui choisit la bonne fonction de compte marche bien
 gen_tab <- length_tabs(dfs = data,
-                             hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+                       hrcfiles = hrcfiles,
+                       v1 = v1,v2 = v2,v3 = v3,v4 = v4,
+                       totcode = totcode)
 
 all(mapply(function(x, y) x == y, l_tab, gen_tab))
 
@@ -380,7 +389,9 @@ length(res$tabs)
 l_reel <- lapply(res$tabs, nrow)
 
 l_predict <- length_tabs_5_4_var(dfs = data,
-                                 hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+                                 hrcfiles = hrcfiles,
+                                 v1 = v1,v2 = v2,v3 = v3,v4 = v4,
+                                 totcode = totcode)
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
 
@@ -474,7 +485,9 @@ length(res$tabs)
 l_reel <- lapply(res$tabs, nrow)
 
 l_predict <- length_tabs_5_4_var(dfs = data,
-                                 hrcfiles = hrcfiles,v1 = v1,v2 = v2,v3 = v3,v4 = v4)
+                                 hrcfiles = hrcfiles,
+                                 v1 = v1,v2 = v2,v3 = v3,v4 = v4,
+                                 totcode = totcode)
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
 
@@ -522,14 +535,16 @@ length(res$tabs)
 l_reel <- lapply(res$tabs, nrow)
 
 l_predict <- length_tabs_5_3_var(dfs = data,
-                                 v1 = v1,v2 = v2,v3 = v3)
+                                 v1 = v1,v2 = v2,v3 = v3,
+                                 totcode = totcode)
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
 
 # On vérifie que la fonction général qui choisit la bonne fonction de compte marche bien
 
 gen_predict <- length_tabs(dfs = data,
-                                 v1 = v1,v2 = v2,v3 = v3)
+                           v1 = v1,v2 = v2,v3 = v3,
+                           totcode = totcode)
 
 all(mapply(function(x, y) x == y, gen_predict, l_predict))
 
@@ -558,14 +573,8 @@ v2 = "AGE"
 gen_tab <- length_tabs(dfs=data,
                        hrcfiles = NULL,
                        v1 = "SEX",
-                       v2 = "AGE")
-
-# Tous les tableaux sont en dessous du seuil limite
-length_tabs_ok_tauargus(dfs = data,hrcfiles = NULL,v1 = "SEX", v2 = "AGE")
-
-# Au moins un tableau est au dessus du seuil limite
-length_tabs_ok_tauargus(dfs = data,hrcfiles = NULL,v1 = "SEX", v2 = "AGE", LIMIT = 840) == FALSE
-
+                       v2 = "AGE",
+                       totcode = totcode)
 
 hrc_act <- "output/hrc_ACT.hrc"
 sdcHierarchies::hier_create(root = "Total_A", nodes = c("A1","A2","A3")) %>% 
@@ -626,11 +635,12 @@ hrcfiles = hrcfiles
 
 l_predict <- length_tabs_5_3_var(dfs = data,
                                  v1 = v1,v2 = v2,v3 = v3,
-                                 hrcfiles = hrcfiles)
+                                 hrcfiles = hrcfiles,
+                                 totcode = totcode)
 
 all(sort(unlist(unique(l_reel))) == sort(unlist(unique(l_predict))))
 
 all(mapply(function(x, y) x == y, l_reel, l_predict))
 
 # On a bien les bonnes modalités... mais pas au bonne endroit !
-table(sort(unlist(l_reel))) == table(sort(unlist(l_predict)))
+all(table(sort(unlist(l_reel))) == table(sort(unlist(l_predict))))

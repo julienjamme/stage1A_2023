@@ -1,11 +1,9 @@
-# Vider l'environnement global
-rm(list = ls())
-
-
 library(dplyr)
+
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/format.R")
 source("R/passage_5_3.R",encoding = "UTF-8")
+
 # Donnée 1 : première table ----------------------------------------------------------------
 data <- expand.grid(
   ACT = c("Total",read.table("hrc/hrc1.hrc") %>% mutate(V1 = gsub("@?","",V1, perl = TRUE)) %>% pull(V1)),

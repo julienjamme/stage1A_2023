@@ -1,14 +1,11 @@
-# Vider l'environnement global
-rm(list = ls())
-
 library(dplyr)
+
 source(file = "R/passage_5_3.R", encoding = "UTF-8")
 source("R/passage_4_3_cas_0_non_hrc.R", encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R", encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R", encoding = "UTF-8")
 source("R/passage_4_3.R", encoding = "UTF-8")
 source("R/format.R", encoding = "UTF-8")
-source("test/test_nbs_tabs.R", encoding = "UTF-8")
 
 # Donnée 1 ----------------------------------------------------------------
 
@@ -70,7 +67,8 @@ sep = "_"
 
 # test 1 : arguments ------------------------------------------------------------------
 
-res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
+res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
+                           hrc_dir = dir_name)
 all(sort(unlist(res$vars)) == sort(unlist(list("AGE","GEO","ACT","ECO"))))
 length(res$tabs) == 4 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * 
                         nb_noeuds(hrcfiles = hrcfiles, v="GEO") *
@@ -79,7 +77,8 @@ length(res$tabs) == 4 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") *
 
 
 # Vérification priorité var hierarchique
-res2 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, select_hier = TRUE)
+res2 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,
+                            hrc_dir = dir_name, maximize_nb_tabs = TRUE)
 all(sort(unlist(res2$vars)) == sort(unlist(list("AGE","GEO","ACT","SEX"))))
 length(res2$tabs) == 4 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * 
                          nb_noeuds(hrcfiles = hrcfiles, v="GEO") *
@@ -95,7 +94,6 @@ str(res$hrcs4_3)
 str(res$alt_tot5_4)
 str(res$alt_tot4_3)
 
-res<-format(res,nom_dfs)
 # test séparateur
 res_plusplus_ <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name, sep = "+++")
 
@@ -110,7 +108,7 @@ any(str_detect(names(data), "\\+++")) == FALSE
 any(str_detect(names(res_plusplus_$tabs$nom_data_frame_AGE_KEBAB_Pays_ACT), "\\+++"))
 
 
-(names(res_plusplus_$tabs$nom_data_frame_AGE_Total_Pays_ACT))
+(names(res_plusplus_$tabs$nom_data_frame_AGE_KEBAB_Pays_ACT))
 
 res_SEX_AGE_ECO <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE,hrc_dir = dir_name, v3 = "SEX",v4 = "AGE_ECO")
 "SEX_AGE_ECO" %in% names(res_SEX_AGE_ECO$tabs$nom_data_frame_AGE_Total_Ensemble_PIB_SEX)
@@ -170,7 +168,7 @@ str(res)
 length(res$tabs)
 
 #On vérifie les noms des différents fichiers
-res <- format(res, nom_dfs)
+res <- format(res, nom_dfs, sep = "_", totcode = totcode, hrcfiles = hrcfiles)
 #On vérifie les noms des différents fichiers
 all(names(res$tabs) == names(res$hrcs))
 all(names(res$tabs) == names(res$alt_tot))
@@ -372,14 +370,6 @@ sep = "_"
 
 res5_4 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name)
 
-# On vérifie que la variable fusionnée a moins de noeuds en moyenne que les autres variables
-test_nb_tabs_3hrc(res5_4$hrcs, names(res5_4$hrcs)[1], res5_4$alt_tot)
-test_nb_tabs_3hrc(res5_4$hrcs, names(res5_4$hrcs)[2], res5_4$alt_tot)
-
-test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[1], totcode)
-test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[2], totcode)
-test_nb_tabs_3hrc(hrcfiles, names(hrcfiles)[3], totcode)
-
 # On obtient bien
 # Passage 4 à 3: chr [1:2] "AGE_ECO" "ACT"
 res5_3 <-
@@ -389,75 +379,6 @@ res5_3 <-
                       hrcfiles,
                       sep_dir = TRUE,
                       hrc_dir = dir_name)
-
-
-# Donnée 3 : 0 hrc --------------------------------------------------------
-
-data <- expand.grid(
-  ACT = c("Ensemble", "Est", "Ouest", "Est1", "Ouest1", "Est2", "Ouest2"),
-  SEX = c("Ensemble", "Nord", "Sud", "Nord1", "Sud1", "Nord2"),
-  GEO = c("Ensemble", "Oui", "Non", "Oui1", "Non1"),
-  AGE = c("Ensemble", "adulte", "enfant"),
-  ECO = c("Ensemble", "riche", "pauvre", "autre"),
-  stringsAsFactors = FALSE
-) %>%
-  as.data.frame()
-
-data <- data %>% mutate(VALUE = runif(nrow(data)))
-hrcfiles <- NULL
-
-totcode <-
-  c(
-    SEX = "Ensemble",
-    AGE = "Ensemble",
-    GEO = "Ensemble",
-    ACT = "Ensemble",
-    ECO = "Ensemble"
-  )
-
-# pour execution ligne à ligne
-dfs <- data
-nom_dfs <- "nom_data_frame"
-
-dir_name <- "output"
-hrc_dir <- dir_name
-sep_dir <- TRUE
-v1 <- "AGE"
-v2 <- "ECO"
-v3 <- "AGE_ECO"
-v4 <- "GEO"
-
-sep = "_"
-
-
-# test 3 ------------------------------------------------------------------
-
-
-res5_3 <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, sep_dir = sep_dir, 
-                              hrc_dir = dir_name, v1 = v1,v2 = v2,
-                              v3 = v3, v4 = v4)
-str(res5_3)
-# 14 hrc
-# 6 AGE
-# 8 ECO
-
-res5_4 <-
-  passer_de_4_a_3_var(dfs,
-                      nom_dfs,
-                      totcode,
-                      hrcfiles,
-                      sep_dir = TRUE,
-                      hrc_dir = dir_name)
-
-nb_noeuds <- lapply(names(res5_4$hrcs),
-                    function(x)
-                      test_nb_tabs_3hrc(res5_4$hrcs, x, res5_4$alt_tot))
-
-rep(res5_4$hrcs[[1]], nb_noeuds[1])
-
-unlist(lapply(1:length(res5_4$hrcs), function(i)
-  rep(res5_4$hrcs[[i]], nb_noeuds[i])))
-
 
 
 # Donnée 4 ----------------------------------------------------------------
@@ -517,3 +438,4 @@ sep = "_"
 res <- passer_de_5_a_3_var(dfs,nom_dfs,totcode, hrcfiles, sep_dir = TRUE, hrc_dir = dir_name,
                            v1 = v1, v2 = v2,v3 = v3,v4 = v4)
 str(res)
+

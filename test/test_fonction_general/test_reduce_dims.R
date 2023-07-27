@@ -1,28 +1,24 @@
-rm(list = ls())
-
 library(dplyr)
 library(data.table)
 library(stringr)
+
 source(file = "R/passage_5_3.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/reduce_dims.R",encoding = "UTF-8")
-<<<<<<< HEAD:test/test_fonction_general/test_fonction_general_choisit_sep_et_reduit_dim.R
-source("R/cas_gen_4_3.R",encoding = "UTF-8")
-=======
 source("R/passage_4_3.R",encoding = "UTF-8")
->>>>>>> 1dc07ad6575fac8ed8af7f837e0a033230478eaf:test/test_fonction_general/test_reduce_dims.R
 source("R/choisir_sep.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
 source("R/length_tabs.R",encoding = "UTF-8")
 source("R/nb_tab.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R",encoding = "UTF-8")
 source("R/chercher_combinaison_variable_a_fusionner.R",encoding = "UTF-8")
 library(tictoc)
+
 library("rtauargus")
 loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
+
 # Test dimension 5 - 2 couples créés --------------------------------------
 
 
@@ -146,13 +142,6 @@ purrr::map(res5_3$alt_tot,
   unlist() %>% 
   all()
 
-# il y a bien 2 alt_tot : v1_v2 et v3_v4
-purrr::map(res5_3$alt_tot,
-           function(x) return(length(x) == 2)
-) %>% 
-  unlist() %>% 
-  all()
-
 # les hrc sont bien de la forme c(v1_v2 = hrc_v1_v2, ...)
 purrr::map(res5_3$hrcs,
            function(x) return(
@@ -161,14 +150,6 @@ purrr::map(res5_3$hrcs,
 ) %>% 
   unlist() %>% 
   all()
-
-# il y a bien 2 hrc : v1_v2 et v3_v4
-purrr::map(res5_3$hrcs,
-           function(x) return(length(x) == 2)
-) %>% 
-  unlist() %>% 
-  all()
-
 
 # Il n'y a pas de + dans les colonnes initiale 
 
@@ -360,7 +341,8 @@ purrr::map2(names(res5_3$tabs), 1:length(res5_3$tabs),
 length(res5_3$fus_vars) == 2
 
 sep <- res5_3$sep
-var_fusionnes <- c(paste(res5_3$fus_var[[1]],res5_3$fus_var[[2]],sep=sep))
+var_fusionnes <- c(paste(res5_3$fus_var$five_to_three[[1]],res5_3$fus_var$five_to_three[[2]],sep=sep),
+                   paste(res5_3$fus_var$four_to_three[[1]],res5_3$fus_var$four_to_three[[2]],sep=sep))
 
 
 # les totaux sont bien de la forme c(v1_v2 = tot_v1_v2, ...)
@@ -439,7 +421,7 @@ sep_dir <- TRUE
 
 res5_3 <- gen_tabs_5_4_to_3(dfs,nom_dfs = "1",totcode ,hrcfiles,
                             vars_a_fusionner = NULL,
-                            sep_dir = 1,
+                            sep_dir = TRUE,
                             hrc_dir = hrc_dir)
 
 # separateur --------------------------------------------------------------

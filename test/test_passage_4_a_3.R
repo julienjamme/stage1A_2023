@@ -1,14 +1,11 @@
-# Vider l'environnement global
-rm(list = ls())
-
 library(dplyr)
+
 source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
 source("R/format.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R",encoding = "UTF-8")
 
 # Donnée 1 : cas 2 var non hier -------------------------------------------
 
@@ -39,12 +36,14 @@ v2 = NULL
 
 # test 1 ------------------------------------------------------------------
 
-res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir")
+res <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir,
+                           hrc_dir = "hrc_dir")
 length(res$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="SEX") * nb_noeuds(hrcfiles = hrcfiles, v="AGE")
 all(sort(res$vars) == sort(unlist(list("AGE","SEX"))))
 
 # On privilégie les var hierarchiques
-res2 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = "hrc_dir", select_hier = TRUE)
+res2 <- passer_de_4_a_3_var(data,"mon_data_frame",totcode, hrcfiles,sep_dir = sep_dir,
+                            hrc_dir = "hrc_dir", maximize_nb_tabs = TRUE)
 length(res2$tabs) == 2 * nb_noeuds(hrcfiles = hrcfiles, v="ACT") * nb_noeuds(hrcfiles = hrcfiles, v="GEO")
 all(sort(res2$vars) == sort(unlist(list("ACT","GEO"))))
 
@@ -70,10 +69,6 @@ res2 <- passage_4_3_cas_2_non_hr(data,"mon_data_frame","SEX","AGE", totcode, dir
 
 identical(res,res2)
 str(res)
-str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
-
-#On a les bon format
-# [1] TRUE
 
 # Donnée 2 : cas 1 var non hier -------------------------------------------
 
@@ -106,7 +101,7 @@ var_sans_hier <- intersect(
 )
 
 v1 <- var_sans_hier[1]
-v2<- plus_petit_hrc(hrcfiles,totcode)
+v2<- plus_petit_hrc(hrcfiles)
 hier = TRUE
 # v1 = NULL
 # v2 = NULL
@@ -120,17 +115,15 @@ res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,hrc_dir)
 identical(res,res2)
 
 str(res)
-str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
 
 # On privilégie les var hierarchiques
 nb_noeuds(hrcfiles[1], hrc_name=FALSE)
 nb_noeuds(hrcfiles[2], hrc_name=FALSE)
 nb_noeuds(hrcfiles[3], hrc_name=FALSE)
 # -> on devrait choisir GEO et SEX si l'on privilégie le nombre de tableau (hier=TRUE)
-res3 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir, hrc_dir = hrc_dir, select_hier=TRUE)
+res3 <- passer_de_4_a_3_var(dfs,nom_dfs,totcode, hrcfiles,sep_dir = sep_dir,
+                            hrc_dir = hrc_dir, maximize_nb_tabs =TRUE)
 # On a bien choisit SEX puis GEO (SEX a plus de noeuds que GEO donc a été choisis en premier)
-
-
 
 # donnée 3 : cas 0 var non hier ----------------------------------------------------------------
 
@@ -169,7 +162,6 @@ res2 <- passage_4_3_cas_0_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 identical(res,res2)
 
 str(res)
-str(tabs_5_4_to_3(dfs,nom_dfs,totcode ,hrcfiles ,sep_dir=FALSE,hrc_dir="hrc_alt"))
 
 # test 4 : cas hrcfiles = NULL --------------------------------------------
 

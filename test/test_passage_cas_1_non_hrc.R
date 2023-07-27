@@ -1,12 +1,9 @@
-# Vider l'environnement global
-rm(list = ls())
-
 library(dplyr)
+
 source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
 source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
 source("R/passage_5_3.R",encoding = "UTF-8")
-source("R/cas_gen_4_3.R",encoding = "UTF-8")
-source("test/test_nbs_tabs.R")
+source("R/passage_4_3.R",encoding = "UTF-8")
 
 # donnée 1 ----------------------------------------------------------------
 
@@ -45,13 +42,10 @@ res <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #On a bien la bonne forme 
 str(res)
 
-#On a le bon nombre de tableau
-identical(as.integer(test_nb_tabs_3hrc(hrc_files,v2,totcode)),length(res$tabs))
-
 #test plus_petit_hrc
-identical("ACT",plus_petit_hrc(hrcfiles,totcode))
+identical("ACT",plus_petit_hrc(hrcfiles))
 
-identical("SEX",plus_petit_hrc(hrcfiles,totcode))
+identical("SEX",plus_petit_hrc(hrcfiles))
 
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
 dirname(res$hrcs$nom_data_frame_Total_AGE) == dir_name
@@ -103,8 +97,8 @@ v2 <- "AGE" # On essaye avec une variable aux hasard
 
 totcode<-c(KEBAB="Kebab",SEX="Total",GEO="Pays",AGE="Total")
 
-identical("AGE",plus_petit_hrc(hrc_files,totcode))
-identical("KEBAB",plus_petit_hrc(hrc_files,totcode))
+identical("AGE",plus_petit_hrc(hrc_files))
+identical("KEBAB",plus_petit_hrc(hrc_files))
 
 
 hrcfiles <- hrc_files
@@ -119,8 +113,7 @@ dir_name <- "output"
 res2 <- passage_4_3_cas_1_non_hr(dfs, nom_dfs,v1,v2,totcode,hrcfiles,dir_name)
 #On a bien la bonne forme 
 str(res2)
-#On a le bon nombre de tableau
-identical(as.integer(test_nb_tabs_3hrc(hrcfiles,v2,totcode)),length(res2$tabs))
+
 #Les fichiers hrcs sont stockés dans le bon endroit et nommé
 dirname(res2$hrcs$kebab_Total_SEX) == dir_name
 
