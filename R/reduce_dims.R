@@ -180,9 +180,10 @@
 #'   hrcfiles = c(ACT = hrc_act, GEO = hrc_geo),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   nb_tab = 'smart',
-#'   LIMIT = 10000,
-#'   verbose = TRUE
+#'   nb_tab = 'min',
+#'   LIMIT = 1300,
+#'   verbose = TRUE,
+#'   split = FALSE
 #' )
 gen_tabs_5_4_to_3 <- function(
     dfs,
@@ -190,7 +191,7 @@ gen_tabs_5_4_to_3 <- function(
     totcode,
     hrcfiles = NULL,
     sep_dir = FALSE, 
-    hrc_dir="hrc_alt",
+    hrc_dir = "hrc_alt",
     vars_a_fusionner = NULL,
     nb_tab = "min",
     LIMIT = 15000,
@@ -260,12 +261,7 @@ gen_tabs_5_4_to_3 <- function(
   
   # Convert LIMIT to numeric
   LIMIT <- as.numeric(LIMIT)
-  
-  # Start timing if verbose is true
-  if (verbose){
-    tictoc::tic("Dimension reduction")
-  }
-  
+
   # Choose the separator
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
   sep <- choisir_sep(data_var_cat, vec_sep)
@@ -426,18 +422,43 @@ gen_tabs_5_4_to_3 <- function(
   
   # Split too big table
   # for the moment only the case dim = 4 has been implemented
-  if (split & length(totcode) == 4) {
+  if (split) {
     
     if (verbose) {
       print("Spliting...")
     }
     
-    res <- split_tab(res = res,
-                     LIMIT = LIMIT,
-                     var_fus = paste(res$fus_vars[1],
-                                     res$fus_vars[2],
-                                     sep = res$sep)
-                     )
+    # Collect of created vars
+    if (length(totcode) == 4){
+      liste_var_fus <- paste(res$fus_vars[1],
+                             res$fus_vars[2],
+                             sep = res$sep)
+    } else {
+      v1 <- res$fus_vars[[1]][1]
+      v2 <- res$fus_vars[[1]][2]
+      
+      v1_v2 <- paste(v1,v2, sep = res$sep)
+      
+      v3 <- res$fus_vars[[2]][1]
+      v4 <- res$fus_vars[[2]][2]
+      
+      # 3 variables merged together
+      if (v1_v2 %in% c(v3,v4)){
+        liste_var_fus <- list(paste(v3,v4, sep = res$sep))
+        
+      # 2 couples created
+      } else {
+        liste_var_fus <- list(v1_v2,
+                              paste(v3,v4, sep = res$sep))
+      }
+    }
+    
+    for (var_fus in liste_var_fus){
+      print(var_fus)
+      res <- split_tab(res = res,
+                       LIMIT = LIMIT,
+                       var_fus = var_fus)
+    }
     
     max_row <- max(sapply(res$tabs, nrow))
     
@@ -450,10 +471,6 @@ gen_tabs_5_4_to_3 <- function(
     if (verbose) {
       print(paste(length(res$tabs), "tables created"))
     }
-  }
-  
-  if (verbose) {
-    tictoc::toc()
   }
   
   return(res)
