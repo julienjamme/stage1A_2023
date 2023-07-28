@@ -11,6 +11,7 @@ split_tab<-function(res,var_fus, LIMIT){
     
     hrc <- res$hrcs[[t]][[var_fus]]
     total <- res$alt_tot[[t]][[var_fus]]
+    autre_totaux <- res$alt_tot[[t]][names(res$alt_tot[[t]])!=(var_fus)]
     
     res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
       sdcHierarchies::hier_convert(as = "sdc")
@@ -40,6 +41,7 @@ split_tab<-function(res,var_fus, LIMIT){
     liste_alt_tot <- setNames(lapply(1:n, function(i) {
       totali <- c(codes_split[[i]][1])
       totali <- setNames(list(totali), var_fus)
+      totali <- c(totali,autre_totaux)
       return(totali)
     }),
     noms

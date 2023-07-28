@@ -23,22 +23,28 @@ Pour pouvoir faire ses tests, on aura besoin de différents package:
 
 ```{r source}
 
-load("data/test_4_var_1hrc.RData")
+
 library("dplyr")
 library(tictoc)
 library("rtauargus")
 loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
 
-source("R/passer_de_3_a_4_ou_5.R")
-source("R/cas_gen_4_3.R")
-source("R/format.R")
-source("R/fonction_general_choisit_sep_et_reduit_dim.R")
-source("R/choisir_sep.R")
-source("R/passage_4_3_cas_0_non_hrc.R")
-source("R/passage_4_3_cas_1_non_hrc.R")
-source("R/passage_4_3_cas_2_non_hrc.R")
+mon_chemin <- getwd()
 
+source(file.path(mon_chemin, "R/passer_de_3_a_4_ou_5.R"), encoding = "UTF-8")
+# Exécute les commandes source()
+source(file.path(mon_chemin, "R/passage_4_3.R"), encoding = "UTF-8")
+source(file.path(mon_chemin, "R/format.R"), encoding = "UTF-8")
+source(file.path(mon_chemin, "R/reduce_dims.R"))
+source(file.path(mon_chemin, "R/choisir_sep.R"))
+source(file.path(mon_chemin, "R/passage_4_3_cas_0_non_hrc.R"))
+source(file.path(mon_chemin, "R/passage_4_3_cas_1_non_hrc.R"))
+source(file.path(mon_chemin, "R/passage_4_3_cas_2_non_hrc.R"))
+source(file.path(mon_chemin, "brouillon/fonction_secret.R"))
+source("fonction_secret_1_hrc.R")
+# Charge le fichier RData
+load(file.path(mon_chemin, "data/test_4_var_1hrc.RData"))
 ```
 
 ## Test avec une liste de tableaux à 3 dimensions
@@ -47,45 +53,149 @@ source("R/passage_4_3_cas_2_non_hrc.R")
 
 Cette fonction va nous permettre d'obtenir à partir du tableau à 4 dimensions en entrée une liste de tableaux à 3 dimensions sans hiérarchie emboitées 
 
+# TEST A 20%
+
 ```{r pressure, echo=FALSE}
 
-hrc_activity<-"hrc/activity_2_niv.hrc"
-hrcfiles<-c(ACTIVITY=hrc_activity)
-totcode<-c(treff="Total",cj="Total", ACTIVITY  ="Total",nuts1="Total")
-dfs <- test_4_var_1hrc
-nom_dfs <- "table_test_1_hrc"
+tabs_exemple4 <- (
+  test_4_var_1hrc %>% 
+    mutate(
+      is_secret_freq = nb_obs > 0 & nb_obs < 3,
+      is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot),
+      pizzas_tot= round(abs(pizzas_tot),1)
+    ) %>% 
+    mutate(
+      is_secret_prim = is_secret_freq | is_secret_dom,
+      nb_obs = ceiling(nb_obs)
+    ))
+tabs_exemple4 %>% count(is_secret_prim)
 
-list_res2<-
-  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_") )
 
 
 ```
+```{r}
+hrcfiles<-"hrc/activity_2_niv.hrc"
+
+data30<-test_part_secret1H(test_4_var_1hrc,30)
+
+ stats_1table30 <- calculer_secret(data30$stats_1table, type = "stats_1table30")
+ stats_liste30 <- calculer_secret(data30$stats_liste, type = "stats_liste30")
+```
+1546.05 sec elapsed
+--- Current table to treat:  table_test_301 ---
+--- Current table to treat:  table_test_302 ---
+--- Current table to treat:  table_test_301 ---
+--- Current table to treat:  table_test_302 ---
+--- Current table to treat:  table_test_301 ---
+--- Current table to treat:  table_test_302 ---
+898.91 sec elapsed
+
+ <chr>          <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_1table30 B              1019  29057839.      29.8         6.3
+2 stats_1table30 D              1272 119692969.      37.2        25.9
+3 stats_1table30 V              1127 312887228.      33          67.8
+
+  METHODE       statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>         <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_liste30 A              1019  29057839.      29.8         6.3
+2 stats_liste30 D              1300 120401090.      38          26.1
+3 stats_liste30 V              1099 312179108.      32.2        67.6
+
+```{r}
+hrcfiles<-"hrc/activity_2_niv.hrc"
+
+data50<-test_part_secret1H(test_4_var_1hrc,50)
+
+ stats_1table50 <- calculer_secret(data50$stats_1table, type = "stats_1table50")
+ stats_liste50 <- calculer_secret(data50$stats_liste, type = "stats_liste50")
+```
+  1006.19 sec elapsed
+--- Current table to treat:  table_test_501 ---
+--- Current table to treat:  table_test_502 ---
+--- Current table to treat:  table_test_501 ---
+--- Current table to treat:  table_test_502 ---
+1058.67 sec elapsed
+
+  
+ METHODE        statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>          <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_1table50 B              1709  88108576.        50        19.1
+2 stats_1table50 D              1025 143904770.        30        31.2
+3 stats_1table50 V               684 229624690.        20        49.7
+
+  METHODE       statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>         <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_liste50 A              1709  88108576.      50          19.1
+2 stats_liste50 D              1010 141097695.      29.5        30.6
+3 stats_liste50 V               699 232431765.      20.5        50.3
+
+MA
+```{r}
+hrcfiles<-"hrc/activity_2_niv.hrc"
+
+data12 <-test_part_secret1H(test_4_var_1hrc,12)
+
+ stats_1table12 <- calculer_secret(data12$stats_1table, type = "stats_1table10")
+ stats_liste12 <- calculer_secret(data12$stats_liste, type = "stats_liste10")
+```
+5323.53 sec elapsed
+--- Current table to treat:  table_test_121 ---
+--- Current table to treat:  table_test_122 ---
+--- Current table to treat:  table_test_121 ---
+--- Current table to treat:  table_test_122 ---
+--- Current table to treat:  table_test_121 ---
+2739.86 sec elapsed
+
+METHODE        statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>          <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_1table10 B               376   3304732.      11           0.7
+2 stats_1table10 D              1292  92808428.      37.8        20.1
+3 stats_1table10 V              1750 365524876.      51.2        79.2
+
+  METHODE       statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>         <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_liste10 A               376   3304732.      11           0.7
+2 stats_liste10 D              1432  87490417.      41.9        19  
+3 stats_liste10 V              1610 370842887.      47.1        80.3
 
 ### Pose du secret primaire sur les tableaux
 
 ```{r}
-list_tab2<-list_res2$tabs
 
-liste_tabs_exemple <- purrr::map(
-  list_tab2,
-  function(tab){
-    tab %>% 
-      mutate(
-        is_secret_freq = nb_obs > 0 & nb_obs < 3,
-        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
-      ) %>% 
-      mutate(
-        is_secret_prim = is_secret_freq | is_secret_dom,
-        nb_obs = ceiling(nb_obs)
-      )})
+tabs_exemple1 <-filter(test_4_var_1hrc, treff != "tr3", cj != "PA")
+seuil <- quantile(tabs_exemple1$nb_obs, probs = 5/100)
+ data5 <-test_part_secret1H(tabs_exemple1,5)
+
+ stats_1table5 <- calculer_secret(data5$stats_1table, type = "stats_1table5")
+ stats_liste5 <- calculer_secret(data5$stats_liste, type = "stats_liste5")
+  
 
 ```
+316.15 sec elapsed
+--- Current table to treat:  table_test_51 ---
+--- Current table to treat:  table_test_52 ---
+--- Current table to treat:  table_test_51 ---
+--- Current table to treat:  table_test_52 ---
+--- Current table to treat:  table_test_51 ---
+601.71 sec elapsed
+
+  METHODE      statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>        <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_liste5 A                95    381912.       3.7         0.1
+2 stats_liste5 D               559   8932580.      21.7         2.4
+3 stats_liste5 V              1920 370601919.      74.6        97.5
+
+ METHODE       statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>         <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_1table5 B                95    381912.       3.7         0.1
+2 stats_1table5 D               485   7942662.      18.8         2.1
+3 stats_1table5 V              1994 371591837.      77.5        97.8
 
 On peut compter le secret primaire des différents tableaux. Il faut noter que le nombre de case étant conserner par le secret primaire influence sur le temps que tauargus met pour poser le secret secondaire dans les différentes tables et cela influence donc tab_multimanager.
 
 
 ```{r}
-lapply(liste_tabs_exemple, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
+lapply(list_res2$tabs, function(tab) list(sum(tab$is_secret_prim),sum(tab$is_secret_prim) * 100 / nrow(tab)))
 
 ```
 ### Utilisation de tau argus pour poser le secret
@@ -95,7 +205,7 @@ On applique maintenant tau_argus sur la liste de table on notera aussi le temps 
 ```{r}
 tic()
 exemple_masq <- tab_multi_manager(
-  list_tables = liste_tabs_exemple,
+  list_tables = list_res2$tabs,
   list_explanatory_vars = list_res2$vars ,
   dir_name = "test_avec_rtauargus/hierarchie_2/1/mod",
   hrcfiles = list_res2$hrcfile,
@@ -149,11 +259,27 @@ data_compt %>%
   )
 
 ```
+
+statut_final
+<chr>
+n_cell
+<int>
+val_cell
+<dbl>
+pc_n_cell
+<dbl>
+pc_val_cell
+<dbl>
+A	559	7252532	16.354593	1.571043
+B	157	14834270	4.593329	3.213399
+D	974	60442946	28.496197	13.093147
+V	1728	379108290	50.555881	82.122412
+
 ### Hypercube
 ```{r}
 tic()
 hypercube_masq <- tab_multi_manager(
-  list_tables = liste_tabs_exemple,
+  list_tables = list_res2$tabs,
   list_explanatory_vars = list_res2$vars ,
   dir_name = "test_avec_rtauargus/hierarchie_2/1/hypercube",
   hrcfiles = list_res2$hrcfile,
@@ -176,18 +302,7 @@ Pour voir l'utilité de notre fonction on essaye de comparer le secret poser ain
 ### Pose du secret primaire
 
 ```{r}
-tabs_exemple4 <- (
-  test_4_var_1hrc %>% 
-    mutate(
-      is_secret_freq = nb_obs > 0 & nb_obs < 3,
-      is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot),
-      pizzas_tot= abs(pizzas_tot)
-    ) %>% 
-    mutate(
-      is_secret_prim = is_secret_freq | is_secret_dom,
-      nb_obs = ceiling(nb_obs)
-    ))
-tabs_exemple4 %>% count(is_secret_prim)
+
 ```
 
 
@@ -240,6 +355,21 @@ masq_compt %>%
   )
 
 ```
+
+statut_final
+<chr>
+n_cell
+<int>
+val_cell
+<dbl>
+pc_n_cell
+<dbl>
+pc_val_cell
+<dbl>
+A	559	7252532	16.354593	1.571043
+B	157	14834270	4.593329	3.213399
+D	1210	44676134	35.400819	9.677741
+V	1492	394875102	43.651258	85.537818
 
 ## TEST AVEC HYPERCUBE
 

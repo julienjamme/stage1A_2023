@@ -183,7 +183,7 @@
 #'   nb_tab = 'min',
 #'   LIMIT = 1300,
 #'   verbose = TRUE,
-#'   split = FALSE
+#'   split = TRUE
 #' )
 gen_tabs_5_4_to_3 <- function(
     dfs,

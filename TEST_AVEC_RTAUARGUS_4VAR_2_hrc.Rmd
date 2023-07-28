@@ -14,7 +14,7 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
+
 
 Le but de ce test est de vérifier comment tauargus se débrouille avec 1 hiérarchie .
 POur cela nous allons comparer l'utilisation de tauargus avec une table à 4 variables catégorielles dont 1 hiérarchiques. Dans ce test , on vérifiera si modular ou hypercube et modular fonctionnent et s'il y a un warning quand on utilise tauargus . Puis, on comparera le secret quand on utilise nos fonctions qui permettent de diviser
@@ -36,20 +36,23 @@ Pour pouvoir faire ses tests, on aura besoin de différents package:
 
 load("data/ca_pizzas_4vars.RData")
 library("dplyr")
+library(stringr)
 library(tictoc)
 library("rtauargus")
 loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
 
 source("R/passer_de_3_a_4_ou_5.R")
-source("R/cas_gen_4_3.R")
+source("R/passage_4_3.R")
 source("R/format.R")
-source("R/fonction_general_choisit_sep_et_reduit_dim.R")
+source("R/reduce_dims.R")
 source("R/choisir_sep.R")
 source("R/passage_4_3_cas_0_non_hrc.R")
 source("R/passage_4_3_cas_1_non_hrc.R")
 source("R/passage_4_3_cas_2_non_hrc.R")
-
+source("R/nb_tab.R")
+source("R/length_tabs.R")
+source("R/chercher_combinaison_variable_a_fusionner.R")
 ```
 
 ## Test avec une liste de tableaux à 3 dimensions
@@ -59,18 +62,46 @@ source("R/passage_4_3_cas_2_non_hrc.R")
 Cette fonction va nous permettre d'obtenir à partir du tableau à 4 dimensions en entrée une liste de tableaux à 3 dimensions sans hiérarchie emboitées 
 
 ```{r pressure, echo=FALSE}
-hrc_nuts<-"hrc/nuts23.hrc"
-hrc_activity<-"hrc/activity_2_niv.hrc"
-hrcfiles<-hrc_activity
-totcode<-c(treff="Total",cj="Total", ACTIVITY  ="Total",nuts1="Total")
-dfs <- ca_pizzas
-nom_dfs <- "pizza1"
+
+hrc_activity <- rtauargus::write_hrc2(
+  corr_act, 
+  "hrc/activity_2_niv.hrc", 
+  adjust_unique_roots = TRUE
+)
+
+hrc_nuts <- rtauargus::write_hrc2(
+  corr_nuts,
+  "hrc/nuts23.hrc", 
+  adjust_unique_roots = TRUE
+)
+
+hrcfiles<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+
+totcode<-c(ACTIVITY="Total",NUTS23="Total",treff="Total",cj="Total")
+
+dfs <- ca_pizzas_4vars
+nom_dfs <- "wtf"
 
 list_res2<-
-  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\_") )
+  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\___"),nb_tab = "min" )
 
 ```
+###Pose du secret primaire
 
+```{r}
+tabs_exemple <- (
+  ca_pizzas_4vars %>% 
+    
+    mutate(
+      is_secret_freq = nb_obs > 0 & nb_obs < 3,
+      is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot),
+      pizzas_tot= round(abs(pizzas_tot),1)
+    ) %>% 
+    mutate(
+      is_secret_prim = is_secret_freq | is_secret_dom,
+      nb_obs = ceiling(nb_obs)
+    ))
+```
 ### Pose du secret primaire sur les tableaux
 
 ```{r}
@@ -82,7 +113,8 @@ liste_tabs_exemple <- purrr::map(
     tab %>% 
       mutate(
         is_secret_freq = nb_obs > 0 & nb_obs < 3,
-        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot)
+        is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot),
+        pizzas_tot = round(abs(pizzas_tot), 1)
       ) %>% 
       mutate(
         is_secret_prim = is_secret_freq | is_secret_dom,
@@ -91,13 +123,32 @@ liste_tabs_exemple <- purrr::map(
 
 ```
 
+```{r}
+
+list_tab2$pizza2 %>% 
+  filter(treff___cj != "Total___Total") %>% 
+  pull(treff___cj) %>% 
+  unique() %>% 
+  sort() %>% 
+  `==`(
+    read.table(list_res2$hrcs$pizza2$treff___cj) %>% 
+      mutate(V1 = gsub("@","",V1)) %>% 
+      pull(V1) %>% 
+      sort()
+  ) %>% 
+    all()
+tabs_exemple5 <-filter(res_all_dtp, treff != "FR1")
+
+```
+
 ### Pose du secret secondaire
 ```{r}
+tic()
 exemple_masq <- tab_multi_manager(
   list_tables = liste_tabs_exemple,
   list_explanatory_vars = list_res2$vars ,
   dir_name = "test_avec_rtauargus/hierarchie_2/2/mod",
-  hrcfiles = list_res2$hrcfile,
+  hrc = list_res2$hrcfile,
   totcode = list_res2$totcode,
   alt_hrc = list_res2$hrcs,
   alt_totcode = list_res2$alt_tot,
@@ -109,29 +160,90 @@ exemple_masq <- tab_multi_manager(
 t<-toc()
 
 ```
-
-```{r}
-
-```
+--- Current table to treat:  pizza1 ---
+Error in file C:\Users\ZOW2JK\Documents\stage1A_2023\test_avec_rtauargus\hierarchie_2\2\mod\pizza1.tab on line 7898.
+                   Line = Total,****FR1,Total___Total, 4277534.5, 38452
+                   Code does not exist
+Something wrong in readTablesBatch()
+Error in batch file
+Avis : cannot open file 'test_avec_rtauargus/hierarchie_2/2/mod/pizza1.csv': No such file or directoryError in file(file, "rt") : cannot open the connection
+> list_res2$tabs$pizza1 %>% slice(7898)
+# A tibble: 1 × 6
+  ACTIVITY NUTS23 nb_obs pizzas_tot pizzas_max treff_cj
+  <chr>    <chr>   <dbl>      <dbl>      <dbl> <chr>   
+1 P        FRA4        1       315.       315. tr2_SP  
+> read.table(list_res2$hrcs$pizza1$treff_cj)
+          V1
+1  tr1_Total
+2    @tr1_LL
+3    @tr1_PA
+4    @tr1_SP
+5  tr2_Total
+6    @tr2_LL
+7    @tr2_PA
+8    @tr2_SP
+9  tr3_Total
+10   @tr3_LL
+11   @tr3_PA
+12   @tr3_SP
+> liste_tabs_exemple$pizza1 %>% slice(7898)
+# A tibble: 1 × 9
+  ACTIVITY NUTS23 nb_obs pizzas_tot pizzas_max treff_cj is_secret_freq
+  <chr>    <chr>   <dbl>      <dbl>      <dbl> <chr>    <lgl>         
+1 P        FRA4        1       315.       315. tr2_SP   TRUE          
+# ℹ 2 more variables: is_secret_dom <lgl>, is_secret_prim <lgl>
 
 ## TEST AVEC UN TABLEAUX
 
-###Pose du secret primaire
-
 ```{r}
-tabs_exemple <- (
-  ca_pizzas_4vars %>% 
-    
-    mutate(
-      is_secret_freq = nb_obs > 0 & nb_obs < 3,
-      is_secret_dom = (pizzas_tot != 0) & (pizzas_max > 0.85*pizzas_tot),
-      pizzas_tot= abs(pizzas_tot)
-    ) %>% 
-    mutate(
-      is_secret_prim = is_secret_freq | is_secret_dom,
-      nb_obs = ceiling(nb_obs)
-    ))
+
+exemple_masq2 <- tab_rtauargus(
+  liste_tabs_exemple$wtf1,
+  files_name = "test_ca_pizzas1" ,
+  explanatory_vars = c("ACTIVITY","NUTS23","treff___cj"),
+  dir_name = "test_avec_rtauargus/hierarchie_2/mod/table",
+  totcode = c(ACTIVITY="Total",NUTS23="Total",treff___cj="Total___Total"),
+  hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts,treff___cj=list_res2$hrcs$pizza1$treff___cj),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE
+)
 ```
+
+Cela fonctionne
+
+data.frame':	8304 obs. of  10 variables:
+ $ ACTIVITY      : chr  "A" "A" "A" "A" ...
+ $ NUTS23        : chr  "FR1" "FR1" "FR1" "FR1" ...
+ $ treff___cj    : chr  "Total___Total" "tr1___LL" "tr1___SP" "tr1___Total" ...
+ $ nb_obs        : num  5 4 1 5 5 4 1 5 111 5 ...
+ $ pizzas_tot    : num  17.7 13 4.7 17.7 17.7 ...
+ $ pizzas_max    : num  5.59 5.59 4.66 5.59 5.59 ...
+ $ is_secret_freq: logi  FALSE FALSE TRUE FALSE FALSE FALSE ...
+ $ is_secret_dom : logi  FALSE FALSE TRUE FALSE FALSE FALSE ...
+ $ is_secret_prim: logi  FALSE FALSE TRUE FALSE FALSE FALSE ...
+ $ Status        : chr  "V" "D" "B" "V" ...
+ 
+```{r}
+
+masqtest <- tab_rtauargus(
+  liste_tabs_exemple$wtf2,
+  files_name = "test_ca_pizzas2" ,
+  explanatory_vars = c("ACTIVITY","NUTS23","treff___cj"),
+  dir_name = "test_avec_rtauargus/hierarchie_2/mod/table",
+  totcode = c(ACTIVITY="Total",NUTS23="Total",treff___cj="Total___Total"),
+  hrc = c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts,treff___cj=list_res2$hrcs$pizza2$treff___cj),
+  value = "pizzas_tot",
+  freq = "nb_obs",
+  secret_var = "is_secret_prim",
+  verbose = FALSE,
+  suppress="GH(1,100)"
+)
+```
+
+Cela fonctionne aussi
+
 
 ### Pose du secret secondaire
 
@@ -176,4 +288,18 @@ T4_masq %>%
 ```
 
 
+statut_final
+<chr>
+n_cell
+<int>
+val_cell
+<dbl>
+pc_n_cell
+<dbl>
+pc_val_cell
+<dbl>
+A	2147	21720283	19.780726	3.136558
+B	639	29244676	5.887231	4.223132
+D	4487	186142496	41.339598	26.880257
+V	3581	455380336	32.992445	65.760053
 
