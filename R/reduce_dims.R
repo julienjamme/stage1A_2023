@@ -33,8 +33,6 @@
 #' @export
 #'
 #' TODO: 
-#' boolean argument split: split the arrays if they exceed LIMIT
-#' 
 #' to save time: parallelize the lapply for variable selection
 #'                                     lapply for reducing from 4 to 3 dimensions
 #'                                     in the case of dimension 5
@@ -122,7 +120,8 @@
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   nb_tab = "max"
+#'   nb_tab = "smart",
+#'   LIMIT = 1
 #' )
 #' 
 #' # Example for dimension 5
@@ -489,16 +488,18 @@ gen_tabs_5_4_to_3 <- function(
                        var_fus = var_fus)
     }
     
+    if (verbose) {
+      print(paste(length(res$tabs), "tables created"))
+    }
+  }
+  
+  if (!is.null(LIMIT)){
     max_row <- max(sapply(res$tabs, nrow))
     
     if (max_row > LIMIT){
       warning(c("
       The limit of ",LIMIT," cannot be achieved.
       The largest table has ",max_row," rows."))
-    }
-    
-    if (verbose) {
-      print(paste(length(res$tabs), "tables created"))
     }
   }
   
