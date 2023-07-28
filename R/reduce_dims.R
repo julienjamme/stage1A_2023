@@ -445,7 +445,6 @@ gen_tabs_5_4_to_3 <- function(
                 hrcfiles = hrcfiles)
   
   # Split too big table
-  # for the moment only the case dim = 4 has been implemented
   if (split) {
     
     if (verbose) {
@@ -493,6 +492,7 @@ gen_tabs_5_4_to_3 <- function(
     }
   }
   
+  # The user specified a LIMIT (smart or split case)
   if (!is.null(LIMIT)){
     max_row <- max(sapply(res$tabs, nrow))
     
