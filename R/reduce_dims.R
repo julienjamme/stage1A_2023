@@ -89,7 +89,7 @@
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   vars_a_fusionner = c("ACT", "GEO"),
-#'   hrc_dir = "output",
+#'   hrc_dir = "output"
 #' )
 #' 
 #' # Split the output in order to be under the limit & forcing variables to be merged
@@ -100,9 +100,7 @@
 #'   hrcfiles = c(ACT = hrc_act),
 #'   sep_dir = TRUE,
 #'   hrc_dir = "output",
-#'   vars_a_fusionner = c("ACT", "GEO"),
-#'   split = TRUE,
-#'   LIMIT = 100,
+#'   nb_tab = 'max',
 #'   verbose = TRUE
 #' )
 #' 
@@ -194,7 +192,7 @@ gen_tabs_5_4_to_3 <- function(
     hrc_dir = "hrc_alt",
     vars_a_fusionner = NULL,
     nb_tab = "min",
-    LIMIT = 15000,
+    LIMIT = NULL,
     split = FALSE,
     vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
     verbose = FALSE
@@ -259,9 +257,27 @@ gen_tabs_5_4_to_3 <- function(
     stop("verbose must be a logical value.")
   }
   
-  # Convert LIMIT to numeric
-  LIMIT <- as.numeric(LIMIT)
-
+  # Check if verbose is a logical value
+  if (!is.logical(split)){
+    stop("split must be a logical value.")
+  }
+  
+  if (split | nb_tab == "smart"){
+    if (is.null(LIMIT)){
+      stop("You must specify a LIMIT (number) if you use split = TRUE or nb_tab = \"smart\"")
+    }
+    
+    # Convert LIMIT to numeric
+    LIMIT <- as.numeric(LIMIT)
+    
+  } else {
+    if (!is.null(LIMIT)){
+      stop("You must not specify a LIMIT (number) if you do not use split = TRUE or nb_tab = \"smart\"")
+    }
+  }
+  
+  
+  
   # Choose the separator
   data_var_cat <- dfs[names(dfs) %in% names(totcode)]
   sep <- choisir_sep(data_var_cat, vec_sep)
@@ -454,7 +470,11 @@ gen_tabs_5_4_to_3 <- function(
     }
     
     for (var_fus in liste_var_fus){
-      print(var_fus)
+      
+      if (verbose) {
+        print(var_fus)
+      }
+      
       res <- split_tab(res = res,
                        LIMIT = LIMIT,
                        var_fus = var_fus)
