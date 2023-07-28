@@ -14,10 +14,9 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
-```{r cars}
-
 Le but de ce test est de vérifier comment tauargus se débrouille avec 1 hiérarchie .
 POur cela nous allons comparer l'utilisation de tauargus avec une table à 4 variables catégorielles dont 1 hiérarchiques. Dans ce test , on vérifiera si modular ou hypercube et modular fonctionnent et s'il y a un warning quand on utilise tauargus . Puis, on comparera le secret quand on utilise nos fonctions qui permettent de diviser
+
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -42,9 +41,9 @@ loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
 
 source("R/passer_de_3_a_4_ou_5.R")
-source("R/cas_gen_4_3.R")
+source("R/passage_4_3.R")
 source("R/format.R")
-source("R/fonction_general_choisit_sep_et_reduit_dim.R")
+source("R/reduce_dims.R")
 source("R/choisir_sep.R")
 source("R/passage_4_3_cas_0_non_hrc.R")
 source("R/passage_4_3_cas_1_non_hrc.R")
