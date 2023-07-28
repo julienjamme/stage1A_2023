@@ -14,9 +14,10 @@ This is an R Markdown document. Markdown is a simple formatting syntax for autho
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
 
+
+
 Le but de ce test est de vérifier comment tauargus se débrouille avec 1 hiérarchie .
 POur cela nous allons comparer l'utilisation de tauargus avec une table à 4 variables catégorielles dont 1 hiérarchiques. Dans ce test , on vérifiera si modular ou hypercube et modular fonctionnent et s'il y a un warning quand on utilise tauargus . Puis, on comparera le secret quand on utilise nos fonctions qui permettent de diviser
-
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
@@ -63,17 +64,6 @@ load(file.path(mon_chemin, "data/ca_pizzas_4vars.RData"))
 Cette fonction va nous permettre d'obtenir à partir du tableau à 4 dimensions en entrée une liste de tableaux à 3 dimensions sans hiérarchie emboitées 
 
 ```{r}
-data50<-test_part_secret2H(ca_pizzas_4vars,50)
-
-  stats_1table50 <- calculer_secret(data50$stats_1table, type = "stats_1table")
-  
-  # Calculer les statistiques pour masq_liste_empilee
-  stats_liste50 <- calculer_secret(data50$stats_liste , type = "stats_liste")
-```
-
-
-```{r pressure, echo=FALSE}
-
 hrc_activity <- rtauargus::write_hrc2(
   corr_act, 
   "hrc/activity_2_niv.hrc", 
@@ -85,19 +75,72 @@ hrc_nuts <- rtauargus::write_hrc2(
   "hrc/nuts23.hrc", 
   adjust_unique_roots = TRUE
 )
+```
+
+
+```{r}
 
 hrcfiles<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+data50<-test_part_secret2H(ca_pizzas_4vars,50)
 
-totcode<-c(ACTIVITY="Total",NUTS23="Total",treff="Total",cj="Total")
+  stats_1table50 <- calculer_secret(data50$stats_1table, type = "stats_1table")
+  
+  # Calculer les statistiques pour masq_liste_empilee
+  stats_liste50 <- calculer_secret(data50$stats_liste , type = "stats_liste")
+```
+ Show in New Window
+1080.17 sec elapsed
+--- Current table to treat:  table_test_501 ---
+--- Current table to treat:  table_test_502 ---
+--- Current table to treat:  table_test_501 ---
+--- Current table to treat:  table_test_502 ---
+624.37 sec elapsed
 
-dfs <- ca_pizzas_4vars
-nom_dfs <- "wtf"
+ METHODE     statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>       <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_liste A              5426 136857281.      50          19.8
+2 stats_liste D              3417 221837765.      31.5        32  
+3 stats_liste V              2011 333792743.      18.5        48.2
 
-list_res2<-
-  gen_tabs_5_4_to_3( dfs,nom_dfs,totcode,hrcfiles,sep_dir = TRUE,hrc_dir = "output",vec_sep = c("\\___"),nb_tab = "min" )
+ METHODE      statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>        <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_1table B              5426 136857281.      50          19.8
+2 stats_1table D              3430 225182117.      31.6        32.5
+3 stats_1table V              1998 330448390.      18.4        47.7
+
+
+```{r pressure, echo=FALSE}
+hrcfiles<-c(ACTIVITY=hrc_activity,NUTS23=hrc_nuts)
+data30<-test_part_secret2H(ca_pizzas_4vars,30)
+
+  stats_1table30 <- calculer_secret(data30$stats_1table, type = "stats_1table")
+  
+  # Calculer les statistiques pour masq_liste_empilee
+  stats_liste30 <- calculer_secret(data30$stats_liste , type = "stats_liste")
+
+
+
 
 ```
-###Pose du secret primaire
+7071.69 sec elapsed
+--- Current table to treat:  table_test_301 ---
+--- Current table to treat:  table_test_302 ---
+--- Current table to treat:  table_test_301 ---
+--- Current table to treat:  table_test_302 ---
+--- Current table to treat:  table_test_301 ---
+1723.58 sec elapsed
+
+  METHODE      statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>        <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_1table B              3116  52480935.      28.7         7.6
+2 stats_1table D              4535 193626860.      41.8        28  
+3 stats_1table V              3203 446379993.      29.5        64.5
+
+METHODE     statut_final n_cell   val_cell pc_n_cell pc_val_cell
+  <chr>       <chr>         <int>      <dbl>     <dbl>       <dbl>
+1 stats_liste A              3116  52480935.      28.7         7.6
+2 stats_liste D              4633 197866179.      42.7        28.6
+3 stats_liste V              3105 442140675.      28.6        63.8
 
 ```{r}
 tabs_exemple <- (
