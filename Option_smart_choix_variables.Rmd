@@ -14,18 +14,19 @@ knitr::opts_chunk$set(echo = TRUE)
 library(dplyr)
 library(stringr)
 library(tictoc)
+mon_chemin <- getwd()
 
-source("R/reduce_dims.R")
-source("R/passage_5_3.R",encoding = "UTF-8")
-source("R/passage_4_3_cas_0_non_hrc.R",encoding = "UTF-8")
-source("R/passage_4_3_cas_1_non_hrc.R",encoding = "UTF-8")
-source("R/passage_4_3_cas_2_non_hrc.R",encoding = "UTF-8")
-source("R/passage_4_3.R",encoding = "UTF-8")
-source("R/choisir_sep.R",encoding = "UTF-8")
-source("R/format.R",encoding = "UTF-8")
-source("R/length_tabs.R",encoding = "UTF-8")
-source("R/nb_tab.R",encoding = "UTF-8")
-source("R/chercher_combinaison_variable_a_fusionner.R",encoding = "UTF-8")
+source(file.path(mon_chemin, "R/reduce_dims.R"))
+source(file.path(mon_chemin,"R/passage_5_3.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3_cas_0_non_hrc.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3_cas_1_non_hrc.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3_cas_2_non_hrc.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/choisir_sep.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/format.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/length_tabs.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/nb_tab.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/chercher_combinaison_variable_a_fusionner.R"),encoding = "UTF-8")
 ```
 
 # Premier exemple
@@ -39,7 +40,7 @@ Générer les fichiers hrc
 mod_GEO <- c("France")
 
 # Ouvre un nouveau fichier texte pour l'écriture
-fileConn <- file("test/Rmd/GEO.hrc", open = "w")
+fileConn <- file(file.path(mon_chemin,"hrc/GEO.hrc"), open = "w")
 
 # Boucle sur les régions
 for (region in 1:5) {
@@ -75,7 +76,7 @@ close(fileConn)
 mod_ACT <- c("Total")
 
 # Ouvre un nouveau fichier texte pour l'écriture
-fileConn <- file("test/Rmd/ACT.hrc", open = "w")
+fileConn <- file(file.path(mon_chemin,"hrc/ACT.hrc"), open = "w")
 
 # Boucle sur les secteurs
 for (secteur in 1:5) {
