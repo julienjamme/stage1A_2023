@@ -6,11 +6,12 @@ split_tab<-function(res,var_fus, LIMIT){
   all_tot_stock<-list()
   tabs2<-list()
   list_vars<-list()
-  
+  list_alt_hrcs<-list()
   for (t in table_a_gerer){
     
     hrc <- res$hrcs[[t]][[var_fus]]
     total <- res$alt_tot[[t]][[var_fus]]
+    autre_totaux <- res$alt_tot[[t]][names(res$alt_tot[[t]])!=(var_fus)]
     
     res_sdc <- sdcHierarchies::hier_import(inp = hrc, from = "hrc", root = total) %>% 
       sdcHierarchies::hier_convert(as = "sdc")
@@ -40,6 +41,7 @@ split_tab<-function(res,var_fus, LIMIT){
     liste_alt_tot <- setNames(lapply(1:n, function(i) {
       totali <- c(codes_split[[i]][1])
       totali <- setNames(list(totali), var_fus)
+      totali <- c(totali,autre_totaux)
       return(totali)
     }),
     noms
@@ -54,6 +56,17 @@ split_tab<-function(res,var_fus, LIMIT){
     names(list_add) <- noms
     list_vars<-append(list_vars,list_add)
     
+    res$hrcs[[t]][[var_fus]] <- NULL
+    if (length(res$hrcs[[t]])!=0){
+    hrc_e<-list(res$hrcs[[t]])
+   
+    names(hrc_e)<-names(res$hrcs[[t]])
+  
+    alt_hrcs<-replicate(n,hrc_e)
+    names(alt_hrcs) <- noms
+    
+    list_alt_hrcs<-append(list_alt_hrcs,alt_hrcs)} else {list_alt_hrcs<-NULL }
+    
   }
   
   table <- names(res$tabs[!(names(res$tabs) %in% table_a_gerer)])
@@ -62,10 +75,8 @@ split_tab<-function(res,var_fus, LIMIT){
   alt_tot<-append(all_tot_stock,res$alt_tot[table])
   vars<-append(res$vars[table],list_vars)
   
-  hrcs<-res$hrcs[table]
-  if (length(hrcs)==0){
-    hrcs<- NULL
-  }
+  hrcs<-append(list_alt_hrcs,res$hrcs[table]) # Je prends tous les hrcs présents 
+  if (length(hrcs)==0){ hrcs<-NULL}
   res=list(
     tabs=tabs_tot,
     vars=vars,
