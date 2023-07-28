@@ -128,7 +128,7 @@ format4 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
     ),
     paste(nom_dfs, seq_along(res$tabs), sep = "")
   )
-  hrcfiles<-hrcfiles[!(names(hrcfiles) %in% names(totcode_2))]
+  hrcfiles<-hrcfiles[(names(hrcfiles) %in% names(totcode_2))]
   if (length(hrcfiles)==0){hrcfiles<-NULL}
   
   return (
@@ -213,7 +213,7 @@ format5 <- function(res, nom_dfs, sep, totcode, hrcfiles) {
     paste(nom_dfs, seq_along(res$tabs), sep = ""))
     
   }
-  hrcfiles<-hrcfiles[!(names(hrcfiles) %in% names(totcode_2))]
+  hrcfiles<-hrcfiles[(names(hrcfiles) %in% names(totcode_2))]
   if (length(hrcfiles)==0){hrcfiles<-NULL}
   return (
     list(
