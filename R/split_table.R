@@ -90,7 +90,7 @@ split_tab <- function(res, var_fus, LIMIT) {
       names(alt_hrcs) <- noms
       
       list_alt_hrcs <- append(list_alt_hrcs, alt_hrcs)
-    } else { list_alt_hrcs <- NULL}
+    } 
     }
   
   # adding the names tables we created to the already existing tables 
@@ -99,7 +99,7 @@ split_tab <- function(res, var_fus, LIMIT) {
   tabs_tot <- append(res$tabs[table], tabs2)
   alt_tot <- append(res$alt_tot[table],all_tot_stock)
   vars <- append(res$vars[table], list_vars)
-  hrcs <- append(list_alt_hrcs, res$hrcs[table]) 
+  hrcs <- append( res$hrcs[table],list_alt_hrcs) 
   if (length(hrcs) == 0) { hrcs <- NULL }
   
   

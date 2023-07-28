@@ -194,10 +194,10 @@ gen_tabs_5_4_to_3 <- function(
     nb_tab = "min",
     LIMIT = NULL,
     split = FALSE,
-    vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
+    vec_sep = c("\\_+_", "\\_!_", "\\_?_","___","_z_z_z_z"),
     verbose = FALSE
 ){
-  
+  require(sdcHierarchies)
   dfs <- as.data.frame(dfs)
   
   # Check if nom_dfs is a character string
