@@ -1,0 +1,537 @@
+---
+title: "Réduction de dimension sur gros tableaux : choix des variables à fusionner"
+output: html_document
+date: "2023-07-25"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Initialisation
+
+```{r, echo=TRUE, results='hide'}
+library(dplyr)
+library(stringr)
+library(tictoc)
+mon_chemin <- getwd()
+
+source(file.path(mon_chemin, "R/reduce_dims.R"))
+source(file.path(mon_chemin,"R/passage_5_3.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3_cas_0_non_hrc.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3_cas_1_non_hrc.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3_cas_2_non_hrc.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/passage_4_3.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/choisir_sep.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/format.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/length_tabs.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/nb_tab.R"),encoding = "UTF-8")
+source(file.path(mon_chemin,"R/chercher_combinaison_variable_a_fusionner.R"),encoding = "UTF-8")
+```
+
+# Premier exemple
+
+## Création des données
+
+Générer les fichiers hrc
+```{r}
+# hiérarchie GEO : France, 5 Régions de 20 départements de 30 communes
+# Initialise le vecteur R
+mod_GEO <- c("France")
+
+# Ouvre un nouveau fichier texte pour l'écriture
+fileConn <- file(file.path(mon_chemin,"hrc/GEO.hrc"), open = "w")
+
+# Boucle sur les régions
+for (region in 1:5) {
+  
+  region_name <- paste0("Région", region)
+  writeLines(region_name, fileConn)
+  mod_GEO <- c(mod_GEO, region_name)
+  
+  # Boucle sur les départements de chaque région
+  for (departement in 1:7) {
+    
+    departement_name <- paste0("@Département", region, "_", departement)
+    writeLines(departement_name, fileConn)
+    mod_GEO <- c(mod_GEO, paste0("Département", region, "_", departement))
+    
+    # Boucle sur les communes de chaque département
+    for (commune in 1:10) {
+      
+      commune_name <- paste0("@@Commune", region, "_", departement, "_", commune)
+      writeLines(commune_name, fileConn)
+      mod_GEO <- c(mod_GEO, paste0("Commune", region, "_", departement, "_", commune))
+    }
+  }
+}
+
+# Ferme le fichier
+close(fileConn)
+```
+
+```{r}
+# hiérarchie ACT: Ensemble, 3 secteurs de 40 fillières
+# Initialise le vecteur R
+mod_ACT <- c("Total")
+
+# Ouvre un nouveau fichier texte pour l'écriture
+fileConn <- file(file.path(mon_chemin,"hrc/ACT.hrc"), open = "w")
+
+# Boucle sur les secteurs
+for (secteur in 1:5) {
+  
+  secteur_name <- paste0("Secteur", secteur)
+  writeLines(secteur_name, fileConn)
+  mod_ACT <- c(mod_ACT, secteur_name)
+  
+  # Boucle sur les fillières de chaque secteur
+  for (filiere in 1:10) {
+    
+    filieret_name <- paste0("@Fillière", secteur, "_", filiere)
+    writeLines(filieret_name, fileConn)
+    mod_ACT <- c(mod_ACT, paste0("Fillière", secteur, "_", filiere))
+  }
+}
+
+# Ferme le fichier
+close(fileConn)
+```
+
+```{r}
+data <- expand.grid(
+  GEO = mod_GEO,
+  ACT = mod_ACT,
+  AGE = c("Ensemble",paste0(seq(0, 90, by = 10), "-", seq(9, 99, by = 10)), "100+"),
+  SEX = c("Tout", "Femme", "Homme","Autre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+hrcfiles = c(GEO = "test/Rmd/GEO.hrc",ACT = "test/Rmd/ACT.hrc")
+totcode = c(GEO = "France", ACT = "Total",AGE = "Ensemble",SEX = "Tout")
+
+nrow(data)
+```
+Nous avons donc créé un tableau de 4 dimensions, à 2 hiérarchies et 1 million de lignes.
+
+## Résultat de la réduction de dimension
+
+### Minimisation
+```{r}
+# Si l'on veut minimiser le nombre de tableau
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'min')
+```
+
+```{r}
+calculer_nb_tab(v1 = "AGE",
+                v2 = "SEX",
+                hrcfiles = hrcfiles,
+                data = data)
+```
+```{r}
+max(unlist(length_tabs(dfs = data,
+            v1 = "AGE",
+            v2 = "SEX",
+            totcode = totcode,
+            hrcfiles = hrcfiles)))
+```
+```{r}
+tic("Minimisation nombre de table")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "min")
+toc()
+```
+
+
+### Maximisation
+
+```{r}
+# Si l'on veut minimiser le nombre de tableau
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'max')
+```
+```{r}
+calculer_nb_tab(v1 = "GEO",
+                v2 = "ACT",
+                hrcfiles = hrcfiles,
+                data = data)
+```
+```{r}
+max(unlist(length_tabs(dfs = data,
+            v1 = "GEO",
+            v2 = "ACT",
+            totcode = totcode,
+            hrcfiles = hrcfiles)))
+```
+```{r}
+tic("Maximisation nombre de table")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "max")
+toc()
+```
+
+### Smart
+
+```{r}
+# Si l'on veut minimiser le nombre de tableau, 
+# tout en gardant une taille maximale de 50 000
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'smart',
+                                LIMIT = 50000)
+```
+```{r}
+calculer_nb_tab(v1 = "GEO",
+                v2 = "AGE",
+                hrcfiles = hrcfiles,
+                data = data)
+```
+```{r}
+max(unlist(length_tabs(dfs = data,
+            v1 = "GEO",
+            v2 = "AGE",
+            totcode = totcode,
+            hrcfiles = hrcfiles)))
+```
+```{r}
+tic("Maximisation sous contrainte du nombre de table : 50 000")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "smart",
+                  LIMIT = 50000)
+toc()
+```
+
+Conclusion :
+
+Tableau en entré :
+
+1,051,008 lignes
+
+2 hiérarchies
+
+Sortie:
+
+| Méthode         | nombre de tableau | nombre de ligne maximale | Temps de réduction | 
+|-----------------|-------------------|--------------------------|--------------------|
+| Min             | 2                 | 985,320                  | 2.5 sec            |    
+| Max             | 492               | 5,328                    | 142.34 sec         |  
+| Smart (50,000)  | 82                | 27,328                   | 55.87 sec          |
+
+| Méthode         | nombre de variables hiérarchiques | 
+|-----------------|-----------------------------------|
+| Min             | 3                                 |    
+| Max             | 1                                 | 
+| Smart (50,000)  | 2                                 |
+
+Par ailleurs, le fait que moins de tableau soient généré devrait rendre rtauargus
+plus rapide (à vérifier) puisque les tableaux ne sont pas beaucoup plus grands.
+
+### Résultats pour d'autres valeurs de limite
+```{r}
+tic("smart (Seuil=20 000)")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "smart",
+                  LIMIT = 20000)
+t<-toc()
+print(t$callback_msg)
+print(c("Nombre max de ligne : ",max(sapply(res$tabs, nrow))))
+print(c("Nombre de tableau :",length(res$tabs)))
+```
+
+```{r}
+tic("smart (Seuil=100 000)")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "smart",
+                  LIMIT = 100000)
+t<-toc()
+print(t$callback_msg)
+print(c("Nombre max de ligne : ",max(sapply(res$tabs, nrow))))
+print(c("Nombre de tableau :",length(res$tabs)))
+```
+```{r}
+tic("smart (Seuil=500 000)")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "smart",
+                  LIMIT = 500000)
+t<-toc()
+print(t$callback_msg)
+print(c("Nombre max de ligne : ",max(sapply(res$tabs, nrow))))
+print(c("Nombre de tableau :",length(res$tabs)))
+```
+Conclusion : 
+
+L'option smart est principalement utile dans le cas d'un gros tableau
+à plusieurs variables hiérarchiques (2+).
+
+Dans ce cas-ci l'option min pourrait avoir une sortie non utilisable 
+avec rtauargus (tableaux trop grands)
+
+Et l'option max ferait trop de tableaux ce qui ne serait pas convenable.
+
+L'option smart permet ainsi de trouver un compromis.
+
+Dans le cas de la dimension 5, l'option smart est plus utile puisque l'écart
+entre l'option min et max est encore plus important.
+
+Il est à noté que l'option smart à un coût d'entré du fait du temps nécéssaire
+pour calculer les variables à fusionner
+
+# Second exemple
+
+## Création des données
+
+Générer les fichiers hrc
+```{r}
+# hiérarchie GEO : France, 5 Régions de 20 départements de 30 communes
+# Initialise le vecteur R
+mod_GEO2 <- c("France")
+
+# Ouvre un nouveau fichier texte pour l'écriture
+fileConn <- file("test/Rmd/GEO2.hrc", open = "w")
+
+# Boucle sur les régions
+for (region in 1:7) {
+  
+  region_name <- paste0("Région", region)
+  writeLines(region_name, fileConn)
+  mod_GEO2 <- c(mod_GEO2, region_name)
+  
+  # Boucle sur les départements de chaque région
+  for (departement in 1:10) {
+    
+    departement_name <- paste0("@Département", region, "_", departement)
+    writeLines(departement_name, fileConn)
+    mod_GEO2 <- c(mod_GEO2, paste0("Département", region, "_", departement))
+    
+    # Boucle sur les communes de chaque département
+    for (commune in 1:30) {
+      
+      commune_name <- paste0("@@Commune", region, "_", departement, "_", commune)
+      writeLines(commune_name, fileConn)
+      mod_GEO2 <- c(mod_GEO2, paste0("Commune", region, "_", departement, "_", commune))
+    }
+  }
+}
+
+# Ferme le fichier
+close(fileConn)
+```
+
+```{r}
+# hiérarchie ACT: Ensemble, 3 secteurs de 40 fillières
+# Initialise le vecteur R
+mod_ACT2 <- c("Total")
+
+# Ouvre un nouveau fichier texte pour l'écriture
+fileConn <- file("test/Rmd/ACT2.hrc", open = "w")
+
+# Boucle sur les secteurs
+for (secteur in 1:8) {
+  
+  secteur_name <- paste0("Secteur", secteur)
+  writeLines(secteur_name, fileConn)
+  mod_ACT2 <- c(mod_ACT2, secteur_name)
+  
+  # Boucle sur les fillières de chaque secteur
+  for (filiere in 1:20) {
+    
+    filieret_name <- paste0("@Fillière", secteur, "_", filiere)
+    writeLines(filieret_name, fileConn)
+    mod_ACT2 <- c(mod_ACT2, paste0("Fillière", secteur, "_", filiere))
+  }
+}
+
+# Ferme le fichier
+close(fileConn)
+```
+
+```{r}
+data <- expand.grid(
+  GEO = mod_GEO2,
+  ACT = mod_ACT2,
+  AGE = c("Ensemble",paste0(seq(0, 90, by = 10), "-", seq(9, 99, by = 10)), "100+"),
+  SEX = c("Tout", "Femme", "Homme","Autre"),
+  stringsAsFactors = FALSE
+) %>% 
+  as.data.frame()
+
+hrcfiles = c(GEO = "test/Rmd/GEO2.hrc",ACT = "test/Rmd/ACT2.hrc")
+totcode = c(GEO = "France", ACT = "Total",AGE = "Ensemble",SEX = "Tout")
+
+nrow(data)
+```
+Nous avons donc créé un tableau de 4 dimensions, à 2 hiérarchies et 17 millions de lignes.
+
+## Résultat de la réduction de dimension
+
+### Minimisation
+```{r eval=FALSE, echo=FALSE}
+# Si l'on veut minimiser le nombre de tableau
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'min')
+```
+
+```{r}
+calculer_nb_tab(v1 = "AGE",
+                v2 = "SEX",
+                hrcfiles = hrcfiles,
+                data = data)
+```
+
+```{r}
+max(unlist(length_tabs(dfs = data,
+            v1 = "AGE",
+            v2 = "SEX",
+            totcode = totcode,
+            hrcfiles = hrcfiles)))
+```
+
+```{r}
+tic("Minimisation nombre de table")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "min")
+toc()
+```
+
+
+### Maximisation
+
+```{r eval=FALSE, echo=FALSE}
+# Si l'on veut maximiser le nombre de tableau
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'max')
+```
+
+```{r}
+calculer_nb_tab(v1 = "GEO",
+                v2 = "ACT",
+                hrcfiles = hrcfiles,
+                data = data)
+```
+
+```{r}
+max(unlist(length_tabs(dfs = data,
+            v1 = "GEO",
+            v2 = "ACT",
+            totcode = totcode,
+            hrcfiles = hrcfiles)))
+```
+
+```{r}
+tic("Maximisation nombre de table")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "max")
+toc()
+```
+
+### Smart
+
+```{r eval=FALSE, echo=FALSE}
+# Si l'on veut minimiser le nombre de tableau, 
+# tout en gardant une taille maximale de 50 000
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                nb_var = 2,
+                                nb_tab = 'smart',
+                                LIMIT = 250000)
+```
+
+```{r eval=FALSE, echo=FALSE}
+calculer_nb_tab(v1 = "GEO",
+                v2 = "AGE",
+                hrcfiles = hrcfiles,
+                data = data)
+```
+
+```{r eval=FALSE, echo=FALSE}
+max(unlist(length_tabs(dfs = data,
+            v1 = "GEO",
+            v2 = "AGE",
+            totcode = totcode,
+            hrcfiles = hrcfiles)))
+```
+
+```{r}
+tic("Maximisation sous contrainte du nombre de table : 250 000")
+res <- gen_tabs_5_4_to_3(dfs = data,
+                  nom_dfs = "nom",
+                  totcode = totcode,
+                  hrcfiles = hrcfiles,
+                  sep_dir = TRUE,
+                  nb_tab = "smart",
+                  LIMIT = 250000)
+toc()
+print(c("Nombre max de ligne : ",max(sapply(res$tabs, nrow))))
+print(c("Nombre de tableau :",length(res$tabs)))
+```
+
+Conclusion :
+
+Tableau en entré :
+
+17,667,936 lignes
+
+2 hiérarchies
+
+Sortie:
+
+| Méthode         | nombre de tableau | nombre de ligne maximale | Temps de réduction   | 
+|-----------------|-------------------|--------------------------|----------------------|
+| Min             | 2                 | 16,563,690               | 25.5 sec             |  
+| Max             | 1404              | 30,288                   | 853.22 sec = 14.2min |  
+| Smart (250,000) | 82                | 244,036                  | 342.83 sec = 5.7min  |
+
+| Méthode         | nombre de variables hiérarchiques | 
+|-----------------|-----------------------------------|
+| Min             | 3                                 |    
+| Max             | 1                                 | 
+| Smart (250,000) | 2                                 |
