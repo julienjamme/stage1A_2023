@@ -196,7 +196,7 @@ gen_tabs_5_4_to_3 <- function(
     nb_tab = "min",
     LIMIT = 15000,
     split = FALSE,
-    vec_sep = c("\\_+_", "\\_!_", "\\_?_"),
+    vec_sep = c("\\_+_", "\\_!_", "\\_?_","___","_z_z_z_z"),
     verbose = FALSE
 ){
   require(sdcHierarchies)
