@@ -34,25 +34,27 @@ Pour pouvoir faire ses tests, on aura besoin de différents package:
 
 ```{r source}
 
-load("data/ca_pizzas_4vars.RData")
+
 library("dplyr")
 library(stringr)
 library(tictoc)
 library("rtauargus")
 loc_tauargus <- "Z:/TauArgus4.2.4b2/TauArgus4.2.4b2/TauArgus.exe"
 options(rtauargus.tauargus_exe = loc_tauargus)
+mon_chemin <- getwd()
 
-source("R/passer_de_3_a_4_ou_5.R")
-source("R/passage_4_3.R")
-source("R/format.R")
-source("R/reduce_dims.R")
-source("R/choisir_sep.R")
-source("R/passage_4_3_cas_0_non_hrc.R")
-source("R/passage_4_3_cas_1_non_hrc.R")
-source("R/passage_4_3_cas_2_non_hrc.R")
-source("R/nb_tab.R")
-source("R/length_tabs.R")
-source("R/chercher_combinaison_variable_a_fusionner.R")
+source(file.path(mon_chemin, "R/passer_de_3_a_4_ou_5.R"), encoding = "UTF-8")
+# Exécute les commandes source()
+source(file.path(mon_chemin, "R/passage_4_3.R"), encoding = "UTF-8")
+source(file.path(mon_chemin, "R/format.R"), encoding = "UTF-8")
+source(file.path(mon_chemin, "R/reduce_dims.R"))
+source(file.path(mon_chemin, "R/choisir_sep.R"))
+source(file.path(mon_chemin, "R/passage_4_3_cas_0_non_hrc.R"))
+source(file.path(mon_chemin, "R/passage_4_3_cas_1_non_hrc.R"))
+source(file.path(mon_chemin, "R/passage_4_3_cas_2_non_hrc.R"))
+source(file.path(mon_chemin, "fonction_secret/fonction_secret_2.R"))
+# Charge le fichier RData
+load(file.path(mon_chemin, "data/ca_pizzas_4vars.RData"))
 ```
 
 ## Test avec une liste de tableaux à 3 dimensions
@@ -60,6 +62,16 @@ source("R/chercher_combinaison_variable_a_fusionner.R")
 ### Utilisation de la fonction passant de 4 à 3 variables catégorielles 
 
 Cette fonction va nous permettre d'obtenir à partir du tableau à 4 dimensions en entrée une liste de tableaux à 3 dimensions sans hiérarchie emboitées 
+
+```{r}
+data50<-test_part_secret2H(ca_pizzas_4vars,50)
+
+  stats_1table50 <- calculer_secret(data50$stats_1table, type = "stats_1table")
+  
+  # Calculer les statistiques pour masq_liste_empilee
+  stats_liste50 <- calculer_secret(data50$stats_liste , type = "stats_liste")
+```
+
 
 ```{r pressure, echo=FALSE}
 
