@@ -68,7 +68,7 @@
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res1[1], v2 = res1[2])))
+#'                        v1 = res1$vars[1], v2 = res1$vars[2])))
 #' 
 #' # Consistent: choose two non-hierarchical variables
 #' res2 <- choisir_var_a_fusionner_general(dfs = data,
@@ -80,7 +80,7 @@
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res2[1], v2 = res2[2])))
+#'                        v1 = res2$vars[1], v2 = res2$vars[2])))
 #' 
 #' res3 <- choisir_var_a_fusionner_general(dfs = data,
 #'                                 totcode = totcode,
@@ -92,7 +92,7 @@
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res3[1], v2 = res3[2])))
+#'                        v1 = res3$vars[1], v2 = res3$vars[2])))
 #' 
 #' # Obtains 147, which is well below 200
 #' 
@@ -106,7 +106,7 @@
 #' max(unlist(length_tabs(dfs = data,
 #'                        hrcfiles = hrcfiles,
 #'                        totcode = totcode,
-#'                        v1 = res4[1], v2 = res4[2])))
+#'                        v1 = res4$vars[1], v2 = res4$vars[2])))
 #' 
 #' # Receives a warning: unable to reach the announced value
 #' # There are 63 rows (equivalent to the max 
@@ -179,7 +179,10 @@ choisir_var_a_fusionner <- function(
     # Print the original index
     i <- filtered_df$original_index[min_index]
     
-    return(result_comb[[i]])
+    return(list(vars = result_comb[[i]],
+                max_row = filtered_df$res_max[min_index],
+                nb_tab = filtered_df$res_len[min_index])
+           )
     
     # Case: maximize the number of tables
   } else if (nb_tab == "max"){
@@ -191,7 +194,10 @@ choisir_var_a_fusionner <- function(
     # Print the original index
     i <- filtered_df$original_index[min_index]
     
-    return(result_comb[[i]])
+    return(list(vars = result_comb[[i]],
+                max_row = filtered_df$res_max[min_index],
+                nb_tab = filtered_df$res_len[min_index])
+    )
     
     # Case: 'smart' - maximize under the constraint of the size limit
   } else {
@@ -206,7 +212,10 @@ choisir_var_a_fusionner <- function(
       # Print the original index
       i <- filtered_df$original_index[min_index]
       
-      return(result_comb[[i]])
+      return(list(vars = result_comb[[i]],
+                  max_row = filtered_df$res_max[min_index],
+                  nb_tab = filtered_df$res_len[min_index])
+      )
       
     } else {
       # Return the result with the fewest tables among those
@@ -223,7 +232,11 @@ choisir_var_a_fusionner <- function(
       
       # Print the original index
       i <- filtered_df$original_index[min_index]
-      return(result_comb[[i]])
+      
+      return(list(vars = result_comb[[i]],
+                  max_row = filtered_df$res_max[min_index],
+                  nb_tab = filtered_df$res_len[min_index])
+      )
     }
   }
 }

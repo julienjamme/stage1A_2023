@@ -15,9 +15,9 @@ source("R/chercher_combinaison_variable_a_fusionner.R")
 
 data <- expand.grid(
   ACT = c("Total", "A", "B", "A1", "A2", "B1", "B2"),
-  GEO = c("Total", "GA", "GB", "GA1", "GA2"),
+  GEO = c("Total", "GA", "GB", "GA1", "GA2","GA3"),
   SEX = c("Total", "F", "M"),
-  AGE = c("Total", "AGE1", "AGE2"),
+  AGE = c("Total", "AGE1", "AGE2","AGE3"),
   stringsAsFactors = FALSE,
   KEEP.OUT.ATTRS = FALSE
 ) %>% 
@@ -38,7 +38,7 @@ sdcHierarchies::hier_create(root = "Total", nodes = c("A","B")) %>%
 
 hrc_geo <- "test/test_cas_gen_4_output/test3/hrc_GEO.hrc"
 sdcHierarchies::hier_create(root = "Total", nodes = c("GA","GB")) %>% 
-  sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2")) %>% 
+  sdcHierarchies::hier_add(root = "GA", nodes = c("GA1","GA2","GA3")) %>% 
   sdcHierarchies::hier_convert(as = "argus") %>%
   slice(-1) %>% 
   mutate(levels = substring(paste0(level,name),3)) %>% 
@@ -49,12 +49,19 @@ totcode <- c(SEX="Total",AGE="Total", GEO="Total", ACT="Total")
 
 hrcfiles <- c(ACT = hrc_act, GEO = hrc_geo)
 
-choisir_var_a_fusionner_general(dfs=data,
-                        totcode,
-                        hrcfiles,
-                        LIMIT=1,
-                        nb_var = 2,
-                        nb_tab = 'smart')
+# Les différents choix qui s'offrent à nous
+result_comb <- generer_une_paire(totcode)
+# Calculate the number of tables and maximum rows for each combination of variables
+lapply(result_comb, function(x) max(unlist(length_tabs(
+  dfs = data,
+  v1 = x[1],
+  v2 = x[2],
+  v3 = x[3],
+  v4 = x[4],
+  totcode = totcode,
+  hrcfiles = hrcfiles))))
+
+
 
 # Cohérent : on choisit deux var hier
 choisir_var_a_fusionner_general(dfs=data,
@@ -70,8 +77,22 @@ choisir_var_a_fusionner_general(dfs=data,
                                 nb_var = 2,
                                 nb_tab = 'min')
 
+# cohérent : on choisit un entre deux : une var hier et une non hier
+choisir_var_a_fusionner_general(dfs=data,
+                                totcode,
+                                hrcfiles,
+                                LIMIT = 300,
+                                nb_var = 2,
+                                nb_tab = 'smart')
 
-length_tabs(dfs = data,v1 = "ACT",v2="GEO", totcode=totcode)
+
+# On a bien le nom nombre de ligne
+max(unlist(length_tabs(dfs = data,
+                       v1 = "ACT",v2="GEO",
+                       totcode = totcode,
+                       hrcfiles = hrcfiles)
+           )
+    )
 
 # -------------------------------------------------------------------------
 
