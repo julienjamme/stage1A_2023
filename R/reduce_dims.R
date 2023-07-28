@@ -273,6 +273,8 @@ gen_tabs_5_4_to_3 <- function(
     stop("split must be a logical value.")
   }
   
+  # LIMIT is not used if the user does not use split or nb_tab
+  # we consider it to be an error if the users specifies it
   if (split | nb_tab == "smart"){
     if (is.null(LIMIT)){
       stop("You must specify a LIMIT (number) if you use split = TRUE or nb_tab = \"smart\"")
@@ -404,8 +406,8 @@ gen_tabs_5_4_to_3 <- function(
                                                        nb_var = 2,
                                                        LIMIT = LIMIT,
                                                        nb_tab = nb_tab)
-        v1 <- choix_2_var[[1]]
-        v2 <- choix_2_var[[2]]
+        v1 <- choix_2_var$vars[[1]]
+        v2 <- choix_2_var$vars[[2]]
         
         # Return to the primitive implementation to minimize or maximize
         # the number of tables since the old implementation is not bad and is
