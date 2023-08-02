@@ -79,6 +79,15 @@ passage_4_3_cas_2_non_hr <- function(
   var1_mods_except_total <- mods1[mods1 != var1_total]
   var2_mods_except_total <- mods2[mods2 != var2_total]
   
+  if (length(var1_mods_except_total)==1){
+    var1_mods_except_total<-c(var1_mods_except_total,paste(var1_mods_except_total,
+                                                           "ZZZ", sep = ""))
+  }
+  
+  if (length(var2_mods_except_total)==1){
+    var2_mods_except_total<-c(var2_mods_except_total,paste(var2_mods_except_total,
+                                                           "ZZZ", sep = ""))
+  }
   # number of modality for each var
   var1_mods_n <- length(var1_mods_except_total)
   var2_mods_n <- length(var2_mods_except_total)
